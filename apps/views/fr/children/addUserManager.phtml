@@ -1,8 +1,11 @@
-<?php include _VIEW_PATH."/common_header.phtml";?>
+
+<?php include _VIEW_PATH."/common_header_dashboard.phtml";?>
+
+<?php include _VIEW_PATH."common_side_bar.phtml"; ?>
 
 <?php include _VIEW_PATH."common_top_bar.phtml";?>
 
-	<main>
+	<!-- <main>
         <div>
             <span class="main-title font-1">Création un nouveau utilisateur</span>
             <div class="track">
@@ -47,7 +50,67 @@
                 </form>
             </div>
         </div>
-    </main>
+    </main> -->
+
+    <!-- Main Content-->
+			<div class="main-content side-content pt-0">
+
+<div class="container-fluid">
+    <div class="inner-body">
+
+<!-- Page Header -->
+    <div class="page-header">
+
+            <?php include _VIEW_PATH."common_top_for_dashboard_content.phtml"; ?>
+    </div>
+
+    <form action="" method="post">
+        <div class="row row-sm">
+            <div class="col-lg-12 col-md-12">
+                <div class="card custom-card">
+                    <div class="card-body">
+                        <div>
+                            <h6 class="main-content-label mb-1">Création un nouveau utilisateur</h6>
+                            <!-- <p class="text-muted card-sub-title">A basic form control input and textarea with disabled and readonly mode.</p> -->
+                        </div>
+                        <div class="row row-sm">
+                            <div class="col-lg-6 mg-t-10 mg-lg-t-0 mt-4">
+                                <input class="form-control"   placeholder="nom" value="" name="nom" type="text">
+                            </div>
+                            <div class="col-lg-6 mg-t-10 mg-lg-t-0 mt-4">
+                                <input class="form-control"  placeholder="prenom" value="" name="prenom" type="text">
+                            </div>
+                            <div class="col-lg-6 mg-t-10 mg-lg-t-0 mt-4">
+                                <input class="form-control"  placeholder="phone" value="" name="phone" type="text">
+                                <?php if(isset($message)):?>
+                                    <span class="notification"><?php echo $message ?></span>
+                                <?php endif;?>
+                            </div>
+                            <div class="col-lg-6 mg-t-10 mg-lg-t-0 mt-4">
+                                <input class="form-control"  placeholder="mot de passe" value="" name="password" type="text">
+                            </div>
+                            <div class="col-lg-6 mg-t-10 mg-lg-t-0 mt-4">
+                                <input class="form-control"  placeholder="Confirmer le mot de passe" value="" name="confirmer" type="text">
+                                <?php if(isset($messagepassword)):?>
+                                    <span class="notification"><?php echo $messagepassword ?></span>
+                                <?php endif;?>
+                            </div>
+                            <div class="col-lg-6 mg-t-10 mg-lg-t-0 mt-4">
+                                <input class="form-control"  placeholder="uuid" value="" name="uuid" type="text">
+                            </div>
+                            <div class="col-12 mt-2">
+                                <button type="submit" class="btn btn-primary" name="soumettre">Attribuer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+        </form>
+    </div>
+</div>
+</div>
 
 <?php include _VIEW_PATH.$lib->lang."/common_footer.phtml";?>
-<?php include _VIEW_PATH."/common_include_files.phtml";?>
+<?php include _VIEW_PATH."/common_include_files_dashboard.phtml";?>

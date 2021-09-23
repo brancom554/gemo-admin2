@@ -1,0 +1,98 @@
+<?php include _VIEW_PATH."/common_header_dashboard.phtml";?>
+
+<?php include _VIEW_PATH."common_side_bar.phtml"; ?>
+
+<?php include _VIEW_PATH."common_top_bar.phtml";?>
+	<!-- <main>
+        <div>
+            <span class="main-title font-1">Modifier les informations de <?=$data['user']['firstname'] ?> </span>
+         
+            <div class="form">
+                <form class="row g-3" action="" method="post">
+                <div class="col-md-6">
+                    <label for="nom" class="form-label">Nom</label>
+                    <input type="text" class="form-control" id="nom" name="firstname" value="<?=$data['user']['firstname'] ?>"/>
+                    <?php if(isset($message1)):?>
+                        <span class="notification"><?php echo $message1 ?></span>
+                    <?php endif;?>
+                </div>
+                <div class="col-md-6">
+                    <label for="prenom" class="form-label">Prénoms</label>
+                    <input type="text" class="form-control" id="prenom" name="lastname"  value="<?=$data['user']['lastname']?>">
+                    <?php if(isset($message2)):?>
+                        <span class="notification"><?php echo $message2 ?></span>
+                    <?php endif;?>
+                </div>
+                
+                <div class="col-md-6">
+                    <label for="phone" class="form-label">Téléphone</label>
+                    <input type="text" class="form-control" id="phone" name="phone_number" value="<?=$data['user']['phone_number']?>">
+                    <?php if(isset($message3)):?>
+                        <span class="notification"><?php echo $message3 ?></span>
+                    <?php endif;?>
+                </div>
+                <div class="col-md-6">
+                    <label for="password" class="form-label">Application UUID</label>
+                    <input type="text" class="form-control" id="password" disabled value="<?=$data['user']['application_uuid']?>">
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary" name="soumettre">Modifier</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </main> -->
+
+    <!-- Main Content-->
+			<div class="main-content side-content pt-0">
+
+<div class="container-fluid">
+    <div class="inner-body">
+
+<!-- Page Header -->
+    <div class="page-header">
+
+            <?php include _VIEW_PATH."common_top_for_dashboard_content.phtml"; ?>
+    </div>
+
+    <form action="" method="post">
+        <div class="row row-sm">
+            <div class="col-lg-12 col-md-12">
+                <div class="card custom-card">
+                    <div class="card-body">
+                        <div>
+                            <h6 class="main-content-label mb-1">Modifier les informations de <?=$data['user']['firstname'] ?></h6>
+                            <!-- <p class="text-muted card-sub-title">A basic form control input and textarea with disabled and readonly mode.</p> -->
+                        </div>
+                        <div class="row row-sm">
+                            <div class="col-lg-6 mg-t-10 mg-lg-t-0 mt-4">
+                                <input class="form-control"   placeholder="nom" value="<?=$data['user']['firstname'] ?>" name="firstname" type="text">
+                            </div>
+                            <div class="col-lg-6 mg-t-10 mg-lg-t-0 mt-4">
+                                <input class="form-control"  placeholder="prenom" value="<?=$data['user']['lastname']?>" name="lastname" type="text">
+                            </div>
+                            <div class="col-lg-6 mg-t-10 mg-lg-t-0 mt-4">
+                                <input class="form-control"  placeholder="phone" value="<?=$data['user']['phone_number']?>" name="phone_number" type="text">
+                                <?php if(isset($message)):?>
+                                    <span class="notification"><?php echo $message ?></span>
+                                <?php endif;?>
+                            </div>
+                            <div class="col-lg-6 mg-t-10 mg-lg-t-0 mt-4">
+                                <input class="form-control" disabled  placeholder="uuid" value="<?=$data['user']['application_uuid']?>" type="text">
+                            </div>
+                            <div class="col-12 mt-2">
+                                <button type="submit" class="btn btn-primary" name="soumettre">Modifier</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+        </form>
+    </div>
+</div>
+</div>
+
+<?php include _VIEW_PATH.$lib->lang."/common_footer.phtml";?>
+<?php include _VIEW_PATH."/common_include_files_dashboard.phtml";?>
