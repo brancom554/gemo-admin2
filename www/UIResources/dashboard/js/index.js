@@ -6,9 +6,9 @@
         type: "POST",
         url: "/dashboard/barChart",
         success:function(datas) { 
-            console.log(datas)
+            // console.log(datas)
             const v = JSON.parse(datas)
-            console.log(v)
+            // console.log(v)
 
 	var ctx = document.getElementById("chartLine").getContext('2d');
 	var myChart = new Chart(ctx, {
@@ -16,7 +16,7 @@
 		data: {
 			labels: v.moisTelephoniques,
 			datasets: [{
-				label: 'SERVICES TELEPHONIQUES',
+				label: 'SERVICES TELEPHONIQUES ET FINANCIERS',
 				data: v.totalTelephoniques,
 				borderWidth: 3,
 				backgroundColor: 'transparent',

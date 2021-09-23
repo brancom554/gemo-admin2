@@ -16,12 +16,11 @@ if ($url_array[2] == "chart") {
 if ($url_array[2] == "barChart") {
     $moiss = $totall = array();
     $db = new Database();
-    $sql5 = 'SELECT MONTHNAME(operation_date) as mois,count(balance_after_operate) as total FROM operations
+    $sql5 = 'SELECT MONTHNAME(operation_date) as mois,count(operation_id) as total FROM operations
     INNER JOIN operation_types USING (operation_type_id) 
     INNER JOIN category_ussd USING (operation_type_id)
     INNER JOIN categories USING (category_id) 
     WHERE operations.company_token="'.$_SESSION['companie_token'].'"  
-    AND categories.type_category_libelle="SERVICES TELEPHONIQUES"
     GROUP BY month(operation_date) ORDER BY month(operation_date) ASC';
 
     // $sqll = 'SELECT MONTHNAME(operation_date) as mois,SUM(balance_after_operate) as total FROM operations
@@ -73,7 +72,7 @@ if ($url_array[2] == "camembertChart") {
     $data2 = $db->DisplayDataDb($sql1);
 
     $chart2data = array((int)$data1[0][0],(int)$data2[0][0]);
-    echo json_encode($chart2data);
+    // echo json_encode($chart2data);
     exit;
 }
 
