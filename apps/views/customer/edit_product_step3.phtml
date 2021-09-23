@@ -1,0 +1,31 @@
+<div class="tab">
+
+    <!-- <div id="s3Tab" class="profile-edit tab-pane fade in active"> -->
+    <div class="card card-outline-success rounded-0">
+        <!-- <h3 class="card-header h5 text-white g-brd-transparent rounded-0" style="background-color: #94c11c;">
+            <span class="g-font-size-default g-mr-5">3. - </span>
+            Les images du produit
+        </h3> -->
+        <div class="row">
+            <div class="form-group col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                <img class="img-fluid" src="<?php echo $iniObj->imgPath . $product->photo1 ?>" alt="L'image 1 n'est pas disponible" style="width:200px;height:200px;">
+
+            </div>
+            <div class="form-group col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                <img class="img-fluid" src="<?php echo $iniObj->imgPath . $product->photo2 ?>" alt="L'image 2 n'est pas disponible" style="width:200px;height:200px;">
+
+            </div>
+            <div class="form-group col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                <img class="img-fluid" src="<?php echo $iniObj->imgPath . $product->photo3 ?>" alt="L'image 3 n'est pas disponible" style="width:200px;height:200px;">
+
+            </div>
+        </div>
+        <!-- <span style="color:#b7b7b7; font-family:ubantu; font-weight:bold; margin-left: 31px;">Glisser et déposer des images ici:</span> -->
+        <!-- <div id="displayimage">
+             <p class="DropImage"> Glissez et déposez des images ici. </p>
+        </div> -->
+        <div id="uploader">
+            <input type="file" id="files" name="files[]" multiple="multiple" />
+        </div><br>
+    </div>
+</div>

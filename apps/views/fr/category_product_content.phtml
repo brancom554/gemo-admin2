@@ -1,0 +1,51 @@
+<!--=== Product Content ===-->
+<?php if($iniObj->debugViews) echo __FILE__ ; ?>
+
+
+	<div class="col-md-9 order-md-2">
+        <div class="g-pl-15--lg">
+				<?php
+					include _VIEW_PATH.$lib->lang."/search_bar.phtml";
+				?>
+			<div class="row g-mt-20">
+				<div class="col-lg-4 text-left">
+					<h3 class="badge-results">
+						<?php
+						echo $nbResult->total ;
+							if($nbResult->total >1) echo " articles"; else echo " article"; ?>
+					</h3>
+				</div>
+
+				<div class="col-lg-8 text-right">
+					<h3 class="title-uppercase">Derniers arrivages</h3>
+				</div>
+			</div>
+			
+			
+			<!--=== List resultats p ===-->
+			<div class="row  g-pt-10 g-mb-20 ">
+			<?php foreach($products['data'] as $k=>$v) {
+				if(file_exists(realpath(_WEB_FILES.$iniObj->imgPath.$v->photo1))){
+				?>
+
+				<div class="col-6 col-lg-4 g-mb-30">
+          <?php include _VIEW_PATH.$lib->lang."/product_card_component.phtml"; ?>
+				</div>
+				<?php }
+			} ?>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<!--=== pagination===-->
+					<div class="text-center">
+						<ul class="pagination pagination-v2">
+							<?php
+							$pagination->paginate($pages_requested,$currentPage);
+							?>
+						</ul>
+					</div>
+				</div>
+				<!--/end pagination-->
+			</div>
+		</div>
+	</div>

@@ -1,0 +1,321 @@
+<?php
+if ($iniObj->debugViews) echo __FILE__;
+$carouselActive = false;
+$sliderActive = false;
+$masterSlider = true;
+$title =
+	$product->subCategoryDescription
+	. " - " . $product->libelle . " - " . $product->storeName . " - " .
+	"Articles neufs et occasions - Professionnel - Dépôt vente";
+
+include _VIEW_PATH . "/common_header.phtml"; ?>
+
+<?php
+// include _VIEW_PATH."common_top_bar.phtml";
+if ($storeActive == 1) {
+	include _VIEW_PATH . $lib->lang . "/top_menu_magasin.phtml";
+} else {
+	include _VIEW_PATH . $lib->lang . "/top_menu.phtml";
+}
+// $lib->debug($product);
+
+?>
+
+<!-- Breadcrumbs -->
+<section class="g-brd-bottom g-brd-gray-light-v4 g-py-30" style="background-image: url('<?php
+																						if ($product->subCategoryImage) {
+																							echo $iniObj->imgHeaderPath . $product->subCategoryImage;
+																						} else {
+																							echo $iniObj->imgHeaderPath . $iniObj->defaultProductHeaderImage;
+																						}
+																						?>');">
+	<div class="container">
+		<span class="page-name">Espace</span>
+		<h1>
+			<?php echo $product->subCategoryDescription; ?>
+		</h1>
+		<ul class="u-list-inline">
+			<li class="list-inline-item g-mr-5">
+				<a href="/" class="u-link-v5 g-color-text">
+					Détail du produit
+				</a>
+				<i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
+			</li>
+			<?php echo $product->subCategoryDescription; ?>
+			<i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
+			</li>
+			<li class="list-inline-item g-color-primary active">
+				<span><?php echo str_replace("<br>", "", $product->libelle); ?></span>
+			</li>
+		</ul>
+	</div>
+</section>
+<!-- End Breadcrumbs -->
+
+<!-- Product Description -->
+<div class="container g-py-50">
+	<div class="row">
+		<div class="col-12 col-md-12 col-lg-7">
+			<!-- Carousel -->
+			<div id="carouselCus1" class="js-carousel g-pt-10 g-mb-10" data-infinite="true" data-fade="true" data-arrows-classes="u-arrow-v1 g-brd-around g-brd-white g-absolute-centered--y g-width-45 g-height-45 g-font-size-14 g-color-white g-color-primary--hover rounded-circle" data-arrow-left-classes="fa fa-angle-left g-left-40" data-arrow-right-classes="fa fa-angle-right g-right-40" data-nav-for="#carouselCus2">
+
+				<div>
+
+					<a href="#" class="magnifier-thumb-wrapper">
+						<img id="thumb1" class="img-fluid w-100 product-img" src="<?php echo $iniObj->imgPath . $product->photo1; ?>" alt="Image Description">
+					</a>
+
+				</div>
+				<div>
+					<a href="#" class="magnifier-thumb-wrapper">
+						<img id="thumb2" class="img-fluid w-100 product-img" src="<?php echo $iniObj->imgPath . $product->photo2; ?>" alt="Image Description">
+					</a>
+				</div>
+				<div >
+					<a href="#" class="magnifier-thumb-wrapper">
+						<img id="thumb3" class="img-fluid w-100 product-img" src="<?php echo $iniObj->imgPath . $product->photo3; ?>" alt="Image Description">
+					</a>
+				</div>
+			</div>
+
+			<div id="carouselCus2" class="js-carousel text-center u-carousel-v3 g-mx-minus-5" data-infinite="true" data-center-mode="true" data-slides-show="3" data-is-thumbs="true" data-focus-on-select="false" data-nav-for="#carouselCus1">
+				<div class="js-slide g-cursor-pointer g-px-5">
+					<img class="img-fluid" src="<?php echo $iniObj->imgPath . $product->photo1; ?>" alt="Image Description">
+				</div>
+
+				<div class="js-slide g-cursor-pointer g-px-5">
+					<img class="img-fluid" src="<?php echo $iniObj->imgPath . $product->photo2; ?>" alt="Image Description">
+				</div>
+
+				<div class="js-slide g-cursor-pointer g-px-5">
+					<img class="img-fluid" src="<?php echo $iniObj->imgPath . $product->photo3; ?>" alt="Image Description">
+				</div>
+			</div>
+			<!-- End Carousel -->
+		</div>
+
+
+		<div class="col-12 col-md-12 col-lg-5">
+			<div class="magnifier-preview" id="preview1" style="width: 600px; height: 500px;position: absolute"></div>
+			<div class="magnifier-preview" id="preview2" style="width: 600px; height: 500px;position: absolute"></div>
+			<div class="magnifier-preview" id="preview3" style="width: 600px; height: 500px;position: absolute"></div>
+
+			<div class="row">
+				<div class="col-12">
+					<div class="g-pt-70">
+						<!-- Product Info -->
+						<div class="g-mb-30">
+							<h1 class="g-font-weight-300 mb-4"><?php echo $product->libelle; ?></h1>
+							<?php if (trim($product->description)) { ?>
+								<p>
+									<?php echo $product->description; ?>
+									<br>
+								</p>
+							<?php } ?>
+						</div>
+						<!-- End Product Info -->
+
+						<!-- Price -->
+						<div class="g-mb-30">
+							<h2 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-12 text-uppercase mb-2">PRIX</h2>
+							<span class="g-color-black g-font-weight-500 g-font-size-30 mr-2"><?php echo $product->currentPrice; ?> &euro;</span>
+
+							<?php if ($product->currentPrice < $product->initalPrice) { ?>
+								<s class="g-color-gray-dark-v4 g-font-weight-500 g-font-size-16"><?php echo $product->initalPrice; ?> &euro;</s>
+							<?php } ?>
+						</div>
+						<!-- End Price -->
+
+						<div>
+							<div class="card">
+								<ul class="list-group list-group-flush">
+									<li class="list-group-item">
+										<strong>Quantité en stock : </strong>
+										<?php echo $product->qteStock; ?>
+									</li>
+									<li class="list-group-item">
+										<strong>Référence :</strong>
+										<?php echo $product->webReference; ?>
+									</li>
+									<li class="list-group-item">
+										<strong>Rayon :</strong> <a href="/rayon_<?php echo $product->subCategoryCode . "_" . $lib->cleanUrl($product->subCategoryDescription);
+																					?>"><?php echo $product->subCategoryDescription; ?> </a>
+									</li>
+									<li class="list-group-item">
+										<strong>Magasin : </strong> <a href="/magasin_<?php echo $product->storeUrl; ?>"><?php echo $product->storeName; ?>
+										</a>
+									</li>
+									<?php if ($product->hauteur > 0) { ?>
+										<li class="list-group-item">
+											<strong>Hauteur : </strong>
+											<?php echo $product->hauteur; ?>
+										</li>
+									<?php } ?>
+									<?php if ($product->hauteur > 0) { ?>
+										<li class="list-group-item">
+											<strong>Hauteur : </strong>
+											<?php echo $product->hauteur; ?>
+										</li>
+									<?php } ?>
+									<?php if ($product->largeur > 0) { ?>
+										<li class="list-group-item">
+											<strong>Largeur : </strong>
+											<?php echo $product->largeur; ?>
+										</li>
+									<?php } ?>
+									<?php if ($product->profondeur > 0) { ?>
+										<li class="list-group-item">
+											<strong>Profondeur : </strong>
+											<?php echo $product->profondeur; ?>
+										</li>
+									<?php } ?>
+									<li class="list-group-item">
+										<strong>Frais de port : </strong>
+										<?php if ($product->shippingPrice > 0) echo $product->shippingPrice;
+										else echo "Enlèvement magasin uniquement"; ?>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						<?php if (/*$iniObj->cartActive*/1 == 1) { ?>
+							<!-- Buttons -->
+							<div class="row g-mx-minus-5 g-mb-20 g-mt-20">
+								<div class="offset-3"></div>
+								<div class="col-6 g-px-5 g-mb-10 text-center">
+									<button class="add-to-cart btn btn-block u-btn-primary g-font-size-12 text-uppercase g-py-15 g-px-25" type="button" data-productid="<?php echo $product->article_ID; ?>" data-productname="<?php echo $product->libelle; ?>" data-productimage="<?php echo $iniObj->imgPath . $product->photo1; ?>" data-productprice="<?php echo $product->currentPrice; ?>" data-productstorecode="<?php echo $product->storeCode; ?>" data-productstorename="<?php echo $product->storeName; ?>" data-productemailmagasin="<?php echo $product->email_magasin; ?>" data-productemaildirecteur="<?php echo $product->email_directeur; ?>" data-qtestock="<?= $product->qte_stock ?>" title="Ajouter au panier">
+										Ajouter au panier <i class="align-middle ml-2 icon-finance-100 u-line-icon-pro"></i>
+									</button>
+								</div>
+							</div>
+							<!-- End Buttons -->
+						<?php } ?>
+					</div>
+				</div>
+				<!-- <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button_count&size=small&width=113&height=20&appId" width="113" height="40" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe> -->
+
+			</div>
+
+			<div class="text-center">
+				<a href="#" id="facebookBtn" target="blank" class="fa fa-facebook share"> Facebook</a>
+				<a href="#" id="twitterBtn" target="blank" class="fa fa-twitter share"> Twitter</a>
+				<a href="#" id="pinterestBtn" target="blank" class="fa fa-pinterest share"> Pinterest</a>
+				<a href="#" id="whatsappBtn" target="blank" class="fa fa-whatsapp share"> Whatsapp</a>
+			</div>
+
+
+
+		</div>
+		<hr>
+		<div class="col-12">
+			<div class="row">
+				<div class="offset-1"></div>
+				<div class="col-10 g-m-50">
+					<hr>
+					<div class="text-center">
+						<h2 class="h4 mb-5">EN SAVOIR PLUS</h2>
+					</div>
+					<!-- Comment Form -->
+					<form>
+						<div class="row">
+							<div class="col-md-6 form-group g-mb-30">
+								<input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--focus rounded-3 g-py-13 g-px-15" type="text" placeholder="Nom complet">
+							</div>
+
+							<div class="col-md-6 form-group g-mb-30">
+								<input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--focus rounded-3 g-py-13 g-px-15" type="email" placeholder="Email">
+							</div>
+							<div class="col-md-12 form-group g-mb-30">
+								<textarea class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--focus g-resize-none rounded-3 g-py-13 g-px-15" rows="4" placeholder="Saississez votre message ici"></textarea>
+							</div>
+
+							<div class="col-md-12 form-group g-mb-30 text-center">
+								<button class="btn u-btn-primary g-font-size-12 text-uppercase g-py-15 g-px-25" type="submit" role="button">Envoyer le message</button>
+							</div>
+						</div>
+					</form>
+					<!-- End Comment Form -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<!-- End Product Description -->
+
+<div class="container">
+	<div class="row">
+
+	</div>
+</div>
+
+
+<?php if ($storeActive == 1) {
+	include _VIEW_PATH . $lib->lang . "/common_footer_magasin.phtml";
+} else {
+	include _VIEW_PATH . $lib->lang . "/common_footer.phtml";
+}
+
+include _VIEW_PATH . "/common_include_files.phtml"; ?>
+
+<script>
+	 $(document).ready(function () {
+		  // zoom website products's image
+		  var evt = new Event(),
+            m = new Magnifier(evt);
+       
+        m.attach({
+            thumb: '#thumb1',
+            large: '<?php echo $iniObj->imgPath . $product->photo1; ?>',
+            largeWrapper: 'preview1'
+        });
+        m.attach({
+            thumb: '#thumb2',
+            large: '<?php echo $iniObj->imgPath . $product->photo2; ?>',
+            largeWrapper: 'preview2'
+        });
+        m.attach({
+            thumb: '#thumb3',
+            large: '<?php echo $iniObj->imgPath . $product->photo3; ?>',
+            largeWrapper: 'preview3'
+        });
+
+	 });
+	
+	const facebookBtn = document.querySelector("#facebookBtn");
+	const twitterBtn = document.querySelector("#twitterBtn");
+	const pinterestBtn = document.querySelector("#pinterestBtn");
+	const whatsappBtn = document.querySelector("#whatsappBtn");
+
+	// alert(facebookBtn);
+
+	function init() {
+		const productImg = document.querySelector(".product-img");
+
+		let postUrl = encodeURI(document.location.href);
+		let postTitle = encodeURI("<?= $product->libelle ?>");
+		let postImg = encodeURI(productImg.getAttribute('src'));
+
+		facebookBtn.setAttribute(
+			"href",
+			`https://www.facebook.com/sharer.php?u=${postUrl}&t=${postTitle},'sharer','toolbar=0,status=0,width=626,height=436'`
+		);
+
+		twitterBtn.setAttribute(
+			"href",
+			`https://twitter.com/share?url=${postUrl}&text=${postTitle}`
+		);
+
+		pinterestBtn.setAttribute(
+			"href",
+			`https://pinterest.com/pin/create/bookmarklet/?media=${postImg}&url=${postUrl}&description=${postTitle}`
+		);
+
+		whatsappBtn.setAttribute(
+			"href",
+			`https://wa.me/?text=${postTitle} ${postUrl}`
+		);
+	}
+
+	init();
+</script>

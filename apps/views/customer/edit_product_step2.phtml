@@ -1,0 +1,192 @@
+<!-- <div id="s2Tab" class="profile-edit tab-pane fade in active"> -->
+<div class="tab">
+
+    <div class="card card-outline-success rounded-0">
+        <h3 class="card-header h5 text-white g-brd-transparent rounded-0" style="background-color: #94c11c;">
+            <span class="g-font-size-default g-mr-5">2. - </span>
+            Informations sur le stock du produit
+        </h3>
+
+        <div class="card-block">
+            <div class="row">
+                <dl class="dl-horizontal col-lg-4">
+                    <dd>
+                        Choisir la catégorie
+                    </dd>
+                    <dd>
+                        <label class="label_shipping">
+                            <!-- <i class="icon-append fa fa-euro mr-2"></i> -->
+                            <select class="col-lg-12 tag_select2" id="famillecode" name="famillecode" data-placeholder="Sélectionner la catégorie">
+                                <option value=""></option>
+                                <?php
+                                foreach ($productfamilies['data'] as $family) {
+                                    if ($product->famille_code == $family->famille_code) {
+                                        $selected = "selected";
+                                    } else {
+                                        $selected = "";
+                                    }
+                                ?>
+                                    <option value="<?= $family->famille_code ?>" <?= $selected ?>><?= $family->libelle ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </label>
+
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal col-lg-4">
+                    <dd>
+                        Choisir la sous catégorie
+                    </dd>
+                    <dd>
+                        <label class="label_shipping">
+                            <!-- <i class="icon-append fa fa-euro mr-2"></i> -->
+                            <select class="col-lg-12 tag_select2" id="sous_famillecode" name="sous_famillecode" data-placeholder="Sélectionner la sous catégorie">
+                                <option value=""></option>
+                                <?php
+                                foreach ($productsubfamilies['data'] as $subfamily) {
+                                    if ($product->famille_code == $subfamily->famille_code) {
+                                        $selected = "selected";
+                                    } else {
+                                        $selected = "";
+                                    }
+                                ?>
+                                    <option value="<?= $subfamily->famille_code ?>" <?= $selected ?>><?= $subfamily->libelle ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </label>
+
+                    </dd>
+                </dl>
+
+
+
+                <dl class="dl-horizontal col-lg-4">
+                    <!-- <dd>
+                        <section>
+                            <label class="label_shipping input">
+                                 <i class="icon-append fa fa-euro mr-2"></i> 
+                                Taux de commission
+                            </label>
+                            <input type="number" name="taux_commission" id="taux_commission" class="form-control" placeholder="50" title="Saisir le taux de commission sur le produit" min="0">
+
+                        </section>
+                    </dd> -->
+                </dl>
+            </div>
+
+            <div class="row">
+
+                <dl class="dl-horizontal col-lg-4">
+                    <dd>
+                        <section>
+                            <label class="label_shipping input">
+                                <!-- <i class="icon-append fa fa-euro mr-2"></i> -->
+                                Profondeur
+                            </label>
+                            <input type="number" name="profondeur" id="profondeur" value="<?=  $product->profondeur ?>" class="form-control" placeholder="50" title="Saisir la profondeur du produit" min="0">
+
+                        </section>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal col-lg-4">
+                    <dd>
+                        <section>
+                            <label class="label_shipping input">
+                                <!-- <i class="icon-append fa fa-euro mr-2"></i> -->
+                                Prix net du déposant
+                            </label>
+                            <input type="number" name="prix_net_deposant" id="prix_net_deposant" value="<?=  $product->prix_net_deposant ?>" class="form-control" placeholder="50" title="Saisir le prix net du déposant" min="0">
+
+                        </section>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal col-lg-4">
+                    <dd>
+                        <section>
+                            <label class="label_shipping input">
+                                <!-- <i class="icon-append fa fa-euro mr-2"></i> -->
+                                Taux assurance
+                            </label>
+                            <input type="number" name="taux_assurance" id="taux_assurance" value="<?=  $product->taux_assurance ?>" class="form-control" placeholder="50" title="Saisir le taux d'assurance du produit" min="0">
+
+                        </section>
+                    </dd>
+                </dl>
+            </div>
+            <div class="row">
+                <dl class="dl-horizontal col-lg-4">
+                    <dd>
+                        <section>
+                            <label class="label_shipping input">
+                                <i class="icon-append fa fa-euro mr-2"></i>
+                                Quantité minimum en stock
+                            </label>
+                            <input type="number" name="qte_minimum_stock" id="qte_minimum_stock" value="<?= $product->qte_stock_mini ?>" class="form-control" placeholder="50" title="Saisir la quantité minimum en stock" min="0">
+
+                        </section>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal col-lg-4">
+                    <dd>
+                        <section>
+                            <label class="label_shipping input">
+                                <i class="icon-append fa fa-euro mr-2"></i>
+                                Quantité maximum en stock
+                            </label>
+                            <input type="number" name="qte_maximum_stock" id="qte_maximum_stock" value="<?= $product->qte_stock_maxi ?>" class="form-control" placeholder="50" title="Saisir la quantité maximum en stock" min="0">
+
+                        </section>
+                    </dd>
+                </dl>
+
+                <dl class="dl-horizontal col-lg-4">
+                    <dd>
+                        <section>
+                            <label class="label_shipping input">
+                                <i class="icon-append fa fa-euro mr-2"></i>
+                                Quantité stock alerte
+                            </label>
+                            <input type="number" name="qte_stock_alerte" id="qte_stock_alerte" value="<?= $product->qte_stock_alerte ?>" class="form-control" placeholder="50" title="Saisir le stock alerte" min="0">
+                        </section>
+                    </dd>
+                </dl>
+
+            </div>
+
+            <div class="row">
+                <dl class="dl-horizontal col-lg-4">
+                    <dd>
+                        <section>
+                            <label class="label_shipping input">
+                                <i class="icon-append fa fa-euro mr-2"></i>
+                                Coût d'emballage
+                            </label>
+                            <input type="number" name="cout_emballage" id="cout_emballage" value="<?= $product->cout_emballage ?>" step="0.01" min="0" class="form-control" placeholder="50" title="Saisir le co&ucirc;t emballage" min="0">
+
+                        </section>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal col-lg-4">
+                    <dd>
+                        <section>
+                            <label class="label_shipping input">
+                                <i class="icon-append fa fa-euro mr-2"></i>
+                                Frais de port
+                            </label>
+                            <input type="number" name="frais_port" id="frais_port" step="0.01" min="0" value="<?= $product->frais_de_port ?>" class="form-control" placeholder="50" title="Saisir les frais de port" min="0">
+
+                        </section>
+                    </dd>
+                </dl>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>

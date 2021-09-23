@@ -1,0 +1,42 @@
+<div class="img-connexion">
+    <div class="login-card">
+    <!--<img class="login-header" src="/img/logo.png" alt="">-->
+    <div class="center">
+      <a href="<?php $lib->customerSite ?>/">
+        <img src="<?php $lib->customerSite ?>/UIResources/logo2.png" alt="Logo GEMO" style="width:187px" srcset="">
+      </a>
+    </div>
+    <?php if(isset($error)):?>
+      <div class="message">
+        <span><?=$error;?></span>
+      </div>
+    <?php endif;?>
+    <div class="login-content">
+      <h1>Connexion</h1>
+      <form action="" method="post">
+        <input type="hidden" name="token" value="<?=$_SESSION['token'];?>">
+        <div class="login-input">
+          <!--<span>Utilisateur</span>-->
+          <input type="text" name="phone" placeholder="Entrer le numéro de téléphone">
+          <?php if(isset($message1)):?>
+            <span class="notification"><?php echo $message1 ?></span>
+          <?php endif;?>
+        </div>
+        <div class="login-input">
+          <!--<span>Mot de passe</span>-->
+          <input type="password" name="password" placeholder="Entrer le mot de passe">
+          <?php if(isset($message2)):?>
+            <span class="notification"><?php echo $message2 ?></span>
+          <?php endif;?>
+        </div>
+        <div class="btn-submit">
+          <!--<a class="btn-login" href="/pages/index.html">Connecter</a>-->
+          <button class="btn-login" name="connexion">Connecter</button>
+          <div class="class-forget">
+            <a href="<?php $lib->customerSite ?>/">Revenir sur la page d'acceuil</a>
+          </div>
+        </div>       
+      </form>
+    </div>
+  </div>
+</div>

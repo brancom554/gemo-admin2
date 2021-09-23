@@ -1,0 +1,55 @@
+<main>
+            <h2 class="main-title">Addresses</h2>
+            <div class="track">
+                <span <?php if($page_requested =="configurations"){ ?> class="actives" <?php } ?>><?php echo $page_requested;?></span><span>/</span><span><?php echo $url_array[2];?></span>
+            </div>
+            <div class="main-btn">
+                <button id="myBtn" onclick="document.location='<?php $lib->customerSite ?>/configurations/addresses/ajouter'"><i class="fas fa-plus" style="margin-right:15px ;"></i>Ajouter une nouvelle addresse</button>
+            </div>
+            
+            <section class="recent">
+                <div class="activity">
+                    <div style="padding-top: 5px;" class="activity-card">
+                        <h3>Liste des addresses</h3>
+                        <div class="table-responsive">
+                            <div class="research">
+                                <div>
+                                    <div id="form-research"><input id="filter" type="text" placeholder="Rechercher..."></div>
+                                    <i class="fas fa-search"></i>
+                                </div>
+                            </div>
+                            <table id="table" class="table table-striped" style="margin-top: 30px;" border="0">
+                                <thead>
+                                    <tr>
+                                        <th>Compagnies</th>
+                                        <th>Addresses</th>
+                                        <th>code</th>
+                                        <th>Ville</th>
+                                        <th>Pays</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if(!empty($data['addresses'])):?>
+                                        <?php foreach($data['addresses'] as $address):?>
+                                            <tr>
+                                                <td><?=$address['company_name'];?></td>
+                                                <td><?=$address['postal_address'];?></td>
+                                                <td><?=$address['postal_code'];?></td>
+                                                <td><?=$address['city'];?></td>
+                                                <td><?=$address['description'];?></td>
+                                                <td>
+                                                    
+                                                    <span class="btn-action white pg-5 cursor primary" onclick="document.location='<?php $lib->customerSite ?>/configurations/addresses/modifier/<?=$address['address_id'] ?>'">Modifier</span>
+                                                    
+                                                </td>
+                                            </tr>
+                                        <?php endforeach;?>
+                                    <?php endif;?>
+                                </tbody>
+                            </table>
+                        </div>   
+                    </div>
+                </div>
+            </section>
+        </main>

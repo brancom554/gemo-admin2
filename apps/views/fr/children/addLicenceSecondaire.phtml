@@ -1,0 +1,68 @@
+<?php include _VIEW_PATH."/common_header.phtml";?>
+
+<?php include _VIEW_PATH."common_top_bar.phtml";?>
+
+	<main>
+        <div>
+            <span class="main-title font-1">Création de licence</span>
+            <div class="track">
+                <span <?php if($page_requested =="configurations"){ ?> class="actives" <?php } ?>><?php echo $page_requested;?></span><span>/</span><span>Licence</span><span>/</span><span><?php echo $url_array[3];?></span><span>/</span><span>Création</span>
+            </div>
+            <div class="form">
+                <form action="" method="post">
+                    <div class="form-content">
+                        <div class="input-form margin-bottom-20">
+                            <label for="licence">Licence Key</label>
+                            <input class="form-input" type="text" name="licence" id="" value="<?php echo $licenceKey ?>" disabled>
+                            <input class="form-input" type="text" hidden name="licence_key" id="" value="<?php echo $licenceKey ?>">
+                        </div>
+                        
+                        <div class="input-form margin-bottom-20">
+                            <label for="licence">Expiration de la licence</label>
+                            <input class="form-input" type="date" name="licence_fin" id="" placeholder="Entrer la licence key">
+                        </div>  
+                        
+                    </div>
+                    <div class="form-content">
+                        
+                    </div>
+                    <div class="form-check margin-bottom-20 form-content">
+                        <div>
+                            <div>
+                                <label class="margin-right" for="actif">Actif</label>
+                                <input type="checkbox" name="actif" id="">
+                            </div>
+                        </div>
+                        <!--<div class="input-form" style="align-items:end">
+                            <label for="">Application</label>
+                            <input class="form-input" style="width:100%" type="text" name="" id="" placeholder="Entrer l'id de l'application" >
+                        </div>-->
+                        <div class="input-form" style="margin-right:20px">
+                            <label for="societe">Services</label>
+                            <select class="form-select margin-bottom-20" name="services[]" id="select" multiple>
+                                <?php if(isset($data['services'])): ?>
+                                    <?php foreach($data['services'] as $service): ?>
+                                        <option value="<?=$service['service_id'] ?>"><?=$service['libelle'] ?></option>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </select>
+                        </div>
+                    </div>
+                   <!-- <div class="form-content">                        
+                        
+                        <div class="input-form" style="align-items:end">
+                            <label for="">Token</label>
+                            <input class="form-input" style="width:100%" type="text" name="token" id="" placeholder="Entrer le token de la compagnie" >
+                        </div>
+                        
+                    </div>-->
+                    <div class="margin-bottom-20" style="margin-top:20px">
+                        <button class="form-button" name="soumettre" type="submit">CREER LA LICENCE</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+<?php include _VIEW_PATH.$lib->lang."/common_footer.phtml";?>
+<?php include _VIEW_PATH."/common_include_files.phtml";?>

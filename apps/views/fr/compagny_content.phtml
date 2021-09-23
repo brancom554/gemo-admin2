@@ -1,0 +1,51 @@
+<main>
+            <h2 class="main-title">Compagnies</h2>
+            <div class="track ">
+                <span <?php if($page_requested =="configurations"){ ?> class="actives" <?php } ?>><?php echo $page_requested;?></span><span>/</span><span><?php echo $param2[0];?></span>
+            </div>
+            <div class="main-btn">
+                <button id="myBtn" onclick="document.location='<?php $lib->customerSite ?>/super/compagnies/ajouter'"><i class="fas fa-plus" style="margin-right:15px ;"></i>Ajouter une nouvelle compagnie</button>
+            </div>
+            
+            <section class="recent">
+                <div class="activity">
+                    <div style="padding-top: 5px;" class="activity-card">
+                        <h3>Liste des compagnies</h3>
+                        <div class="table-responsive">
+                            <div class="research">
+                                <div>
+                                    <div id="form-research"><input id="filter" type="text" placeholder="Rechercher..."></div>
+                                    <i class="fas fa-search"></i>
+                                </div>
+                            </div>
+                            <table id="table" class="table table-striped" style="margin-top: 30px;" border="0">
+                                <thead>
+                                    <tr>
+                                        <th>Nom de la compagnie</th>
+                                        <th>RCCM</th>
+                                        <th>N°IFU</th>
+                                        <th>Token</th>
+                                        <th style="text-align:center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if(!empty($data['compagnies'])):?>
+                                        <?php foreach($data['compagnies'] as $compagnie):?>
+                                            <tr>
+                                                <td><?= $compagnie['company_name'] ?></td>
+                                                <td><?= $compagnie['company_number'] ?></td>
+                                                <td><?= $compagnie['registration_number'] ?></td>
+                                                <td><?= $compagnie['company_token'] ?></td>
+                                                <td>
+                                                    <span class="btn-action white pg-5 primary" onclick="document.location='<?php $lib->customerSite ?>/super/compagnies/modifier/<?=$compagnie['company_id'] ?>'">Modifier</span>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach;?>
+                                    <?php endif;?>
+                                </tbody>
+                            </table>
+                        </div>   
+                    </div>
+                </div>
+            </section>
+        </main>

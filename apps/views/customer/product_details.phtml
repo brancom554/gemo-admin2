@@ -1,0 +1,309 @@
+<?php
+if ($iniObj->debugViews) echo __FILE__;
+$carouselActive = false;
+$sliderActive = false;
+$masterSlider = true;
+$title =
+	$product->subCategoryDescription
+	. " - " . $product->libelle . " - " . $product->storeName . " - " .
+	"Articles neufs et occasions - Professionnel - Dépôt vente";
+
+include _VIEW_PATH . "/common_header.phtml"; ?>
+
+<?php
+// include _VIEW_PATH."common_top_bar.phtml";
+if ($storeActive == 1) {
+	include _VIEW_PATH . $lib->lang . "/top_menu_magasin.phtml";
+} else {
+	include _VIEW_PATH . $lib->lang . "/top_menu.phtml";
+}
+?>
+
+<!-- Breadcrumbs -->
+<section class="g-brd-bottom g-brd-gray-light-v4 g-py-30" style="background-image: url('<?php
+																						if ($product->subCategoryImage) {
+																							echo $iniObj->imgHeaderPath . $product->subCategoryImage;
+																						} else {
+																							echo $iniObj->imgHeaderPath . $iniObj->defaultProductHeaderImage;
+																						}
+																						?>');">
+	<div class="container">
+		<span class="page-name">Espace</span>
+		<h1>
+			<?php echo $product->subCategoryDescription; ?>
+		</h1>
+		<ul class="u-list-inline">
+			<li class="list-inline-item g-mr-5">
+				<a href="/" class="u-link-v5 g-color-text">
+					Accueil
+				</a>
+				<i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
+			</li>
+			<?php echo $product->subCategoryDescription; ?>
+			<i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
+			</li>
+			<li class="list-inline-item g-color-primary active">
+				<span><?php echo str_replace("<br>", "", $product->libelle); ?></span>
+			</li>
+		</ul>
+	</div>
+</section>
+<!-- End Breadcrumbs -->
+
+<!-- Product Description -->
+<div class="container g-py-50">
+	<div class="row">
+
+		<?php
+		if ($_SESSION['customer']['authValidated']) {
+			include _VIEW_PATH . "/customer/profile_left_menu.phtml";
+		}
+		?>
+		<div class="col-12 col-md-12 col-lg-6">
+			<!-- Carousel -->
+			<div id="carouselCus2" class="js-carousel g-pt-10 g-mb-10" data-infinite="true" data-fade="true" data-arrows-classes="u-arrow-v1 g-brd-around g-brd-white g-absolute-centered--y g-width-45 g-height-45 g-font-size-14 g-color-white g-color-primary--hover rounded-circle" data-arrow-left-classes="fa fa-angle-left g-left-40" data-arrow-right-classes="fa fa-angle-right g-right-40" data-nav-for="#carouselCus2">
+				<div>
+					<a href="#" class="">
+						<img id="" class="img-fluid w-100 product-img" src="<?php echo $iniObj->imgPath  . $product->photo1; ?>" alt="Image Description">
+					</a>
+				</div>
+				<div>
+					<a href="#" class="">
+						<img id="" class="img-fluid w-100 product-img" src="<?php echo $iniObj->imgPath  . $product->photo2; ?>" alt="Image Description">
+					</a>
+				</div>
+				<div>
+					<a href="#" class="">
+						<img id="" class="img-fluid w-100 product-img" src="<?php echo $iniObj->imgPath  . $product->photo3; ?>" alt="Image Description">
+					</a>
+				</div>
+			</div>
+
+			<div id="carouselCus2" class="js-carousel text-center u-carousel-v3 g-mx-minus-5" data-infinite="true" data-center-mode="true" data-slides-show="3" data-is-thumbs="true" data-focus-on-select="false" data-nav-for="#carouselCus2">
+				<div class="js-slide g-cursor-pointer g-px-5">
+					<img class="img-fluid w-100" style="height: 200px;" src="<?php echo $iniObj->imgPath   . $product->photo1; ?>" alt="Image Description">
+				</div>
+
+				<div class="js-slide g-cursor-pointer g-px-5">
+					<img class="img-fluid w-100" style="height: 200px;" src="<?php echo $iniObj->imgPath   . $product->photo2; ?>" alt="Image Description">
+				</div>
+
+				<div class="js-slide g-cursor-pointer g-px-5">
+					<img class="img-fluid w-100" style="height: 200px;" src="<?php echo $iniObj->imgPath   . $product->photo3; ?>" alt="Image Description">
+				</div>
+			</div>
+			<!-- End Carousel -->
+		</div>
+
+		<div class="col-12 col-md-3 col-lg-3">
+			<div class="magnifier-preview" id="preview1" style="width: 600px; height: 500px;position: absolute"></div>
+			<div class="magnifier-preview" id="preview2" style="width: 600px; height: 500px;position: absolute"></div>
+			<div class="magnifier-preview" id="preview3" style="width: 600px; height: 500px;position: absolute"></div>
+
+			<div class="row">
+				<div class="col-12">
+					<div class="g-pt-70">
+						<!-- Product Info -->
+						<div class="g-mb-30">
+							<h1 class="g-font-weight-300 mb-4"><?php echo $product->libelle; ?></h1>
+							<?php if (trim($product->description)) { ?>
+								<p>
+									<?php echo $product->description; ?>
+									<br>
+								</p>
+							<?php } ?>
+						</div>
+						<!-- End Product Info -->
+
+						<!-- Price -->
+						<div class="g-mb-30">
+							<h2 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-12 text-uppercase mb-2">PRIX</h2>
+							<span class="g-color-black g-font-weight-500 g-font-size-30 mr-2"><?php echo $product->currentPrice; ?> &euro;</span>
+
+							<?php if ($product->currentPrice < $product->initalPrice) { ?>
+								<s class="g-color-gray-dark-v4 g-font-weight-500 g-font-size-16"><?php echo $product->initalPrice; ?> &euro;</s>
+							<?php } ?>
+						</div>
+						<!-- End Price -->
+
+						<div>
+							<div class="card">
+								<ul class="list-group list-group-flush">
+									<li class="list-group-item">
+										<strong>Quantité en stock : </strong>
+										<?php echo $product->qteStock; ?>
+									</li>
+									<li class="list-group-item">
+										<strong>Référence :</strong>
+										<?php echo $product->webReference; ?>
+									</li>
+									<li class="list-group-item">
+										<strong>Rayon :</strong> <a href="/rayon_<?php echo $product->subCategoryCode . "_" . $lib->cleanUrl($product->subCategoryDescription);
+																					?>"><?php echo $product->subCategoryDescription; ?> </a>
+									</li>
+									<li class="list-group-item">
+										<strong>Magasin : </strong> <a href="/magasin_<?php echo $product->storeUrl; ?>"><?php echo $product->storeName; ?>
+										</a>
+									</li>
+									<?php if ($product->hauteur > 0) { ?>
+										<li class="list-group-item">
+											<strong>Hauteur : </strong>
+											<?php echo $product->hauteur; ?>
+										</li>
+									<?php } ?>
+									<?php if ($product->hauteur > 0) { ?>
+										<li class="list-group-item">
+											<strong>Hauteur : </strong>
+											<?php echo $product->hauteur; ?>
+										</li>
+									<?php } ?>
+									<?php if ($product->largeur > 0) { ?>
+										<li class="list-group-item">
+											<strong>Largeur : </strong>
+											<?php echo $product->largeur; ?>
+										</li>
+									<?php } ?>
+									<?php if ($product->profondeur > 0) { ?>
+										<li class="list-group-item">
+											<strong>Profondeur : </strong>
+											<?php echo $product->profondeur; ?>
+										</li>
+									<?php } ?>
+									<li class="list-group-item">
+										<strong>Frais de port : </strong>
+										<?php if ($product->shippingPrice > 0) echo $product->shippingPrice;
+										else echo "Enlèvement magasin uniquement"; ?>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+				<!-- <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button_count&size=small&width=113&height=20&appId" width="113" height="40" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe> -->
+
+			</div><br>
+
+			<div class="text-center">
+				<a href="#" id="facebookBtn" target="blank" class="fa fa-facebook share"> Facebook</a>
+				<a href="#" id="twitterBtn" target="blank" class="fa fa-twitter share"> Twitter</a>
+				<a href="#" id="pinterestBtn" target="blank" class="fa fa-pinterest share"> Pinterest</a>
+				<a href="#" id="whatsappBtn" target="blank" class="fa fa-whatsapp share"> Whatsapp</a>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+<!-- End Product Description -->
+<!-- 
+<div class="container">
+	<div class="row">
+
+	</div>
+</div> -->
+
+
+<?php if ($storeActive == 1) {
+	include _VIEW_PATH . $lib->lang . "/common_footer_magasin.phtml";
+} else {
+	include _VIEW_PATH . $lib->lang . "/common_footer.phtml";
+}
+
+include _VIEW_PATH . "/common_include_files.phtml"; ?>
+</div>
+<script>
+	$(document).ready(function() {
+		// zoom website products's image
+	// 	var evt = new Event(),
+	// 		m = new Magnifier(evt);
+
+	// 	m.attach({
+	// 		thumb: '#thumbn1',
+	// 		large: '/filesLib/<?php //echo "articles_img/" . $product->libelle . "/" . $product->photo1; ?>',
+	// 		largeWrapper: 'preview1'
+	// 	});
+	// 	m.attach({
+	// 		thumb: '#thumbn2',
+	// 		large: '/filesLib/<?php// echo "articles_img/" . $product->libelle . "/" . $product->photo2; ?>',
+	// 		largeWrapper: 'preview2'
+	// 	});
+	// 	m.attach({
+	// 		thumb: '#thumbn3',
+	// 		large: '/filesLib/<?php //echo "articles_img/" . $product->libelle . "/" . $product->photo3; ?>',
+	// 		largeWrapper: 'preview3'
+	// 	});
+	// })
+
+	const facebookBtn = document.querySelector("#facebookBtn");
+	const twitterBtn = document.querySelector("#twitterBtn");
+	const pinterestBtn = document.querySelector("#pinterestBtn");
+	const whatsappBtn = document.querySelector("#whatsappBtn");
+
+	// alert(facebookBtn);
+
+	function init() {
+		const productImg = document.querySelector(".product-img");
+
+		let postUrl = encodeURI(document.location.href);
+		let postTitle = encodeURI("<?= $product->libelle ?>");
+		let postImg = encodeURI(productImg.getAttribute('src'));
+
+		facebookBtn.setAttribute(
+			"href",
+			`https://www.facebook.com/sharer.php?u=${postUrl}&t=${postTitle},'sharer','toolbar=0,status=0,width=626,height=436'`
+		);
+
+		twitterBtn.setAttribute(
+			"href",
+			`https://twitter.com/share?url=${postUrl}&text=${postTitle}`
+		);
+
+		pinterestBtn.setAttribute(
+			"href",
+			`https://pinterest.com/pin/create/bookmarklet/?media=${postImg}&url=${postUrl}&description=${postTitle}`
+		);
+
+		whatsappBtn.setAttribute(
+			"href",
+			`https://wa.me/?text=${postTitle} ${postUrl}`
+		);
+	}
+
+	init();
+
+	$(document).ready(function() {
+		$('#zoom_img1').zoom({
+			url: '<?php echo "/filesLib/articles_img/" . $product->libelle . "/" . $product->photo2; ?>',
+			magnify: 1
+		});
+		$('#zoom_img2').zoom({
+			url: '<?php "/filesLib/articles_img/" . $product->libelle . "/" . $product->photo2; ?>',
+			magnify: 1
+		});
+		$('#zoom_img3').zoom({
+			url: '<?php "/filesLib/articles_img/" . $product->libelle . "/" . $product->photo2; ?>',
+			magnify: 1
+		});
+		// initialization of carousel
+		$.HSCore.components.HSCarousel.init('[class*="js-carousel"]');
+
+		$('#carouselCus2').slick('setOption', 'responsive', [{
+			breakpoint: 1200,
+			settings: {
+				slidesToShow: 4
+			}
+		}, {
+			breakpoint: 992,
+			settings: {
+				slidesToShow: 3
+			}
+		}, {
+			breakpoint: 768,
+			settings: {
+				slidesToShow: 2
+			}
+		}], true);
+	})
+</script>

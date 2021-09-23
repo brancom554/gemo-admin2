@@ -1,0 +1,24 @@
+<?php
+if($iniObj->debugViews) echo __FILE__ ;
+$carouselActive = true;
+$title = "Occasion";
+
+	include _VIEW_PATH."/common_header.phtml";?>
+
+	<?php
+		// include _VIEW_PATH."common_top_bar.phtml";
+		if($storeActive==1){
+			include _VIEW_PATH.$lib->lang."/top_menu_magasin.phtml";
+		}
+		else{
+			include _VIEW_PATH.$lib->lang."/top_menu.phtml";
+		}
+	?>
+
+	<?php
+		include _VIEW_PATH.$lib->lang."/prix_en_baisse_page_content.phtml";
+	?>
+
+	<!--/wrapper-->
+	<?php include _VIEW_PATH.$lib->lang."/common_footer.phtml";?>
+	<?php include _VIEW_PATH."/common_include_files.phtml";?>

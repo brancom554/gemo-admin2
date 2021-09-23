@@ -1,0 +1,40 @@
+<?php if ($iniObj->debugViews) echo __FILE__; ?>
+
+<!--=== Search Block Version 2 ===-->
+<div class="row g-mt-30">
+    <!-- <div class="offset-1"></div> -->
+    <div class="col-lg-11">
+        <div class="row">
+            <form class="input-group g-pos-rel">
+                <div class="col-12 col-md-4 form-group g-mb-1">
+
+                    <span class="g-pos-abs g-top-0 g-left-10 g-z-index-3 g-px-13 g-py-13">
+                        <i class="g-color-gray-dark-v4 g-font-size-16  icon-hotel-restaurant-035 u-line-icon-pro"></i>
+                    </span>
+                    <select id="mag_key" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover rounded g-pl-40 g-py-13 g-px-15">
+                        <option value="">Sélectionnez le magasin</option>
+                        <?php foreach ($_magasins['data'] as $k => $val) {
+                            if (isset($val->magasin_url) && ($val->magasin_url != "")) {
+                                $two_chars_zipcode = substr($val->code_postal, 0, -3);
+                        ?>
+                                <option value="<?php echo $val->magasin_url; ?>"><?php echo $val->ville . '(' . $two_chars_zipcode . ') - ' . $val->nom_magasin; ?></option>
+                        <?php }
+                        } ?>
+                    </select>
+                </div>
+                <!-- <div class="col-12 col-md-6 form-group g-mb-20"> -->
+                    <!-- <span class="g-pos-abs g-top-0 g-left-0 g-z-index-3 g-px-13 g-py-10">
+                        <i class="g-color-gray-dark-v4 g-font-size-12 icon-education-045 u-line-icon-pro"></i>
+                    </span> -->
+                    <input class="form-control u-form-control g-brd-around g-brd-gray-light-v3 g-brd-primary--focus g-font-size-13 g-rounded-left-5 g-pl-35 g-pa-0" id="keyword" type="search" value="<?php if (isset($searchString)) echo $searchString; ?>" placeholder="Rechercher dans le magasin <?php echo $storeDetail->storeName; ?>">
+                    <input type="hidden" id="store" class="form-control" value="<?php if (isset($storeUrl)) echo $storeUrl; ?>">
+                
+                    <div class="input-group-append g-brd-none g-py-0">
+                        <button id="searchBtnMag" class="btn u-btn-black g-font-size-12 text-uppercase g-py-12 g-px-25" type="button">Rechercher</button>
+                    </div>
+                <!-- </div> -->
+            </form>
+        </div>
+        <!-- End Search Form -->
+    </div>
+</div>

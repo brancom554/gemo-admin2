@@ -1,0 +1,97 @@
+<?php if($iniObj->debugViews) echo __FILE__ ; ?>
+<!--=== Product Content ===-->
+<div
+	class="container content-md">
+					<?php if ($nbResult->total>0) {?>
+				<h3 class="badge-results">
+					<?php echo $nbResult->total ?>
+					articles
+				</h3>
+				<?php } ?>
+
+	<div class="heading heading-v1 margin-bottom-10">
+		<h2>Les prix en baisse</h2>
+	</div>
+
+	<!--=== Illustration v2 ===-->
+	<div class="row illustration-v2">
+
+		<?php foreach($product['data'] as $k=>$v) {
+			if(file_exists(_WEB_FILES.$iniObj->imgPath.$v->photo1)){
+			?>
+
+		<div class="col-md-3 col-sm-6 md-margin-bottom-30">
+			<div class="product-img">
+				<a
+					href="/magasin_<?php echo $storeDetail->storeUrl;?>/article_<?php echo $v->productId."_".$lib->cleanUrl($v->libelle);?>"><img
+					class="full-width img-responsive"
+					src="<?php echo $iniObj->imgPath;?><?php echo $v->photo1;?>" alt="">
+				</a> <a class="product-review"
+					href="/magasin_<?php echo $storeDetail->storeUrl;?>/article_<?php echo $v->productId."_".$lib->cleanUrl($v->libelle);?>">Detail</a>
+				<?php if($iniObj->cartActive){ ?>
+				<a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i>Ajouter
+					au panier</a>
+				<?php } ?>
+			</div>
+			<div class="product-description product-description-brd">
+				<div class="overflow-h margin-bottom-5">
+					<div class="pull-left">
+						<h4 class="title-price">
+							<a
+								href="/magasin_<?php echo $storeDetail->storeUrl;?>/article_<?php echo $v->productId."_".$lib->cleanUrl($v->libelle);?>"><?php echo str_replace("<br>", "", $v->libelle) ;?>
+							</a>
+						</h4>
+						<span class="gender"><a
+							href="/magasin_<?php echo $v->storeUrl;?>_<?php echo $v->storeCity;?>/<?php echo $v->categoryCode."_".$lib->cleanUrl($v->categoryDescription);
+                                     ?>/<?php echo $v->subCategoryCode."_".$lib->cleanUrl($v->subCategoryDescription);?>"><?php echo $v->subCategoryDescription;?>
+						</a> </span>
+					</div>
+					<div class="product-price">
+						<span class="title-price"><?php echo $v->currentPrice;?> &euro;</span>
+						<?php if ($v->currentPrice < $v->initalPrice) { ?>
+						<span class="title-price line-through"><?php echo $v->initalPrice;?>
+							&euro;</span>
+						<?php } ?>
+					</div>
+					
+					<!-- Products Icons -->
+					<ul class="list-inline media-body text-right">
+						<?php if(/*$iniObj->cartActive*/ 1==1){ ?>
+							<li class="list-inline-item align-middle mx-0">
+							<a class="add-to-cart u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle add-to-cart" href="#"
+								data-toggle="tooltip"
+								data-placement="top"
+
+								data-productid="<?php echo $v->productId; ?>" data-productname="<?php echo $v->libelle; ?>" data-productimage="<?php echo $iniObj->imgPath . $v->photo1; ?>" data-productprice="<?php echo $v->currentPrice; ?>" data-productstorecode="<?php echo $v->storeCode; ?>" data-productstorename="<?php echo $v->storeName; ?>" data-productemailmagasin="<?php echo $v->email_magasin; ?>" data-productemaildirecteur="<?php echo $v->email_directeur; ?>" data-qtestock="<?= $v->qte_stock ?>"
+								
+								title="Add to Cart">
+								<i class="icon-finance-100 u-line-icon-pro"></i>
+							</a>
+							</li>
+						<?php }?>
+					</ul>
+					<!-- End Products Icons -->
+				</div>
+			</div>
+		</div>
+		<?php }
+		}
+		?>
+
+
+	</div>
+
+	<div class="text-center">
+		<ul class="pagination pagination-v2">
+			<?php
+			$pagination->paginate($pages_requested,$currentPage);
+			?>
+		</ul>
+	</div>
+	<!--/end pagination-->
+
+	<!--=== End Illustration v2 ===-->
+</div>
+<!--=== End Product Content ===-->
+
+

@@ -1,0 +1,96 @@
+
+
+<div class="row">
+    <section class="col col-5">
+        <dt><?php echo $lang->trl('Do you need a packaging');?> ?</dt>
+    </section>
+    <section class="col col-6">
+        <dd>
+            <div class="inline-group">
+                <label class="label_shipping radio"><input type="radio"  value ="0" name="medBox"><i class="rounded-x"></i><?php echo $lang->trl('No');?></label>
+                <label class="label_shipping radio" title="<?php echo $lang->trl('Select this option to show the available packaging');?>"><input type="radio"  value ="1" name="medBox" ><i class="rounded-x"></i><?php echo $lang->trl('Yes');?></label>
+            </div>
+        </dd>
+    </section>
+</div>
+
+<div id='temp'>
+<div class="row">
+    <section class="col col-5">
+        <dt><?php echo $lang->trl('Select the shipment temperature');?></dt>
+    </section>
+    <section class="col col-6">
+        <dd>
+            <div class="inline-group" id="tempId">
+            </div>
+        </dd>
+    </section>
+</div>
+</div>
+
+<div id='packaging'>
+<div class="row">
+    <section class="col col-5">
+        <dt><?php echo $lang->trl('Select your packaging');?></dt>
+    </section>
+    <section class="col col-6">
+        <dd>
+            <div class="inline-group" id='boxId'>
+            </div>
+        </dd>
+    </section>
+</div>
+<div class="row">
+    <section class="col col-5">
+        <dt><label title="<?php echo $lang->trl('When quantity > 1, additional fees will be applied');?>"> <?php echo $lang->trl('Number of packaging');?> <span class="icon-question"></span> </label></dt>
+        </section>
+    <section class="col col-6">
+        <dd>
+            <div class="inline-group">
+                <label class="label_shipping radio"><input type="radio" checked value ="1" name="nbPackage" /><i class="rounded-x"></i>1</label>
+                <label class="label_shipping radio"><input type="radio"  value ="2" name="nbPackage" /><i class="rounded-x"></i>2</label>
+                <label class="label_shipping radio"><input type="radio"  value ="3" name="nbPackage" /><i class="rounded-x"></i>3</label>
+                <label class="label_shipping radio"><input type="radio"  value ="4" name="nbPackage" /><i class="rounded-x"></i>4</label>
+                <label class="label_shipping radio"><input type="radio"  value ="5" name="nbPackage" /><i class="rounded-x"></i>5</label>
+                </div>
+        </dd>
+    </section>
+</div>
+<div class="row">
+    <section class="col col-5">
+        <dt ><label title="<?php echo $lang->trl('When quantity > 1, additional fees will be applied');?>"><?php echo $lang->trl('Number of Medical bag per packaging');?> <span class="icon-question"></span></label>
+         </span>
+        </dt>
+    </section>
+    <section class="col col-6">
+        <dd>
+            <div class="inline-group">
+                <label class="label_shipping radio"><input type="radio" checked value ="1" name="nbBag" /><i class="rounded-x"></i>1</label>
+                <label class="label_shipping radio"><input type="radio"  value ="2" name="nbBag" /><i class="rounded-x"></i>2</label>
+                <label class="label_shipping radio"><input type="radio"  value ="3" name="nbBag" /><i class="rounded-x"></i>3</label>
+                <label class="label_shipping radio"><input type="radio"  value ="4" name="nbBag" /><i class="rounded-x"></i>4</label>
+                <label class="label_shipping radio"><input type="radio"  value ="5" name="nbBag" /><i class="rounded-x"></i>5</label>
+                </div>
+        </dd>
+    </section>
+</div>
+
+
+<div class="row">
+    <section class="col col-5">
+        <dt><?php echo $lang->trl('Do you need a data logger');?> ?</dt>
+    </section>
+    <section class="col col-6">
+        <dd>
+            <div class="inline-group">
+                <label class="label_shipping radio"><input type="radio"  value ="0" name="dataLogger"><i class="rounded-x"></i><?php echo $lang->trl('No');?></label>
+                <label class="label_shipping radio" title="<?php echo $lang->trl('Additional fees will be applied');?>"><input type="radio"  value ="1" name="dataLogger" >
+                <i class="rounded-x"></i><?php echo $lang->trl('Yes');?></span>
+
+
+
+            </div>
+        </dd>
+    </section>
+</div>
+</div>

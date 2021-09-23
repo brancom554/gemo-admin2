@@ -1,0 +1,39 @@
+<!-- Main Content-->
+			<div class="main-content side-content pt-0">
+
+<div class="container-fluid">
+    <div class="inner-body">
+
+<!-- Page Header -->
+    <div class="page-header">
+
+            <?php include _VIEW_PATH."common_top_for_dashboard_content.phtml"; ?>
+    </div>
+
+    <form action="" method="post">
+        <div class="row row-sm">
+            <div class="col-lg-6 col-md-6">
+                <div class="card custom-card">
+                    <div class="card-body">
+                        <div>
+                            <h6 class="main-content-label mb-1">Confirmation</h6>
+                            <!-- <p class="text-muted card-sub-title">A basic form control input and textarea with disabled and readonly mode.</p> -->
+                        </div>
+                        <div class="row row-sm">
+                        
+                            <div  class="col-lg mg-t-10 mg-lg-t-0">
+                                <input type="text" class="form-control" disabled id="licence" value="<?=$response['licence_key'] ?>" name="licence">
+                            </div>
+                            <div class="col-12 mt-2">
+                                <button type="submit" class="btn btn-primary" name="soumettre">Valider</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+        </form>
+    </div>
+</div>
+</div>

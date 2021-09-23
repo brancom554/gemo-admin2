@@ -1,0 +1,87 @@
+<?php
+
+$restrictedArea = true;
+$commandeActive = true;
+$dashboardActive = false;
+$menuActif = "VENTE";
+
+include _VIEW_PATH . "/common_header.phtml"; ?>
+<?php
+// include _VIEW_PATH."common_top_bar.phtml";
+include _VIEW_PATH . $lib->lang . "/top_menu.phtml";
+?>
+
+
+<!--=== Profile ===-->
+<div class="container g-pt-70 g-pb-30">
+    <div class="row">
+        <?php
+        if ($_SESSION['customer']['authValidated']) {
+            include _VIEW_PATH . "/customer/profile_left_menu.phtml";
+        }
+        ?>
+        <?php //var_dump($orders); 
+        ?>
+        <div class="col-lg-9 g-mb-50">
+            <!--Profile Body-->
+            <h2><?php echo $lang->trl('My dashboard'); ?></h2>
+            <?php
+            if ($iniObj->debug) {
+                //  echo "<pre>";print_r($_SESSION); echo "</pre>";
+            }
+            ?>
+            <?php echo $lang->trl('Welcome to Occazetneuf') . " " . $_SESSION['customer']['first_name'] . " " . strtoupper($_SESSION['customer']['last_name']) . " (" . $_SESSION['customer']['email_address'] . ")"; ?>
+            <br /><br />
+            <?php //var_dump($orders); 
+            ?>
+            <div class="profile-body margin-bottom-20">
+                <br />
+                <h3> <i class="fa fa-shopping-cart"></i> Mes ventes</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#Product ID</th>
+                            <th scope="col">Libellé</th>
+							<th scope="col">Magasin</th>
+                            <th scope="col">Quantité</th>
+                            <th scope="col">Prix</th>
+                            <th scope="col">Date vente</th>
+                            <th scope="col" class="align-middle text-nowrap text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (isset($sales)) { ?>
+                            <?php foreach ($sales['data'] as $k => $sale) { ?>
+                                <tr>
+                                    <th scope="row"> <?php echo $order->article_id ?> </th>
+                                    <td><?php echo $sale->libelle ?> </td>
+									 <td><?php echo $sale->nom_magasin ?> </td>
+                                    <td><?php echo $sale->qte_vente ?> </td>
+                                    <td>€ <?php echo $sale->prix_net_deposant ?></td>
+                                    <td><?php echo $sale->date_vente ?></td>
+                                   
+                                    <td class="align-middle text-nowrap text-center">
+                                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover g-pa-5" href="/<?php echo $lib->lang; ?>/<?php echo $iniObj->serviceName; ?>/detailPost/<?php echo $sale->article_id; ?>" data-toggle="tooltip" data-placement="top" data-original-title="Edit">
+                                            <i class="fa fa-eye g-font-size-18 g-mr-7"></i>
+                                        </a>
+                                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover g-pa-5" href="/<?php echo $lib->lang; ?>/<?php echo $iniObj->serviceName; ?>/editPost/<?php echo $sale->article_id; ?>" data-toggle="tooltip" data-placement="top" data-original-title="Edit">
+                                            <i class="fa fa-pencil g-font-size-18 g-mr-7"></i>
+                                        </a>
+                                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover g-pa-5" href="/<?php echo $lib->lang; ?>/<?php echo $iniObj->serviceName; ?>/deletePost/<?php echo $sale->article_id; ?>" data-toggle="tooltip" data-placement="top" data-original-title="Delete">
+                                            <i class="fa fa-trash g-font-size-18 g-mr-7"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        <?php } ?>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--=== End Profile ===-->
+<?php include _VIEW_PATH . $lib->lang . "/common_footer.phtml"; ?>
+
+<?php include _VIEW_PATH . "/common_include_files.phtml"; ?>

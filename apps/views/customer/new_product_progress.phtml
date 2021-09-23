@@ -1,0 +1,60 @@
+<div class="col-md-16 shadow-wrapper">
+  <div id="progress" class="tag-box tag-box-v1 box-shadow shadow-effect-2">
+
+    <h4><?php echo $lang->trl('Your shipment');?></h4>
+    <div class="list5">
+      <ul >
+        <li><i class="icon-append fa fa-building-o"></i> <?php echo $lang->trl('Your shipper');?> <i class="s1 icon-append fa fa-pencil "></i></span>
+          <ul>
+            <li><i class="icon-append fa fa-building"></i> <?php echo $lang->trl('Address');?> : <label id='progShipAdd'></label>
+            <li><i class="icon-append fa fa-user"></i> <?php echo $lang->trl('Contact name');?> : <label id='progShipperContact'></label></li>
+            <li><i class="icon-append fa fa-user"></i> <?php echo $lang->trl('Notify');?> : <label id='progShipEmail'></label></li>
+            <li><i class="icon-append fa fa-comment "></i> <?php echo $lang->trl('Pickup instructions');?> : <label id='progPickInst'></label></li>
+            <li><i class="icon-append fa fa-calendar "></i> <?php echo $lang->trl('Date');?> : <label id='progShipDate'></label></li>
+            <li><i class="icon-append fa fa-calendar"></i> <?php echo $lang->trl('Content');?> : <label id='progContent'></label></li>
+            <li><i class="icon-append fa fa-link"></i> <?php echo $lang->trl('Nb items');?> : <label id='progItem'></label> | <i class="icon-append fa fa-link"></i> <?php echo $lang->trl('Weight');?> (kg) : <label id='progWeight'></label></li>
+            <li><i class="fa fa-envelope"></i> <?php echo $lang->trl('Tracking via e-mail');?> : <label id='progShipTracking'></label></li>
+
+          </ul>
+        </li>
+
+        <li><i class="icon-append fa fa-building-o"></i> <?php echo $lang->trl('Your consignee');?> <i class="s2 icon-append fa fa-pencil "></i></span>
+          <ul>
+            <li><i class="icon-append fa fa-building"></i> <?php echo $lang->trl('Address');?> : <label id='progDelAdd'></label></li>
+            <li><i class="icon-append fa fa-user"></i> <?php echo $lang->trl('Contact name');?> : <label id='progDelContact'></label></li>
+            <li><i class="icon-append fa fa-user"></i> <?php echo $lang->trl('Notify');?> : <label id='progCeeEmail'></label></li>
+            <li><i class="icon-append fa fa-comment "></i> <?php echo $lang->trl('Delivery instructions');?> : <label id='progDelInst'></label></li>
+            <li><i class="icon-append fa fa-calendar "></i> <?php echo $lang->trl('Date');?> : <label id='progDelDate'></label></li>
+            <li><i class="fa fa-envelope"></i> <?php echo $lang->trl('Tracking via e-mail');?> : <label id='progCeeTracking'></label></li>
+          </ul>
+        </li>
+        <li><i class="icon-append fa fa-cogs"></i> <?php echo $lang->trl('Shipment options');?> <i class="s3 icon-append fa fa-pencil "></i></span>
+          <ul>
+          <?php if($_SESSION['customer']['medical_flag']=="1") {?>
+          <li><i class="icon-append fa fa-cube"></i> <?php echo $lang->trl('Packaging');?> : <label id='progPack'></label></li>
+          <li><i class="icon-append fa fa-battery-half"></i> <?php echo $lang->trl('Data Logger');?> : <label id='progLogger'></label></li>
+          <?php } ?>
+            <li><i class="icon-append fa fa-euro"></i> <?php echo $lang->trl('Custom value');?> : <label id='progCustValue'></label></li>
+            <li><i class="icon-append fa fa-lock"></i> <?php echo $lang->trl('Insurance');?> : <label id='progIns'></label></li>
+            <li><i class="icon-append fa fa-user"></i> <?php echo $lang->trl('Insurance value');?> : <label id='progInsValue'></label></li>
+          </ul>
+        </li>
+        <li><i class="icon-append fa fa-eur"></i> <?php echo $lang->trl('Billing');?> <i class="s4 icon-append fa fa-pencil "></i></span>
+          <ul>
+            <li><i class="icon-append fa fa-building"></i> <?php echo $lang->trl('Billing address');?> : <label id='progBillAdd'></label></li>
+            <li><i class="icon-append fa fa-bookmark-o "></i> <?php echo $lang->trl('Your order references');?> : <label id='progBillRef'></label></li>
+            <li><i class="fa fa-envelope"></i> <?php echo $lang->trl('Tracking via e-mail');?> : <label id='progBillTracking'></label></li>
+			<?php if($_SESSION['customer']['medical_flag']=="1") {?>
+				<li><i class="fa fa-bookmark-o "></i> <?php echo $lang->trl('Study reference');?>: <label id='progStudyNumber'></label> <span class="s4"></li>
+				<li><i class="fa fa-bookmark-o "></i> <?php echo $lang->trl('Product code');?>: <label id='progDonorCode'></label> <span class="s4"></li>
+				<li><i class="fa fa-bookmark-o "></i> <?php echo $lang->trl('Patient code');?>: <label id='progPatientCode'></label> <span class="s4"></li>
+				<li><i class="fa fa-bookmark-o "></i> <?php echo $lang->trl('Patient code');?>: <label id='progQuoteNum'></label> <span class="s4"></li>
+
+				<?php } ?>
+
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

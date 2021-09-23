@@ -1,0 +1,27 @@
+<div id="s1Tab" class="profile-edit tab-pane fade in">
+    <!--Striped and Hover Rows-->
+    <div class="row">
+        <!--Striped Rows-->
+        <div class="col-md-12">
+            <div class="panel panel-sea margin-bottom-40">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-check-circle-o"></i> <?php echo $lang->trl('Payed Products');?></h3>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th><?php echo $lang->trl("Product ID"); ?></th>
+                            <th><?php echo $lang->trl("Description"); ?></th>
+                            <th><?php echo $lang->trl("Store name"); ?></th>
+                            <th><?php echo $lang->trl("Initial price"); ?></th>
+                            <th><?php echo $lang->trl("Current price");?></th>
+                        </tr>
+                    </thead>
+                    <tbody id="s1ShipList">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--End Striped Rows-->
+    </div>
+</div>

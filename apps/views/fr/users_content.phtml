@@ -1,0 +1,75 @@
+<main>
+            <h2 class="main-title">Utilisateurs</h2>
+            <div class="track">
+                <span <?php if($page_requested =="utilisateurs"){ ?> class="actives" <?php } ?>><?php echo $page_requested;?></span><span>/</span><span><?php echo $param2[0];?></span>
+            </div>
+            
+            <div class="main-btn">
+                <button id="myBtn" onclick="document.location='<?php $lib->customerSite ?>/utilisateurs/ajouter'"><i class="fas fa-plus" style="margin-right:15px ;"></i>Ajouter un nouveau utilisateur</button>
+            </div>
+            
+            <section class="recent">
+                <div class="activity">
+                    <div style="padding-top: 5px;" class="activity-card">
+                        <h3>Liste des utilisateurs</h3>
+                        <div class="table-responsive">
+                            <div class="research">
+                                <div>
+                                    <div id="form-research"><input id="filter" type="text" placeholder="Rechercher..."></div>
+                                    <i class="fas fa-search"></i>
+                                </div>
+                            </div>
+                            <table id="table" class="table table-striped" style="margin-top: 30px;" border="0">
+                                <thead>
+                                    <tr>
+                                        <th>Nom & Prenoms</th>
+                                        <th>Téléphone</th>
+                                        <th>Email</th>
+                                        <th>Profils</th>
+                                        <th>Statut</th>
+                                        <th style="text-align:center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <?php if(isset($data['utilisateurs'])): ?>
+                                        <?php foreach($data['utilisateurs'] as $utilisateur): ?>
+                                        <tr>
+                                             <td><?=$utilisateur['firstname'] ?> <?=$utilisateur['lastname'] ?></td>
+                                             
+                                             <td><?=$utilisateur['phone_number'] ?></td>
+                                             <td><?=$utilisateur['email'] ?></td>
+                                             <td>
+                                                  <?php if($utilisateur['is_active_flag'] == 1): ?>
+                                                       <span class="span-success success">Activer</span>
+                                                  <?php endif; ?>
+                                                  <?php if($utilisateur['is_active_flag'] == 0): ?>
+                                                       <span class="span-success danger">Bloquer</span>
+                                                  <?php endif; ?>
+                                                  
+                                             </td>
+                                             
+                                             <td style="display:flex">
+                                                  <span onclick="document.location='<?php $lib->customerSite ?>/utilisateur/modifier/<?=$utilisateur['user_id'] ?>'" class="btn-action white pg-5 primary cursor">Modifier mot de passe</span>
+                                             </td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                    <!--<tr>
+                                        <td>Client 1</td>
+                                        <td>10 Janvier 2020</td>
+                                        <td>20 Janvier 2020</td>
+                                        <td>123456789</td>
+                                        <td><span class="span-success success ">Activer</span></td>
+                                        <td>
+                                            <span class="btn-action white pg-5 success">Activer</span>
+                                            <span class="btn-action white pg-5 primary">Bloquer</span>
+                                            <span class="btn-action white pg-5 danger">Revoquer</span>
+                                        </td>
+                                    </tr>-->
+                                </tbody>
+                            </table>
+                        </div>   
+                    </div>
+                </div>
+            </section>
+        </main>

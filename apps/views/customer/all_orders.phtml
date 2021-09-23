@@ -1,0 +1,123 @@
+<?php
+
+$restrictedArea = true;
+$commandeActive = true;
+$dashboardActive = false;
+
+$menuActif="COMMANDE";
+
+include _VIEW_PATH . "/common_header.phtml"; ?>
+<?php
+// include _VIEW_PATH."common_top_bar.phtml";
+include _VIEW_PATH . $lib->lang . "/top_menu.phtml";
+?>
+
+
+<!--=== Profile ===-->
+<div class="container g-pt-70 g-pb-30">
+    <div class="row">
+        <?php
+        if ($_SESSION['customer']['authValidated']) {
+            include _VIEW_PATH . "/customer/profile_left_menu.phtml";
+        }
+        ?>
+        <?php //var_dump($orders); 
+        ?>
+        <div class="col-lg-9 g-mb-50">
+            <!--Profile Body-->
+            <h2><?php echo $lang->trl('My dashboard'); ?></h2>
+            <?php
+            if ($iniObj->debug) {
+                //  echo "<pre>";print_r($_SESSION); echo "</pre>";
+            }
+            ?>
+            <?php echo $lang->trl('Welcome to Occazetneuf') . " " . $_SESSION['customer']['first_name'] . " " . strtoupper($_SESSION['customer']['last_name']) . " (" . $_SESSION['customer']['email_address'] . ")"; ?>
+            <br /><br />
+            <?php //var_dump($orders); 
+            ?>
+
+            <div class="profile-body margin-bottom-20">
+               
+                <div class="row">
+                    <!-- Income Card -->
+                    <div class="col-xl-12">
+                        <div class="g-pa-5">
+                            <ul class="nav nav-tabs nav-fill g-font-weight-900 text-uppercase" id="myTab" role="tablist">
+
+                                <li class="nav-item g-ml-4">
+                                    <a class="nav-link active" id="orders_tous_tab" data-toggle="tab" href="#orders_tous" role="tab" aria-controls="orders_tous" aria-selected="true">Toutes les commandes</a>
+                                </li>
+                                
+                                <li class="nav-item g-ml-4">
+                                    <a class="nav-link" id="orders_annulees_tab" data-toggle="tab" href="#orders_annulees" role="tab" aria-controls="orders_annulees" aria-selected="true">Annulées</a>
+                                </li>
+
+                                <li class="nav-item g-ml-4">
+                                    <a class="nav-link" id="orders_attentes_tab" data-toggle="tab" href="#orders_attentes" role="tab" aria-controls="orders_attentes" aria-selected="true">En attentes</a>
+                                </li>
+
+                                <li class="nav-item g-ml-4">
+                                    <a class="nav-link" id="orders_en_cours_tab" data-toggle="tab" href="#orders_en_cours" role="tab" aria-controls="orders_en_cours" aria-selected="true">En cours</a>
+                                </li>
+
+                                <li class="nav-item g-ml-4">
+                                    <a class="nav-link" id="orders_regles_tab" data-toggle="tab" href="#orders_regles" role="tab" aria-controls="orders_regles" aria-selected="true">Réglées</a>
+                                </li>
+
+                                <li class="nav-item g-ml-4">
+                                    <a class="nav-link" id="orders_livres_tab" data-toggle="tab" href="#orders_livres" role="tab" aria-controls="orders_livres" aria-selected="true">Déjà livrées</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="text-danger"> <h5 id="error_message"></h5></div>
+                                <div class="text-success"> <h5 id="success_message"></h5></div>
+                                <div class="tab-pane fade g-pt-20 show active" id="orders_tous" role="tabpanel" aria-labelledby="orders_tous">
+                                    <div class="container">                            
+                                        <?php include _VIEW_PATH . "/customer/my_all_orders.phtml"; ?>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade g-pt-20" id="orders_annulees" role="tabpanel" aria-labelledby="orders_annulees">
+                                    <div class="container">                            
+                                        <?php include _VIEW_PATH . "/customer/my_cancelled_orders.phtml"; ?>
+                                    </div>
+                                </div>
+                               
+                                <div class="tab-pane fade g-pt-20" id="orders_attentes" role="tabpanel" aria-labelledby="orders_attentes">
+                                    <div class="container">                            
+                                        <?php include _VIEW_PATH . "/customer/my_pending_orders.phtml"; ?>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade g-pt-20" id="orders_en_cours" role="tabpanel" aria-labelledby="orders_en_cours">
+                                    <div class="container">                            
+                                        <?php include _VIEW_PATH . "/customer/my_in_progress_orders.phtml"; ?>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade g-pt-20" id="orders_regles" role="tabpanel" aria-labelledby="orders_regles">
+                                    <div class="container">                            
+                                        <?php include _VIEW_PATH . "/customer/my_paid_orders.phtml"; ?>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade g-pt-20" id="orders_livres" role="tabpanel" aria-labelledby="orders_livres">
+                                    <div class="container">                            
+                                        <?php include _VIEW_PATH . "/customer/my_closed_orders.phtml"; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--=== End Profile ===-->
+<?php include _VIEW_PATH . $lib->lang . "/common_footer.phtml"; ?>
+
+<?php include _VIEW_PATH . "/common_include_files.phtml"; ?>

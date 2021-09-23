@@ -1,0 +1,238 @@
+<?php
+$carouselActive = false;
+
+include _VIEW_PATH."/common_header.phtml";?>
+
+    <!-- Header -->
+    <header id="js-header" class="u-header">
+        <div class="u-header__section">
+            <?php //include _VIEW_PATH."global_top_bar.phtml"; ?>
+            <?php include _VIEW_PATH.$lib->lang."/top_menu.phtml"; ?>
+        </div>
+    </header>
+    <!-- End Header -->
+
+    <!-- Breadcrumbs -->
+    <section class="g-bg-gray-light-v5 g-py-50">
+        <div class="container">
+            <div class="d-sm-flex text-center">
+                <div class="align-self-center">
+                    <h2 class="h3 g-font-weight-300 w-100 g-mb-10 g-mb-0--md">
+                        <?php echo $lang->trl('Mentions legales');?>
+                    </h2>
+                </div>
+
+                <div class="align-self-center ml-auto">
+                    <ul class="u-list-inline">
+                        <li class="list-inline-item g-mr-5">
+                            <a class="u-link-v5 g-color-main g-color-primary--hover" href="/<?php echo $lib->lang;?>">
+                                <?php echo $lang->trl('Home');?>
+                            </a>
+                            <i class="g-color-gray-light-v2 g-ml-5">/</i>
+                        </li>
+                        <li class="list-inline-item g-color-primary">
+                            <span>
+                                <?php echo $lang->trl('Mentions legales');?>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container g-py-40">
+    <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <!-- Blog Minimal Blocks -->
+            <article class="g-mb-">
+                <div class="g-mb-70">
+                    <h2 id="article" class="h4 g-color-black g-font-weight-600 mb-3"><a
+                                class="u-link-v5 g-color-black g-color-primary--hover" href="#" style="font-size :25px;">Mentions légales et politique de confidentialité</a></h2>
+                    <p class="g-color-black g-line-height-1_8">Responsable éditorial :<B> OccazetNeuf International</B>
+                     <br>Nom commercial : occazetneuf.com, OCCAZETNEUF</br>
+                     OccazetNeuf International est une SAS au capital de 90 876€
+                     <br>RCS Bobigny 523 206 704- APE : 5229B<br/>
+                     Siege social : <B> 2 Rue Maryse Bastié - 93600 Aulnay-sous-bois - France</B>
+                     <br>Tél. : + 33 (0)1 4183 6940</br>
+                     https://www.occazetneuf.com 
+                     <br><B>N° déclaration CNIL : 1857056</B>
+                     <br>Nom du directeur de la publication : Jacques JOCELYN</br>
+                     Éditeur de la plateforme : JIS Computing
+                     2 Rue Maryse Bastié – 93600 Aulnay-sous-bois
+                     RCS Bobigny : 484 875 513
+                     <br>Hébergeur : Scaleway SAS, Paris</br>
+
+                     Dans ce qui suit, nous emploierons souvent « MyOccazetNeuf » ou « OccazetNeuf » pour désigner la société OccazetNeuf International. Votre vie privée et vos données personnelles sont d'une importance primordiale pour nous. Chez OccazetNeuf nous avons des principes fondamentaux :
+                     <br>&ensp;&ensp;&ensp;• Nous vous demandons ou traitons vos informations personnelles seulement si c'est indispensable ou si vous nous avez donné votre consentement pour le faire.</br>
+                     &ensp;&ensp;&ensp;• Nous ne partageons vos données personnelles avec aucune entité extérieure, sauf pour nous conformer à la loi, vous assister, la bonne exécution des missions que vous nous confiez ou pour protéger nos droits.
+
+                     <br>Vous trouverez ci-dessous notre politique de confidentialité qui reprend ces principes.
+                     OccazetNeuf exploite plusieurs sites Web, dont <a href="https://www.occazetneuf.com/fr/MyOccazetNeuf"><B> www.occazetneuf.com</B> </a> et <a href="https://www.occazetneuf.com/"><B>www.OccazetNeuf.com.</B></a> La politique de OccazetNeuf respecte la confidentialité des informations que nous pouvons être amenés à collecter dans le cadre de l'exploitation de nos sites Web. 
+                     OccazetNeuf s ’engage, dans le cadre de ses activités et conformément à la législation en vigueur en France et en Europe, à assurer la protection, la confidentialité et la sécurité des données à caractère personnel des utilisateurs de ses services, ainsi qu’à respecter leur vie privée.</br>
+                    </p>
+                    <p class="g-color-black g-line-height-1_8" style="text-align : justify;"><B>Article 1 Responsable de traitement</B>
+                     <br>En tant que responsable de traitement qui consiste à mettre à disposition de ses clients un système de gestion informatisée de documents en ligne (en mode Saas), OccazetNeuf, l’éditeur de OCCAZETNEUF, a accompli l’ensemble des formalités administratives nécessaires auprès des autorités compétentes.
+                      De manière générale, OccazetNeuf respecte l’ensemble des lois et règlements relatifs à la protection des données à caractère personnel en vigueur dans les pays où elle exerce ses activités, incluant notamment mais non limitativement :
+                     <br>&ensp;&ensp;&ensp;• la directive européenne n°95/46/CE du 24 octobre 1995 relative à la protection des personnes physiques à l’égard du Traitement des Données à Caractère Personnel et à la libre circulation de ces données ;</br>
+                     &ensp;&ensp;&ensp;• à compter du 25 mai 2018, le règlement européen 2016/679 du 27 avril 2016 relatif à la protection des personnes physiques à l'égard du Traitement des Données à Caractère Personnel et à la libre circulation de ces données, et abrogeant la directive 95/46/CE (règlement général sur la protection des données, souvent appelé RGPD) ;
+                     <br>&ensp;&ensp;&ensp;• la loi française n° 78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés et ses évolutions. Sages a déposé plusieurs déclarations à la CNIL, dont une, enregistrée sous le n° 2186552, concernant le traitement de données à caractère personnel qui est destiné à fournir le service de gestion logistique OCCAZETNEUF.</br></br>
+                    </p>
+                    <p class="g-color-black g-line-height-1_8" style="text-align : justify;"><B>Article 2 Sous-traitant</B>
+                     <br>De la même façon, en tant que sous-traitant pour ses clients qui utilisent le système de gestion informatisée de document en ligne (en mode Saas), 
+                     JIS COMPUTING, l’éditeur de OCCAZETNEUF, a accompli l’ensemble des formalités administratives nécessaires vis-à-vis des autorités compétentes, notamment le règlement européen 2016/679 du 27 avril 2016 relatif à la protection des personnes physiques à l'égard du Traitement des Données à Caractère Personnel et à la libre circulation de ces données,
+                     et abrogeant la directive 95/46/CE (règlement général sur la protection des données, souvent appelé RGPD).</br>
+                     Il convient de noter que les informations et documents déposés au sein de OCCAZETNEUF sont protégés par un espace sécurisé pour chaque client, 
+                     <br>Ainsi, ni les employés ou prestataires, ni les utilisateurs finaux dont les comptes ont été créés par les autres clients de OccazetNeuf ne peuvent accéder au contenu des documents déposés dans votre espace OCCAZETNEUF.</br> 
+                    </p>
+                    <p class="g-color-black g-line-height-1_8" style="text-align : justify;"><B>Article 3 Finalités</B>
+                     <br>La collecte des données sur les sites web de OccazetNeuf poursuit les objectifs suivants :
+                     <br>&ensp;&ensp;&ensp;• Mise en œuvre du service de gestion documentaire en ligne OCCAZETNEUF ;</br>
+                     &ensp;&ensp;&ensp;• Gestion de votre carnet d’adresse;
+                     <br>&ensp;&ensp;&ensp;• Assistance des clients et prospects ;</br>
+                     &ensp;&ensp;&ensp;• Etudes et analyses de l’utilisation des services, notamment à des fins d’améliorations des sites et services.
+                     JIS Computing, en tant que sous-traitant, ne peut pas déterminer les finalités des traitements de données personnelles qui peuvent se trouver contenue dans les documents déposés par ses clients. Ces finalités peuvent être aussi bien l’archivage de documents ne devant pas être autrement traités que la gestion des bordereaux, la gestion de comptabilité dont la gestion de factures, etc. 
+                    </p>
+                    <p class="g-color-black g-line-height-1_8" style="text-align : justify;"><B>Article 4 Périmètre des données collectées</B>
+                     <br> <B>4.1 Données contenues dans les documents déposés dans OCCAZETNEUF</B>
+                     <br>Les dispositions relatives aux données contenues dans les documents que vous déposez dans OCCAZETNEUF sont régies par nos <a href="/fr/CGU"><B>conditions générales d’utilisation</B></a>, notamment dans leur section nommée « Clauses relatives à la confidentialité des données personnelles contenues dans les documents déposés dans OCCAZETNEUF ». 
+                     Tout utilisateur final de OCCAZETNEUF pour lequel un accès valide a été créé par un client ayant effectué une demande d’ouverture de compte a accepté ces conditions générales d’utilisation.
+
+                     <br><B>4.2 Données traitées pour la mise en œuvre du service OCCAZETNEUF</B>
+                     <br>Aux fins d’utiliser le service OCCAZETNEUF, le client qui a effectué une ouverture de compte crée des accès au service. Les données traitées pour créer et gérer ces accès comprennent un identifiant et un mot de passe. L’identifiant est une adresse de courriel, car cela est nécessaire à l’utilisation du service qui requiert l’envoi de notifications ou de liens, notamment d’activation, par courriel.
+                     Des données de connexion sont aussi collectée et traitées, notamment l’adresse IP utilisée pour la connexion : cela est nécessaire pour pouvoir vous assister et pour satisfaire à nos contraintes légales, notamment en ce qui concerne la traçabilité des accès et des usages.
+                     Lorsque vous utilisez la fonction de partage de document par email, OccazetNeuf collecte l’adresse email du destinataire avec lequel le document est partagé. Cela est requis pour pouvoir lui envoyer le lien de partage.
+                     Toutes les actions que vous effectuez sur les documents sont journalisées : dépôt, mise en place d’index, indexation automatique, partage (y compris l’adresse du destinataire), etc. Cela est requis pour la bonne marche du service, dont une des fonctionnalités est de permettre de tracer et de retrouver les actions effectuées sur les documents.
+
+                     <br><B>4.3 Localisation des traitements</B>
+                     <br>Les traitements que OccazetNeuf est susceptible d’effectuer sur les données à caractère personnel sont effectués dans des centres de données hébergées en France (Scaleway, Paris, et OVH, Roubaix), dans ses locaux (Aulnay-Sous-Bois, France), et chez ses prestataires en France. Les traitements directement sous le contrôle de OccazetNeuf sont donc tous effectués en France.
+                     Si un prestataire, fournisseur ou sous-traitant de OccazetNeuf effectue des traitements dans un pays qui n’est pas dans l’Union Européenne ni dans un pays de la liste des pays reconnus comme adéquats tout en ayant donné les garanties nécessaires (par exemple en ayant adhéré à des programmes tels Privacy Shield, Safe Harbor, ou en ayant mis en place des Règles d’Entreprises Contraignantes (BCR), etc.), les relations contractuelles entre OccazetNeuf et ce tiers imposent la mise en place de garanties appropriées. A ce jour OccazetNeuf ne travaille pas avec de tels tiers.
+
+                     <br><B>4.4 Destinataires des données traitées pour la mise en œuvre du service</B>
+                     <br>OccazetNeuf peut éventuellement divulguer les données personnelles que vous avez renseignées ou qui ont été renseignées par le souscripteur de l’abonnement au service, à ses employés, prestataires ou organismes affiliés qui
+                     • osnt besoin d'avoir connaissance de ces informations afin de les traiter au nom de OccazetNeuf ou de fournir des services disponibles sur les sites web de OccazetNeuf, et
+                     • ont convenu de ne pas les divulguer à des tiers.
+                     OccazetNeuf ne louera ni ne vendra ni ne transférera d’aucune façon à des tiers vos données personnelles (notamment votre adresse email de connexion). En dehors de ses employés, prestataires, distributeurs et organismes affiliés, comme indiqué ci-dessus, OccazetNeuf ne divulgue des données personnelles que dans le cas d'une assignation à comparaitre, d'une ordonnance du tribunal ou de tout autre ordre gouvernemental, ou lorsque OccazetNeuf estime que cette divulgation est nécessaire pour protéger les biens ou les droits de OccazetNeuf, d'un tiers ou du grand public.
+                     Si vous êtes un utilisateur enregistré sur un site OccazetNeuf et que vous avez fourni votre adresse e-mail, OccazetNeuf peut occasionnellement vous envoyer un e-mail pour vous annoncer de nouvelles fonctionnalités, vous demander votre avis, ou tout simplement vous tenir informé des nouveautés de OccazetNeuf et de ses produits et services. OccazetNeuf prend toutes les mesures raisonnables et nécessaires pour protéger vos données contre les accès non autorisés, l'utilisation, la modification ou la destruction de données personnelles (ou potentiellement personnelles).
+
+                     <br><B>4.5 Transfert à des tiers des données contenues dans vos documents</B>
+                     <br>Les données que vous renseignez ou qui sont contenues dans les documents que vous déposez dans OCCAZETNEUF ne sont pas transmises à des tiers du fait de OccazetNeuf sauf avec votre consentement exprès. De fait, pour que de telles données soient transmises à des tiers, il faut que vous l’ayez décidé et qu’un tel transfert ait été mis en place par vous-même et les équipes de OccazetNeuf ou de ses partenaires. Cela peut notamment consister en des transferts vers des services de comptabilité, vers des organismes bancaires, vers des opérateurs de téléimpression ou de télépostage,
+                     vers un coffre-fort électronique, vers des prestataires de certification de documents, etc. Ces transferts sont optionnels et toujours explicites et c ’est vous qui en décidez. Quand de tels transferts existent, vos registres de traitement et vos mentions d’information aux personnes concernées doivent les mentionner. Les tiers qui pourraient vous être présentés par OccazetNeuf dans le cadre de ses offres optionnelles et de ses prestations additionnelles seront sélectionnés notamment en fonction des garanties qu’ils offrent en matière de protection des données à caractère personnel.
+
+                     <br><B>4.6 Transfert de données vers un pays tiers non membre de l’Union Européenne</B>
+                     <br>Ainsi qu’il est dit plus haut, les données que vous renseignez ou qui sont contenues dans les documents que vous déposez dans OCCAZETNEUF ne sont pas transmises à des tiers. Si un transfert hors de l’UE doit être mis en place, OccazetNeuf et vous-mêmes devez vous assurer que ce transfert est encadré par l’une des garanties offertes par la Commission Européenne – notamment par des clauses contractuelles types ou par le Privacy Shield pour les transferts vers les Etats-Unis, par des règles d’entreprise contraignantes (BCR) ou par tout autre mesure approprié et reconnue.
+                     Les tiers qui pourraient vous être présentés par OccazetNeuf dans le cadre de ses offres optionnelles et de ses prestations additionnelles seront sélectionnés notamment en fonction des garanties qu’ils offrent en matière de protection des données à caractère personnel.
+
+                     <br><B>4.7 Prospection commerciale</br></B>
+                     Si vous êtes un utilisateur final enregistré sur un site OccazetNeuf et que vous avez fourni votre adresse e-mail ou qu’elle a été fournie par le gestion de votre compte, OccazetNeuf peut occasionnellement vous envoyer un e-mail pour vous annoncer de nouvelles fonctionnalités, vous demander votre avis ou tout simplement vous tenir informé des nouveautés de OccazetNeuf, ses produits et services.
+                     Nous pouvons aussi être amenés à vous envoyer des courriels de prospection, notamment sur votre adresse professionnelle, si vous avez fourni vos coordonnées à un partenaire commercial de OccazetNeuf et si vous avez expressément consenti à recevoir des communications de ses propres partenaires.
+                     Vous avez toujours la possibilité de vous opposer à toute prospection de ce type, modifiant vos préférences ou en nous contactant sur le formulaire de contact disponible sur notre site web <a href="https://www.OccazetNeuf.com/"><B>www.OccazetNeuf.com</B></a>.
+                    </p>
+
+                    <p class="g-color-black g-line-height-1_8" style="text-align : justify;"><B>Article 5 Modalités d’exercice des droits d’accès, de rectification et d’opposition</B>
+                     <br>En tant qu’utilisateur de nos sites web, vous avez le droit :
+                     <br>&ensp;&ensp;&ensp;• De demander à ce que vos données, notamment utilisées pour communiquer avec vous (adresse de courriel, téléphone, etc.), soient effacées de nos fichiers.
+                     <br>&ensp;&ensp;&ensp;• De demander à ce que vos données traitées pour rendre le service soient effacées de nos fichiers. C’est ce qu’on appelle le droit à l’oubli. Si vous exercez votre droit à l’oubli, et que vous avez un accès à OCCAZETNEUF, cet accès deviendra impossible puisque votre adresse email, qui est votre identifiant, sera effacée de nos fichiers.
+                     <br>&ensp;&ensp;&ensp;• De vous opposer à la collecte et au traitement de données vous concernant lorsqu’elles ne sont pas strictement nécessaires. Votre adresse email nous est nécessaire pour ouvrir votre accès à votre espace de stockage et aux armoires OCCAZETNEUF car c’est votre identifiant, et nous en avons besoin pour vous envoyer des informations, des courriels de confirmation ou d’activation, etc. ; Si vous êtes destinataire d’un courriel contenant un lien de partage de document, votre adresse de courriel nous est nécessaire afin de vous envoyer le courriel contenant le lien et afin de gérer votre accès au document partagé.
+                     <br>&ensp;&ensp;&ensp;• D’accéder aux données collectées à votre sujet et de les récupérer sous un format électronique standard ;
+                     <br>&ensp;&ensp;&ensp;• D’en obtenir la rectification ;
+                     <br>&ensp;&ensp;&ensp;• De demander une limitation de leur traitement – en refusant par exemple toute utilisation à des fins de prospection. 
+                     Ces droits peuvent être exercés en nous contactant sur le formulaire de contact disponible sur notre site web <a href="https://www.OccazetNeuf.com/"><B>www.OccazetNeuf.com</B></a>
+                     Vous avez aussi le droit d'introduire une réclamation auprès d'une autorité de contrôle et de former un recours juridictionnel, notamment si vos demandes d’exercice des droits n’ont pas été traitées dans un délai d’un mois après qu’elles ont été introduites. En France, l’autorité de contrôle est la CNIL qui peut être contactée via les formulaires idoines sur son site <a href="https://www.cnil.fr/"><B>cnil.fr</B></a>
+                    </p>
+                    <p class="g-color-black g-line-height-1_8" style="text-align : justify;"><B>Article 6 Sécurité des données</B>
+                     <br>OccazetNeuf prend toutes les mesures raisonnables et nécessaires pour protéger les données traitées contre les accès non autorisés, l'utilisation, la modification ou la destruction de données personnelles (ou potentiellement personnelles). Vous pouvez avoir plus de détails sur ces mesures dans notre document <a href="#"><B>«OccazetNeuf et les Données»</B></a>.</br> 
+                    </p>
+                    <p class="g-color-black g-line-height-1_8" style="text-align : justify;"><B>Article 7 Sous-traitance</B>
+                     <br>OccazetNeuf fait uniquement appel à des sous-traitants qui présentent des garanties suffisantes quant à la mise en œuvre de mesures techniques et organisationnelles appropriées de manière à ce que le traitement réponde aux exigences de la réglementation européenne et garantisse la protection des droits de la personne concernée.
+                    </p>
+                    <p class="g-color-black g-line-height-1_8" style="text-align : justify;"><B>Article 8 Cession d’actifs</B>
+                     <br>Si OccazetNeuf, ou la quasi-totalité de ses actifs, est vendu, ou dans le cas peu probable d’une cessation d’activité ou d’une faillite de OccazetNeuf, les informations des utilisateurs feraient partie des actifs transférés à un tiers ou acquis par celui-ci. Vous reconnaissez que ces transferts peuvent avoir lieu et que tout acquéreur de OccazetNeuf peut continuer à utiliser vos renseignements personnels conformément à la présente politique de confidentialité.
+                    </p>
+                    <p class="g-color-black g-line-height-1_8" style="text-align : justify;"><B>Article 9 Traceurs de cookies</B>
+                     <br>Notre politique et les informations concernant notre usage des traceurs et des cookies est disponible dans le document <a href="#traceursetcookies"><B>«Traceurs et Cookies»</B>.</a>
+                    </p>
+                    <p class="g-color-black g-line-height-1_8" style="text-align : justify;"><B>Article 10 Modifications de la politique de confidentialité</B>
+                     <br>Bien que la plupart des changements soient susceptibles d’être mineurs, OccazetNeuf peut être amené à modifier sa politique de confidentialité, et ce, à sa seule discrétion. OccazetNeuf encourage les visiteurs de son site à vérifier fréquemment cette page afin d’y lire les éventuels changements concernant sa politique de confidentialité. L'utilisation d’un de nos sites après d'éventuels changements de politique de confidentialité constitue votre acceptation de ces changements.
+                    </p>
+                </div>
+            </article>
+        </div>
+    </div>
+    <!-- End Blog Minimal Blocks -->
+
+ 
+
+ <!-- Blog Minimal Blocks -->
+        <article class="g-mb-">
+                <div id="traceursetcookies"></div>
+                <div class="g-mt-50">
+                    <h2 id="article" class="h4 g-color-black g-font-weight-600 mb-3"><a
+                                class=" u-link-v5 g-color-black g-color-primary--hover" href="#" style="font-size :25px;">Traceurs et Cookies</a></h2>
+                    <p class="g-color-black g-line-height-1_8" style="text-align : justify;"> Un cookie est un fichier de texte et de chiffres qui est sauvegardé sur le disque dur de votre ordinateur par le biais de votre navigateur internet.
+                     De cette façon, nous pouvons, entre autres, retenir vos préférences lors de l'utilisation de nos sites internet.
+                     Pour ce faire, nous utilisons des cookies fonctionnels qui vous permettent une utilisation plus conviviale de nos sites web lors de vos visites. Nous utilisons enfin des cookies requis pour le bon fonctionnement du site <a href="https://www.OccazetNeuf.com/"><B>www.OccazetNeuf.com </B></a>
+                     <br>Les cookies peuvent être déposés dès que vous visitez un de nos sites web, sauf si vous avez modifié le paramétrage du navigateur afin de refuser les cookies.
+                     OccazetNeuf utilise différents types de cookies :
+                     <br>&ensp;&ensp;&ensp;• Les cookies requis sur ww.OccazetNeuf.com, nécessaires au service OCCAZETNEUF
+                     <br>&ensp;&ensp;&ensp;• Les cookies de performance et de mesure d'audience pour compiler des données statistiques sur l’usage du site afin de l’améliorer.
+                    </p>
+                    <p class="g-color-black g-line-height-1_8" style="text-align : justify;"><B>Article 1 Désactiver les Cookies dans votre navigateur</B>
+                     <br>Les liens ci-dessous vous permettront d’en savoir plus quant aux actions à mener pour désactiver les cookies directement dans vos navigateurs Internet. </br>
+                     <br><B>1.1 Mozilla Firefox</B><br><a href="https://support.mozilla.org/fr/kb/protection-renforcee-contre-pistage-firefox-ordinateur"><B>https://support.mozilla.org/fr/kb/protection-renforcee-contre-pistage-firefox-ordinateur</B></a> </br>
+                     <br><B>1.2 Google Chrome</B> <br><a href="https://support.google.com/chrome/answer/95647?hl=fr"><B>https://support.google.com/chrome/answer/95647?hl=fr</B></a> </br>
+                     <br><B>1.3 Apple Safari</B> <br>Pour MacOS (McIntosh, MacBook, etc.) 
+                     <br> <a href="https://support.apple.com/fr-fr/guide/safari/sfri11471/mac"><B>https://support.apple.com/fr-fr/guide/safari/sfri11471/mac</B></a>
+                     <br> Pour iOS (iPhone, iPad, etc.) 
+                     <br> <a href="https://support.apple.com/fr-fr/HT201265"><B>https://support.apple.com/fr-fr/HT201265</B></br></a>
+                     <br><B>1.4 Microsoft Internet Explorer</B> 
+                     <br><a href="https://support.microsoft.com/fr-fr/help/17442/windows-internet-explorer-delete-manage-cookies"><B>https://support.microsoft.com/fr-fr/help/17442/windows-internet-explorer-delete-manage-cookies</B></br></a>
+                     <br><B>1.5 Microsoft Edge</B> 
+                     <br><a href="https://privacy.microsoft.com/fr-fr/windows-10-microsoft-edge-and-privacy"><B>https://privacy.microsoft.com/fr-fr/windows-10-microsoft-edge-and-privacy</B></br></a>
+                     <br><B>1.6 Opera</B> 
+                     <br><a href="http://help.opera.com/Windows/10.20/fr/cookies.html"><B>http://help.opera.com/Windows/10.20/fr/cookies.html</B></br></a>
+                     <br><B>1.7 Autres navigateurs </B> <br>hPour désactiver ou gérer les cookies au sein des autres navigateurs, référez-vous à la documentation ou à l’aide en ligne du navigateur en question. </br>
+                    </p>
+                    <p class="g-color-black g-line-height-1_8" style="text-align : justify;"><B>Article 2 Désactiver les Cookies avec notre bandeau </B>
+                     <br>Lors de votre accès à <a href="https://www.OccazetNeuf.com/"><B>www.OccazetNeuf.com</B></a>   vous avez possibilité de consentir à l’utilisation de certains types de cookies et à en refuser d’autres.
+                      Pour ce faire, suivez les instructions qui vous sont données via le bandeau d’information et d’acceptation des cookies.
+                    </p>
+                    <p class="g-color-black g-line-height-1_8" style="text-align : justify;"><B>Article 3 Cookies nécessaires</B>
+                     <br>Les cookies suivants sont nécessaires au bon fonctionnement du service OCCAZETNEUF et sont déposés lors de votre accès à <a href="https://www.OccazetNeuf.com/"><B>www.OccazetNeuf.com</B></a>
+                    </p>
+                    
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">Fournisseur</th>
+                            <th scope="col">Nom du Cookie</th>
+                            <th scope="col">Fonction</th>
+                            <th scope="col">Durée de conservation</th>
+                            <th scope="col">Statut</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>OCCAZETNEUF</td>
+                                <td>OCCAZETNEUF</td>
+                                <td>ID de session</td>
+                                <td>Expire à la fin de la session</td>
+                                <td>Obligatoire</td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+
+                    <p class="g-color-black g-line-height-1_8" style="text-align : justify;"><B>Article 4 Cookies de performance et de mesure d'audiences</B>
+                     <br>Les sites Internet www.OccazetNeuf.com utilisent Matomo, un service d’analyse de site Internet. Matomo utilise des « cookies » permettant une analyse de votre utilisation du site.
+                      Les informations générées par les cookies concernant votre utilisation de ce site sont en principe transmises à des serveurs de JIS Computing situés en France et y sont enregistrées. 
+                    </p>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+</Section>
+
+<?php include _VIEW_PATH.$lib->lang."/common_footer.phtml";?>
+<?php include _VIEW_PATH."/common_include_files.phtml";?>

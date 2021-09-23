@@ -1,0 +1,442 @@
+<?php
+
+$restrictedArea = true;
+$formActive = true;
+$preferenceActive = true;
+
+
+include _VIEW_PATH . "/common_header.phtml"; ?>
+
+<div class="wrapper">
+	<!--=== Header ===-->
+	<div class="header header-v3">
+		<?php //include _VIEW_PATH . "common_top_bar.phtml"; 
+		?>
+		<?php include _VIEW_PATH . $lib->lang . "/top_menu.phtml"; ?>
+	</div>
+	<!--=== End Header ===-->
+
+	<!--=== Profile ===-->
+	<!-- <div class="profile"> -->
+	<div class="container g-pt-70 g-pb-30">
+		<div class="row">
+			<!-- <div class="col-md-3 md-margin-bottom-10"> -->
+			<!--Left Sidebar-->
+			<?php
+			if ($_SESSION['customer']['authValidated']) {
+				include _VIEW_PATH . "/customer/profile_left_menu.phtml";
+			}
+			?>
+			<!--End Left Sidebar-->
+			<!-- </div> -->
+			<div class="col-lg-9 g-mb-50">
+				<!--Profile Body-->
+				<h2>
+					<?php echo $lang->trl('My preferences'); ?>
+				</h2>
+				<?php
+
+				// echo "<pre>";
+				// print_r($_SESSION);
+				// echo "</pre>";
+
+				?>
+				<div class="profile-body margin-bottom-20">
+
+					<div id='ctcCeate'>
+
+						<!--Profile Body-->
+						<form class="sky-form" id="sky-form4">
+							<div class="container g-pt-70 g-pb-30">
+								<div class="row">
+									<div class="col-lg-6">
+										<input type='hidden' id='billingID' name='billingID' /> <input type='hidden' id='langID' name='langID' />
+
+										<dl class="dl-horizontal">
+											<strong><?php echo $lang->trl('Select your default billing address'); ?>
+											</strong>
+											<div class="row">
+												<div class="col col-16" id="billList"></div>
+											</div>
+
+
+										</dl>
+										<?php
+										// echo $_SESSION['customer']['contact_id'];
+										$myPreference = $sqlData->getPreferences($_SESSION['customer']['contact_id']);
+										$magasins = $sqlData->getMagasins();
+										// var_dump($magasins);
+										?>
+										<dl class="dl-horizontal">
+											<dt>
+												<?php echo $lang->trl('Maximum results<br />for your lists'); ?>
+											</dt>
+											<dd>
+												<label class="select"> <select class="cols col-1" id="nb_result" name="nb_result">
+														<option value="5">5</option>
+														<option value="10">10</option>
+														<option value="15">15</option>
+														<option value="20">20</option>
+														<option value="25">25</option>
+													</select>
+												</label>
+											</dd>
+										</dl>
+										<dl class="dl-horizontal">
+											<dt>
+												<?php echo $lang->trl('Preferred language'); ?>
+											</dt>
+											<dd>
+												<label class="select">
+													<select class="cols col-1" id="lang" name="lang">
+														<option value="">Sélectionner une langue</option>
+														<option value="en" <?php if ($myPreference->lang == "en") echo 'selected="selected"' ?>>Anglais</option>
+														<option value="fr" <?php if ($myPreference->lang == "fr") echo 'selected="selected"' ?>>Français</option>
+
+													</select>
+												</label>
+											</dd>
+										</dl>
+										<dl class="dl-horizontal">
+											<dt>
+												<?php echo $lang->trl('Prefered warehouse'); ?>
+											</dt>
+											<dd>
+												<label class="select">
+													<select class="cols col-10 tag_select2" id="lang" name="lang" data-placeholder="Sélectionner un magasin">
+														<option value=""></option>
+														<?php
+														foreach ($magasins['data'] as $magasin) {
+														?>
+															<option value="<?= $magasin->magasin_id ?>"><?= $magasin->nom_magasin ?></option>
+														<?php
+														}
+														?>
+													</select>
+												</label>
+											</dd>
+										</dl>
+										<dl class="dl-horizontal">
+											<dt>
+												<?php echo $lang->trl('Your default <br />order reference'); ?>
+											</dt>
+											<dd>
+												<section>
+													<label class="input"> <i class="icon-append fa fa-eur"></i> <input type="text" name="order_num" id="order_num" placeholder="<?php echo $lang->trl('Your default order reference'); ?>">
+														<b class="tooltip tooltip-top-left"><?php echo $lang->trl('This reference will appear on your invoice'); ?>
+														</b>
+													</label>
+												</section>
+											</dd>
+										</dl>
+									</div>
+									<div class="col-lg-6">
+										<dl class="dl-horizontal">
+											<dt>
+												<?php echo $lang->trl('Your name'); ?>
+											</dt>
+											<dd>
+												<section>
+													<label class="input"> <i class="icon-finance-067 u-line-icon-pro"></i> <input type="text" name="customer_last_name" id="customer_last_name" value="<?= $_SESSION['customer']['last_name']; ?>">
+														<b class="tooltip tooltip-top-left"><?php echo $lang->trl('This reference will appear on your invoice'); ?>
+														</b>
+													</label>
+												</section>
+											</dd>
+										</dl>
+
+										<dl class="dl-horizontal">
+											<dt>
+												<?php echo $lang->trl('First name'); ?>
+											</dt>
+											<dd>
+												<section>
+													<label class="input"> <i class="icon-finance-067 u-line-icon-pro"></i> <input type="text" name="customer_first_name" id="customer_first_name" value="<?= $_SESSION['customer']['first_name']; ?>">
+														<b class="tooltip tooltip-top-left"><?php echo $lang->trl('This reference will appear on your invoice'); ?>
+														</b>
+													</label>
+												</section>
+											</dd>
+										</dl>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<button type="button" class="btn-u btn-u-default" id="bCancel">
+					<?php echo $lang->trl('Cancel'); ?>
+				</button>
+				<button class="btn-u" type="button" id="bSave">
+					<?php echo $lang->trl('Save'); ?>
+					<i class="fa fa-chevron-right"></i>
+				</button>
+				<label id='sp'></label>
+				<!--End Profile Body-->
+			</div>
+		</div>
+		<!--/end row-->
+	</div>
+	<!--/container-->
+</div>
+
+<script type="text/javascript">
+	function loadDefault() {
+
+		// $(function() {
+		// 	$("[title]").tipsy({
+		// 		trigger: 'hover',
+		// 		gravity: 'w'
+		// 	});
+		// });
+
+		// loadBillingAddress();
+		loadSelectBox("language", "lang");
+		loadPref();
+
+
+		$("#bSave").click(function() {
+			showFormEr("");
+			if (checkSubmit()) {
+				// $("#s5Save").html("<?php echo $lang->trl('Saving your request. Please wait...'); ?> <i class='fa fa-spinner fa-spin'></i>");
+				savePref();
+			}
+
+		});
+
+		$("#bCancel").click(function() {
+			rnd = Math.random();
+			window.location.href = '/<?php echo $lib->lang . "/" . $iniObj->serviceName; ?>/' + rnd;
+		});
+
+		$('#billList').on("click", 'input[name="billAdd"]:checked', function() {
+			var val = $(this).val().split('||');
+			$('#billingID').val(val[0]);
+		});
+
+	};
+
+	function showFormEr(m) {
+		if ($.trim(m)) {
+			$("#sp").css('color', 'red').html("<?php echo $lang->trl('An error was detected'); ?> : " + m);
+		} else {
+			$("#sp").css('color', 'red').html("");
+		}
+	}
+
+
+	// function loadBillingAddress() {
+	// 	var url = "/<?php echo $lib->lang; ?>/json/billAdd/<?php echo $_SESSION['customer']['contact_id']; ?>||";
+	// 	var divId = "billList";
+	// 	var component = ""
+	// 	$.ajax({
+	// 		cache: false,
+	// 		url: url,
+	// 		dataType: "json",
+	// 		success: function(data) {
+	// 			listBillAddress(data, divId, component, url);
+	// 		}
+	// 	});
+	// }
+
+	/* Handle contacts display */
+	// function listBillAddress(data) {
+	// 	var html = [];
+	// 	html.push('');
+	// 	var nb = data.rows;
+	// 	if (nb > 0) {
+	// 		var vls = data.data;
+	// 		for (var v, i = -1; v = vls[++i];) {
+	// 			if (v.id == v.bdefault) {
+	// 				html.push(
+	// 					'<label class="radio state-success">', '<input type="radio" checked name="billAdd" value="' + v.id + '||' + v.text + '"', ' /><i class="rounded-x"></i>', v.text, '</label>'
+	// 				);
+	// 				$('#billingID').val(v.id);
+	// 			} else {
+	// 				html.push(
+	// 					'<label class="radio state-success">', '<input type="radio" name="billAdd" value="' + v.id + '||' + v.text + '"', ' /><i class="rounded-x"></i>', v.text, '</label>'
+	// 				);
+	// 			}
+	// 		}
+	// 	} else {
+	// 		html.push('<?php echo $lang->trl('No data found for this request. Please try again later'); ?>');
+	// 	}
+	// 	html.push('');
+	// 	$("#billList").empty().append(html.join(''));
+	// }
+
+	function loadSelectBox(type, divId) {
+		var url = "/<?php echo $lib->lang; ?>/json/" + type + "/";
+		$.ajax({
+			cache: false,
+			url: url,
+			dataType: "json",
+			success: function(data) {
+				listSelectBox(data, divId);
+			}
+		});
+	}
+
+	function listSelectBox(data, divId) {
+		var html = [];
+		html.push('');
+		var nb = data.rows;
+		html.push('<option value=""><?php echo $lang->trl("Select a value"); ?></option>');
+		if (nb > 0) {
+			var vls = data.data;
+			for (var v, i = -1; v = vls[++i];) {
+
+				html.push(
+					'<option value=' + v.id + '>' + v.name + '</option>'
+				);
+			}
+		}
+		html.push('');
+		$("#" + divId).empty().append(html.join(''));
+	}
+
+	function loadPref() {
+		// jQuery.datetimepicker.setLocale('fr');
+		// $('#date_start_tracking').datetimepicker({
+		// 	i18n: {
+		// 		fr: {
+		// 			months: [
+		// 				'Janvier', 'Février', 'Mars', 'Avril',
+		// 				'Mai', 'Juin', 'Juillet', 'Août',
+		// 				'Septembre', 'Octobre', 'Novembre', 'Décembre',
+		// 			],
+		// 			dayOfWeek: [
+		// 				"Dim.", "Lun", "Mar", "Mer",
+		// 				"Jeu", "Ven", "Sam.",
+		// 			]
+		// 		}
+		// 	},
+		// 	format: 'Y-m-d H:i:s'
+		// });
+
+		// $('#date_end_tracking').datetimepicker({
+		// 	i18n: {
+		// 		fr: {
+		// 			months: [
+		// 				'Janvier', 'Février', 'Mars', 'Avril',
+		// 				'Mai', 'Juin', 'Juillet', 'Août',
+		// 				'Septembre', 'Octobre', 'Novembre', 'Décembre',
+		// 			],
+		// 			dayOfWeek: [
+		// 				"Dim.", "Lun", "Mar", "Mer",
+		// 				"Jeu", "Ven", "Sam.",
+		// 			]
+		// 		}
+		// 	},
+		// 	format: 'Y-m-d H:i:s'
+		// });
+
+		var url = "/<?php echo $lib->lang; ?>/json/prefs/<?php echo $_SESSION['customer']['contact_id']; ?>/";
+		$.ajax({
+			cache: false,
+			url: url,
+			dataType: "json",
+			success: function(data) {
+				displayPref(data);
+			}
+		});
+	}
+
+	function displayPref(data, divId, component, divIdCreate) {
+		var html = [];
+		html.push('');
+		var nb = data.rows;
+		$("#" + divIdCreate).hide();
+
+		if (nb > 0) {
+			var vls = data.data;
+			$("select#lang").val(vls[0].lang);
+			$("select#nb_result").val(vls[0].nb_result);
+			$("select#nb_shipping").val(vls[0].nb_shipping);
+			$("#order_num").val(vls[0].order_number);
+			$("#all_contact").prop("checked", vls[0].enable_all_contacts == 1 ? true : false);
+			$("#contact_facturation").prop("checked", vls[0].enable_contact_facturation == 1 ? true : false);
+			$("#contact_additionnels").prop("checked", vls[0].enable_additionnels_contacts == 1 ? true : false);
+			$("#trackings").prop("checked", vls[0].enable_trackings == 1 ? true : false);
+			$("#demandeur").prop("checked", vls[0].enable_demandeur == 1 ? true : false);
+			$("#date_start_tracking").val(vls[0].date_start_tracking);
+			// $("#date_end_tracking").val(vls[0].date_end_tracking);
+		}
+	}
+
+	function savePref() {
+
+		var d1 = encodeURIComponent($("#billingID").val());
+		var d2 = encodeURIComponent($("#nb_result").val());
+		var d3 = encodeURIComponent($("#lang").val());
+		var d4 = encodeURIComponent($("#order_num").val());
+		var d5 = encodeURIComponent($("#nb_shipping").val());
+		var d6 = encodeURIComponent($("#all_contact").is(":checked") ? 1 : 0);
+		var d7 = encodeURIComponent($("#contact_facturation").is(":checked") ? 1 : 0);
+		var d8 = encodeURIComponent($("#contact_additionnels").is(":checked") ? 1 : 0);
+		var d9 = encodeURIComponent($("#trackings").is(":checked") ? 1 : 0);
+		var d10 = encodeURIComponent($("#date_start_tracking").val());
+		// var d11 = encodeURIComponent($("#date_end_tracking").val());
+		var d12 = encodeURIComponent($("#demandeur").is(":checked") ? 1 : 0);
+
+		alert(d2);
+		$.ajax({
+			type: "POST",
+			url: "/<?php echo $lib->lang; ?>/<?php echo $iniObj->serviceName; ?>/sendPrefs/",
+			data: {
+				billingID: d1,
+				nb_result: d2,
+				langID: d3,
+				order_num: d4,
+				nb_shipping: d5,
+				all_contact: d6,
+				contact_facturation: d7,
+				contact_additionnels: d8,
+				trackings: d9,
+				date_start_tracking: d10,
+				// date_end_tracking: d11,
+				demandeur: d12
+			},
+			success: function(msg) {
+				var res = JSON.parse(msg);
+
+				if (res.result == false) {
+					$("#sp").css('color', 'red').html(res.text);
+				} else if (res.result == true) {
+					$("#message").css('color', 'green').html(res.text).delay(500);
+					rnd = Math.random();
+					//window.location.href = '/'+res.lang+'/<?php echo $iniObj->serviceName; ?>/'+rnd;
+					setTimeout('window.location = "/<?php echo $lib->lang; ?>/<?php echo $iniObj->serviceName; ?>/' + rnd + '"', 2000);
+				}
+			}
+		});
+	}
+
+	/* check all errors on form */
+	function checkSubmit(step) {
+		eC = 0;
+		var mess = "";
+		/* step 1*/
+		if (!$.trim($("#billingID").val())) {
+			m = "<?php echo $lang->trl('Please select the default billing address for your shipments (this can be altered for each shipment)'); ?>";
+			eC = 1;
+		}
+
+		if (eC == 0) {
+			$("#sp").css('color', 'green').html("");
+
+			return true;
+		} else {
+			showFormEr(m);
+			return false;
+		}
+	}
+
+	$(document).ready(function() {
+		loadDefault();
+	});
+</script>
+<!--===End Profile===-->
+<?php include _VIEW_PATH . $lib->lang . "/common_footer.phtml"; ?>
+<!-- < /div> -->
+<!--/wrapper--> <?php include _VIEW_PATH . "/common_include_files.phtml"; ?>

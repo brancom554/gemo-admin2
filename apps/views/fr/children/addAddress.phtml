@@ -1,0 +1,76 @@
+<?php include _VIEW_PATH."/common_header.phtml";?>
+
+<?php include _VIEW_PATH."common_top_bar.phtml";?>
+
+	<main>
+        <div>
+            <span class="main-title font-1">Création d'une nouvelle addresse</span>
+            <div class="track">
+                <span <?php if($page_requested =="configurations"){ ?> class="actives" <?php } ?>><?php echo $page_requested;?></span><span>/</span><span><?php echo $url_array[2];?></span><span>/</span><span>Création</span>
+            </div>
+            <div class="form">
+                <form action="ajouter" method="post">
+                    <div class="form-content">
+                        <div class="input-form margin-bottom-20">
+                            <label for="licence">Addresse</label>
+                            <input class="form-input" type="text" name="libelle" id="" value="" >
+                            <?php if(isset($message)):?>
+                                <span class="notification"><?php echo $message ?></span>
+                            <?php endif;?>
+                        </div>
+                        
+                        <div class="input-form margin-bottom-20">
+                            <label for="postal">Code postal</label>
+                            <input class="form-input" type="text" name="postal" id="" value="">
+                        </div>
+                        
+                    </div>
+                    <div class="form-content">
+                        <div class="input-form margin-bottom-20">
+                            <label for="ville">Ville</label>
+                            <input class="form-input" type="text" name="ville" id="" value="" >
+                        </div>
+                        
+                        <div class="input-form margin-bottom-20">
+                            <label for="country">Pays</label>
+                            <select class="form-select margin-bottom-20" name="country" id="country">
+                                <option value="">Sélectionne un pays</option>
+                                <?php if(isset($data['country'])): ?>
+                                    <?php foreach($data['country'] as $country): ?>
+                                        <option value="<?=$country['country_id'] ?>"><?=$country['description'] ?></option>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </select>
+                            <?php if(isset($messageCountry)):?>
+                                <span class="notification"><?php echo $messageCountry ?></span>
+                            <?php endif;?>
+                        </div>
+                        
+                    </div>
+                    <div class="form-content">
+                        <div class="input-form margin-bottom-20">
+                            <label for="societe">Companies</label>
+                            <select class="form-select margin-bottom-20" name="societe" id="societe">
+                                <option value="">Sélectionne une compagnie</option>
+                                <?php if(isset($data['company'])): ?>
+                                    <?php foreach($data['company'] as $company): ?>
+                                        <option value="<?=$company['company_id'] ?>"><?=$company['company_name'] ?></option>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </select>
+                            <?php if(isset($messageCompany)):?>
+                                <span class="notification"><?php echo $messageCompany ?></span>
+                            <?php endif;?>
+                        </div>
+                        
+                    </div>
+                    <div class="margin-bottom-20">
+                        <button class="form-button" name="soumettre" type="submit">CREER UNE ADDRESSE</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+<?php include _VIEW_PATH.$lib->lang."/common_footer.phtml";?>
+<?php include _VIEW_PATH."/common_include_files.phtml";?>

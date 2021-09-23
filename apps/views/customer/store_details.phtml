@@ -1,0 +1,22 @@
+<div id="s3Tab" class="profile-edit tab-pane fade in">
+    <!--Striped and Hover Rows-->
+    <div class="row">
+        <!--Striped Rows-->
+        <div class="col-md-12">
+            <div class="panel panel-sea margin-bottom-40">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-cogs"></i> <?php echo $lang->trl('Your store');?></h3>
+                </div>
+                <strong><?php echo $_SESSION['customer']['store_name'];?></strong>
+                <br /><strong>Adresse :</strong> <?php echo $_SESSION['customer']['store_address'];?>
+                <br /><?php echo $_SESSION['customer']['store_address2'];?>
+				<br /><?php echo $_SESSION['customer']['store_zip']." ".$_SESSION['customer']['store_city'];?>
+                <br /><br /><strong>Téléphone</strong> <?php echo $_SESSION['customer']['store_phone'];?>
+                <br /><br /><?php echo $_SESSION['customer']['store_comments'];?>
+                <br />
+                <br />
+            </div>
+        </div>
+        <!--End Striped Rows-->
+    </div>
+</div>

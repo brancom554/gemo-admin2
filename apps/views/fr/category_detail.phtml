@@ -1,0 +1,68 @@
+<?php
+$carouselActive = false;
+$sliderActive=true;
+$title =
+$subCategoryDetail->categoryDescription
+." - ".
+"Articles neufs et occasions - Professionnel - Dépôt vente";
+	
+if($iniObj->debugViews) echo __FILE__ ; ?>
+
+	<?php include _VIEW_PATH."/common_header.phtml";?>
+
+	<?php
+		// include _VIEW_PATH."common_top_bar.phtml";
+		if($storeActive==1){
+			include _VIEW_PATH.$lib->lang."/top_menu_magasin.phtml";
+		}
+		else{
+			include _VIEW_PATH.$lib->lang."/top_menu.phtml";
+		}
+	?>
+
+	<!-- Breadcrumbs -->
+	<section class="g-brd-bottom g-brd-gray-light-v4 g-py-30">
+        <div class="container">
+          <ul class="u-list-inline">
+            <li class="list-inline-item g-mr-5">
+			<a href="/" class="u-link-v5 g-color-text">
+                  Accueil
+                </a>
+              <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
+            </li>
+			<li class="list-inline-item g-mr-5">
+				Espace
+              <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
+            </li>
+			<li class="list-inline-item g-color-primary active">
+              <span><?php echo $category->categoryDescription;?></span>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <!-- End Breadcrumbs -->
+		
+	<div class="container">
+        <div class="row">
+
+			<?php
+				include _VIEW_PATH.$lib->lang."/category_left_menu.phtml";
+			?>
+
+			<?php
+				include _VIEW_PATH.$lib->lang."/category_product_content.phtml";
+			?>
+
+		</div>
+		<!--/end row-->
+	</div>
+	<!--/end container-->
+
+	<?php if($storeActive==1){
+		include _VIEW_PATH.$lib->lang."/common_footer_magasin.phtml";
+	}
+	else{
+		include _VIEW_PATH.$lib->lang."/common_footer.phtml";
+	}
+
+	 include _VIEW_PATH."/common_include_files.phtml";?>

@@ -1,0 +1,115 @@
+<?php
+
+$restrictedArea = true;
+$commandeActive = true;
+$dashboardActive = false;
+$menuActif = "USER";
+$users = $sqlData->getAllCustomerExcept($_SESSION['customer']['contact_num']);
+$users = $users['data'];
+// var_dump($users);
+include _VIEW_PATH . "/common_header.phtml"; ?>
+<?php
+// include _VIEW_PATH."common_top_bar.phtml";
+include _VIEW_PATH . $lib->lang . "/top_menu.phtml";
+?>
+
+
+<!--=== Profile ===-->
+<div class="container g-pt-70 g-pb-30">
+    <div class="row">
+        <?php
+        if ($_SESSION['customer']['authValidated']) {
+            include _VIEW_PATH . "/customer/profile_left_menu.phtml";
+        }
+        ?>
+        <?php //var_dump($orders); 
+        ?>
+        <div class="col-lg-9 g-mb-50">
+            <!--Profile Body-->
+            <h2><?php echo $lang->trl('My dashboard'); ?></h2>
+            <?php
+            if ($iniObj->debug) {
+                //  echo "<pre>";print_r($_SESSION); echo "</pre>";
+            }
+            ?>
+            <?php echo $lang->trl('Welcome to Occazetneuf') . " " . $_SESSION['customer']['first_name'] . " " . strtoupper($_SESSION['customer']['last_name']) . " (" . $_SESSION['customer']['email_address'] . ")"; ?>
+            <br /><br />
+            <?php //var_dump($orders); 
+            ?>
+            <div class="profile-body margin-bottom-20">
+                <br />
+                <h3> <i class="fa fa-shopping-cart"></i> Gérer les utilisateurs</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nom </th>
+                            <th scope="col">prenom</th>
+                            <th scope="col">ville</th>
+                            <th scope="col">Pays</th>
+                            <th scope="col">Téléphone</th>
+                            <th scope="col" class="align-middle text-nowrap text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (isset($users)) { ?>
+                            <?php foreach ($users as $k => $user) { ?>
+                                <tr>
+                                    <td><?php echo $user->nom ?> </td>
+                                    <td><?php echo $user->prenom ?> </td>
+                                    <td> <?php echo $user->ville ?> </td>
+                                    <td><?php echo $user->pays ?> </td>
+                                    <td> <?php echo $user->telephone1 ?></td>
+                                   
+                                    <td class="align-middle text-nowrap text-center">
+                                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover g-pa-5" href="/customer/detailsUser/<?= $user->contact_id."/". $random = $lib->random() ?>" data-toggle="tooltip" data-placement="top" data-original-title="Details">
+                                            <i class="fa fa-eye g-font-size-18 g-mr-7"></i>
+                                        </a>
+                                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover g-pa-5" href="/customer/editUser/<?= $user->contact_id."/". $random = $lib->random() ?>" data-toggle="tooltip" data-placement="top" data-original-title="Edit">
+                                            <i class="fa fa-pencil g-font-size-18 g-mr-7"></i>
+                                        </a>
+                                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover g-pa-5 delete" data-id="<?= $user->contact_id ?>" id="<?= $user->contact_id ?>" href="#" data-toggle="tooltip" data-placement="top" data-original-title="Delete">
+                                            <i class="fa fa-trash g-font-size-18 g-mr-7"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        <?php } ?>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('.delete').click(function() {
+            id = $(this).attr('id');
+            confirm("Voulez-vous vraiment supprimer cet compte ?");
+            // console.log(id);
+            $.ajax({
+                url: "/customer/delete_article/",
+                type: "POST",
+                cache: false,
+                data: {
+                    id: id
+                },
+                success: function(msg) {
+
+                    rnd = Math.random();
+                    window.location.href = '/customer/articles/' + rnd;
+
+                },
+                error: function() {
+                    alert('Une erreur est survenue.');
+                }
+            });
+        });
+    });
+</script>
+
+<!--=== End Profile ===-->
+<?php include _VIEW_PATH . $lib->lang . "/common_footer.phtml"; ?>
+
+<?php include _VIEW_PATH . "/common_include_files.phtml"; ?>

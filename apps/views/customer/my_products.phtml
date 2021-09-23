@@ -1,0 +1,70 @@
+<?php
+
+$restrictedArea = true;
+$commandeActive = true;
+$dashboardActive = false;
+
+include _VIEW_PATH . "/common_header.phtml"; ?>
+<?php
+// include _VIEW_PATH."common_top_bar.phtml";
+include _VIEW_PATH . $lib->lang . "/top_menu.phtml";
+?>
+
+
+<!--=== Profile ===-->
+<div class="container g-pt-70 g-pb-30">
+    <div class="row">
+        <?php
+        if ($_SESSION['customer']['authValidated']) {
+            include _VIEW_PATH . "/customer/profile_left_menu.phtml";
+        }
+        ?>
+
+        <div class="col-lg-9 g-mb-50">
+            <!--Profile Body-->
+            <h2><?php echo $lang->trl('My dashboard'); ?></h2>
+            <?php
+            if ($iniObj->debug) {
+                //  echo "<pre>";print_r($_SESSION); echo "</pre>";
+            }
+            ?>
+            <?php echo $lang->trl('Welcome to Occazetneuf') . " " . $_SESSION['customer']['first_name'] . " " . strtoupper($_SESSION['customer']['last_name']) . " (" . $_SESSION['customer']['email_address'] . ")"; ?>
+            <br /><br />
+            <?php //var_dump($orders); 
+            ?>
+            <div class="profile-body margin-bottom-20">
+                <br />
+                <h3> <i class="fa fa-shopping-cart"></i> Mes commandes</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#Product ID</th>
+                            <th scope="col">Libellé</th>
+                            <th scope="col">Quantité</th>
+                            <th scope="col">Prix</th>
+                            <th scope="col">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (isset($orders)) { ?>
+                            <?php foreach ($orders['data'] as $k => $order) { ?>
+                                <tr>
+                                    <th scope="row"> <?php echo $order->reference_web ?> </th>
+                                    <td><?php echo $order->libelle ?> </td>
+                                    <td><?php echo $order->quantity_requested ?> </td>
+                                    <td>€ <?php echo $order->price ?></td>
+                                    <td><?php echo $order->order_date ?></td>
+                                </tr>
+                            <?php } ?>
+                        <?php } ?>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--=== End Profile ===-->
+<?php include _VIEW_PATH . $lib->lang . "/common_footer.phtml"; ?>
+
+<?php include _VIEW_PATH . "/common_include_files.phtml"; ?>

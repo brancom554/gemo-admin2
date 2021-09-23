@@ -1,0 +1,285 @@
+<div>
+    <!--Striped and Hover Rows-->
+    <div class="row">
+        <!--Striped Rows-->
+        <div class="col-md-12">
+            <div class="panel panel-sea margin-bottom-40">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-clock-o"></i>Toutes les Commandes </h3>
+                </div>
+                <table class="table table-condensed" style="border-collapse:collapse;">
+                    <thead>
+                        <tr>
+                            <th scope="col">#ID</th>
+                            <th scope="col">Nom du client</th>
+                            <th scope="col">Téléphone</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Libellé des produits</th>
+                            <th scope="col">Qté</th>
+                            <th scope="col">Prix</th>
+                            <th scope="col">Statut</th>
+                            <th scope="col">Date</th>
+                            <th scope="col" class="align-middle text-nowrap text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+
+                        if (isset($orders)) { ?>
+                            <?php foreach ($orders['data'] as $k => $order) {
+                                $user = $sqlData->getUserBylogin($order->customer_number)['data'][0];
+                                // $lib->debug($user);
+                                // echo $order->customer_number;
+                            ?>
+
+                                <tr>
+                                    <th scope="row"> <?php echo $order->order_id ?> </th>
+                                    <td><?php echo $user->nom . ' ' . $user->prenom; ?></td>
+                                    <td><?php echo $user->telephone1 ?> </td>
+                                    <td><?php echo $user->email ?> </td>
+                                    <td><?php echo $order->libelles ?> </td>
+                                    <td><?php echo $order->number_of_items ?> </td>
+                                    <td>€ <?php echo number_format($order->total_amount, 2, ',', ' ') ?></td>
+                                    <td>
+                                        <?php if ($order->order_status == "LIVRE") { ?>
+                                            <span class="badge badge-pill badge-secondary">Livré</span>
+                                        <?php } else if ($order->order_status == "REGLE") { ?>
+                                            <span class="badge badge-pill badge-success">Réglé</span>
+                                        <?php } else if ($order->order_status == "EN_COURS") { ?>
+                                            <span class="badge badge-pill badge-primary">En cours</span>
+                                        <?php } else if ($order->order_status == "ANNULEE") { ?>
+                                            <span class="badge badge-pill badge-danger">Annulée</span>
+                                        <?php } else { ?>
+                                            <span class="badge badge-pill badge-warning">En attente</span>
+                                        <?php } ?>
+                                    </td>
+                                    <td><?php echo (new DateTime($order->order_date))->format('d-m-Y')  ?></td>
+
+                                    <td class="align-middle text-nowrap text-center">
+
+                                        <a class="btn btn-sm btn-outline-success g-pa-5" data-toggle="collapse" data-target="#all_prod<?php echo $order->order_id ?>" class="accordion-toggle" href="#" data-toggle="tooltip" data-placement="top" data-original-title="Edit">
+                                            <i class="fa fa-eye g-font-size-10 g-ml-2 g-mr-2"></i>
+                                        </a>
+                                        <?php
+                                        if (in_array("ROLE_ENTREPRISE", (explode(" ", $_SESSION['customer']['role_contact'])))) {  ?>
+                                            <a class="btn btn-sm btn-outline-warning g-pa-5" type="button" data-toggle="modal" data-target="#all_validateStatus<?php echo $order->order_id ?>">
+                                                <i class="fa fa-pencil g-font-size-10 g-ml-2 g-mr-2"></i>
+                                            </a>
+                                        <?php } ?>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="all_validateStatus<?php echo $order->order_id ?>" tabindex="-1" role="dialog" aria-labelledby="all_validateStatusTitle<?php echo $order->order_id ?>" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="all_validateStatusLongTitle<?php echo $order->order_id ?>">Modifier la commande #<?php echo $order->order_id ?></h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form style="text-align: left !important;">
+                                                            <div class="form-group">
+                                                                <label for="all_selectStatutCommande">
+                                                                    <i class="fa fa-arrow-right"></i>
+                                                                    Statut de la commande
+                                                                </label>
+                                                                <select class="form-control" id="all_selectStatutCommande<?php echo $order->order_id ?>">
+                                                                    <option value="">Sélectionner un statut</option>
+                                                                    <option value="ANNULEE" <?php if ($order->order_status == "ANNULEE") { ?> selected="selected" <?php } ?>>Commande annulée</option>
+                                                                    <option value="EN_ATTENTE" <?php if ($order->order_status == "EN_ATTENTE") { ?> selected="selected" <?php } ?>>Commande en attente</option>
+                                                                    <option value="EN_COURS" <?php if ($order->order_status == "EN_COURS") { ?> selected="selected" <?php } ?>>Commande en cours</option>
+                                                                    <option value="REGLE" <?php if ($order->order_status == "REGLE") { ?> selected="selected" <?php } ?>>Commande réglée</option>
+                                                                    <option value="LIVRE" <?php if ($order->order_status == "LIVRE") { ?> selected="selected" <?php } ?>>Commande livrée</option>
+                                                                </select>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                                        <button type="button" onclick="sauvegarderCommandeAll(`<?php echo $order->order_id ?>`)" class="btn btn-primary">Sauvegarder</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="10" class="hiddenRow">
+                                        <div class="accordian-body collapse" id="all_prod<?php echo $order->order_id ?>">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#Product ID</th>
+                                                        <th scope="col">Libellé</th>
+                                                        <th scope="col">Quantité demandée</th>
+                                                        <th scope="col">Quantité disponible</th>
+                                                        <th scope="col">Prix</th>
+                                                        <th scope="col">Disponibilité</th>
+                                                        <th scope="col">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php $order_lines = $sqlData->getOrdersLinesByOrder($order->order_id);
+                                                    // $lib->debug($order_lines);
+                                                    if (isset($order_lines)) {
+                                                    ?>
+                                                        <?php foreach ($order_lines['data'] as $k => $order_line) {
+                                                            // $prods = $sqlData->customerProductDetail($order->reference_web);
+                                                            // $lib->debug($order->reference_web);
+                                                        ?>
+                                                            <tr>
+                                                                <th scope="row"> <?php echo $order_line->reference_web ?> </th>
+                                                                <td><?php echo $order_line->libelle ?> </td>
+                                                                <td><?php echo $order_line->quantity_requested ?> </td>
+                                                                <td><?php echo $order_line->quantity_available ?> </td>
+                                                                <td>€ <?php echo number_format($order_line->price, 2, ',', ' ') ?></td>
+                                                                <td>
+                                                                    <?php
+                                                                    if ($order_line->quantity_available < 1) { ?>
+                                                                        <span class="badge badge-pill badge-danger">Non disponible</span>
+                                                                    <?php } else { ?>
+                                                                        <span class="badge badge-pill badge-success">Disponible</span>
+                                                                    <?php } ?>
+                                                                </td>
+
+                                                                <td class="align-middle text-nowrap text-center">
+                                                                    <?php
+                                                                    if ($order_line->quantity_requested > $order_line->quantity_available) {
+                                                                        # code...
+
+                                                                        if (in_array("ROLE_ENTREPRISE", (explode(" ", $_SESSION['customer']['role_contact'])))) {  ?>
+                                                                            <button class="btn btn-sm btn-outline-warning g-pa-5" type="button" data-toggle="modal" data-target="#productIsAvailableStatus<?php echo $order_line->reference_web ?>">
+                                                                                <i class="fa fa-pencil g-font-size-10 g-ml-2 g-mr-2"></i>
+                                                                            </button>
+                                                                    <?php }
+                                                                    } ?>
+                                                                </td>
+                                                            </tr>
+                                                        <?php } ?>
+                                                    <?php } ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--End Striped Rows-->
+    </div>
+    <!-- Modal -->
+
+    <div class="modal fade" id="productIsAvailableStatus<?php echo $order_line->reference_web ?>" tabindex="-1" role="dialog" aria-labelledby="productIsAvailableStatusTitle<?php echo $order_line->reference_web ?>" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productIsAvailableStatusLongTitle<?php echo $order->reference_web ?>">Annulation de la commande du produit #<?php echo $order_line->reference_web ?></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form style="text-align: left !important;">
+                        <div class="form-group">
+                            <label for="all_selectStatutCommande">
+                                <i class="fa fa-arrow-right"></i>
+                                Statut de la commande
+                            </label>
+                            <select class="form-control" id="all_selectStatutAvailability<?php echo $order_line->reference_web ?>">
+                                <option value="">Sélectionner un statut</option>
+                                <option value="ANNULE" <?php if ($order_line->order_status == "ANNULE") { ?> selected="selected" <?php } ?>>Annulé la commande</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="button" onclick="notifyProductAvailabilty(`<?php echo $order_line->reference_web ?>`, `<?php echo $order_line->order_lines_id ?>`, `<?php echo $order->order_id ?>`)" class="btn btn-primary">Sauvegarder</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    function sauvegarderCommandeAll(_commandeID) {
+        var _statut = $('#all_selectStatutCommande' + _commandeID).val();
+        if (_statut == "" || _statut == null) {
+            alert("Veuillez sélectionner un statut pour la commande.");
+            return;
+        }
+        //submit duplicate
+        var rnd = Math.random();
+        $.ajax({
+            type: "POST",
+            url: "/<?php echo $iniObj->serviceName; ?>/update_order_status/" + rnd,
+            data: {
+                _order_id: _commandeID,
+                _status: _statut
+            },
+            success: function(msg) {
+                var val = msg.split('||');
+                if (val[0] == "false") {
+                    $("#error_message").html(val[1]);
+                } else if (val[0] == "true") {
+                    $("#success_message").html("La commande a été modifiée avec succès");
+                    $('#all_validateStatus' + _commandeID).modal('toggle');
+                    window.setTimeout(function() {
+                        window.location.href = '/<?php echo $iniObj->serviceName; ?>/all_orders/' + rnd;
+                    }, 1000);
+                }
+            },
+            error: function(resultat, statut, erreur) {
+                $("#error_message").html("Une erreur s'est produite. Veuillez réessayer. <i class='fa fa-stop-circle'></i>");
+                console.log('Resultat : ' + resultat);
+                console.log('Statut : ' + statut);
+                console.log('Erreur : ' + erreur);
+            }
+        });
+    };
+
+    function notifyProductAvailabilty(_productID, _order_lines_id, _order_id) {
+        var _statut = $('#all_selectStatutAvailability' + _productID).val();
+        // alert(_productID)
+        if (_statut == "" || _statut == null) {
+            alert("Veuillez sélectionner un statut pour la disponibilité du produit.");
+            return;
+        }
+        //submit duplicate
+        var rnd = Math.random();
+        $.ajax({
+            type: "POST",
+            url: "/<?php echo $iniObj->serviceName; ?>/product_availability/" + rnd,
+            data: {
+                _order_lines_id: _order_lines_id,
+                _order_id: _order_id,
+                _product_id: _productID,
+                _status: _statut
+            },
+            success: function(msg) {
+                var val = msg.split('||');
+                console.log(msg)
+                if (val[0] == "false") {
+                    $("#error_message").html(val[1]);
+                } else if (val[0] == "true") {
+                    $("#success_message").html("La commande a été annulée avec succès");
+                    $('#productIsAvailableStatus' + _order_id).modal('toggle');
+                    window.setTimeout(function() {
+                        window.location.href = '/<?php echo $iniObj->serviceName; ?>/all_orders/' + rnd;
+                    }, 1000);
+                }
+            },
+            error: function(resultat, statut, erreur) {
+                $("#error_message").html("Une erreur s'est produite. Veuillez réessayer. <i class='fa fa-stop-circle'></i>");
+                console.log('Resultat : ' + resultat);
+                console.log('Statut : ' + statut);
+                console.log('Erreur : ' + erreur);
+            }
+        });
+    };
+</script>

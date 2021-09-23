@@ -1,0 +1,53 @@
+<?php include _VIEW_PATH."/common_header.phtml";?>
+
+<?php include _VIEW_PATH."common_top_bar.phtml";?>
+
+	<main>
+        <div>
+            <span class="main-title font-1">Création un nouveau utilisateur</span>
+            <div class="track">
+                <span <?php if($page_requested =="administration"){ ?> class="actives" <?php } ?>><?php echo $page_requested;?></span><span>/</span><span><?php echo $url_array[2];?></span><span>/</span><span>Création</span>
+            </div>
+            <div class="form">
+                <form class="row g-3" action="" method="post">
+                <div class="col-md-6">
+                    <label for="nom" class="form-label">Nom</label>
+                    <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom">
+                </div>
+                <div class="col-md-6">
+                    <label for="prenom" class="form-label">Prénoms</label>
+                    <input type="text" class="form-control" id="prenom" name="prenom"  placeholder="Prénoms">
+                </div>
+                
+                <div class="col-md-6">
+                    <label for="phone" class="form-label">Téléphone</label>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Téléphone">
+                    <?php if(isset($message)):?>
+                        <span class="notification"><?php echo $message ?></span>
+                    <?php endif;?>
+                </div>
+                <div class="col-md-6">
+                    <label for="password" class="form-label">Mot de passe</label>
+                    <input type="text" class="form-control" id="password" name="password" placeholder="Mot de passe">
+                </div>
+                <div class="col-md-6">
+                    <label for="confirmer" class="form-label">Réécrire le mot de passe</label>
+                    <input type="text" class="form-control" id="confirmer" name="confirmer" placeholder="Mot de passe">
+                    <?php if(isset($messagepassword)):?>
+                        <span class="notification"><?php echo $messagepassword ?></span>
+                    <?php endif;?>
+                </div>
+                <div class="col-md-6">
+                    <label for="password" class="form-label">Application UUID</label>
+                    <input type="text" class="form-control" id="password" name="uuid" placeholder="L'application uuid">
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary" name="soumettre">Créer un utilisateur</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+<?php include _VIEW_PATH.$lib->lang."/common_footer.phtml";?>
+<?php include _VIEW_PATH."/common_include_files.phtml";?>

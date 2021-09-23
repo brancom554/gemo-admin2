@@ -1,0 +1,159 @@
+<div id="s4Tab" class="profile-edit tab-pane fade">
+
+    <div class="card card-outline-success rounded-0">
+        <h3 class="card-header h5 text-white g-brd-transparent rounded-0" style="background-color: #94c11c;">
+            <span class="g-font-size-default g-mr-5">4. - </span>
+            Autre..
+        </h3>
+
+        <div class="card-block">
+            <h4 class="h5 text-uppercase">
+                <i class="fa fa-tasks mr-2"></i>
+                <?php echo $lang->trl('Select your billing address for this shipment');?>
+            </h4>
+
+            <div class="row">
+                <div class="col col-12" id="billList"></div>
+            </div>
+
+            <div class="row">
+                <?php
+                if ($_SESSION['customer']['medical_flag']==1) { ?>
+                    <dl class="dl-horizontal">
+                        <dd>
+                            <section>
+                                <label class="label_shipping input">
+                                    <?php echo $lang->trl('Study reference');?>
+                                </label>
+                                    <input type="text"
+                                           id="studyNumber"
+                                           name="studyNumber"
+                                           class="form-control"
+                                           placeholder="<?php echo $lang->trl('Study reference');?>"
+                                           title="<?php echo $lang->trl('Add your study number as needed');?>">
+
+                            </section>
+                        </dd>
+                    </dl>
+
+                    <dl class="dl-horizontal">
+                        <dd>
+                            <section>
+                                <label class="label_shipping input">
+                                    <?php echo $lang->trl('Product code');?>
+                                </label>
+                                    <input type="text"
+                                           id="donorCode"
+                                           class="form-control"
+                                           name="donorCode"
+                                           placeholder="<?php echo $lang->trl('Product code');?>"
+                                           title="<?php echo $lang->trl('Add the product code as needed');?>">
+                            </section>
+                        </dd>
+                    </dl>
+
+                    <dl class="dl-horizontal">
+                        <dd>
+                            <section>
+                                <label class="label_shipping input">
+                                    <?php echo $lang->trl('Patient code');?>
+                                </label>
+                                    <input type="text"
+                                           id="patientCode"
+                                           class="form-control"
+                                           name="receiverCode"
+                                           placeholder="<?php echo $lang->trl('Patient code');?>"
+                                           title="<?php echo $lang->trl('Add the patient code as needed');?>">
+                            </section>
+                        </dd>
+                    </dl>
+
+                    <?php
+
+                } ?>
+            </div>
+
+            <div class="row">
+                <dl class="col-sm-12">
+                    <dd>
+                        <section>
+                            <label class="label_shipping textarea">
+                                <i class="icon-append fa fa-building mr-2"></i>
+                                <?php echo $lang->trl('Billing address');?>
+                            </label>
+                                <textarea
+                                        rows="2"
+                                        name="billingAddress"
+                                        id="billingAddress"
+                                        class="form-control"
+                                        placeholder="<?php echo $lang->trl('Please select the billing address from the list above');?>"
+                                        disabled title="<?php echo $lang->trl('Please select the billing address from the list above');?>"></textarea>
+
+                        </section>
+                    </dd>
+                </dl>
+
+                <dl class="col-sm-12">
+                    <dd>
+                        <section>
+                            <label class="label_shipping input">
+                                <i class="icon-append fa fa-user mr-2"></i>
+                                <?php echo $lang->trl('Order number');?>
+                            </label>
+                            <input
+                                    type="text"
+                                    name="references"
+                                    id="references"
+                                    class="form-control"
+                                    value="<?php echo $_SESSION['customer']['order_number'];?>"
+                                    placeholder="<?php echo $lang->trl('Your order references');?>"
+                                    title="<?php echo $lang->trl('This reference will appear on your invoice');?>">
+                        </section>
+                    </dd>
+                </dl>
+                <dl class="col-sm-12">
+                    <dd>
+                        <section>
+                            <label class="label_shipping input"> <i class="icon-append fa fa-user"></i>
+                                <?php echo $lang->trl('Quote number');?>
+                            </label>
+                            <input
+                                    type="text"
+                                    name="quote_num"
+                                    id="quote_num"
+                                    class="form-control"
+                                    placeholder="<?php echo $lang->trl('Our quote number');?>"
+                                    title="<?php echo $lang->trl('Please enter the quote number that you have accepted (if applicable)');?>">
+
+                        </section>
+                    </dd>
+                </dl>
+                <dl class="col-sm-12">
+                    <dt>
+                        <?php echo $lang->trl('Tracking via e-mail');?>
+                    </dt>
+                    <dd>
+                        <div class="inline-group">
+                            <button class="btn g-bg-purple text-white billAddFn g-mb-5" style="border-radius: unset">
+                                <i class="fa fa-plus-circle mr-2"></i> <?php echo $lang->trl('Add a billing contact');?>
+                            </button>
+                            <div id="billingContacts"></div>
+                        </div>
+
+                    </dd>
+                </dl>
+            </div>
+
+            <div class="g-mt-20">
+                <button type="button" class="btn btn-dark" id="s4Prev">
+                    <i class="fa fa-arrow-circle-right mr-2"></i>
+                    <?php echo $lang->trl('Previous');?>
+                </button>
+                <button class="btn btn-primary" type="button" id="s4Next">
+                    <?php echo $lang->trl('Next');?>
+                    <i class="fa fa-arrow-circle-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+<?php include _VIEW_PATH."/common_header.phtml";?>
+
+<?php include _VIEW_PATH."common_top_bar.phtml";?>
+
+	<main>
+        <div>
+            <span class="main-title font-1">Création de nouveau code USSD</span>
+            <div class="track">
+                <span <?php if($page_requested =="configurations"){ ?> class="actives" <?php } ?>><?php echo $page_requested;?></span><span>/</span><span><?php echo $url_array[2];?></span><span>/</span><span>Création</span>
+            </div>
+            <div class="form">
+                <form action="ajouter" method="post">
+                    <div class="form-content">
+                        <div class="input-form margin-bottom-20">
+                            <label for="ussd">Code ussd</label>
+                            <input class="form-input" type="text" name="ussd" id="" value="" >
+                            <?php if(isset($message)):?>
+                                <span class="notification"><?php echo $message ?></span>
+                            <?php endif;?>
+                        </div>
+                        
+                        <div class="input-form">
+                            <label for="network">Types</label>
+                            <select class="form-select margin-bottom-20" style="margin-right:20px" name="network" id="network">
+                                <option value="">Sélectionne un réseau téléphonique</option>
+                                <option value="1">MTN</option>
+                                <option value="2">MOOV</option>
+                            </select>
+                        </div>
+                        
+                    </div>
+                    <div class="form-content">
+                    <div class="input-form">
+                            <label for="categorie">Catégories</label>
+                            <select class="form-select margin-bottom-20" style="margin-right:20px" name="categorie" id="categorie">
+                                <option value="">Sélectionne une catégorie</option>
+                                <?php if(!empty($data['categories'])):?>
+                                    <?php foreach($data['categories'] as $categorie):?>
+                                        <option value="<?= $categorie['category_id'];?>"><?= $categorie['libelle'];?></option>
+                                    <?php endforeach;?>
+                                <?php endif ;?>
+                            </select>
+                        </div>
+                        
+                        <div class="input-form">
+                            <label for="operation">Opérations</label>
+                            <select class="form-select margin-bottom-20" style="margin-right:20px" name="operation" id="operation">
+                                <option value="">Sélectionne une opération</option>
+                                <?php if(!empty($data['operation_types'])):?>
+                                    <?php foreach($data['operation_types'] as $operation):?>
+                                    <option value="<?= $operation['operation_type_id'];?>"><?= $operation['libelle'];?></option>
+                                    <?php endforeach;?>
+                                <?php endif ;?>
+                            </select>
+                        </div>
+                        
+                    </div>
+                    <div class="margin-bottom-20">
+                        <button class="form-button" name="soumettre" type="submit">CREER UN CODE USSD</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+<?php include _VIEW_PATH.$lib->lang."/common_footer.phtml";?>
+<?php include _VIEW_PATH."/common_include_files.phtml";?>

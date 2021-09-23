@@ -1,0 +1,102 @@
+ <!-- START Page Banner -->
+ <section class="page-banner">
+ <div> <img id="contact" style="max-width:100%;width: 100%;" src="<?php echo $iniObj->UIPath; ?>/images/hero/banner-contact.jpg" alt="" srcset=""></div>
+     <div class="container">
+         <div class="banner-content">
+             <div class="page-breadcrumb">
+                 <nav aria-label="breadcrumb">
+                     <ol class="breadcrumb">
+                         <li class="breadcrumb-item"><a href="<?php $lib->customerSite ?>">Acceuil</a></li>
+                         <li class="breadcrumb-item active" aria-current="page">Contacter nous</li>
+                     </ol>
+                 </nav>
+             </div>
+         </div>
+     </div>
+ </section>
+ <!-- END Page Banner -->
+
+ <!-- START Contact Section -->
+ <section class="contact-section py-120 rpy-100">
+     <div class="container">
+         <div class="row">
+             <div class="col-lg-5">
+                 <div class="get-touch-left">
+                     <div class="info-box">
+                         <div class="info-icon">
+                             <i class="icofont-google-map"></i>
+                         </div>
+                         <div class="info-details">
+                             <p>Cotonou, Bénin</p>
+                         </div>
+                     </div>
+                     <div class="info-box">
+                         <div class="info-icon">
+                             <i class="icofont-phone"></i>
+                         </div>
+                         <div class="info-details">
+                             <a href="callto:+22991961111">+229 91 96 11 11</a>
+                             <a href="callto:+22991967777">+229 91 96 77 77</a>
+                         </div>
+                     </div>
+                     <div class="info-box">
+                         <div class="info-icon">
+                             <i class="icofont-email"></i>
+                         </div>
+                         <div class="info-details">
+                             <a href="mailto:yourmail@domain.com">info@dko-sarl.com</a>
+                         </div>
+                     </div>
+                     <!--<div class="get-touch-img">
+                         <img src="<?php echo $iniObj->UIPath; ?>/images/get-touch-img.png" alt="Get Touch Image" />
+                     </div>-->
+                 </div>
+             </div>
+             <div class="col-lg-7">
+                 <div class="get-touch-right">
+                     <h3>Ecrivez nous :</h3>
+                     
+                     <div id="succes" class="hide">
+                         <span>Votre message nous a été bien envoyé.</span>
+                    </div>
+                    
+                     <div class="contact-form">
+                         <form action="" method="post" >
+                             <div class="form-row">
+                                 <div class="col-12">
+                                     <input type="text" style="color: black;" class="form-control custom-input" id="name" name="name" value="" placeholder="Nom:" required />
+                                 </div>
+                                 <div class="col-12">
+                                     <input type="email" style="color: black;" class="form-control custom-input" id="email" name="email" value="" placeholder="Email:" required />
+                                 </div>
+                                 <div class="col-12">
+                                     <input type="text" style="color: black;" class="form-control custom-input" id="phone" name="contact" value="" placeholder="Contact:" />
+                                 </div>
+                                 <div class="col-12">
+                                     <textarea class="form-control custom-textarea" style="color: black;" id="message" name="message" rows="7" placeholder="Message:" required></textarea>
+                                 </div>
+                             </div>
+                             <div class="text-center col-12">
+                                 <span  id="submit" name="submit" class="btn submit">Envoyer <i class="icofont-arrow-right"></i></span>
+                                 <span  id="encours" class="btn submit hide">Envois en cours <span class="spinner-border spinner-border-sm"></span></span>
+                             </div>
+                         </form>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </section>
+ <!-- END Contact Section -->
+
+ <!--==================================================================== 
+            Start Map Section
+        =====================================================================-->
+ <div class="contact-map">
+     <div class="map-inner">
+         <div class="map" id="map"></div>
+     </div>
+ </div>
+ <!--==================================================================== 
+            End Map Section
+        =====================================================================-->

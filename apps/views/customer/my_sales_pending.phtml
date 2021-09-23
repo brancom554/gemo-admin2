@@ -1,0 +1,33 @@
+<div id="s2Tab" class="tab-pane fade in  <?php if ($_SESSION['customer']['stock_active']!='O') { echo " active";}?>">
+    <!--Striped and Hover Rows-->
+    <div class="row">
+        <!--Striped Rows-->
+        <div class="col-md-12">
+            <div class="panel panel-sea margin-bottom-40">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-clock-o"></i> <?php echo $lang->trl('Pending payment');?> (A titre indicatif, données non contractuelles.)</h3>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th><?php echo $lang->trl("Contract number"); ?></th>
+                            <th><?php echo $lang->trl("Ref. Article"); ?></th>
+                            <th><?php echo $lang->trl("Qty"); ?></th>
+                            <th><?php echo $lang->trl("Description"); ?></th>
+                            <th><?php echo $lang->trl("Sales date"); ?></th>
+                            <th><?php echo $lang->trl("Scheduled payment date"); ?></th>
+                        </tr>
+                    </thead>
+                    <tbody id="s2List">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--End Striped Rows-->
+    </div>
+</div>
+<?php
+// <th><?php echo $lang->trl("Amount");
+// </th>
+
+?>

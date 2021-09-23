@@ -1,0 +1,51 @@
+<main>
+            <h2 class="main-title">Code USSD</h2>
+            <div class="track">
+                <span <?php if($page_requested =="configurations"){ ?> class="actives" <?php } ?>><?php echo $page_requested;?></span><span>/</span><span><?php echo $url_array[2];?></span>
+            </div>
+            <div class="main-btn">
+                <button id="myBtn" onclick="document.location='<?php $lib->customerSite ?>/configurations/ussd/ajouter'"><i class="fas fa-plus" style="margin-right:15px ;"></i>Ajouter un nouveau code USSD</button>
+            </div>
+            
+            <section class="recent">
+                <div class="activity">
+                    <div style="padding-top: 5px;" class="activity-card">
+                        <h3>Liste des code USSD</h3>
+                        <div class="table-responsive">
+                            <div class="research">
+                                <div>
+                                    <div id="form-research"><input id="filter" type="text" placeholder="Rechercher..."></div>
+                                    <i class="fas fa-search"></i>
+                                </div>
+                            </div>
+                            <table id="table" class="table table-striped" style="margin-top: 30px;" border="0">
+                                <thead>
+                                    <tr>
+                                        <th>Code ussd</th>
+                                        <th>Catégories</th>
+                                        <th>Opérations</th>
+                                        <th>Réseaux télécoms</th>
+                                        <th style="text-align:center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if (!empty($data['ussd'])) :?>
+                                        <?php foreach($data['ussd'] as $ussd) : ?>
+                                            <tr>
+                                                <td><?= $ussd['ussd_code'] ?></td>
+                                                <td><?= $ussd['libelle'] ?></td>
+                                                <td><?= $ussd['type'] ?></td>
+                                                <td><?= $ussd['network_operator_name'] ?></td>
+                                                <td>
+                                                    <span class="btn-action white pg-5 primary cursor" onclick="document.location='<?php $lib->customerSite ?>/configurations/ussd/modifier/<?=$ussd['category_ussd_id'] ?>'">Modifier</span>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach;?>
+                                    <?php endif ;?>
+                                </tbody>
+                            </table>
+                        </div>   
+                    </div>
+                </div>
+            </section>
+        </main>

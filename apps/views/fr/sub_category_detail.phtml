@@ -1,0 +1,62 @@
+<?php
+if($iniObj->debugViews) echo __FILE__ ;
+$carouselActive = false;
+$sliderActive=true;
+$title =
+$subCategoryDetail->categoryDescription
+." - ".$subCategoryDetail->subCategoryDescription
+." - ".
+"Articles neufs et occasions - Professionnel - Dépôt vente";
+
+?>
+	<?php include _VIEW_PATH."/common_header.phtml";?>
+
+	<?php
+		//	include _VIEW_PATH."common_top_bar.phtml";
+		include _VIEW_PATH.$lib->lang."/top_menu.phtml";
+	?>
+
+		<!-- Breadcrumbs -->
+		<section class="g-brd-bottom g-brd-gray-light-v4 g-py-30">
+			<div class="container">
+			<ul class="u-list-inline">
+				<li class="list-inline-item g-mr-5">
+				<a href="/" class="u-link-v5 g-color-text">
+					Accueil
+					</a>
+				<i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
+				</li>
+				<li class="list-inline-item g-mr-5">
+					<a href="/espace_<?php echo $subCategoryDetail->categoryCode."_".$lib->cleanUrl($subCategoryDetail->categoryDescription);
+					?>">  <?php echo $subCategoryDetail->categoryDescription;?>
+					</a>
+				<i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
+				</li>
+				<li class="list-inline-item g-color-primary active">
+					<span><?php echo $subCategoryDetail->subCategoryDescription;?></span>
+				</li>
+			</ul>
+			</div>
+		</section>
+		<!-- End Breadcrumbs -->
+
+		<div class="container">
+        <div class="row">
+
+			<?php
+				include _VIEW_PATH.$lib->lang."/category_left_menu.phtml";
+			?>
+
+			<?php
+				include _VIEW_PATH.$lib->lang."/category_product_content.phtml";
+			?>
+
+		</div>
+		<!--/end row-->
+	</div>
+	<!--/end container-->
+
+
+	<?php include _VIEW_PATH.$lib->lang."/common_footer.phtml";?>
+	<?php include _VIEW_PATH."/common_include_files.phtml";?>
+</div>

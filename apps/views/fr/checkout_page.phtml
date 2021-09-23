@@ -1,0 +1,430 @@
+<?php
+if ($iniObj->debugViews) echo __FILE__;
+$carouselActive = true;
+$title = "Checkout page";
+$magasins = $sqlData->getMagasins();
+// $lib->debug($_SESSION);
+include _VIEW_PATH . "/common_header.phtml"; ?>
+
+<?php
+// include _VIEW_PATH."common_top_bar.phtml";
+if ($storeActive == 1) {
+    include _VIEW_PATH . $lib->lang . "/top_menu_magasin.phtml";
+} else {
+    include _VIEW_PATH . $lib->lang . "/top_menu.phtml";
+}
+?>
+
+<!-- Breadcrumbs -->
+<section class="g-brd-bottom g-brd-gray-light-v4 g-py-30">
+    <div class="container">
+        <ul class="u-list-inline">
+            <li class="list-inline-item g-mr-5">
+                <a href="/" class="u-link-v5 g-color-text">
+                    Accueil
+                </a>
+                <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
+            </li>
+            <li class="list-inline-item g-color-primary">
+                <span>Mon Panier</span>
+            </li>
+        </ul>
+    </div>
+</section>
+<!-- End Breadcrumbs -->
+
+<!-- Checkout Form -->
+<div class="container g-pt-100 g-pb-70 show-checkout">
+    <div class="row ">
+
+        <?php if ($_SESSION['customer']['authValidated']) { ?>
+            <a class="btn btn-block u-btn-primary g-font-size-13 text-uppercase g-py-15 mb-4" href="/<?php echo $iniObj->serviceName; ?>/home/<?php echo $random; ?>">Accéder au tableau de bord</a>
+        <?php  } ?>
+    </div>
+    <select id="all_stores" hidden>
+        <?php
+        foreach ($magasins['data'] as $magasin) {
+        ?>
+            <option value="<?= $magasin->magasin_id ?>"><?= $magasin->nom_magasin ?></option>
+        <?php
+        }
+        ?>
+    </select>
+    <?php// var_dump($_SESSION); ?>
+</div>
+
+<!--/wrapper-->
+<?php include _VIEW_PATH . $lib->lang . "/common_footer.phtml"; ?>
+<?php include _VIEW_PATH . "/common_include_files.phtml"; ?>
+
+<script>
+    $(document).ready(function() {
+        // console.log(shoppingCart.listCart());
+        /* Save Orders */
+        // $("#save_order").click(function() {
+        //     $("#save_order").html("Vérification en cours. Veuillez patienter  ... <i class='fa fa-spinner fa-spin'></i>")
+        //         .attr("disabled", true);
+        //     saveOrders();
+        // });
+
+        $('.show-checkout').on("click", ".submit_order", function(event) {
+            var magasin_name = $(this).data('ordernum');
+            $(this).html("Vérification en cours. Veuillez patienter  ... <i class='fa fa-spinner fa-spin'></i>")
+                .attr("disabled", true);
+            // alert(magasin_name);
+            saveOrders(magasin_name);
+
+
+        })
+
+        /* Checkout */
+        displayCheckout();
+
+        // Delete item button
+
+        $('.show-checkout').on("click", ".delete-item", function(event) {
+            var productid = $(this).data('productid')
+            shoppingCart.removeItemFromCartAll(productid);
+            displayCart();
+            displayCheckout();
+        })
+
+
+        // -1
+        $('.show-checkout').on("click", ".minus-item", function(event) {
+
+
+            var productid = $(this).data('productid');
+            shoppingCart.removeItemFromCart(productid);
+
+            displayCart();
+            displayCheckout();
+            // var mag = $('.submit_order').data('ordernum');
+            //  console.log(mag);   
+            // verify_product_stock_quantity(productid, qty, mag);
+        })
+
+        // +1
+        $('.show-checkout').on("click", ".plus-item", function(event) {
+            var qty = $(this).data('productcount') + 1;
+            var qte_stock = $(this).data('qtestock');
+            if (qty > qte_stock) {
+                // console.log('hohoho');
+                $('#error_message_qty').css('color', 'red').html("Vous ne pouvez pas commander plus que la quantité de ce produit en stock.")
+                setTimeout(
+                    function() {
+                        //do something special
+                        $('#error_message_qty').hide();
+                    }, 3000);
+            } else {
+                var productid = $(this).data('productid')
+                shoppingCart.addItemToCart(productid);
+                displayCart();
+                displayCheckout();
+            }
+            // var qty = $(this).data('productcount') + 1;
+            // var mag = $('.submit_order').data('ordernum');
+
+            // // console.log(qty);   
+            // verify_product_stock_quantity(productid, qty, mag);
+        })
+
+        // Item count input
+        $('.show-checkout').on("change", ".item-count", function(event) {
+            var productid = $(this).data('productid');
+            var count = Number($(this).val());
+            shoppingCart.setCountForItem(productid, count);
+            displayCart();
+            displayCheckout();
+        });
+
+    });
+
+    function verify_product_stock_quantity(productid, qty, mag) {
+        console.log(productid);
+        var quantity = qty;
+        var idproduit = productid;
+        var magasin = mag;
+        $.ajax({
+            url: '/customer/verify_quantity/',
+            method: 'POST',
+            data: {
+                idproduit: idproduit,
+                quantity: quantity
+            },
+            success: function(msg) {
+                var val = msg.split('||');
+                console.log(msg);
+                // console.log(val);
+                if (val[0] == "false") {
+                    $("#error_message_qty").html(val[1]);
+                    $("#success_message_qty").html("");
+                    $("#save_order" + magasin).attr("disabled", true);
+                } else if (val[0] == "true") {
+                    // $("#success_message").html("Votre commande a été enregistrée");
+                    $("#error_message_qty").html("");
+                    $("#save_order" + magasin).attr("disabled", false);
+
+                }
+            }
+        })
+    }
+
+    function displayCheckout() {
+
+
+        // $( document ).ready(function() {
+        //     document.getElementById('all_stores').style.visibility = "hidden";  
+        // });
+        // var magasinArray = [];
+        // $('#all_stores > option').each(function() {
+        //     magasinArray.push($(this).html());
+        // });
+
+
+        var cartArray = shoppingCart.listCart();
+        var magasinArray = [];
+        var count = 0;
+        var exist = false;
+
+        function filterMagasinArray(_code) {
+            return function(element) {
+                return element === _code;
+            }
+        }
+
+        function getUnique(cartArray) {
+
+            for (j = 0; j < cartArray.length; j++) {
+                if (magasinArray.length == 0) {
+                    magasinArray.push(cartArray[j].storeCode);
+                } else {
+                    _magElements = magasinArray.filter(filterMagasinArray(cartArray[j].storeCode))
+
+                    if (_magElements.length > 0) {
+                        continue;
+                    } else {
+                        magasinArray.push(cartArray[j].storeCode);
+                    }
+                }
+            }
+            return magasinArray;
+        }
+
+        function retrieveItemByMagCode(_code) {
+            return function(element) {
+                return element.storeCode === _code;
+            }
+        }
+
+        var uniqueMagCodes = getUnique(cartArray);
+
+        var output = "";
+        output +=
+            '<div class="text-danger">' +
+            '<h6 id="error_message_qty"></h6>' +
+            '</div>' +
+            '<div class="text-success">' +
+            '<h6 id="success_message_qty"></h6>' +
+            '</div>';
+        for (var j in uniqueMagCodes) {
+            //var products = retrieveItemByMagCode(uniqueMagCodes[j]);
+            var products = cartArray.filter(retrieveItemByMagCode(uniqueMagCodes[j]))
+
+            output +=
+                '<div class="row">' +
+                '<div class="col-md-8 g-mb-30">' +
+                '<div class="g-overflow-x-scroll g-overflow-x-visible--lg">' +
+                '<table class="text-center w-100">' +
+                '<thead  class="h6 g-brd-bottom g-brd-gray-light-v3 g-color-black text-uppercase">' +
+
+                '<tr style="background-color:#3bb18f;"> ' +
+                '<td colspan="6">' + products[0].storeName + '</td>' +
+                '</tr> ' +
+                '<tr> ' +
+                '<td class="g-font-weight-400 text-left g-pb-20"></td>' +
+                '<td class="g-font-weight-400 text-left g-pb-20">Produit</td>' +
+                '<td class="g-font-weight-400 g-pb-20">Prix</td>' +
+                '<td class="g-font-weight-400 g-width-40 g-pb-20">Qte</td>' +
+                '<td class="g-font-weight-400 g-pb-20">Total</td>' +
+                '<td></td>' +
+                '</tr>' +
+                '</thead>' +
+                '<tbody>';
+            var totalcount = 0;
+            var totalbycart = 0;
+
+            for (var i in products) {
+                product = products[i];
+                totalcount++;
+                totalbycart = totalbycart + (product.price * product.count);
+
+                output +=
+                    '<tr class="g-brd-bottom g-brd-gray-light-v3">' +
+                    '<td class="text-left g-py-25">' +
+                    '<img class="d-inline-block g-width-100 mr-4" src="' + product.imgurl + '" alt="' + product.name + '">' +
+                    '</td>' +
+                    '<td class="text-left g-py-25">' +
+                    '<div class="d-inline-block align-middle">' +
+                    '<h4 class="h6 g-color-black">' + product.name + '</h4>' +
+                    '<ul class="list-unstyled g-color-gray-dark-v4 g-font-size-12 g-line-height-1_6 mb-0">' +
+                    '<li>Code Magasin: ' + product.storeCode + '</li>' +
+                    '<li>Nom du magasin: ' + product.storeName + '</li>' +
+                    '</ul>' +
+                    '</div>' +
+                    '</td>' +
+                    '<td class="g-color-gray-dark-v2 g-font-size-13">€ ' + product.price + '</td>' +
+                    '<td>' +
+                    '<div class="js-quantity input-group u-quantity-v1 g-width-80 g-brd-primary--focus g-ml-20">' +
+                    '<span >' + product.count + ' </span>' +
+                    '<div class="input-group-addon d-flex align-items-center g-width-30 g-brd-gray-light-v2 g-bg-white g-font-size-12 rounded-0 g-px-5 g-py-6">' +
+                    '<i class="plus-item js-plus g-color-gray g-color-primary--hover fa fa-angle-up" data-productcount="' + product.count + '" data-qtestock="' + product.qte_stock + '" data-productid="' + product.id + '"></i>' +
+                    '<i class="minus-item js-minus g-color-gray g-color-primary--hover fa fa-angle-down" data-productcount="' + product.count + '" data-qtestock="' + product.qte_stock + '" data-productid="' + product.id + '"></i>' +
+                    '</div>' +
+                    '</div>' +
+                    '</td>' +
+                    '<td class="text-right g-color-black">' +
+                    '<span class="g-color-gray-dark-v2 g-font-size-13 mr-4">€ ' + (product.price * product.count) + '</span>' +
+                    '<span class="g-color-gray-dark-v4 g-color-black--hover g-cursor-pointer">' +
+                    '<i class="delete-item  mt-auto fa fa-trash"  data-productid="' + product.id + '"></i>' +
+                    '</span>' +
+                    '</td>' +
+                    '</tr>';
+
+            }
+            output +=
+                '</tbody>' +
+                '</table>' +
+                '</div>' +
+                '</div>' +
+                '<div class="col-md-4 g-mb-30">' +
+
+                '<div class="g-bg-gray-light-v5 g-pa-20 g-pb-50 mb-4">' +
+                '<h4 class="h6 text-uppercase mb-3">Résumé de la commande</h4>' +
+                '<div class="d-flex justify-content-between">' +
+                '<span class="g-color-black">Total des commandes</span>' +
+                '<span class="g-color-black g-font-weight-300">€ <span class="total-cart">' + totalbycart + '</span></span>' +
+                '</div>' +
+                '</div>' +
+
+                '<div class="g-mt-30">' +
+                '<div class="card g-my-20">' +
+                '<div class="card-body">' +
+                '<div class="text-success">' +
+                '<h5>Nombre de produits dans le panier : <span class="total-count">' + totalcount + '</span> </h5>' +
+                '</div>' +
+                '<hr />' +
+                '<div class="text-danger">' +
+                '<h6 id="error_message"></h6>' +
+                '</div>' +
+                '<div class="text-success">' +
+                '<h6 id="success_message"></h6>' +
+                '</div>' +
+                '<button id="save_order' + uniqueMagCodes[j] + '" data-ordernum="' + uniqueMagCodes[j] + '" class="btn btn-block u-btn-primary g-font-size-13 text-uppercase g-py-15 mb-4 submit_order" type="button">Procéder à la commande</button>' +
+
+                '</div>' +
+                '</div>' +
+                '</div>' +
+
+                '</div>' +
+                '</div>' +
+                '<hr>';
+
+        }
+        $('.show-checkout').html(output);
+
+    }
+
+
+    function saveOrders(magasin_code) {
+        var cartArray = shoppingCart.listCart();
+
+        function retrieveItemByMagCode(_code) {
+            return function(element) {
+                return element.storeCode === _code;
+            }
+        }
+        var magCartArray = cartArray.filter(retrieveItemByMagCode(magasin_code));
+
+        if (magCartArray.length == 0) {
+            $("#error_message").html("Aucun produit de ce magasin dans le panier. Veuillez ajouter des produits de ce magasin.");
+            $("#save_order").html("Procéder à la commande <i class='fa fa-shop'></i>")
+                .attr("disabled", false);
+        }
+      
+        else {
+            $("#error_message").html("");
+            //alert(magasin_name);
+            // console.log()
+            <?php
+            if (!$_SESSION['customer']['authValidated']) { ?>
+                window.location.href = '/<?php echo $iniObj->serviceName; ?>/home/<?php echo $random; ?>';
+            <?php   } else { ?>
+                //alert(magasin_name);
+                //console.log(JSON.stringify(magCartArray));
+                //return ; 
+                rnd = Math.random();
+
+                $.ajax({
+                    type: "POST",
+                    url: "/customer/cOrders/"+ rnd,
+                    data: {
+                        magasin_code: magasin_code,
+                        orders: JSON.stringify(magCartArray)
+                    },
+                    success: function(msg) {
+                        var val = msg.split('||');
+                        console.log(msg);
+                        _magasin_code = val[1];
+
+                        if (val[0] == "false") {
+                            $("#error_message").html(val[1]);
+                            $("#save_order" + _magasin_code).html("Procéder à la commande <i class='fa fa-shop'></i>")
+                                .attr("disabled", false);
+                        } else if (val[0] == "true") {
+                            $("#success_message").html("Votre commande a été enregistrée");
+                            $("#error_message").html("");
+
+                            shoppingCart.removeStoreItem(magasin_code);
+                            //shoppingCart.clearCart();
+
+                            $("#save_order" + _magasin_code).html("Commande déjà enregistrée")
+                                .attr("disabled", false);
+
+                            setTimeout(
+                                function() {
+                                    displayCart();
+                                    displayCheckout();
+                                }, 1000);
+
+                            //$("#save_order"+_magasin_code).remove();
+
+                        } else if (val[0] == "denied") {
+                            $("#error_message").html(val[1]);
+                            $("#save_order" + _magasin_code).html("Procéder à la commande <i class='fa fa-shop'></i>")
+                                .attr("disabled", true);
+                            window.location.href = '<?php echo $iniObj->siteUrl; ?>/customer/login';
+                        }
+                    },
+                    error: function(resultat, statut, erreur) {
+                        // alert('faux');
+                        // $("#save_order"+_magasin_code).html("Procéder à la commande <i class='fa fa-shop'></i>")
+                        //     .attr("disabled", false);
+                        $("#error_message").html("Une erreur s'est produite. Veuillez réessayer. <i class='fa fa-stop-circle'></i>");
+                        console.log('Resultat : ' + resultat);
+                        console.log('Statut : ' + statut);
+                        console.log('Erreur : ' + erreur);
+                    }
+                });
+
+            <?php
+            }
+            ?>
+            //console.log(JSON.stringify(magCartArray));
+
+
+            $("#success_message").html("");
+        }
+    }
+</script>
+

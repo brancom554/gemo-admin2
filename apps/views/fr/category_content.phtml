@@ -1,0 +1,47 @@
+<main>
+            <h2 class="main-title">Catégories</h2>
+            <div class="track">
+                <span <?php if($page_requested =="configurations"){ ?> class="actives" <?php } ?>><?php echo $page_requested;?></span><span>/</span><span><?php echo $url_array[2];?></span>
+            </div>
+            <div class="main-btn">
+                <button onclick="document.location='<?php $lib->customerSite ?>/configurations/categories/ajouter'" id="myBtn"><i class="fas fa-plus" style="margin-right:15px ;"></i>Ajouter une nouvelle catégorie</button>
+            </div>
+            
+            <section class="recent">
+                <div class="activity">
+                    <div style="padding-top: 5px;" class="activity-card">
+                        <h3>Liste des catégories</h3>
+                        <div class="table-responsive">
+                            <div class="research">
+                                <div>
+                                    <div id="form-research"><input id="filter" type="text" placeholder="Rechercher..."></div>
+                                    <i class="fas fa-search"></i>
+                                </div>
+                            </div>
+                            <table id="table" class="table table-striped" style="margin-top: 30px;" border="0">
+                                <thead>
+                                    <tr>
+                                        <th>Libellé de la catégorie</th>
+                                        <th>Type de la catégorie</th>
+                                        <th style="text-align:center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if (!empty($data['categories'])) :?>
+                                        <?php foreach($data['categories'] as $category) : ?>
+                                            <tr>
+                                                <td><?= $category['libelle'] ?></td>
+                                                <td><?= $category['type_category_libelle'] ?></td>
+                                                <td>
+                                                    <span onclick="document.location='<?php $lib->customerSite ?>/configurations/categories/modifier/<?=$category['category_id'] ?>'" class="btn-action white pg-5 primary cursor">Modifier</span>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach;?>
+                                    <?php endif ;?>
+                                </tbody>
+                            </table>
+                        </div>   
+                    </div>
+                </div>
+            </section>
+        </main>

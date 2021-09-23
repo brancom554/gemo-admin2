@@ -1,0 +1,556 @@
+<?php
+if ($iniObj->debugViews) echo __FILE__;
+$formActive = true;
+$loginActive = true;
+
+$carouselActive = false;
+
+include _VIEW_PATH . "/common_header.phtml"; ?>
+
+<!-- Header -->
+<!-- <header id="js-header" class="u-header">
+    <div class="u-header__section"> -->
+<?php //include _VIEW_PATH."global_top_bar.phtml"; 
+?>
+<?php include _VIEW_PATH . $lib->lang . "/top_menu.phtml"; ?>
+<!-- </div>
+</header> -->
+<!-- End Header -->
+
+<!-- Breadcrumbs -->
+<section class="g-brd-bottom g-brd-gray-light-v4 g-py-30">
+    <div class="container">
+        <ul class="u-list-inline">
+            <li class="list-inline-item g-mr-5">
+                <a href="/" class="u-link-v5 g-color-text">
+                    Accueil
+                </a>
+                <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
+            </li>
+            <li class="list-inline-item g-color-primary">
+                <span>Changement de compte client en magasin</span>
+            </li>
+        </ul>
+    </div>
+</section>
+<!-- End Breadcrumbs -->
+
+<!-- Reset -->
+<section class="container g-pt-10 g-pb-20">
+    <div class="row justify-content-between">
+        <div class="col-md-6 col-lg-5 order-lg-1 g-mb-80">
+            <div class="g-brd-around g-brd-gray-light-v3 g-bg-white rounded g-px-30 g-py-50 mb-4">
+                <header class="text-center mb-4">
+                    <h1 class="h4 g-color-black g-font-weight-400">Changement de compte client en magasin</h1>
+                    <div class="text-danger">
+                        <h6 id="error_message"></h6>
+                    </div>
+                    <div class="text-success">
+                        <h6 id="success_message"></h6>
+                    </div>
+
+                </header>
+
+                <!-- Form -->
+                <form class="g-py-15" id="sky-form" class="sky-form" method="POST" action="">
+
+                    <input type='hidden' name='profile_user' id="profile_user" value="ROLE_CLIENT" />
+                    <div class="tab">
+                        <div class="mb-4 ">
+                            <label for="">Adresse e-mail</label>
+                            <div class="input-group g-rounded-left-3 sub_tab">
+                                <span class="input-group-prepend g-width-45">
+                                    <span class="input-group-text justify-content-center w-100 g-bg-transparent g-brd-gray-light-v3 g-color-gray-dark-v5">
+                                        <i class="icon-finance-181 u-line-icon-pro"></i>
+                                    </span>
+                                </span>
+                                <input type="email" name="email" id="email" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-0 g-rounded-right-3 g-py-15 g-px-15" placeholder="johndoe@exemple.com" required>
+                            </div>
+                        </div>
+                        <label for="">Nom</label>
+                        <div class="mb-4 ">
+                            <div class="input-group g-rounded-left-3 sub_tab">
+                                <span class="input-group-prepend g-width-45">
+                                    <span class="input-group-text justify-content-center w-100 g-bg-transparent g-brd-gray-light-v3 g-color-gray-dark-v5">
+                                        <i class="icon-finance-067 u-line-icon-pro"></i>
+                                    </span>
+                                </span>
+                                <input type="text" name="nom_user" id="nom_user" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-0 g-rounded-right-3 g-py-15 g-px-15" placeholder="Saisissez votre nom" required>
+                            </div>
+                        </div>
+                        <label for="">Prénoms</label>
+                        <div class="mb-4 ">
+                            <div class="input-group g-rounded-left-3 sub_tab">
+                                <span class="input-group-prepend g-width-45">
+                                    <span class="input-group-text justify-content-center w-100 g-bg-transparent g-brd-gray-light-v3 g-color-gray-dark-v5">
+                                        <i class="icon-finance-067 u-line-icon-pro"></i>
+                                    </span>
+                                </span>
+                                <input type="text" name="prenom_user" id="prenom_user" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-0 g-rounded-right-3 g-py-15 g-px-15" placeholder="Saississez vos prénoms" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab">
+
+                        <div class="mb-4 ">
+                            <label for="">Civilité</label>
+                            <div class="input-group g-rounded-left-3 sub_tab">
+                                <span class="input-group-prepend g-width-45">
+                                    <span class="input-group-text justify-content-center w-100 g-bg-transparent g-brd-gray-light-v3 g-color-gray-dark-v5">
+                                        <i class="icon-finance-004 u-line-icon-pro"></i>
+                                    </span>
+                                </span>
+                                <select name="civilite" id="civilite" class="form-control  g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-0 g-rounded-right-3 g-py-15 g-px-15">
+                                    <option value="">Sélectionner la civilité</option>
+                                    <option value="MR">Monsieur</option>
+                                    <option value="MME">Madame</option>
+                                    <option value="MLLE">Mademoiselle</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-4 ">
+                            <label for="">Adresse</label>
+                            <div class="input-group g-rounded-left-3 sub_tab">
+                                <span class="input-group-prepend g-width-45">
+                                    <span class="input-group-text justify-content-center w-100 g-bg-transparent g-brd-gray-light-v3 g-color-gray-dark-v5">
+                                        <i class=" icon-finance-106 u-line-icon-pro"></i>
+                                    </span>
+                                </span>
+                                <input type="text" name="adresse1" id="adresse1" placeholder="5e rue avenue steinmezts" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-0 g-rounded-right-3 g-py-15 g-px-15">
+                            </div>
+                        </div>
+                        <div class="mb-4 ">
+                            <div class="input-group g-rounded-left-3   ">
+                                <span class="input-group-prepend g-width-170">
+                                    <span class="input-group-text justify-content-center w-100 g-bg-transparent g-brd-gray-light-v3 g-color-gray-dark-v5">
+                                        <i class=" icon-communication-144 u-line-icon-pro"></i>
+                                    </span>
+                                </span>
+                                <input type="tel" id="countryCode" name="countryCode" placeholder="00229" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-0 g-rounded-right-3 g-py-15 g-px-15">
+
+
+                            </div>
+                        </div>
+                        <div class="mb-4 ">
+                            <div class="input-group g-rounded-left-3  sub_tab">
+                                <span class="input-group-prepend g-width-170">
+                                    <span class="input-group-text justify-content-center w-100 g-bg-transparent g-brd-gray-light-v3 g-color-gray-dark-v5">
+                                    <i class=" icon-communication-144 u-line-icon-pro"></i>
+                                      
+                                    </span>
+                                </span>
+                                <input type="tel" pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im" name="phone_number" id="phone_number" placeholder="657784127" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-0 g-rounded-right-3 g-py-15 g-px-15">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab">
+
+                        <div class="mb-4 ">
+                            <label for="">Ville</label>
+                            <div class="input-group g-rounded-left-3 sub_tab">
+                                <span class="input-group-prepend g-width-45">
+                                    <span class="input-group-text justify-content-center w-100 g-bg-transparent g-brd-gray-light-v3 g-color-gray-dark-v5">
+                                        <i class=" icon-finance-022 u-line-icon-pro"></i>
+                                    </span>
+                                </span>
+                                <input type="text" name="ville" id="ville" placeholder="Paris" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-0 g-rounded-right-3 g-py-15 g-px-15">
+                            </div>
+                        </div>
+                        <div class="mb-4 ">
+                            <label for="">Mot de passe</label>
+                            <div class="input-group g-rounded-left-3 sub_tab">
+                                <span class="input-group-prepend g-width-45">
+                                    <span class="input-group-text justify-content-center w-100 g-bg-transparent g-brd-gray-light-v3 g-color-gray-dark-v5">
+                                        <i class="icon-finance-135 u-line-icon-pro"></i>
+                                    </span>
+                                </span>
+
+                                <input type="password" name="password" id="password" onfocus="focusFunction()" onblur="blurFunction()" placeholder="Mot de passe" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-0 g-rounded-right-3 g-py-15 g-px-15">
+                                <span id="meter_wrapper">
+                                    <span id="meter"></span>
+                                </span>
+                                <span id="pass_type"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-4 ">
+                            <label for="">Confirmation du mot de passe</label>
+                            <div class="input-group g-rounded-left-3 sub_tab">
+                                <span class="input-group-prepend g-width-45">
+                                    <span class="input-group-text justify-content-center w-100 g-bg-transparent g-brd-gray-light-v3 g-color-gray-dark-v5">
+                                        <i class="icon-finance-135 u-line-icon-pro"></i>
+                                    </span>
+                                </span>
+
+                                <input type="password" name="password_confirm" id="password_confirm" placeholder="Confirmez le mot de passe" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-0 g-rounded-right-3 g-py-15 g-px-15">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="overflow:auto;">
+                        <div style="float:right;">
+                            <button type="button" id="prevBtn" onclick="nextPrev(-1)" class="btn btn-inline u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25">Précédent</button>
+                            <button type="button" id="nextBtn" onclick="nextPrev(1)" class="btn btn-inline u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25">Suivant</button>
+                        </div>
+                    </div>
+
+                    <!-- Circles which indicates the steps of the form: -->
+                    <div style="text-align:center;margin-top:40px;">
+                        <span class="step"></span>
+                        <span class="step"></span>
+                        <span class="step"></span>
+                    </div>
+
+                    <!-- <div style="overflow:auto;">
+                        <div style="float:right;">
+                            <button type="button" id="submit_user" class="btn btn-inline u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25">S'inscrire</button>
+                        </div>
+                    </div> -->
+
+                </form>
+                <div class="text-center">
+                    <p class="g-color-gray-dark-v5 mb-0">
+                        <a href="/customer/login" class="text-default g-font-weight-600">
+                            Se connecter
+                        </a>
+                    </p>
+                </div>
+                <!-- End Form -->
+            </div>
+
+        </div>
+
+        <div class="col-md-6 order-lg-2 g-mb-80">
+            <div class="mb-5">
+                <h2 class="h1 g-font-weight-400 mb-3">Bienvenue sur Occaz et Neuf</h2>
+                <p class="g-color-gray-dark-v4">
+                    OccazetNeuf est le 1er portail de vente de produits neufs et d'occasion par les professionnels de la vente.
+                </p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-9">
+                    <!-- Icon Blocks -->
+                    <div class="media mb-5">
+                        <div class="d-flex mr-3">
+                            <span class="align-self-center u-icon-v1 u-icon-size--lg g-color-primary">
+                                <i class="icon-finance-168 u-line-icon-pro"></i>
+                            </span>
+                        </div>
+                        <div class="media-body align-self-center">
+                            <h3 class="h5 g-font-weight-400">Un argument ici</h3>
+                            <p class="g-color-gray-dark-v5 mb-0">OccazetNeuf est le 1er portail de vente de produits neufs et d'occasion par les professionnels de la vente.</p>
+                        </div>
+                    </div>
+                    <!-- End Icon Blocks -->
+
+                    <!-- Icon Blocks -->
+                    <div class="media mb-5">
+                        <div class="d-flex mr-3">
+                            <span class="align-self-center u-icon-v1 u-icon-size--lg g-color-primary">
+                                <i class="icon-finance-193 u-line-icon-pro"></i>
+                            </span>
+                        </div>
+                        <div class="media-body align-self-center">
+                            <h3 class="h5 g-font-weight-400">Un autre argument ici</h3>
+                            <p class="g-color-gray-dark-v5 mb-0">OccazetNeuf est le 1er portail de vente de produits neufs et d'occasion par les professionnels de la vente.</p>
+                        </div>
+                    </div>
+                    <!-- End Icon Blocks -->
+
+                    <div class="g-brd-gray-light-v3 g-bg-white rounded g-px-70 g-py-50 mb-4">
+                        <div>
+                            <a href="/customer/signupmagasin" class="btn btn-inline u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25">Créer un compte Entreprise</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Reset -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#meter_wrapper').hide()
+        $('#meter').hide()
+        $('#pass_type').hide()
+        $('#password').keyup(function() {
+            $('#meter_wrapper').show()
+            $('#meter').show()
+            $('#pass_type').show()
+            check_pass();
+        })
+    });
+
+    function focusFunction() {
+        $('#meter_wrapper').hide()
+        $('#meter').hide()
+        $('#pass_type').hide()
+    }
+
+    function blurFunction() {
+        document.getElementById('meter_wrapper').style.display = 'none';
+        document.getElementById('meter').style.display = 'none';
+        document.getElementById('pass_type').style.display = 'none';
+
+    }
+
+    function check_pass() {
+        var val = document.getElementById("password").value;
+        var meter = document.getElementById("meter");
+        var no = 0;
+        if (val != "") {
+            // If the password length is less than or equal to 6
+            if (val.length <= 6) no = 1;
+
+            // If the password length is greater than 6 and contain any lowercase alphabet or any number or any special character
+            if (val.length > 6 && (val.match(/[a-zA-Z]/) || val.match(/\d+/) || val.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/))) no = 2;
+
+            // If the password length is greater than 6 and contain alphabet,number,special character respectively
+            // if (val.length > 6 && ((val.match(/[a-zA-Z]/) && val.match(/\d+/)) || (val.match(/\d+/) && val.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/)) || (val.match(/[a-z]/) && val.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/)))) no = 3;
+
+            // If the password length is greater than 6 and must contain alphabets,numbers and special characters
+            if (val.length > 6 && val.match(/[a-zA-Z]/) && val.match(/\d+/) && val.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/)) no = 4;
+
+            if (no == 1) {
+                $("#meter").animate({
+                    width: '50px'
+                }, 300);
+                meter.style.backgroundColor = "red";
+                document.getElementById("pass_type").innerHTML = "Faible, au moins 6 caractères";
+            }
+
+            if (no == 2) {
+                $("#meter").animate({
+                    width: '100px'
+                }, 300);
+                meter.style.backgroundColor = "#F5BCA9";
+                document.getElementById("pass_type").innerHTML = "Moyen, ajoutez au moins un chiffre et au moins un caractère spécial ";
+            }
+
+            // if (no == 3) {
+            //     $("#meter").animate({
+            //         width: '150px'
+            //     }, 300);
+            //     meter.style.backgroundColor = "#FF8000";
+            //     document.getElementById("pass_type").innerHTML = "Moyen, ";
+            // }
+
+            if (no == 4) {
+                $("#meter").animate({
+                    width: '200px'
+                }, 300);
+                meter.style.backgroundColor = "#00FF40";
+                document.getElementById("pass_type").innerHTML = "Fort";
+            }
+        } else {
+            meter.style.backgroundColor = "white";
+            document.getElementById("pass_type").innerHTML = "";
+        }
+    }
+
+    function registerUser() {
+        document.getElementById("nextBtn").setAttribute('disabled', true);
+        document.getElementById("prevBtn").setAttribute('disabled', true);
+        document.getElementById("nextBtn").innerHTML = 'Enregistrement en cours...<i class="fa fa-spinner fa-spin">';
+
+        var email = encodeURIComponent($("input[name='email']").val());
+        var password = encodeURIComponent($("input[name='password']").val());
+        var password_confirm = encodeURIComponent($("input[name='password_confirm']").val());
+        var nom_user = encodeURIComponent($("input[name='nom_user']").val());
+        var prenom_user = encodeURIComponent($("input[name='prenom_user']").val());
+        var civilite = encodeURIComponent($("select[name='civilite']").val());
+        var phone_number = encodeURIComponent($("input[name='phone_number']").val());
+        var zipcode = encodeURIComponent($("select[name='countryCode']").val());
+        var profile_user = encodeURIComponent($("input[name='profile_user']").val());
+        var ville = encodeURIComponent($("input[name='ville']").val());
+        var adresse1 = encodeURIComponent($("input[name='adresse1']").val());
+
+        $.ajax({
+            type: "POST",
+            url: "/customer/registerUser/",
+            data: {
+                email: email,
+                password: password,
+                password_confirm: password_confirm,
+                nom_user: nom_user,
+                prenom_user: prenom_user,
+                civilite: civilite,
+                phone_number: phone_number,
+                zipcode: zipcode,
+                profile_user: profile_user,
+                ville: ville,
+                adresse1: adresse1
+            },
+            success: function(msg, data) {
+                var val = msg.split('||');
+
+                if (val[0] == "false") {
+                    $("#error_message").html(val[1]);
+                    $("#error_message").show();
+                    $("#nextBtn").html("S'inscrire. ").attr("disabled", false);
+                    $("#prevBtn").attr("disabled", false);
+                    $("#prevBtn").show();
+                } else if (val[0] == "true") {
+                    document.getElementById("prevBtn").style.display = "none";
+                    $("#nextBtn").html("Votre compte a été créé avec succès. ").attr("disabled", true);
+                    $("#error_message").html("");
+                    $("#success_message").html(val[1]);
+                    $("#sky-form")[0].reset();
+
+                    setTimeout(function() {
+                        $("#success_message").hide();
+                        rnd = Math.random();
+
+                        window.location.href = '/customer/login/' + rnd;
+                    }, 5000);
+
+                }
+            },
+            error: function(resultat, statut, erreur) {
+
+                // $("#submit_user").html("S'inscrire' <i class='fa fa-user'></i>")
+                //     .attr("disabled", false);
+                $("#error_message").html("Une erreur s'est produite. Veuillez réessayer. <i class='fa fa-stop-circle'></i>");
+                console.log('Resultat : ' + resultat);
+                console.log('Statut : ' + statut);
+                console.log('Erreur : ' + erreur);
+            }
+        });
+    }
+
+    var currentTab = 0; // Current tab is set to be the first tab (0)
+    showTab(currentTab); // Display the current tab
+
+    function showTab(n) {
+        // This function will display the specified tab of the form ...
+        var x = document.getElementsByClassName("tab");
+
+        x[n].style.display = "block";
+        // ... and fix the Previous/Next buttons:
+        if (n == 0) {
+            document.getElementById("prevBtn").style.display = "none";
+        } else {
+            document.getElementById("prevBtn").style.display = "inline";
+        }
+        if (n >= (x.length - 1)) {
+            document.getElementById("nextBtn").innerHTML = "S'inscrire";
+        } else {
+            document.getElementById("nextBtn").innerHTML = "Suivant";
+        }
+
+
+        // ... and run a function that displays the correct step indicator:
+        fixStepIndicator(n)
+    }
+
+    function nextPrev(n) {
+        // This function will figure out which tab to display
+        var x = document.getElementsByClassName("tab");
+        // Exit the function if any field in the current tab is invalid:
+        if (n == 1 && !validateForm()) {
+            return false;
+        }
+
+        if (currentTab < (x.length - 1)) {
+            // Hide the current tab:
+            x[currentTab].style.display = "none";
+            // Increase or decrease the current tab by 1:
+            currentTab = currentTab + n;
+
+            // if you have reached the end of the form... :
+        } else {
+            if (n == -1) {
+                x[currentTab].style.display = "none";
+                currentTab = currentTab + n;
+            } else {
+                //...the form gets submitted:
+                    registerUser();
+                return false;
+            }
+        }
+        // Otherwise, display the correct tab:
+        showTab(currentTab);
+    }
+
+
+    //validate email
+    function ValidateEmail(email) {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+
+    function validateForm() {
+        // This function deals with validation of the form fields
+        var x, y, i, valid = true;
+        x = document.getElementsByClassName("tab");
+        y = x[currentTab].getElementsByTagName("input");
+        // A loop that checks every input field in the current tab:
+        for (i = 0; i < y.length; i++) {
+            // If a field is empty...
+            if (y[i].value == "") {
+                // add an "invalid" class to the field:
+                y[i].className += " invalid";
+                checkSubmit();
+                // and set the current valid status to false:
+                valid = false;
+            }
+        }
+        // If the valid status is true, mark the step as finished and valid:
+        if (ValidateEmail($('#email').val())) {
+            if (valid) {
+                document.getElementById("error_message").style.display = "none";
+                document.getElementsByClassName("step")[currentTab].className += " finish";
+            }
+        } else {
+            m = "<?php echo $lang->trl('Invalid Email..'); ?>";
+            showEr(m);
+            valid = false;
+        }
+        return valid; // return the valid status
+    }
+
+    function fixStepIndicator(n) {
+        // This function removes the "active" class of all steps...
+        var i, x = document.getElementsByClassName("step");
+        for (i = 0; i < x.length; i++) {
+            x[i].className = x[i].className.replace(" active", "");
+        }
+        //... and adds the "active" class to the current step:
+        x[n].className += " active";
+    }
+
+    function showEr(m) {
+
+        if ($.trim(m)) {
+            $("#error_message").css('color', 'red').html(m);
+        } else {
+            $("#error_message").css('color', 'red').html("");
+        }
+    }
+
+    /* check all errors on form */
+    function checkSubmit() {
+        eC = 0;
+        var mess = "";
+        if (!$.trim($("#email").val()) || !$.trim($("#password").val()) || !$.trim($("#password_confirm").val()) ||
+            !$.trim($("#nom_user").val()) || !$.trim($("#prenom_user").val()) || !$.trim($("#civilite").val()) ||
+            !$.trim($("#phone_number").val()) || !$.trim($("#countryCode").val()) || !$.trim($("#profile_id").val()) ||
+            !$.trim($("#adresse1").val())) {
+            m = "<?php echo $lang->trl('Veuillez renseigner tous les champs..'); ?>";
+            eC = 1;
+            document.getElementById("error_message").style.display = "block";
+        }
+        if (eC == 0) {
+            return true;
+        } else {
+            showEr(m);
+            return false;
+        }
+    }
+</script>
+<!-- <script charset="utf-8" type="text/javascript" src="/jsp/registerCustomer.js.php/<?php echo $currentHour ?>"></script> -->
+<script charset="utf-8" type="text/javascript" src="/jsp/RegisterForm.js.php/<?php echo $currentHour ?>"></script>

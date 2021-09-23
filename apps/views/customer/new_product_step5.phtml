@@ -1,0 +1,261 @@
+<!-- <div id="s5Tab" class="profile-edit tab-pane fade in active"> -->
+<div class="tab">
+
+    <div class="card card-outline-success rounded-0">
+        <h3 class="card-header h5 text-white g-brd-transparent rounded-0" style="background-color: #94c11c;">
+            <span class="g-font-size-default g-mr-5">5. - </span>
+            Valider les informations du produits
+        </h3>
+
+        <div class="card-block">
+            <div class="col-md-12">
+                <div class="panel panel-sea margin-bottom-20">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card rounded-0">
+                                <h3 class="card-header h5 rounded-0">
+                                    <i class="fa fa-building-o g-font-size-default g-mr-5"></i>
+                                    Informations sur la typologie du produit
+                                </h3>
+
+                                <div class="card-block">
+                                    <ul style="list-style: none!important;">
+                                        <li>
+                                            <i class="fa fa-building mr-2"></i>
+                                            Désignation :
+                                            <span id='valShipAdd'></span>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-euro mr-2"></i>
+                                            Prix d'achat :
+                                            <label class="label_shipping" id='valShipperContact'></label>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-user mr-2"></i>
+                                            Quantité initiale :
+                                            <label class="label_shipping" id='valShipEmail'></label>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-comment mr-2 "></i>
+                                            Quantité en stock :
+                                            <label class="label_shipping" id='valPickInst'></label>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-calendar mr-2 "></i>
+                                            Type d'article :
+                                            <label class="label_shipping" id='valShipDate'></label>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-calendar mr-2"></i>
+                                            Prix de vente initial :
+                                            <label class="label_shipping" id='valContent'></label>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-link mr-2"></i>
+                                            Prix de vente courant :
+                                            <label class="label_shipping" id='valItem'></label>
+                                        </li>
+
+                                    </ul>
+                                    <button type="button" class="btn btn-sm btn-primary pull-right s1">
+                                        <i class="fa fa-pencil mr-2"></i>
+                                        <?php echo $lang->trl('Update');
+                                        ?>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card rounded-0">
+                                <h3 class="card-header h5 rounded-0">
+                                    <i class="fa fa-building-o g-font-size-default g-mr-5"></i>
+                                    Informations sur le stock du produit
+                                </h3>
+
+                                <div class="card-block">
+                                    <ul style="list-style: none!important;">
+                                        <li>
+                                            <i class="fa fa-building mr-2"></i>
+                                            <?php echo $lang->trl('Address'); ?> :
+                                            <label class="label_shipping" id='valDelAdd'></label>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-user mr-2"></i>
+                                            <?php echo $lang->trl('Contact name'); ?> :
+                                            <label class="label_shipping" id='valDelContact'></label>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-user mr-2"></i>
+                                            <?php echo $lang->trl('Notify'); ?> :
+                                            <label class="label_shipping" id='valCeeEmail'></label>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-comment mr-2 "></i>
+                                            <?php echo $lang->trl('Delivery instructions'); ?> :
+                                            <label class="label_shipping" id='valDelInst'></label>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-calendar mr-2 "></i>
+                                            <?php echo $lang->trl('Date'); ?> :
+                                            <label class="label_shipping" id='valDelDate'></label>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-envelope mr-2"></i>
+                                            <?php echo $lang->trl('Tracking via e-mail'); ?> :
+                                            <label class="label_shipping" id='valCeeTracking'></label>
+                                        </li>
+                                    </ul>
+                                    <button type="button" class="btn btn-sm btn-primary pull-right s2">
+                                        <i class="fa fa-pencil mr-2"></i>
+                                        <?php echo $lang->trl('Update'); ?>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card rounded-0">
+                                <h3 class="card-header h5 rounded-0">
+                                    <i class="fa fa-cogs g-font-size-default g-mr-5"></i>
+                                    Les images du produit
+                                </h3>
+
+                                <div class="card-block">
+                                    <div id="displayimage">
+                                        <!-- <p class="DropImage"> Drop Images Here </p>-->
+                                    </div>
+                                    <button type="button" class="btn btn-sm btn-primary pull-right s3">
+                                        <i class="fa fa-pencil mr-2"></i>
+                                        <?php echo $lang->trl('Update'); ?>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-md-12">
+                            <div class="card rounded-0">
+                                <h3 class="card-header h5 rounded-0">
+                                    <i class="fa fa-eur g-font-size-default g-mr-5"></i>
+                                    <?php echo $lang->trl('Billing'); ?>
+                                </h3>
+
+                                <div class="card-block">
+                                    <ul style="list-style: none!important;">
+                                        <li>
+                                            <i class="fa fa-building mr-2"></i>
+                                            <?php echo $lang->trl('Billing address'); ?> :
+                                            <label class="label_shipping" id='valBillAdd'></label>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-bookmark-o mr-2 "></i>
+                                            <?php echo $lang->trl('Your order references'); ?> :
+                                            <label class="label_shipping" id='valBillRef'></label>
+                                        </li>
+                                        <?php if ($_SESSION['customer']['medical_flag'] == "1") { ?>
+                                            <li><i class="fa fa-bookmark-o mr-2 "></i> <?php echo $lang->trl('Study reference'); ?>: <label class="label_shipping" id='valStudyNumber'></label> <span class="s4"></li>
+                                            <li><i class="fa fa-bookmark-o mr-2 "></i> <?php echo $lang->trl('Product code'); ?>: <label class="label_shipping" id='valDonorCode'></label> <span class="s4"></li>
+                                            <li><i class="fa fa-bookmark-o mr-2 "></i> <?php echo $lang->trl('Patient code'); ?>: <label class="label_shipping" id='valPatientCode'></label> <span class="s4"></li>
+                                            <li><i class="fa fa-bookmark-o mr-2 "></i> <?php echo $lang->trl('Our quote number'); ?>: <label class="label_shipping" id='valQuoteNum'></label> <span class="s4"></li>
+                                        <?php } ?>
+                                        <li>
+                                            <i class="fa fa-envelope mr-2"></i>
+                                            <?php echo $lang->trl('Tracking via e-mail'); ?>:
+                                            <label class="label_shipping" id='valBillTracking'></label>
+                                        </li>
+                                    </ul>
+                                    <button type="button" class="btn btn-sm btn-primary pull-right s4">
+                                        <i class="fa fa-pencil mr-2"></i>
+                                        <?php echo $lang->trl('Update'); ?>
+                                    </button>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="col-lg-12">
+                            <div class="card rounded-0">
+
+
+                                <div class="card-block">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalConditions" tabindex="-1" role="dialog" aria-labelledby="modalConditionsLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-footer">
+                        <button id="closeBtn" disabled type="button" class="btn btn-secondary"><?php echo $lang->trl('I accept the conditions'); ?></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalConditionsVentes" tabindex="-1" role="dialog" aria-labelledby="modalConditionsVentesLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                    </div>
+
+                    <div id="modalConditionsVentesContent" class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button id="closeBtnVentes" type="button" class="btn btn-success"><?php echo $lang->trl('I accept the sales conditions'); ?></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    $('#readconditions').click(function(event) {
+        event.preventDefault();
+    });
+
+    $('#acceptconditions').click(function(event) {
+        event.preventDefault();
+    });
+
+    // Conditions générales d'utilisations 
+    $('#modalConditionsContent').scroll(function() {
+        var check = $('#agreement').height() <= ($(this).scrollTop() + $(this).height());
+
+        if (check) {
+            $('#closeBtn').removeClass("btn-secondary");
+            $('#closeBtn').addClass("btn-success");
+            $('#closeBtn').removeAttr("disabled");
+        }
+    });
+
+    $('#closeBtn').click(function(event) {
+        $("#readconditions").prop("checked", true);
+        $("#modalConditions").modal('hide');
+    });
+
+
+    //Conditions de ventes
+    $('#modalConditionsVentesContent').scroll(function() {
+        var check = $('#agreementVentes').height() <= ($(this).scrollTop() + $(this).height());
+
+        if (check) {
+            $('#closeBtnVentes').removeClass("btn-secondary");
+            $('#closeBtnVentes').addClass("btn-success");
+            $('#closeBtnVentes').removeAttr("disabled");
+        }
+    });
+
+    $('#closeBtnVentes').click(function(event) {
+        $("#acceptconditions").prop("checked", true);
+        $("#modalConditionsVentes").modal('hide');
+    });
+</script>

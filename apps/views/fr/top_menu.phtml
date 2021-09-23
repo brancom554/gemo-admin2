@@ -1,0 +1,655 @@
+	<?php if ($iniObj->debugViews) echo __FILE__; ?>
+	<!-- Navbar -->
+
+	<!-- Header -->
+	<header id="js-header" class="u-header u-header--static u-shadow-v19">
+	  <!-- Top Bar -->
+	  <div class="u-header__section g-brd-bottom g-brd-gray-light-v4 g-bg-black g-transition-0_3">
+	    <div class="container">
+	      <div class="row justify-content-between align-items-center g-mx-0--lg">
+	        <div class="col-sm-auto g-hidden-sm-down">
+	          <!-- Social Icons -->
+	          <!-- <ul class="list-inline g-py-14 mb-0">
+	            <li class="list-inline-item">
+	              <a class="g-color-white-opacity-0_8 g-color-primary--hover g-pa-3" href="#">
+	                <i class="fa fa-facebook"></i>
+	              </a>
+	            </li>
+	            <li class="list-inline-item">
+	              <a class="g-color-white-opacity-0_8 g-color-primary--hover g-pa-3" href="#">
+	                <i class="fa fa-twitter"></i>
+	              </a>
+	            </li>
+	            <li class="list-inline-item">
+	              <a class="g-color-white-opacity-0_8 g-color-primary--hover g-pa-3" href="#">
+	                <i class="fa fa-tumblr"></i>
+	              </a>
+	            </li>
+	            <li class="list-inline-item">
+	              <a class="g-color-white-opacity-0_8 g-color-primary--hover g-pa-3" href="#">
+	                <i class="fa fa-pinterest-p"></i>
+	              </a>
+	            </li>
+	            <li class="list-inline-item">
+	              <a class="g-color-white-opacity-0_8 g-color-primary--hover g-pa-3" href="#">
+	                <i class="fa fa-google"></i>
+	              </a>
+	            </li>
+	          </ul> -->
+	          <!-- End Social Icons -->
+	        </div>
+
+	        <!-- <div class="col-sm-auto g-hidden-sm-down g-color-white-opacity-0_6 g-font-weight-400 g-pl-15 g-pl-0--sm g-py-14">
+	          <i class="icon-communication-163 u-line-icon-pro g-font-size-18 g-valign-middle g-color-white-opacity-0_8 g-mr-10 g-mt-minus-2"></i>
+	          0 000 0000 0000
+	        </div> -->
+
+	        <div class="col-sm-auto g-pos-rel g-py-14">
+	          <!-- List -->
+	          <ul class="list-inline g-overflow-hidden g-pt-1 g-mx-minus-4 mb-0">
+	            <li class="list-inline-item g-mx-4">
+	              <a class="g-color-white-opacity-0_6 g-color-primary--hover g-font-weight-400 g-text-underline--none--hover" href="#">FAQ</a>
+	            </li>
+
+	            <li class="list-inline-item g-color-white-opacity-0_3 g-mx-4">|</li>
+	            <li class="list-inline-item g-mx-4">
+	              <a class="g-color-white-opacity-0_6 g-color-primary--hover g-font-weight-400 g-text-underline--none--hover" href="#">Support en ligne</a>
+	            </li>
+
+	            <?php if ($_SESSION['customer']['authValidated'] == true) { ?>
+					<li class="list-inline-item g-color-white-opacity-0_3 g-mx-4">|</li>
+					<li class="list-inline-item g-mx-4">
+						<a class="g-color-white-opacity-0_6 g-color-primary--hover g-font-weight-400 g-text-underline--none--hover" href="/customer/logout/<?php echo $random; ?>">Se déconnecter</a>
+					</li>
+	            <?php } else { ?>
+					<li class="list-inline-item g-color-white-opacity-0_3 g-mx-4">|</li>
+					<!-- Account -->
+					<li class="list-inline-item g-mx-4">
+						<a class="g-color-white-opacity-0_6 g-color-primary--hover g-font-weight-400 g-text-underline--none--hover" href="/customer/login/<?php echo $random; ?>">Se connecter</a>
+					</li>
+					<!-- End Account -->
+				  	<li class="list-inline-item g-color-white-opacity-0_3 g-mx-4">|</li>
+					<li class="list-inline-item g-mx-4">
+					<a href="/customer/signup/<?= $lib->random(); ?>" class="btn btn-default g-color-white-opacity-0_6 g-color-primary--hover g-font-weight-400 g-text-underline--none--hover" >S'inscrire</a>
+					</li>
+	            <?php } ?>
+
+	            
+	          </ul>
+	          <!-- End List -->
+	        </div>
+
+	        <?php include _VIEW_PATH . $lib->lang . "/top_menu_shopping_cart.phtml"; ?>
+
+	      </div>
+	    </div>
+	  </div>
+	  </div>
+	  <!-- End Top Bar -->
+
+	  <div class="u-header__section u-header__section--light g-bg-white g-transition-0_3 g-py-10">
+	    <nav class="js-mega-menu navbar navbar-expand-lg">
+	      <div class="container">
+	        <!-- Responsive Toggle Button -->
+	        <button class="navbar-toggler navbar-toggler-right btn g-line-height-1 g-brd-none g-pa-0 g-pos-abs g-top-3 g-right-0" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navBar" data-toggle="collapse" data-target="#navBar">
+	          <span class="hamburger hamburger--slider g-pr-0">
+	            <span class="hamburger-box">
+	              <span class="hamburger-inner"></span>
+	            </span>
+	          </span>
+	        </button>
+	        <!-- End Responsive Toggle Button -->
+
+	        <!-- Logo -->
+	        <a class="navbar-brand" href="/<?= $lib->random(); ?>">
+	          <img src="<?php echo $iniObj->logoPath; ?>" alt="Occaz et neuf">
+	        </a>
+	        <!-- End Logo -->
+
+	        <!-- Navigation -->
+	        <div id="navBar" class="collapse navbar-collapse align-items-center flex-sm-row g-pt-15 g-pt-0--lg">
+	          <ul class="navbar-nav ml-auto">
+
+	            <!-- Accueil - Submenu -->
+	            <li class="nav-item g-mx-10--lg g-mx-15--xl">
+	              <a id="nav-link--home" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="/<?= $lib->random(); ?>">
+	                Accueil
+	              </a>
+	            </li>
+	            <!-- End Accueil - Submenu -->
+
+	            <!-- Prix en baisse - Submenu -->
+	            <li class="nav-item g-mx-10--lg g-mx-15--xl">
+	              <a class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="/prix_en_baisse">
+	                Prix en baisse
+	              </a>
+	            </li>
+	            <!-- End Prix en baisse - Submenu -->
+
+	            <!-- Magasins - Submenu -->
+	            <li class="nav-item hs-has-sub-menu g-mx-10--lg g-mx-15--xl">
+	              <a id="nav-link--pages" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--pages">
+	                Magasins
+	              </a>
+
+	              <!-- Submenu -->
+	              <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-min-width-220 g-brd-top g-brd-primary g-brd-top-2 g-mt-17" id="nav-submenu--pages" aria-labelledby="nav-link--pages">
+	                <?php foreach ($_magasins['data'] as $k => $val) {
+                    if (isset($val->magasin_url) && ($val->magasin_url != "")) {
+                  ?>
+	                    <li class="dropdown-item">
+	                      <a class="nav-link g-color-gray-dark-v4" href="/magasin_<?php echo $val->magasin_url; ?>"><?php echo $val->nom_magasin; ?></a>
+	                    </li>
+	                <?php }
+                  } ?>
+	              </ul>
+	              <!-- End Submenu -->
+	            </li>
+	            <!-- End Categories - Submenu -->
+
+
+	            <!-- Catégories - Submenu -->
+	            <!-- <li class="nav-item hs-has-sub-menu g-mx-10--lg g-mx-15--xl">
+                    <a id="nav-link--pages" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="#"
+                       aria-haspopup="true"
+                       aria-expanded="false"
+                       aria-controls="nav-submenu--pages">
+                    	Catégories
+                    </a> -->
+
+	            <!-- Submenu -->
+	            <!-- <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-min-width-220 g-brd-top g-brd-primary g-brd-top-2 g-mt-17" id="nav-submenu--pages"
+                        aria-labelledby="nav-link--pages">
+                        <?php //foreach($_categories['data'] as $k=>$val) { 
+                        //if(isset($val->categoryDescription)&&($val->categoryDescription !="")){
+                        ?>
+                          <li class="dropdown-item">
+                            <a class="nav-link g-color-gray-dark-v4" href="/espace_<?php //echo $val->categoryCode."_".$lib->cleanUrl($val->categoryDescription)
+                                                                                    ?>">
+                              <?php //echo $val->categoryDescription;
+                              ?> 
+                            </a>
+                          </li>
+                          <?php //}
+                          //}
+                          ?>
+                    </ul> -->
+	            <!-- End Submenu -->
+	            <!-- </li> -->
+	            <!-- End Categories - Submenu -->
+
+
+
+
+
+
+
+	            <!-- Catégories 
+                   <li class="nav-item hs-has-sub-menu g-mx-10--lg g-mx-15--xl">
+                    <a id="nav-link--pages" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="#"
+                       aria-haspopup="true"
+                       aria-expanded="false"
+                       aria-controls="nav-submenu--pages">
+                    	Catégories
+                    </a>
+                    <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-min-width-220 g-brd-top g-brd-primary g-brd-top-2 g-mt-17" id="nav-submenu--pages"
+                        aria-labelledby="nav-link--pages">
+
+                      <li class="dropdown-item">
+                        <a class="nav-link g-color-gray-dark-v4" href="/espace_CULTLOISIR_Culture_Loisirs_Sport">Culture / Loisirs / Sport</a>
+                      </li>
+                      <li class="dropdown-item">
+                        <a class="nav-link g-color-gray-dark-v4" href="/espace_DECO_Décoration">Décoration</a>
+                      </li>
+					            <li class="dropdown-item">
+                        <a class="nav-link g-color-gray-dark-v4" href="/espace_DIVERS_Divers">Divers</a>
+                      </li>
+					            <li class="dropdown-item">
+                        <a class="nav-link g-color-gray-dark-v4" href="/espace_ELECTROMEN_Electroménager">Electroménager</a>
+                      </li>
+					            <li class="dropdown-item">
+                        <a class="nav-link g-color-gray-dark-v4" href="/espace_EQUIPERSON_Equipement_de_la_personne">Equipement de la personne</a>
+                      </li>
+                      <li class="dropdown-item">
+                        <a class="nav-link g-color-gray-dark-v4" href="/espace_INFOJVIDEO_Informatique_Jeux_vidéo">Informatique / Jeux vidéo</a>
+                      </li>
+					            <li class="dropdown-item">
+                        <a class="nav-link g-color-gray-dark-v4" href="/espace_JAROUTANIM_Bricolage_Jardinage_Animalerie">Bricolage / Jardinage / Animalerie</a>
+                      </li>
+                      <li class="dropdown-item">
+                        <a class="nav-link g-color-gray-dark-v4" href="/espace_LITERIE_Literie">Literie</a>
+                      </li>
+                      <li class="dropdown-item">
+                        <a class="nav-link g-color-gray-dark-v4" href="/espace_MEUBLES_Meubles">Meubles</a>
+                      </li>
+                      <li class="dropdown-item">
+                        <a class="nav-link g-color-gray-dark-v4" href="/espace_TVSONMUL_Son_Image_Téléphonie">Son / Image / Téléphonie</a>
+                      </li>
+                      <li class="dropdown-item">
+                        <a class="nav-link g-color-gray-dark-v4" href="/espace_VEHICULE_Véhicules">Véhicules</a>
+                      </li>
+                    </ul>
+                  </li>
+                  End Categories - Submenu -->
+
+	            <!-- 
+                   <li class="hs-has-mega-menu nav-item g-mx-10--lg g-mx-15--xl"
+                      data-animation-in="fadeIn"
+                      data-animation-out="fadeOut"
+                      data-position="right">
+                    <a id="mega-menu-label-4" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="#" aria-haspopup="true" aria-expanded="false">
+                      Espace Produits
+                      <i class="hs-icon hs-icon-arrow-bottom g-font-size-11 g-ml-7"></i>
+                    </a>
+
+                    <div class="w-100 hs-mega-menu u-shadow-v11 g-text-transform-none g-brd-top g-brd-primary g-brd-top-2 g-bg-white g-pa-10 g-mt-10" aria-labelledby="mega-menu-label-4">
+                      <div class="row">
+                      <?php foreach ($sub_categories as $k => $val) {
+                      ?>
+                          <div class="col-sm-6 col-md-2 g-mb-30 g-mb-0--sm">
+                            <div class="mb-5">
+                              <span class="d-block g-font-weight-500 text-uppercase mb-2">
+                                <a href="/espace_ELECTROMEN_Electroménager"><?php echo $k ?></a>
+                              </span>
+
+                              <ul class="list-unstyled mb-0">
+                              <?php foreach ($val as $k_sub => $val_sub) {
+                              ?>
+                                <li>
+                                  <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_CHAUFFAGE_Chauffage/ELECTROMEN_Electroménager"><?php echo $val_sub->subCategoryDescription ?></a>
+                                </li>
+                                <?php } ?>
+                              </ul>
+                            </div>
+                          </div>
+                          <?php } ?>
+                      </div>
+                    </div>
+                    -->
+
+	            <!-- Espace Produits Menu Item -->
+	            <li class="hs-has-mega-menu nav-item g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut" data-position="right">
+	              <a id="mega-menu-label-4" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="#" aria-haspopup="true" aria-expanded="false">
+	                Espace Produits
+	                <i class="hs-icon hs-icon-arrow-bottom g-font-size-11 g-ml-7"></i>
+	              </a>
+
+	              <!-- Mega Menu -->
+	              <div class="w-100 hs-mega-menu u-shadow-v11 g-text-transform-none g-brd-top g-brd-primary g-brd-top-2 g-bg-white g-pa-30 g-mt-17" aria-labelledby="mega-menu-label-4">
+	                <div class="row">
+	                  <div class="col-sm-6 col-md-3 g-mb-30 g-mb-0--sm">
+	                    <!-- Links -->
+	                    <div class="mb-5">
+	                      <span class="d-block g-font-weight-500 text-uppercase mb-2">
+	                        <a href="/espace_ELECTROMEN_Electroménager">Electroménager</a>
+	                      </span>
+
+	                      <ul class="list-unstyled mb-0">
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_CHAUFFAGE_Chauffage/ELECTROMEN_Electroménager">Chauffage</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_CLIMAIR_Climatisation_Traitementdel'air/ELECTROMEN_Electroménager">Climatisation / Traitement de l'air</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_CUISSON_Cuisson/ELECTROMEN_Electroménager">Cuisson</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_ELECDIVERS_Divers/ELECTROMEN_Electroménager">Divers</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_ENTRETIEN_Entretien/ELECTROMEN_Electroménager">Entretien</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_FROID_Froid/ELECTROMEN_Electroménager">Froid</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_LAVAGE_Lavage/ELECTROMEN_Electroménager">Lavage</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_PETITELECT_Petit_Electro_Ménager/ELECTROMEN_Electroménager">Petit Electro-Ménager</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_CORPS_Soinducorps_Bienêtre/ELECTROMEN_Electroménager">Soin du corps / Bien être</a>
+	                        </li>
+
+	                      </ul>
+	                    </div>
+	                    <!-- End Links -->
+
+	                    <!-- Links -->
+	                    <span class="d-block g-font-weight-500 text-uppercase mb-2">
+	                      <a href="/espace_VEHICULE_Véhicules">Véhicules</a>
+	                    </span>
+
+	                    <ul class="list-unstyled">
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_VEACCESSO_Accessoires_Pièces_détachées/VEHICULE_Véhicules">Accessoires</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_CARAVANING_Caravaning/VEHICULE_Véhicules">Caravaning</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_VEHDIVERS_Divers/VEHICULE_Véhicules">Divers</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_2ROUESMOT_Moto_Scooter-Quad/VEHICULE_Véhicules">Moto / Scooter / Quad</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_NAUTISME_Nautisme/VEHICULE_Véhicules">Nautisme</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_UTILITAIRE_Utilitaires/VEHICULE_Véhicules">Utilitaires</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_VOITURE_Voiture/VEHICULE_Véhicules">Voiture</a>
+	                      </li>
+	                    </ul>
+	                    <!-- End Links -->
+	                  </div>
+
+	                  <div class="col-sm-6 col-md-2 g-mb-30 g-mb-0--sm">
+	                    <!-- Links -->
+	                    <div class="mb-5">
+	                      <span class="d-block g-font-weight-500 text-uppercase mb-2">
+	                        <a href="/espace_DECO_Décoration">Décoration</a>
+	                      </span>
+
+	                      <ul class="list-unstyled mb-0">
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_ANTIQBROC_Antiquité_Brocante/DECO_Décoration">Antiquité/Brocante</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_ARTTABLE_Artdelatable/DECO_Décoration">Art de la table</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_DECDIVERS_Divers/DECO_Décoration">Divers</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_LUMINAIRES_Luminaires/DECO_Décoration">Luminaires</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_MIROIR_Miroir/DECO_Décoration">Miroir</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_OBJDIVERS_Objetsdivers/DECO_Décoration">Objets divers</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_TABLEAU_Tableau_Art/DECO_Décoration">Tableau / Art</a>
+	                        </li>
+
+	                      </ul>
+	                    </div>
+	                    <!-- End Links -->
+
+	                    <!-- Links -->
+	                    <span class="d-block g-font-weight-500 text-uppercase mb-2">
+	                      <a href="/espace_EQUIPERSON_Equipement_de_la_personne">Equipement de la personne</a>
+	                    </span>
+
+	                    <ul class="list-unstyled">
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_PERACCESSO_Accessoires/EQUIPERSON_Equipement_de_la_personne">Accessoires</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_BIJOUX_Bijoux/EQUIPERSON_Equipement_de_la_personne">Bijoux</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_PERDIVERS_Divers/EQUIPERSON_Equipement_de_la_personne">Divers</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_SACBAGAGE_Maroquinerie_Bagages_Sacs/EQUIPERSON_Equipement_de_la_personne">Maroquinerie</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_MONTRE_Montres/EQUIPERSON_Equipement_de_la_personne">Montres</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_PARFUM_Parfum/EQUIPERSON_Equipement_de_la_personne">Parfum</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_VETENFANT_VetementEnfants/EQUIPERSON_Equipement_de_la_personne">Vetement Enfants</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_VETFEMME_VetementsFemme/EQUIPERSON_Equipement_de_la_personne">Vetement Femme</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_VETHOMME_VetementsHomme/EQUIPERSON_Equipement_de_la_personne">Vetement Homme</a>
+	                      </li>
+	                    </ul>
+	                    <!-- End Links -->
+	                  </div>
+
+	                  <div class="col-sm-6 col-md-2 g-mb-30 g-mb-0--sm">
+	                    <!-- Links -->
+	                    <div class="mb-5">
+	                      <span class="d-block g-font-weight-500 text-uppercase mb-2">
+	                        <a href="/espace_INFOJVIDEO_Informatique_Jeux_vidéo">Informatique / Jeux vidéo</a>
+	                      </span>
+
+	                      <ul class="list-unstyled mb-0">
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_ACCCONSOLE_Accessoiresconsole/INFOJVIDEO_Informatique_Jeux_vidéo">Accessoires console</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_ACCINFO_Accessoiresinformatique/INFOJVIDEO_Informatique_Jeux_vidéo">Accessoires informatique</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_CONSOLEJX_Consoledejeux/INFOJVIDEO_Informatique_Jeux_vidéo">Console de jeux</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_INFDIVERS_Divers/INFOJVIDEO_Informatique_Jeux_vidéo">Divers</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_JEUXVIDEO_Jeuxvidéo/INFOJVIDEO_Informatique_Jeux_vidéo">Jeux vidéo</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_PCFIXE_Ordinateurdebureau/INFOJVIDEO_Informatique_Jeux_vidéo">Ordinateur de bureau</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_PCPORTABLE_Ordinateurportable/INFOJVIDEO_Informatique_Jeux_vidéo">Ordinateur portable</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_TABLETTE_Tablette/INFOJVIDEO_Informatique_Jeux_vidéo">Tablette</a>
+	                        </li>
+
+	                      </ul>
+	                    </div>
+	                    <!-- End Links -->
+
+	                    <!-- Links -->
+	                    <span class="d-block g-font-weight-500 text-uppercase mb-2">
+	                      <a href="/espace_JAROUTANIM_Bricolage_Jardinage_Animalerie">Bricolage / Jardinage / Animalerie</a>
+	                    </span>
+
+	                    <ul class="list-unstyled">
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_ANIMALERIE_Accessoire-animalerie/JAROUTANIM_Bricolage_Jardinage_Animalerie">Accessoires</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_BRIDIVERS_Divers/JAROUTANIM_Bricolage_Jardinage_Animalerie">Divers</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_MATBRICO_Materiel_de_Bricolage/JAROUTANIM_Bricolage_Jardinage_Animalerie">Materiel de Bricolage</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_MATJARDIN_Materiel_de_Jardinage/JAROUTANIM_Bricolage_Jardinage_Animalerie">Materiel de jardiange</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_MOBJARDIN_Mobilier_de_jardin/JAROUTANIM_Bricolage_Jardinage_Animalerie">Mobilier de jardin</a>
+	                      </li>
+	                    </ul>
+	                    <!-- End Links -->
+	                  </div>
+
+	                  <div class="col-sm-6 col-md-2 g-mb-30 g-mb-0--sm">
+	                    <!-- Links -->
+	                    <div class="mb-5">
+	                      <span class="d-block g-font-weight-500 text-uppercase mb-2">
+	                        <a href="/espace_LITERIE_Literie">Literie</a>
+	                      </span>
+
+	                      <ul class="list-unstyled mb-0">
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_LITACCESSO_Accessoires/LITERIE_Literie">Accessoires</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_LITDIVERS_Divers/LITERIE_Literie">Divers</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_MATELAS_Matelas/LITERIE_Literie">Matelas</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_SOMMIER_Sommiers/LITERIE_Literie">Sommiers</a>
+	                        </li>
+	                      </ul>
+	                    </div>
+	                    <!-- End Links -->
+
+	                    <!-- Links -->
+	                    <span class="d-block g-font-weight-500 text-uppercase mb-5">
+	                      <a href="/espace_MEUBLES_Meubles">Meubles</a>
+	                    </span>
+
+	                    <ul class="list-unstyled">
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_ANTIQMEUB_Antiquité_Brocante/MEUBLES_Meubles">Antiquité / Brocante</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_BUREAU_Bureau/MEUBLES_Meubles">Bureau</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_CHAMBRE_Chambre/MEUBLES_Meubles">Chambre</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_CUISINE_Cuisine/MEUBLES_Meubles">Cuisine</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_MEUDIVERS_Divers/MEUBLES_Meubles">Divers</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_RANGEMENT_Rangement/MEUBLES_Meubles">Rangement</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_SDBAIN_Salle_de_bain/MEUBLES_Meubles">Salle de bain</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_SALONCANA_Salon_Canapé/MEUBLES_Meubles">Salon / Canapé</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_SAMSEJOUR_Séjour_Salle_a_manger/MEUBLES_Meubles">Séjour / Salle à manger</a>
+	                      </li>
+	                    </ul>
+	                    <!-- End Links -->
+
+
+	                    <!-- Links -->
+	                    <span class="d-block g-font-weight-500 text-uppercase mb-2">
+	                      <a href="/espace_DIVERS_Divers">Divers</a>
+	                    </span>
+
+	                    <ul class="list-unstyled">
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_DIVERS1_Divers/DIVERS_Divers">Divers</a>
+	                      </li>
+	                    </ul>
+	                    <!-- End Links -->
+	                  </div>
+
+	                  <div class="col-sm-6 col-md-3 g-mb-30 g-mb-0--sm">
+	                    <!-- Links -->
+	                    <div class="mb-5">
+	                      <span class="d-block g-font-weight-500 text-uppercase mb-2">
+	                        <a href="/espace_VEHICULE_Véhicules">Son / Image / Téléphonie</a>
+	                      </span>
+
+	                      <ul class="list-unstyled mb-0">
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_TVACCESSO_Accessoires/TVSONMUL_Son_Image_Téléphonie">Accessoires</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_TVDIVERS_Divers/TVSONMUL_Son_Image_Téléphonie">Divers</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_SON_Hifi_Radio_Balladeurs/TVSONMUL_Son_Image_Téléphonie">Hifi, Radio, Balladeurs</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_INSTRMUSIQ_Instruments_de_Musique/TVSONMUL_Son_Image_Téléphonie">Instruments de Musique</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_PHOTOS_Photos/TVSONMUL_Son_Image_Téléphonie">Photos</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_TELFIXE_Téléphone_fixe/TVSONMUL_Son_Image_Téléphonie">Téléphone fixe</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_TELMOBILE_Téléphone_mobile_Smartphone/TVSONMUL_Son_Image_Téléphonie">Téléphone mobile / Smartphone</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_TELEVISION_Télévision/TVSONMUL_Son_Image_Téléphonie">Télévision</a>
+	                        </li>
+	                        <li>
+	                          <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_VIDEO_Vidéo_HomeCinéma/TVSONMUL_Son_Image_Téléphonie">Vidéo - Home Cinéma</a>
+	                        </li>
+	                      </ul>
+	                    </div>
+	                    <!-- End Links -->
+
+	                    <!-- Links -->
+	                    <span class="d-block g-font-weight-500 text-uppercase mb-2">
+	                      <a href="/espace_EQUIPERSON_Equipement_de_la_personne">Culture / Loisirs / Sport</a>
+	                    </span>
+
+	                    <ul class="list-unstyled">
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_CDVINYL_CD_Vinyl/CULTLOISIR_Culture_Loisirs_Sport">CD / Vinyl</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_CULDIVERS_Divers/CULTLOISIR_Culture_Loisirs_Sport">Divers</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_DVDBLURAY_DVD_BluRay_VHS/CULTLOISIR_Culture_Loisirs_Sport">DVD / Blu Ray / VHS</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_FITNESS_Fitness/CULTLOISIR_Culture_Loisirs_Sport">Fitness</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_JOUET_Jouets/CULTLOISIR_Culture_Loisirs_Sport">Jouets</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_LIVRE_Livres_Bandesdessinées/CULTLOISIR_Culture_Loisirs_Sport">Livres / Bandes dessinées</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_LOISIRS_LoisirsDivers/CULTLOISIR_Culture_Loisirs_Sport">Loisirs Divers</a>
+	                      </li>
+	                      <li>
+	                        <a class="d-block g-color-text g-color-primary--hover g-text-underline--none--hover g-py-5" href="/rayon_VELO_Vélo/CULTLOISIR_Culture_Loisirs_Sport">Vélo</a>
+	                      </li>
+	                    </ul>
+	                    <!-- End Links -->
+	                  </div>
+	                </div>
+	              </div>
+	              <!-- End Mega Menu -->
+	            </li>
+	            <!-- End Mega Menu Item -->
+
+				<li class="nav-item g-mx-10--lg g-mx-15--xl">
+	              <a id="nav-link" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="/professionnels/<?php echo $random; ?>">
+	                Nos magasins
+	              </a>
+	            </li>
+
+	            <!-- Espace déposnat - Submenu -->
+	            <li class="nav-item g-mx-10--lg g-mx-15--xl">
+	              <a id="nav-link" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="/<?php echo $iniObj->serviceName; ?>/home/<?php echo $random; ?>">
+	                Espace déposant
+	              </a>
+	            </li>
+	            <!-- Espace déposnat - Submenu -->
+	            
+	        </div>
+	    </nav>
+	  </div>
+	</header>
+	<!-- End Header -->
+	

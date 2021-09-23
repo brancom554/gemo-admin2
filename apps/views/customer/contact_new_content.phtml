@@ -1,0 +1,219 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <!-- <h1>Ajouter un contact</h1> -->
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Ajouter un contact</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- left column -->
+        <div class="col-md-8">
+          <!-- general form elements -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Add a contact</h3>
+            </div>
+
+            <header class="text-center mb-4">
+              <div class="text-danger">
+                <h6 id="error_message"></h6>
+              </div>
+              <div class="text-success">
+                <h6 id="success_message"></h6>
+              </div>
+            </header>
+            <!-- /.card-header -->
+            <!-- form start -->
+
+            <form action="" method="POST">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="first_name">First name</label>
+                  <input type="text" name="first_name" class="form-control" id="first_name" placeholder="John">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Last name</label>
+                  <input type="text" name="last_name" class="form-control" id="last_name" placeholder="DOE">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Phone number</label>
+                  <input type="text" name="phone_number" class="form-control" id="phone_number" placeholder="+185476935422">
+                </div>
+                <div class="form-group">
+                  <label for="fonction">Title</label>
+                  <input type="text" name="fonction" class="form-control" id="fonction" placeholder="Marketer">
+                </div>
+                <div class="form-group">
+                  <label for="company">Company</label>
+                  <select name="company" id="company">
+                    <option value="">Select a company</option>
+                    <?php foreach ($companies as $company) { ?>
+                      <option value="<?= $company->company_id ?>"><?= $company->company_name ?></option>
+                    <?php  } ?>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="interest_level">Company type</label>
+                  <select name="interest_level" id="interest_level">
+                    <option value="">Select a type for the company</option>
+                    <option value="interested">Interested</option>
+                    <option value="non_interested">Non-interested</option>
+                    <option value="customer">Customer</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email address</label>
+                  <input type="email" name="email" class="form-control" id="email" placeholder="Enter email">
+                </div>
+                <!-- <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" class="form-control" id="password">
+                  </div> -->
+                <!-- <div class="form-group">
+                    <label >Select your avatar</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" name="avatar" class="custom-file-input" id="avatar">
+                        <label class="custom-file-label" for="avatar">Choose file</label>
+                      </div>
+                      <div class="input-group-append">
+                        <span class="input-group-text">Upload</span>
+                      </div>
+                    </div>
+                  </div> -->
+                <div class="form-check">
+                  <input type="checkbox" name="is_active" class="form-check-input" id="is_active">
+                  <label class="form-check-label" for="is_active">Is active</label>
+                </div>
+                <div class="form-check">
+                  <input type="checkbox" name="is_manager" class="form-check-input" id="is_manager">
+                  <label class="form-check-label" for="is_manager">Is manager</label>
+                </div>
+              </div>
+              <!-- /.card-body -->
+
+              <div class="card-footer">
+                <button type="button" id="submit_contact" class="btn btn-primary pull-right">Submit</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.card -->
+
+
+        </div>
+        <div class="col-md-4">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Add a contact</h3>
+            </div>
+            <form method="POST" action="/customer/saveNewContact/" enctype="multipart/form-data">
+              <input type="hidden" name="is_csv" />
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Importer un fichier CSV</label>
+                  <input type="file" name="contacts_csv" class="form-control" id="contacts_csv" accept=".csv"/><br>
+                  <button class="btn btn-success btn-sm" type="submit" name="importcsv" id="importcsv">Enregistrer</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+
+<script>
+  $('#submit_contact').click(function() {
+    saveContact();
+  })
+
+  function saveContact() {
+    document.getElementById('submit_contact').innerHTML = "Enregistrement en cours. Veuillez patienter  ... <i class='fa fa-spinner fa-spin'></i>";
+
+
+    var first_name = encodeURIComponent($("#first_name").val());
+    var last_name = encodeURIComponent($("#last_name").val());
+    var phone_number = encodeURIComponent($("#phone_number").val());
+    var fonction = encodeURIComponent($("#fonction").val());
+    var company = encodeURIComponent($("#company").val());
+    var interest_level = encodeURIComponent($("#interest_level").val());
+    var email = encodeURIComponent($("#email").val());
+    var is_active = encodeURIComponent($("#is_active").val());
+    var is_manager = encodeURIComponent($("#is_manager").val());
+    var is_csv = 0;
+
+
+    // alert(code_naf)
+    $.ajax({
+      url: '/customer/saveNewContact/',
+      type: 'POST',
+      data: {
+        first_name: first_name,
+        last_name: last_name,
+        phone_number: phone_number,
+        fonction: fonction,
+        company: company,
+        interest_level: interest_level,
+        email: email,
+        is_active: is_active,
+        is_manager: is_manager,
+        is_csv: is_csv
+      },
+
+      success: function(msg) {
+        var val = msg.split('||');
+        console.log(msg);
+        if (val[0] == "false") {
+          $("#error_message").html(val[1]);
+          $("#error_message").show();
+          $("#submit_contact").attr("disabled", false);
+          $("#submit_contact").html("Enregistrer");
+
+        } else if (val[0] == "true") {
+          $("#success_message").html(val[1]);
+          $("#error_message").html("");
+          $("#success_message").show();
+          $("#submit_contact").html(val[1]).attr("disabled", true);
+
+          rnd = Math.random();
+          window.location.href = '/customer/contacts/' + rnd;
+
+
+        }
+
+      },
+      error: function(resultat, statut, erreur) {
+        $("#error_message").html("Une erreur s'est produite. Veuillez réessayer. <i class='fa fa-stop-circle'></i>");
+        console.log('Resultat : ' + resultat);
+        console.log('Statut : ' + statut);
+        console.log('Erreur : ' + erreur);
+      }
+    });
+
+  }
+</script>

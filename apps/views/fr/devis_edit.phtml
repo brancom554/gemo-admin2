@@ -1,0 +1,76 @@
+<?php
+require __DIR__.'vendor/autoload.php';
+
+use Spipu\Html2Pdf\Html2Pdf;
+use Spipu\Html2Pdf\Exception\Html2PdfException;
+use Spipu\Html2Pdf\Exception\ExceptionFormatter;
+
+
+$html='
+<style>
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+td{
+	font-size:1.3rem !important
+}
+</style>
+<div>
+	<div><img style="width:200px" src="/images/logo.png" alt="Logo"  srcset=""></div>
+	<div style="text-align:center"> 
+		<h1>DEMANDE DE DEVIS</h1>
+	</div>
+	<div style="margin:0 auto;width:50%">
+		<table style="border: 1px solid #007b2e !important;">
+			<thead>
+				<tr style="background:#1D539A; color:white">
+					<th colspan="2" style="font-size:1.5rem;">Informations générales</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td style="padding:5px;font-size:1rem;">Nom :</td>
+					<td style="padding:5px;font-size:1rem">gozgzgzgkpzgpz</td>
+				</tr>
+				<tr>
+					<td style="padding:5px;font-size:1rem">Email :</td>
+					<td style="padding:5px;font-size:1rem">gozgzgzgkpzgpz</td>
+				</tr>
+				<tr>
+					<td style="padding:5px;font-size:1rem">Contact :</td>
+					<td style="padding:5px;font-size:1rem">gozgzgzgkpzgpz</td>
+				</tr>
+				<tr>
+					<td style="padding:5px;font-size:1rem">Type de service :</td>
+					<td style="padding:5px;font-size:1rem">gozgzgzgkpzgpz</td>
+				</tr>
+				<tr>
+					<td style="padding:5px;font-size:1rem">Spécificité :</td>
+					<td style="padding:5px;font-size:1rem">gozgzgzgkpzgpz</td>
+				</tr>
+				<tr>
+					<td style="padding:5px;font-size:1rem">Budget :</td>
+					<td style="padding:5px;font-size:1rem">gozgzgzgkpzgpz</td>
+				</tr>
+				<tr>
+					<td style="padding:5px;font-size:1rem">Delai :</td>
+					<td style="padding:5px;font-size:1rem">1 mois</td>
+				</tr>
+				<tr>
+					<td style="padding:5px;font-size:1rem">Message :</td>
+					<td style="padding:5px;font-size:1rem">
+						<p>skfgnksgnkfslnbksfnb zngknrzknzk zgzo kokgoer jgnzigirzj zogkzkg^zkgo zogpoznirzi izgizninklzngklzn zmg,zniznhikinhienh ohzo,z*tjk eeh8ehekhkenhn ngiznne inkpzjpzh rzzoptjhhoehjephjo</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+';
+
+$html2pdf = new Html2Pdf('P', 'A4', 'fr', true, 'UTF-8', 3);
+$html2pdf->writeHTML($html);
+$html2pdf->output();

@@ -1,0 +1,45 @@
+<?php include _VIEW_PATH."/common_header.phtml";?>
+
+<?php include _VIEW_PATH."common_top_bar.phtml";?>
+
+	<main>
+        <div>
+            <span class="main-title font-1">Modification une catégorie</span>
+            <div class="track">
+                <span <?php if($page_requested =="configurations"){ ?> class="actives" <?php } ?>><?php echo $page_requested;?></span><span>/</span><span><?php echo $url_array[2];?></span><span>/</span><span><?php echo $url_array[3];?></span>
+            </div>
+            
+            <div class="form">
+                <form action="" method="post">
+                    <div class="form-content">
+                        <div class="input-form margin-bottom-20">
+                            <label for="licence">Libellé de la catégorie</label>
+                            <input class="form-input" type="text" name="libelle" id="" value="<?php echo $data['categorie']['libelle'] ?>" >
+                            <?php if(isset($messages)):?>
+                                <span class="notification"><?php echo $messages ?></span>
+                            <?php endif;?>
+                        </div>
+                        
+                        <div class="input-form">
+                            <label for="type">Types</label>
+                            <select class="form-select margin-bottom-20" name="type" id="type">
+                                <option value="">Sélectionne un type</option>
+                                <option value="1">SERVICES TELEPHONIQUES</option>
+                                <option value="2">SERVICES FINANCIERS</option>
+                            </select>
+                            <?php if(isset($message)):?>
+                                <span class="notification"><?php echo $message ?></span>
+                            <?php endif;?>
+                        </div>
+                        
+                    </div>
+                    <div class="margin-bottom-20">
+                        <button class="form-button" name="soumettre" type="submit">MODIFIER LE TYPE</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+<?php include _VIEW_PATH.$lib->lang."/common_footer.phtml";?>
+<?php include _VIEW_PATH."/common_include_files.phtml";?>

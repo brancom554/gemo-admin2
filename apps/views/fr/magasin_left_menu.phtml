@@ -1,0 +1,73 @@
+<?php if($iniObj->debugViews) echo __FILE__ ; ?>
+
+	<!-- Filters -->
+	<div class="col-md-3 g-brd-right--lg g-brd-gray-light-v4 g-pt-40">
+		<div class="g-pr-15--lg g-pt-60">
+			<div class="card">
+				<div class="card-body">
+					<h4 class="mb-3">A propos du magasin</h4>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item"><strong><?php echo $storeDetail->storeName;?></strong></li>
+					<li class="list-group-item">
+						<strong>Adresse :</strong> <?php echo $storeDetail->adresse1." - ".$storeDetail->adresse2;?>
+						<br><?php echo $storeDetail->storeZipCode ." - ".$storeDetail->storeCity;?>
+					</li>
+					<li class="list-group-item"><strong>Téléphone : </strong><?php echo $storeDetail->telephone1;?></li>
+				</ul>
+				<div class="card-body">
+					<?php echo $storeDetail->comments;?>
+				</div>
+			</div>
+
+			<hr>
+
+			<!-- Categories -->
+			<div class="g-mb-30">
+				<h2 class="mb-3">Espaces</h2>
+				<ul class="list-unstyled">
+					<?php foreach($categories['data'] as $key=>$val) { ?>
+						<li class="my-4">
+							<a href="/magasin_<?php echo $val->storeUrl;?>_<?php echo $val->storeCity;?>/<?php echo $val->categoryCode."_".$lib->cleanUrl($val->categoryDescription);
+							?>" class="d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover">
+								<?php echo $val->categoryDescription;?> 
+								<span class="float-right g-font-size-12">
+								(<?php echo $val->totalProduct;?>)
+								</span>
+							</a>
+						</li>
+					<?php } ?>
+				</ul>
+			</div>
+			<!-- End Categories -->
+			<hr>
+			
+			<?php if(($subCategories)){ 
+				if(sizeof($subCategories)>0){
+					?>
+					<!-- Sub Categories -->
+					<div class="g-mb-30">
+					<h2 class="mb-3">Rayons</h2>
+					<ul class="list-unstyled">
+						<?php foreach($subCategories['data'] as $k=>$v) { ?>
+							<li class="my-3">
+								<a class="d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" 
+									href="/magasin_<?php echo $val->storeUrl;?>_<?php echo $val->storeCity;?>/<?php echo $v->categoryCode."_".$lib->cleanUrl($v->categoryDescription);
+										?>/<?php echo $v->subCategoryCode."_".$lib->cleanUrl( $v->subCategoryDescription);?>"
+									><?php echo $v->subCategoryDescription;?>
+									<span class="float-right g-font-size-12">
+									(<?php echo $v->totalProduct;?>)
+									</span>
+								</a>
+							</li>
+						<?php } ?>
+					</ul>
+					</div>
+					<!-- End Sub Categories -->
+
+					<hr>
+				<?php } 
+			}?>
+
+		</div>
+	</div>

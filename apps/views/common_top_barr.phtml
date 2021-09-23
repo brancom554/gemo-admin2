@@ -1,0 +1,254 @@
+<input type="checkbox" id="sidebar-toggle">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3 class="brand">
+                <!--<span class="ti-unlink"></span>
+                <span>GEMO</span>-->
+                <img src="<?php $lib->customerSite ?>/UIResources/logo.png" alt="Logo GEMO" class="logo" srcset="">
+            </h3>
+            <label for="sidebar-toggle" class="fas fa-list" id="label"></label>
+        </div>
+        <!--<nav class="sidebar-menu">-->
+            <ul class="sidebar-menu">
+                <?php if($_SESSION['access'] ==='1' || $_SESSION['access'] ==='2'):?>
+                    <li <?php if($page_requested =="dashboard"){ ?> class="active" <?php } ?>>
+                        <div class="icon-link">
+                            <a href="<?php $lib->customerSite ?>/dashboard">
+                                <div class="menus-div">
+                                    <div class="menus-div-i">
+                                        <i class="fa fa-table"></i>
+                                    </div>
+                                    <div>
+                                        <span class="link_name">Tableau de bord</span>
+                                    </div>
+                                </div> 
+                            </a>
+                        </div>
+                        <ul class="sub-menu blank">
+                            <li><a class="link_name" href="<?php $lib->customerSite ?>/dashboard">Tableau de bord</a></li>
+                        </ul>
+                    </li>
+                    <li <?php if($page_requested =="operation"){ ?> class="active" <?php } ?>>
+                        <div class="icon-link">
+                            <a href="#">
+                            <div class="menus-div">
+                                <div class="menus-div-i">
+                                    <i class="fa fa-exchange-alt" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <span class="link_name">Opérations</span>
+                                </div>
+                            </div>  
+                            </a>
+                            <i class="fa fa-caret-down arrow"></i>
+                        </div>
+                        <ul class="sub-menu showMenu">
+                            <li><a class="link_name" href="<?php $lib->customerSite ?>/operation/historique">Historique</a></li>
+                        </ul>
+                    </li>
+                <?php endif;?>
+                <?php if($_SESSION['access'] ==2):?>
+                    <li <?php if($page_requested =="utilisateurs"){ ?> class="active" <?php } ?>>
+                        <div class="icon-link">
+                            <a href="<?php $lib->customerSite ?>/utilisateurs">
+                                <div class="menus-div">
+                                    <div class="menus-div-i">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                    <div>
+                                        <span class="link_name">Utilisateurs</span>
+                                    </div>
+                                </div> 
+                            </a>
+                        </div>
+                        <ul class="sub-menu blank">
+                            <li><a class="link_name" href="<?php $lib->customerSite ?>/utilisateurs">Utilisateurs</a></li>
+                        </ul>
+                    </li>
+                    <!--<li <?php if($page_requested =="marchands"){ ?> class="active" <?php } ?>>
+                        <div class="icon-link">
+                            <a href="<?php $lib->customerSite ?>/super/manager">
+                                <div class="menus-div">
+                                    <div class="menus-div-i">
+                                        <i class="fa fa-table"></i>
+                                    </div>
+                                    <div>
+                                        <span class="link_name">Marchands</span>
+                                    </div>
+                                </div> 
+                            </a>
+                        </div>
+                        <ul class="sub-menu blank">
+                            <li><a class="link_name" href="<?php $lib->customerSite ?>/super/manager">Marchands</a></li>
+                        </ul>
+                    </li>-->
+                    <li <?php if($page_requested =="agents"){ ?> class="active" <?php } ?>>
+                        <div class="icon-link">
+                            <a href="<?php $lib->customerSite ?>/super/manager">
+                                <div class="menus-div">
+                                    <div class="menus-div-i">
+                                        <i class="fa fa-table"></i>
+                                    </div>
+                                    <div>
+                                        <span class="link_name">Agents/ Manager</span>
+                                    </div>
+                                </div> 
+                            </a>
+                        </div>
+                        <ul class="sub-menu blank">
+                            <li><a class="link_name" href="<?php $lib->customerSite ?>/super/manager">Agents/ Manager</a></li>
+                        </ul>
+                    </li>
+                    <li <?php if($page_requested =="offres"){ ?> class="active" <?php } ?>>
+                        <div class="icon-link">
+                            <a href="<?php $lib->customerSite ?>/configurations/types_licences">
+                                <div class="menus-div">
+                                    <div class="menus-div-i">
+                                        <i class="fa fa-table"></i>
+                                    </div>
+                                    <div>
+                                        <span class="link_name">Offres</span>
+                                    </div>
+                                </div> 
+                            </a>
+                        </div>
+                        <ul class="sub-menu blank">
+                            <li><a class="link_name" href="<?php $lib->customerSite ?>/configurations/types_licences">Offres</a></li>
+                        </ul>
+                    </li>
+                    <li <?php if($page_requested =="licences"){ ?> class="active" <?php } ?>>
+                        <div class="icon-link">
+                            <a href="<?php $lib->customerSite ?>/licences">
+                                <div class="menus-div">
+                                    <div class="menus-div-i">
+                                        <i class="fa fa-key"></i>
+                                    </div>
+                                    <div>
+                                        <span class="link_name">Licences</span>
+                                    </div>
+                                </div> 
+                            </a>
+                        </div>
+                        <ul class="sub-menu blank">
+                            <li><a class="link_name" href="<?php $lib->customerSite ?>/licences">Licences</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li <?php if($page_requested =="configurations"){ ?> class="active" <?php } ?>>
+                        <div class="icon-link">
+                            <a href="#">
+                            <div class="menus-div">
+                                <div class="menus-div-i">
+                                    <i class="fa fa-wrench"></i>
+                                </div>
+                                <div>
+                                    <span class="link_name">Configurations</span>
+                                </div>
+                            </div>                                
+                            </a>
+                            <i class="fa fa-caret-down arrow"></i>
+                        </div>
+                        <ul class="sub-menu showMenu">
+                            <li><a class="link_name"  href="<?php $lib->customerSite ?>/configurations/service">Services</a></li>
+                            <li><a class="link_name"  href="<?php $lib->customerSite ?>/configurations/pays">Pays</a></li>
+                            <li><a class="link_name"  href="<?php $lib->customerSite ?>/configurations/addresses">Addresses</a></li>
+                            <li><a class="link_name"  href="<?php $lib->customerSite ?>/configurations/categories">Catégories</a></li>
+                            <li><a class="link_name"  href="<?php $lib->customerSite ?>/configurations/ussd">Code USSD</a></li>
+                            <li><a class="link_name"  href="<?php $lib->customerSite ?>/configurations/operateurs">Opérateurs</a></li>
+                            <li><a class="link_name"  href="<?php $lib->customerSite ?>/configurations/sécurite">Sécurité</a></li>
+                            <li><a class="link_name"  href="<?php $lib->customerSite ?>/configurations/profil">Profils</a></li>
+                        </ul>
+                    </li>
+                <?php endif;?>
+                <?php if($_SESSION['access'] ==='1'):?>
+                    <div>
+                    <li <?php if($page_requested =="administration"){ ?> class="active" <?php } ?>>
+                    <div class="icon-link">
+                        <a href="#">
+                            <div class="menus-div">
+                                <div class="menus-div-i">
+                                    <i class="fa fa-cog"></i>
+                                </div>
+                                <div>
+                                    <span class="link_name">Administration</span>
+                                </div>
+                            </div>
+                            
+                        </a>
+                        <i class="bi bi-caret-down-fill"></i>
+                        <i class="fa fa-caret-down arrow"></i>
+                    </div>
+                    <ul class="sub-menu showMenu">
+                        <li><a  class="link_name" href="<?php $lib->customerSite ?>/administration/inventaire/liste">Inventaire</a></li>
+                        <!--<li><a  class="link_name"  href="<?php $lib->customerSite ?>/administration/inventaire">Inventaire</a></li>
+                        <li><a  class="link_name" href="<?php $lib->customerSite ?>/administration/rapport">Rapport de vente</a></li>-->
+                        <li><a  class="link_name" href="<?php $lib->customerSite ?>/administration/agent">Licences</a></li>
+                        <li><a  class="link_name" href="<?php $lib->customerSite ?>/administration/utilisateurs">Utilisateurs</a></li>
+                    </ul>
+                </li>
+                    </div>
+                
+                <?php endif;?>
+                <?php if($_SESSION['access'] ==='2'):?>
+                    <li <?php if($page_requested =="super"){ ?> class="active" <?php } ?>>
+                    <div class="icon-link">
+                        <a href="#">
+                            <div class="menus-div">
+                                <div class="menus-div-i">
+                                    <i class="fa fa-clipboard-list"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="link_name">Super Admin</span>
+                            </div>
+                        </a>
+                        <i class="fa fa-caret-down arrow"></i>
+                    </div>
+                        
+                        <ul class="sub-menu showMenu">
+                            <li><a class="link_name"  href="<?php $lib->customerSite ?>/super/compagnies">Les compagnies</a></li>
+                            <li><a class="link_name"  href="<?php $lib->customerSite ?>/super/manager">Managers</a></li>
+                            <!--<li><a class="link_name"  href="<?php $lib->customerSite ?>/">Rapport</a></li>
+                            <li><a class="link_name"  href="<?php $lib->customerSite ?>/">Sites déployées</a></li>-->
+                        </ul>
+                    </li>
+                    <!--<li <?php if($page_requested =="application"){ ?> class="active" <?php } ?>>
+                        <div class="icon-link">
+                            <a href="<?php $lib->customerSite ?>/super/manager">
+                                <div class="menus-div">
+                                    <div class="menus-div-i">
+                                        <i class="fa fa-table"></i>
+                                    </div>
+                                    <div>
+                                        <span class="link_name">Application</span>
+                                    </div>
+                                </div> 
+                            </a>
+                        </div>
+                        <ul class="sub-menu blank">
+                            <li><a class="link_name" href="<?php $lib->customerSite ?>/super/manager">Application</a></li>
+                        </ul>
+                    </li>-->
+                <?php endif;?>
+            </ul>
+        <!--</nav>-->
+    </div>
+    <div class="main-content">
+        <header>
+            <div class="search-wrapper">
+                
+                <img src="<?php $lib->customerSite ?>/UIResources/logo.png" alt="Logo GEMO" class="logo"style="display:none" srcset="">
+                    
+                
+                <!--<span class="fas fa-search"></span>
+                <input type="search" placeholder="Rechercher...">-->
+            </div>
+            <div class="social-icons">
+                <button class="dropbtn"><?=$_SESSION['username']?><i class="fa fa-caret-down margin-left-15"></i></button>
+                <div class="dropdown-content">
+                        <a href="<?php $lib->customerSite ?>/deconnecter">Déconnection</a>
+                </div>
+            </div>
+        </header>
+   <!-- START Main Header -->
+   

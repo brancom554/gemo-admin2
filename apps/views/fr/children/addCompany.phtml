@@ -1,0 +1,52 @@
+<?php include _VIEW_PATH."/common_header.phtml";?>
+
+<?php include _VIEW_PATH."common_top_bar.phtml";?>
+
+	<main>
+        <div>
+            <span class="main-title font-1">Création d'une compagnie</span>
+            <div class="track">
+                <span <?php if($page_requested =="configurations"){ ?> class="actives" <?php } ?>><?php echo $page_requested;?></span><span>/</span><span><?php echo $url_array[2];?></span><span>/</span><span>Création</span>
+            </div>
+            <div class="form">
+                <form action="ajouter" method="post">
+                    <div class="form-content">
+                        <div class="input-form margin-bottom-20">
+                            <label for="libelle">Désignation</label>
+                            <input class="form-input" type="text" name="libelle" id="" value="" >
+                            <?php if(isset($message)):?>
+                                <span class="notification"><?php echo $message ?></span>
+                            <?php endif;?>
+                        </div>
+                        
+                        <div class="input-form margin-bottom-20">
+                            <label for="rccm">N° RCCM</label>
+                            <input class="form-input" type="text" name="rccm" id="" value="">
+                        </div>
+                        
+                    </div>
+                    <div class="form-content">
+                        <div class="input-form margin-bottom-20">
+                            <label for="ifu">N°IFU</label>
+                            <input class="form-input" type="text" name="ifu" id="" value="" >
+                            <?php if(isset($message)):?>
+                                <span class="notification"><?php echo $message ?></span>
+                            <?php endif;?>
+                        </div>
+                        
+                        <div class="input-form margin-bottom-20">
+                            <label for="token">Token</label>
+                            <input class="form-input" type="text" name="token" id="" value="">
+                        </div>
+                        
+                    </div>
+                    <div class="margin-bottom-20">
+                        <button class="form-button" name="soumettre" type="submit">CREER UNE COMPAGNIE</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+<?php include _VIEW_PATH.$lib->lang."/common_footer.phtml";?>
+<?php include _VIEW_PATH."/common_include_files.phtml";?>

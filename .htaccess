@@ -1,0 +1,42 @@
+# Options +FollowSymlinks
+# RewriteEngine on
+#RewriteCond %{REMOTE_ADDR} !=81.65.16.191
+#RewriteCond %{REQUEST_URI} !=/maintenance.phtml
+#RewriteRule .* /maintenance.phtml [R=302,L]
+
+#see http://expressionengine.com/wiki/Remove_index.php_From_URLs/ and use .File and Directory Check. Method
+
+# SetEnv INSTANCE OVH
+SetEnv PHP_VER 5
+
+#<ifModule mod_php4.c>
+#php_value zlib.output_compression off
+#</ifModule>
+
+## enable rewrites
+
+    Options +FollowSymLinks
+    RewriteEngine on
+
+############################################
+## workaround for HTTP authorization
+## in CGI environment
+
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+############################################
+## always send 404 on missing files in these folders
+
+    RewriteCond %{REQUEST_URI} !^/(media|skin|js)/
+
+############################################
+## never rewrite for existing files, directories and links
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-l
+
+############################################
+## rewrite everything else to index.php
+
+        RewriteRule .* index.php [L]

@@ -1,0 +1,70 @@
+<main>
+        <!--<?php //if(!empty($_SESSION['notification'])):?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <?=$_SESSION['notification']?>
+            <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php //endif;?>-->
+            <h2 class="main-title">Agents/ Managers</h2>
+            <div class="track">
+                <span <?php if($page_requested =="configurations"){ ?> class="actives" <?php } ?>><?php echo $page_requested;?></span><span>/</span><span><?php echo $url_array[2];?></span>
+            </div>
+            <div class="main-btn">
+                <button id="myBtn" onclick="document.location='<?php $lib->customerSite ?>/super/manager/ajouter'"><i class="fas fa-plus" style="margin-right:15px ;"></i>Ajouter un nouveau agents/ managersr</button>
+            </div>
+            
+            <section class="recent">
+                <div class="activity">
+                    <div style="padding-top: 5px;" class="activity-card">
+                        <h3>Liste des agents/ managers</h3>
+                        <div class="table-responsive">
+                            <div class="research">
+                                <div>
+                                    <div id="form-research"><input id="filter" type="text" placeholder="Rechercher..."></div>
+                                    <i class="fas fa-search"></i>
+                                </div>
+                            </div>
+                            <table id="table" class="table table-striped" style="margin-top: 30px;" border="0">
+                                <thead>
+                                    <tr>
+                                        <th>Nom et prenom du manager/agent</th>
+                                        <th>Téléphone</th>
+                                        <th>Email</th>
+                                        <th>Date début</th>
+                                        <th>Date Expiration</th>
+                                        <th>Statut</th>
+                                        <th style="text-align:center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if(!empty($data['manager'])):?>
+                                        <?php foreach($data['manager'] as $manager):?>
+                                            <tr>
+                                                <td><?=$manager['firstname']?> <?=$manager['lastname']?></td>
+                                                <td><?=$manager['phone_number']?></td>
+                                                <td><?=$manager['email']?></td>
+                                                <td><?=$manager['active_date_from']?></td>
+                                                <td><?=$manager['active_date_to']?></td>
+                                                <td>
+                                                <?php if($manager['is_active_flag'] == 1): ?>
+                                                       <span class="span-success success">Activer</span>
+                                                  <?php endif; ?>
+                                                  <?php if($manager['is_active_flag'] == 0): ?>
+                                                       <span class="span-success danger">Bloquer</span>
+                                                  <?php endif; ?>
+                                                </td>
+                                                <td style="display:flex">
+                                                    <span onclick="document.location='<?php $lib->customerSite ?>/super/manager/activer/<?=$manager['user_id']?>'" class="btn-action white pg-5 cursor success">Activer</span>
+                                                    <span onclick="document.location='<?php $lib->customerSite ?>/super/manager/bloquer/<?=$manager['user_id']?>'" class="btn-action white pg-5 cursor danger">Bloquer</span>
+                                                    <span onclick="document.location='<?php $lib->customerSite ?>/super/manager/password/<?=$manager['user_id']?>'" class="btn-action white pg-5 cursor primary">Modifier le mot de passe</span>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach;?>
+                                    <?php endif;?>
+                                </tbody>
+                            </table>
+                        </div>   
+                    </div>
+                </div>
+            </section>
+        </main>

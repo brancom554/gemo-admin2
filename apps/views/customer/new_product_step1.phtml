@@ -1,0 +1,202 @@
+<!-- <div id="s1Tab" class="profile-edit tab-pane fade in active"> -->
+<div class="tab">
+
+    <h3 class="card-header h5 text-center text-white g-brd-transparent rounded-0" style="background-color: #94c11c;">
+        <!-- <span class="g-font-size-default g-mr-5">1. - </span> -->
+        ETAPE N° 1
+    </h3>
+
+    <div class="card-block">
+
+        <dl class="dl-horizontal">
+            <dd>
+                <section>
+                    <label class="label_shipping input">
+                        <i class="icon-append fa fa-cart-arrow-down mr-2"></i>
+                        Désignation <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" class="form-control" name="libelle_produit" id="libelle_produit" placeholder="Désignation" title="Saisir la désignation de l'article" autocomplete="off">
+
+                </section>
+            </dd>
+        </dl>
+        <dl class="dl-horizontal">
+            <dd>
+                <section>
+                    <label class="label_shipping input">
+                        <i class="icon-append fa fa-cart-arrow-down mr-2"></i>
+                        Description de l'article
+                    </label>
+                    <textarea class="form-control" name="description" id="description" placeholder="Décrivez l'article" title="Description de l'article" autocomplete="off">
+                        </textarea>
+                </section>
+            </dd>
+        </dl>
+
+        <div class="row">
+
+            <dl class="dl-horizontal col-lg-4">
+                <dd>
+                    <section>
+                        <label class="label_shipping input">
+                            <i class="icon-append fa fa-euro mr-2"></i>
+                            Prix d'achat <span class="text-danger">*</span>
+                        </label>
+                        <input type="number" name="prix_achat" id="prix_achat" value="<?= 0 ?>" class="form-control" placeholder="50" title="Saisir le prix d'achat du produit" min="0">
+
+                    </section>
+                </dd>
+            </dl>
+            <dl class="dl-horizontal col-lg-4">
+                <dd>
+                    <section>
+                        <label class="label_shipping input">
+                            <!-- <i class="icon-append fa fa-euro mr-2"></i> -->
+                            Quantité initiale <span class="text-danger">*</span>
+                        </label>
+                        <input type="number" name="qte_initiale" id="qte_initiale" value="<?= 0 ?>" class="form-control" placeholder="50" title="Saisir la quantité du produit" min="0">
+
+                    </section>
+                </dd>
+            </dl>
+            <dl class="dl-horizontal col-lg-4">
+                <dd>
+                    <section>
+                        <label class="label_shipping input">
+                            <!-- <i class="icon-append fa fa-euro mr-2"></i> -->
+                            Quantité en stock <span class="text-danger">*</span>
+                        </label>
+                        <input type="number" name="qte_stock" id="qte_stock" value="<?= 0 ?>" class="form-control" placeholder="50" title="Saisir la quantité du produit en stock" min="0">
+
+                    </section>
+                </dd>
+            </dl>
+        </div>
+        <div class="row">
+            <dl class="dl-horizontal col-lg-4">
+                <dd>
+                    Choisir la catégorie <span class="text-danger">*</span>
+                </dd>
+                <dd>
+                    <label class="label_shipping">
+                        <!-- <i class="icon-append fa fa-euro mr-2"></i> -->
+                        <select class="col-lg-12 tag_select2" id="famillecode" name="famillecode" data-placeholder="Sélectionner la catégorie">
+                            <option value=""></option>
+                            <?php
+                            foreach ($productfamilies['data'] as $family) { ?>
+                                <option value="<?= $family->famille_code ?>"><?= $family->libelle ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    </label>
+
+                </dd>
+            </dl>
+            <dl class="dl-horizontal col-lg-4">
+                <dd>
+                    Choisir la sous catégorie <span class="text-danger">*</span>
+                </dd>
+                <dd>
+                    <label class="label_shipping">
+                        <!-- <i class="icon-append fa fa-euro mr-2"></i> -->
+                        <select class="col-lg-12 tag_select2" id="sous_famillecode" name="sous_famillecode" data-placeholder="Sélectionner la sous catégorie">
+                            <option value=""></option>
+                            <?php
+                            foreach ($productsubfamilies['data'] as $subfamily) { ?>
+                                <option value="<?= $subfamily->sous_famille_code ?>"><?= $subfamily->libelle ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    </label>
+
+                </dd>
+            </dl>
+
+
+
+        </div>
+
+        <div class="row">
+            <dl class="dl-horizontal col-lg-4">
+                <dd>
+                    <section>
+                        <label class="label_shipping input">
+                            <i class="icon-append fa fa-euro mr-2"></i>
+                            Prix de vente initial <span class="text-danger">*</span>
+                        </label>
+                        <input type="number" name="prix_vente_initial" id="prix_vente_initial" value="<?= 0 ?>" class="form-control" placeholder="50" title="Saisir le prix initial du produit" min="0">
+
+                    </section>
+                </dd>
+            </dl>
+            <dl class="dl-horizontal col-lg-4">
+                <dd>
+                    <section>
+                        <label class="label_shipping input">
+                            <i class="icon-append fa fa-euro mr-2"></i>
+                            Prix de vente courant <span class="text-danger">*</span>
+                        </label>
+                        <input type="number" name="prix_vente_courant" id="prix_vente_courant" value="<?= 0 ?>" class="form-control" placeholder="50" title="Saisir le prix courant du produit" min="0">
+
+                    </section>
+                </dd>
+            </dl>
+
+            <dl class="dl-horizontal col-lg-4">
+                <dd>
+                    Type d'article <span class="text-danger">*</span>
+                </dd>
+                <dd>
+                    <label class="label_shipping">
+                        <!-- <i class="icon-append fa fa-euro mr-2"></i> -->
+                        <select class="col-lg-12 tag_select2" id="article_type_code" name="article_type_code" data-placeholder="Sélectionner le type d'article">
+                            <option value=""></option>
+                            <option value="OCCAS">OCCAS</option>
+                            <option value="NEUF">NEUF</option>
+                            <option value="DEPOT">DEPOT</option>
+                        </select>
+                    </label>
+
+                </dd>
+
+            </dl>
+        </div>
+
+        <div class="row taux_commission_part">
+            <!-- <dl class="dl-horizontal col-lg-4">
+                <dd>
+                    Code du déposant
+                </dd>
+                <dd>
+                    <label class="label_shipping">
+                        <select class="col-lg-12 tag_select2" id="code_deposant" name="code_deposant" data-placeholder="Sélectionner le code du déposant">
+                            <option value=""></option>
+                            <?php
+                           // foreach ($othercontacts['data'] as $key => $contact) { ?>
+                                <option value="< $contact->contact_num ?>">< $contact->contact_num ?></option>
+                            <?php  //} ?>
+                        </select>
+                    </label>
+
+                </dd>
+            </dl> -->
+            <dl class="dl-horizontal col-lg-4" class="">
+
+                <dd>
+                    <section>
+                        <label class="label_shipping input">
+                            <!-- <i class="icon-append fa fa-euro mr-2"></i> -->
+                            Taux de commission
+                        </label>
+                        <input type="number" name="taux_commission" id="taux_commission" value="<?= 0 ?>" class="form-control" placeholder="50" title="Saisir le taux de commission sur le produit" min="0">
+
+                    </section>
+                </dd>
+
+            </dl>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,161 @@
+<?php
+ if($iniObj->debugViews) echo __FILE__ ;
+$contactActive = true;
+$formActive = true;
+include _VIEW_PATH."/common_header.phtml";?>
+
+<div
+	class="wrapper">
+	<!--=== Header Version 3 ===-->
+	<div class="header header-v3">
+
+		<?php include _VIEW_PATH."common_top_bar.phtml";?>
+
+		<?php include _VIEW_PATH.$lib->lang."/top_menu.phtml";?>
+	</div>
+	<!--=== End Header Version 3 ===-->
+	<!--=== Breadcrumbs ===-->
+	<div class="breadcrumbs">
+		<div class="container">
+			<h1 class="pull-left">
+				<?php echo $lang->trl('Contact Us');?>
+			</h1>
+			<ul class="pull-right breadcrumb">
+				<li><a href="/"><?php echo $lang->trl('Home');?> </a></li>
+				<li class="active"><?php echo $lang->trl('Contact Us');?></li>
+			</ul>
+		</div>
+	</div>
+	<!--/breadcrumbs-->
+	<!--=== End Breadcrumbs ===-->
+
+	<!--=== Content Part ===-->
+	<div class="container content">
+		<div class="row margin-bottom-30">
+			<div class="col-md-9 mb-margin-bottom-30">
+				<p>
+					<?php echo $lang->trl('Your comments, suggestions and questions are important to us');?>
+					<br>
+					<?php echo $lang->trl('Please provide your contact information and your comments');?>
+					.
+
+				</p>
+
+				<p></p>
+				<br>
+
+				<form class="sky-form">
+					<section class="col col-8">
+						<dl class="dl-horizontal">
+							<dt>
+								<?php echo $lang->trl('Your name');?>
+							</dt>
+							<dd>
+								<label class="input"> <i class="icon-prepend fa fa-user"></i> <input
+									type="text" name="name" id="name"
+									value="<?php if(!empty($_SESSION['customer']['first_name'])) echo $_SESSION['customer']['first_name']." ".strtoupper($_SESSION['customer']['last_name']);?>"
+									placeholder="<?php echo $lang->trl('Contact name');?>"> <b
+									class="tooltip tooltip-top-left"><?php echo $lang->trl('Provide your full name');?>
+								</b>
+								</label>
+							</dd>
+						</dl>
+					</section>
+
+					<section class="col col-8">
+						<dl class="dl-horizontal">
+							<dt>
+								<?php echo $lang->trl('Your e-mail');?>
+							</dt>
+							<dd>
+								<label class="input"> <i class="icon-prepend fa fa-envelope"></i>
+									<input type="text"
+									placeholder="<?php echo $lang->trl('Email address');?>"
+									class="form-control" name="email" id="email"
+									value="<?php if(!empty($_SESSION['customer']['email_address'])) echo stripslashes($_SESSION['customer']['email_address']); ?>">
+									<b class="tooltip tooltip-top-left"><?php echo $lang->trl('Provide the e-mail address where you can be contacted at');?>
+								</b>
+								</label>
+							</dd>
+						</dl>
+					</section>
+
+					<section class="col col-8">
+						<dl class="dl-horizontal">
+							<dt>
+								<?php echo $lang->trl('Your phone number');?>
+							</dt>
+							<dd>
+								<label class="input"> <i class="icon-prepend fa fa-phone"></i> <input
+									type="text" placeholder="<?php echo $lang->trl('Phone');?>"
+									class="form-control" name="phone" id="phone"> <b
+									class="tooltip tooltip-top-left"><?php echo $lang->trl('Provide the phone number where you can be contacted at');?>
+								</b>
+								</label>
+							</dd>
+						</dl>
+					</section>
+
+					<section class="col col-8">
+						<label><?php echo $lang->trl('Message');?> </label>
+						<div class="row margin-bottom-10">
+							<label class="textarea"> <i class="icon-append fa fa-comments-o"></i>
+								<textarea rows="3" name="comments" id="comments"
+									placeholder="<?php echo $lang->trl('Please type your message');?>"></textarea>
+								<b class="tooltip tooltip-top-left"><?php echo $lang->trl('Please type your message');?>
+							</b>
+							</label>
+						</div>
+					</section>
+					<section class="col col-8">
+						<label id='sp'></label> <br />
+						<button type="button" class="btn-u s4" id="sSubmit">
+							<?php echo $lang->trl('Send');?>
+							<i class="fa fa-envelope"></i>
+						</button>
+					</section>
+				</form>
+
+			</div>
+			<!--/col-md-9-->
+
+			<div class="col-md-3">
+				<!-- Google Map -->
+				<div id="map" class="map map-box map-box-space1 margin-bottom-40"></div>
+				<!---/map-->
+				<!-- End Google Map -->
+
+				<!-- Contacts -->
+				<div class="headline">
+					<h2>Contacts</h2>
+				</div>
+				<ul class="list-unstyled who margin-bottom-30">
+					<li><a href="#"><i class="fa fa-home"></i>2 Rue Maryse Bastié<br />93600
+							Aulnay-Sous-Bois<br />France<br /> </a></li>
+					<li><a href="#"><i class="fa fa-phone"></i> <?php echo $iniObj->companyPhoneNum ;?>
+					</a></li>
+					<li><a href="#"><i class="fa fa-globe"></i>http://www.transporteo.com</a>
+					</li>
+				</ul>
+				<!-- End Contacts -->
+			</div>
+			<!--/col-md-3-->
+		</div>
+		<!--/row-->
+	</div>
+	<!--/container-->
+	<!--=== End Content Part ===-->
+	<!-- End Service Blokcs -->
+
+</div>
+<!--/container-->
+<!-- End Content Part -->
+
+<?php include _VIEW_PATH.$lib->lang."/common_footer.phtml";?>
+
+</div>
+<!--/wrapper-->
+
+
+<?php include _VIEW_PATH."/common_include_files.phtml";?>
+

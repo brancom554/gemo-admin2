@@ -1,0 +1,117 @@
+<?php
+
+$restrictedArea = true;
+$commandeActive = true;
+$dashboardActive = false;
+$menuActif = "PRODUIT";
+
+include _VIEW_PATH . "/common_header.phtml"; ?>
+<?php
+// include _VIEW_PATH."common_top_bar.phtml";
+include _VIEW_PATH . $lib->lang . "/top_menu.phtml";
+?>
+
+
+<!--=== Profile ===-->
+<div class="container g-pt-70 g-pb-30">
+    <div class="row">
+        <?php
+        if ($_SESSION['customer']['authValidated']) {
+            include _VIEW_PATH . "/customer/profile_left_menu.phtml";
+        }
+        ?>
+        <?php //var_dump($orders); 
+        ?>
+        <div class="col-lg-9 g-mb-50">
+            <!--Profile Body-->
+            <h2><?php echo $lang->trl('My dashboard'); ?></h2>
+            <?php
+            if ($iniObj->debug) {
+                //  echo "<pre>";print_r($_SESSION); echo "</pre>";
+            }
+            ?>
+            <?php echo $lang->trl('Welcome to Occazetneuf') . " " . $_SESSION['customer']['first_name'] . " " . strtoupper($_SESSION['customer']['last_name']) . " (" . $_SESSION['customer']['email_address'] . ")"; ?>
+            <br /><br />
+            <?php //var_dump($orders); 
+            ?>
+            <div class="profile-body margin-bottom-20">
+                <br />
+                <h3> <i class="fa fa-shopping-cart"></i> Mes Articles</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Référence</th>
+                            <th scope="col">Libelle</th>
+                            <th scope="col">Type d'article</th>
+                            <!-- <th scope="col">Famille Code</th> -->
+                            <th scope="col">Prix d'Achat</th>
+                            <th scope="col">Prix Vente Courant</th>
+                            <th scope="col">Date de création</th>
+                            <th scope="col" class="align-middle text-nowrap text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (isset($articles)) { ?>
+                            <?php foreach ($articles['data'] as $k => $article) { ?>
+                                <tr>
+                                    <td><?php echo $article->reference_article_magasin ?> </td>
+                                    <td><?php echo $article->libelle ?> </td>
+                                    <th scope="row"> <?php echo $article->article_type_code ?> </th>
+                                    <!-- <td><?php //echo $article->famille_code ?> </td> -->
+                                    <td>€ <?php echo $article->prix_achat ?></td>
+                                    <td>€ <?php echo $article->prix_vente_courant ?></td>
+                                    <td><?php  echo $article->date_creation ?></td>
+
+                                    <td class="align-middle text-nowrap text-center">
+                                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover g-pa-5" href="/customer/detailsProduct/<?= $article->article_ID."/". $random = $lib->random() ?>" data-toggle="tooltip" data-placement="top" data-original-title="Details">
+                                            <i class="fa fa-eye g-font-size-18 g-mr-7"></i>
+                                        </a>
+                                        <a class="g-color-gray-dark-v5 g-text-underline--none--hover g-pa-5" href="/customer/editProduct/<?= $article->article_ID."/". $random = $lib->random() ?>" data-toggle="tooltip" data-placement="top" data-original-title="Edit">
+                                            <i class="fa fa-pencil g-font-size-18 g-mr-7"></i>
+                                        </a>
+                                        <!-- <a class="g-color-gray-dark-v5 g-text-underline--none--hover g-pa-5 delete" data-id="<?= $article->article_ID ?>" id="<?= $article->article_ID ?>" href="#" data-toggle="tooltip" data-placement="top" data-original-title="Delete">
+                                            <i class="fa fa-trash g-font-size-18 g-mr-7"></i>
+                                        </a> -->
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        <?php } ?>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('.delete').click(function() {
+            id = $(this).attr('id');
+            confirm("Voulez-vous vraiment supprimer cet article ?");
+            // console.log(id);
+            $.ajax({
+                url: "/customer/delete_article/",
+                type: "POST",
+                cache: false,
+                data: {
+                    id: id
+                },
+                success: function(msg) {
+
+                    rnd = Math.random();
+                    window.location.href = '/customer/articles/' + rnd;
+
+                },
+                error: function() {
+                    alert('Une erreur est survenue.');
+                }
+            });
+        });
+    });
+</script>
+
+<!--=== End Profile ===-->
+<?php include _VIEW_PATH . $lib->lang . "/common_footer.phtml"; ?>
+
+<?php include _VIEW_PATH . "/common_include_files.phtml"; ?>

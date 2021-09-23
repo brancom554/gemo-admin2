@@ -1,0 +1,109 @@
+
+          <?php if($url_array[1] === 'dashboard'): ?>
+               <div>
+                  <h2 class="main-content-title tx-24 mg-b-5 text-warning">Bienvenue sur votre tableau de bord</h2>
+                  <ol class="breadcrumb">
+                     <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+                     <li class="breadcrumb-item active " aria-current="page">Tableau de bord</li>
+                  </ol>
+               </div>
+               <div class="d-flex">
+                  <div class="justify-content-center"> <button type="button" class="btn btn-white btn-icon-text my-2 mr-2"> <i class="fe fe-download mr-2"></i> Importer </button> <button type="button" class="btn btn-white btn-icon-text my-2 mr-2"> <i class="fe fe-filter mr-2"></i> Filtrer </button> <button type="button" class="btn btn-primary my-2 btn-icon-text"> <i class="fe fe-download-cloud mr-2"></i> Télécharger un Rapport </button> </div>
+        	</div>
+
+
+            <?php elseif($url_array[1] === 'administration' && $url_array[2] === 'agent' && $url_array[3] === ''): ?>
+        
+							<div>
+								<h2 class="main-content-title tx-24 mg-b-5">Liste des agents</h2>
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="#"><?= $url_array[1] ?></a></li>
+									<li class="breadcrumb-item active" aria-current="page"><?= $url_array[2] ?></li>
+								</ol>
+							</div>
+							<?php if($show):?>
+							<div class="d-flex">
+								<div class="justify-content-center">
+									<button onclick="document.location='<?php $lib->customerSite ?>/administration/agent/ajouter'" type="button" class="btn btn-primary my-2 btn-icon-text">
+									  <i class="fas fa-plus mr-2"></i> Ajouter un nouveau marchand
+									</button>
+								</div>
+							</div>
+							<?php else: ?>
+            				<?php endif;?>
+							
+                
+            
+
+			<?php elseif($url_array[1] === 'administration' && $url_array[2] === 'agent' && $url_array[3] === 'attributionLicence'): ?>
+
+							<div>
+								<h2 class="main-content-title tx-24 mg-b-5">Attribution de licence</h2>
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="#"> <?= $url_array[2] ?> </a></li>
+									<li class="breadcrumb-item active" aria-current="page"><?= $url_array[3] ?></li>
+								</ol>
+							</div>
+
+			<?php elseif($url_array[1] === 'administration' && $url_array[2] === 'agent' && $url_array[3] === 'revocationLicence'): ?>
+
+							<div>
+								<h2 class="main-content-title tx-24 mg-b-5">Révocation de licence</h2>
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="#"> <?= $url_array[2] ?> </a></li>
+									<li class="breadcrumb-item active" aria-current="page"><?= $url_array[3] ?></li>
+								</ol>
+							</div>
+
+			<?php elseif($url_array[1] === 'administration' && $url_array[2] === 'utilisateurs'): ?>
+        
+							<div>
+								<h2 class="main-content-title tx-24 mg-b-5">Liste des Utilisateurs</h2>
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="#"><?= $url_array[1] ?></a></li>
+									<li class="breadcrumb-item active" aria-current="page"><?= $url_array[2] ?></li>
+								</ol>
+							</div>
+							<div class="d-flex">
+								<div class="justify-content-center">
+									<button type="button" class="btn btn-primary my-2 btn-icon-text">
+									<i class="fa fa-plus mr-2"></i> Ajouter un utilisateur
+									</button>
+								</div>
+							</div>
+
+				<?php elseif($url_array[1] === 'administration' && $url_array[2] === 'inventaire' && $url_array[3] === ''): ?>
+        
+							<div>
+								<h2 class="main-content-title tx-24 mg-b-5">Liste des inventaires</h2>
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="#"><?= $url_array[1] ?></a></li>
+									<li class="breadcrumb-item active" aria-current="page"><?= $url_array[2] ?></li>
+								</ol>
+							</div>
+
+			<?php elseif($url_array[1] === 'administration' && $url_array[2] === 'inventaire' && $url_array[3] === 'details'): ?>
+        
+							<div>
+								<h2 class="main-content-title tx-24 mg-b-5">Details iventaire <?= $url_array[5] ?></h2>
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="#"><?= $url_array[1] ?></a></li>
+									<li class="breadcrumb-item"><?= $url_array[2] ?></li>
+									<li class="breadcrumb-item active" aria-current="page"><?= $url_array[3] ?></li>
+
+								</ol>
+							</div>
+
+			<?php elseif($url_array[1] === 'operation' && $url_array[2] === 'historique'): ?>
+        
+					<div>
+						<h2 class="main-content-title tx-24 mg-b-5">Historiques</h2>
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="#"><?= $url_array[1] ?></a></li>
+							<li class="breadcrumb-item active" aria-current="page"><?= $url_array[2] ?></li>
+							
+
+						</ol>
+					</div>
+
+            <?php endif; ?>

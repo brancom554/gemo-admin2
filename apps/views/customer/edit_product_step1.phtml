@@ -1,0 +1,184 @@
+<!-- <div id="s1Tab" class="profile-edit tab-pane fade in active"> -->
+<div class="tab">
+
+    <div class="card card-outline-success rounded-0">
+        <h3 class="card-header h5 text-white g-brd-transparent rounded-0" style="background-color: #94c11c;">
+            <span class="g-font-size-default g-mr-5">1. - </span>
+            ETAPE N° 1  <?php //var_dump($product); ?>
+        </h3>
+
+        <div class="card-block">
+
+            <dl class="dl-horizontal">
+                <dd>
+                    <section>
+                        <label class="label_shipping input">
+                            <i class="icon-append fa fa-cart-arrow-down mr-2"></i>
+                            Désignation 
+                        </label>
+                        <input type="text" class="form-control" name="libelle_produit" id="libelle_produit" value="<?= $product->libelle ?>" title="Saisir la désignation de l'article">
+
+                    </section>
+                </dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dd>
+                    <section>
+                        <label class="label_shipping input">
+                            <i class="icon-append fa fa-cart-arrow-down mr-2"></i>
+                            Description de l'article
+                        </label>
+                        <textarea class="form-control" name="description" id="description" title="Description de l'article">
+                        <?= $product->description; ?>
+                        </textarea>
+                    </section>
+                </dd>
+            </dl>
+
+            <div class="row">
+
+                <dl class="dl-horizontal col-lg-4">
+                    <dd>
+                        <section>
+                            <label class="label_shipping input">
+                                <i class="icon-append fa fa-euro mr-2"></i>
+                                Prix d'achat
+                            </label>
+                            <input type="number" name="prix_achat" id="prix_achat" value="<?= $product->prix_achat ?>" class="form-control" placeholder="50" title="Saisir le prix d'achat du produit" min="0">
+
+                        </section>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal col-lg-4">
+                    <dd>
+                        <section>
+                            <label class="label_shipping input">
+                                <!-- <i class="icon-append fa fa-euro mr-2"></i> -->
+                                Quantité initiale
+                            </label>
+                            <input type="number" name="qte_initiale" id="qte_initiale" value="<?= $product->qte_initial ?>" class="form-control" placeholder="50" title="Saisir la quantité du produit" min="0">
+
+                        </section>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal col-lg-4">
+                    <dd>
+                        <section>
+                            <label class="label_shipping input">
+                                <!-- <i class="icon-append fa fa-euro mr-2"></i> -->
+                                Quantité en stock
+                            </label>
+                            <input type="number" name="qte_stock" id="qte_stock" value="<?= $product->qteStock ?>" class="form-control" placeholder="50" title="Saisir la quantité du produit en stock" min="0">
+
+                        </section>
+                    </dd>
+                </dl>
+            </div>
+
+            <div class="row">
+
+                <dl class="dl-horizontal col-lg-4">
+                    <dd>
+                        <section>
+                            <label class="label_shipping input">
+                                <!-- <i class="icon-append fa fa-euro mr-2"></i> -->
+                                Hauteur
+                            </label>
+                            <input type="number" name="hauteur" id="hauteur" value="<?=  $product->hauteur ?>" class="form-control" placeholder="50" title="Saisir la hauteur du produit" min="0">
+
+                        </section>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal col-lg-4">
+                    <dd>
+                        <section>
+                            <label class="label_shipping input">
+                                <!-- <i class="icon-append fa fa-euro mr-2"></i> -->
+                                Largeur
+                            </label>
+                            <input type="number" name="largeur" id="largeur" value="<?=  $product->largeur ?>" class="form-control" placeholder="50" title="Saisir la largeur du produit" min="0">
+
+                        </section>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal col-lg-4">
+                    <dd>
+                        <section>
+                            <label class="label_shipping input">
+                                <!-- <i class="icon-append fa fa-euro mr-2"></i> -->
+                                Poids
+                            </label>
+                            <input type="number" name="poids" id="poids" value="<?=  $product->poids ?>" class="form-control" placeholder="50" title="Saisir le poids du produit" min="0">
+
+                        </section>
+                    </dd>
+                </dl>
+            </div>
+
+            <div class="row">
+                <dl class="dl-horizontal col-lg-4">
+                    <dd>
+                        <section>
+                            <label class="label_shipping input">
+                                <i class="icon-append fa fa-euro mr-2"></i>
+                                Prix de vente initial
+                            </label>
+                            <input type="number" name="prix_vente_initial" id="prix_vente_initial" value="<?= $product->initalPrice ?>" class="form-control" placeholder="50" title="Saisir le prix initial du produit" min="0">
+
+                        </section>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal col-lg-4">
+                    <dd>
+                        <section>
+                            <label class="label_shipping input">
+                                <i class="icon-append fa fa-euro mr-2"></i>
+                                Prix de vente courant
+                            </label>
+                            <input type="number" name="prix_vente_courant" id="prix_vente_courant" value="<?= $product->currentPrice ?>" class="form-control" placeholder="50" title="Saisir le prix courant du produit" min="0">
+
+                        </section>
+                    </dd>
+                </dl>
+
+                <dl class="dl-horizontal col-lg-4">
+                    <dd>
+                        Type d'article
+                    </dd>
+                    <dd>
+                        <label class="label_shipping">
+                            <!-- <i class="icon-append fa fa-euro mr-2"></i> -->
+                            <select class="col-lg-12 tag_select2" id="article_type_code" name="article_type_code" data-placeholder="Sélectionner le type d'article">
+                                <option value=""></option>
+                                <option value="OCCAS" <?php if ($product->typeCode == "OCCAS") echo 'selected="selected"' ?>>OCCAS</option>
+                                <option value="NEUF" <?php if ($product->typeCode == "NEUF") echo 'selected="selected"' ?>>NEUF</option>
+                                <option value="DEPOT" <?php if ($product->typeCode == "DEPOT") echo 'selected="selected"' ?>>DEPOT</option>
+                            </select>
+                        </label>
+
+                    </dd>
+
+                </dl>
+            </div>
+
+            <div class="row taux_commission_part">
+                
+                <dl class="dl-horizontal col-lg-4" class="">
+
+                    <dd>
+                        <section>
+                            <label class="label_shipping input">
+                                <!-- <i class="icon-append fa fa-euro mr-2"></i> -->
+                                Taux de commission
+                            </label>
+                            <input type="number" name="taux_commission" id="taux_commission" value="<?= $product->taux_commission ?>" class="form-control" placeholder="50" title="Saisir le taux de commission sur le produit" min="0">
+
+                        </section>
+                    </dd>
+
+                </dl>
+            </div>
+        </div>
+    </div>
+
+</div>

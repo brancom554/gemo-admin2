@@ -1,0 +1,9 @@
+0,5,10,15,20,25,30,35,40,45,50,55 * * * 0-6 /home/transporteo/apps/cron/sendPod.sh   #Send POD to customers
+0,3,6,9,12,15,18,21,24,27,30,33,36,39,42,45,48,51,54,57 * * * 0-6 /home/transporteo/apps/cron/sendTracking.sh       #Send Tracking to all customer
+0 12,16,22 * * 1-5 /home/utils/autoMysqlBackup.sh
+0 7 * * 1-6 /home/transporteo/apps/cron/sendTodayDeliveryAlert.sh #Today scheduled delivery
+30 9-18 * * 1-5 /home/transporteo/apps/cron/sendPodMissingAlert.sh  #Missing POD
+* * * * 0-6 /home/transporteo/apps/cron/sendBookedAlert.sh    #send Booked job to customer
+3 3 * * * /home/transporteo/apps/cron/purgeTempFile.sh #purge temp files
+# @hourly /home/stage/apps/cron/sendTracking.sh
+

@@ -1,0 +1,263 @@
+<?php
+
+$restrictedArea = true;
+$formActive = true;
+$preferenceActive = true;
+$menuActif = "PREFERENCE";
+
+include _VIEW_PATH . "/common_header.phtml"; ?>
+
+<div class="wrapper">
+	<!--=== Header ===-->
+	<div class="header header-v3">
+		<?php //include _VIEW_PATH . "common_top_bar.phtml"; 
+		?>
+		<?php include _VIEW_PATH . $lib->lang . "/top_menu.phtml"; ?>
+	</div>
+	<!--=== End Header ===-->
+
+
+
+	<!-- Breadcrumbs -->
+	<section class="g-bg-gray-light-v5 g-py-50">
+		<div class="container">
+			<div class="d-sm-flex text-center">
+				<div class="align-self-center">
+					<h2 class="h3 g-font-weight-300 w-100 g-mb-10 g-mb-0--md" style="color:black;">
+						<?php echo $lang->trl('My preferences'); ?>
+					</h2>
+				</div>
+
+				<div class="align-self-center ml-auto">
+					<ul class="u-list-inline">
+						<li class="list-inline-item g-mr-5">
+							<a class="u-link-v5 g-color-main g-color-primary--hover" style="font-family: 'Sony Sketch EF'; font-size: 20px;" href="/<?php echo $lib->lang; ?>">
+								<?php echo $lang->trl('Home'); ?>
+							</a>
+							<i class="g-color-gray-light-v2 g-ml-5">/</i>
+						</li>
+						<li class="list-inline-item g-color-primary">
+							<span style="color:black; font-family: 'Sony Sketch EF'; font-size: 20px;">
+								<?php echo $lang->trl('My preferences'); ?>
+							</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Breadcrumbs -->
+
+	<!--=== Profile ===-->
+	<div class="profile">
+		<div class="container content g-pt-70 g-pb-30">
+			<div class="row">
+				<!-- <div class="col-md-3 md-margin-bottom-10"> -->
+				<!--Left Sidebar-->
+				<?php
+				if ($_SESSION['customer']['authValidated']) {
+					include _VIEW_PATH . "/customer/profile_left_menu.phtml";
+				}
+				?>
+				<!--End Left Sidebar-->
+				<!-- </div> -->
+				<div class="col-lg-9 g-mb-50">
+					<!--Profile Body-->
+
+					<?php
+
+					// echo "<pre>";
+					// print_r($_SESSION);
+					// echo "</pre>";
+
+					?>
+					<div class="profile-body margin-bottom-20">
+						<header class="d-flex text-uppercase g-mb-40">
+							<div class="g-line-height-1">
+								<div class="js-counter g-font-size-30" data-comma-separated="true">
+									<?php echo $lang->trl('My preferences'); ?>
+								</div>
+
+							</div>
+						</header>
+
+						<div class="d-flex justify-content-between g-mb-25">
+							<div id='ctcCeate' class="w-100">
+								<!--Profile Body-->
+								<form class="sky-form" id="sky-form4">
+
+									<?php
+									// echo $_SESSION['customer']['contact_id'];
+									$myPreference = $sqlData->getPreferences($_SESSION['customer']['contact_id']);
+									$magasins = $sqlData->getMagasins();
+									// var_dump($magasins);
+									?>
+
+
+
+									<div class="row">
+										<div class="col-sm-6">
+											<dl class="dl-horizontal">
+												<dt>
+													Langue préférée
+												</dt>
+												<dd>
+													<label class="select w-100">
+														<select class="col-lg-3 ml-4 tag_select2" id="lang" name="lang" data-placeholder="Sélectionner une langue">
+															<option value=""></option>
+															<option value="en" <?php if ($myPreference['data'][0]->lang == "en") echo 'selected="selected"' ?>>Anglais</option>
+															<option value="fr" <?php if ($myPreference['data'][0]->lang == "fr") echo 'selected="selected"' ?>>Français</option>
+
+														</select>
+													</label>
+												</dd>
+											</dl>
+											<!-- </div>
+										<div class="col-sm-6"> -->
+											<?php
+											if ($_SESSION['customer']['role_contact'] == 'ROLE_CLIENT') {
+											?>
+												<dl class="dl-horizontal">
+													<dt>
+														Prospection
+													</dt>
+													<dd>
+														<label class="select w-100">
+															<select class="col-lg-3 tag_select2" id="prospection" name="prospection" data-placeholder="Sélectionner la prospection">
+																<option value=""></option>
+																<option value="OUI" <?php if ($myPreference['data'][0]->prospection == "OUI") echo 'selected="selected"' ?>>OUI</option>
+																<option value="NON" <?php if ($myPreference['data'][0]->prospection == "NON") echo 'selected="selected"' ?>>NON</option>
+															</select>
+														</label>
+													</dd>
+												</dl>
+										</div>
+
+
+
+										<div class="col-sm-6">
+											<dl class="dl-horizontal">
+												<dt>
+													Magasin préféré
+												</dt>
+												<dd>
+													<label class="select w-100">
+														<select class="cols col-10 tag_select2" id="magasin" name="magasin" data-placeholder="Sélectionner un magasin">
+															<option value=""></option>
+															<?php
+															foreach ($magasins['data'] as $magasin) {
+																if ($myPreference['data'][0]->prefered_magasin == $magasin->magasin_code) {
+																	$selected = 'selected';
+																} else {
+																	$selected = '';
+																}
+															?>
+																<option value="<?= $magasin->magasin_code ?>" <?= $selected ?>><?= $magasin->nom_magasin ?></option>
+															<?php
+
+															}
+															?>
+														</select>
+													</label>
+												</dd>
+											</dl>
+										</div>
+									</div>
+
+								<?php } ?>
+
+								<button type="button" class="btn-u btn-u-default" id="bCancel">
+									<?php echo $lang->trl('Cancel'); ?>
+								</button>
+								<button class="btn-u btn-success pull-right" type="button" id="bSave">
+									<?php echo $lang->trl('Save'); ?>
+									<i class="fa fa-chevron-right"></i>
+								</button>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- <label id='sp'></label> -->
+					<!--End Profile Body-->
+				</div>
+			</div>
+			<!--/end row-->
+		</div>
+	</div>
+	<!--/container-->
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#bSave").click(function() {
+			document.getElementById("bSave").setAttribute('disabled', true);
+			document.getElementById("bSave").innerHTML = 'Enregistrement en cours...<i class="fa fa-spinner fa-spin">';
+			savePref();
+		})
+
+		$("#bCancel").click(function() {
+			rnd = Math.random();
+			window.location.href = '/<?php echo $lib->lang . "/" . $iniObj->serviceName; ?>/' + rnd;
+		});
+	});
+
+
+	function savePref() {
+
+		var lang = encodeURIComponent($("#lang").val());
+		var prospection = encodeURIComponent($("#prospection").val());
+		var magasin = encodeURIComponent($("#magasin").val());
+
+		$.ajax({
+			type: "POST",
+			url: "/customer/sendPrefs/",
+			data: {
+
+				lang: lang,
+				prospection: prospection,
+				magasin: magasin
+
+			},
+			success: function(msg) {
+				var val = msg.split('||');
+				//alert(val);
+				if (val[0] == "false") {
+					$("#sp").css('color', 'red').html(val[1]);
+					$("#bSave").html('Enregistrer').attr('disabled', false);
+				} else if (val[0] == "true") {
+					$("#sp").css('color', 'green').html(val[1]).delay(500);
+					$("#bSave").html('Préférences enregistrées avec succès').attr('disabled', true);
+					rnd = Math.random();
+					//window.location.href = '/'+res.lang+'/<?php //echo $iniObj->serviceName; 
+															?>/'+rnd;
+					setTimeout('window.location = "/customer/dashboard/' + rnd + '"', 2000);
+				}
+
+			}
+		});
+	}
+
+	/* check all errors on form */
+	function checkSubmit(step) {
+		eC = 0;
+		var mess = "";
+		/* step 1*/
+		if (!$.trim($("#lang").val()) || !$.trim($("#prospection").val())) {
+			m = "<?php echo $lang->trl('Please select the default billing address for your shipments (this can be altered for each shipment)'); ?>";
+			eC = 1;
+		}
+
+		if (eC == 0) {
+			$("#sp").css('color', 'green').html("");
+
+			return true;
+		} else {
+			showFormEr(m);
+			return false;
+		}
+	}
+</script>
+<!--===End Profile===-->
+<?php include _VIEW_PATH . $lib->lang . "/common_footer.phtml"; ?>
+<!-- < /div> -->
+<!--/wrapper--> <?php include _VIEW_PATH . "/common_include_files.phtml"; ?>

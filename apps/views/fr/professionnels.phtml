@@ -1,0 +1,134 @@
+<?php
+if ($iniObj->debugViews) echo __FILE__;
+$carouselActive = true;
+$title = "Occasion";
+
+include _VIEW_PATH . "/common_header.phtml"; ?>
+
+<?php
+// include _VIEW_PATH."common_top_bar.phtml";
+if ($storeActive == 1) {
+	include _VIEW_PATH . $lib->lang . "/top_menu_magasin.phtml";
+} else {
+	include _VIEW_PATH . $lib->lang . "/top_menu.phtml";
+}
+?>
+<!-- Breadcrumbs -->
+<section class="g-brd-bottom g-brd-gray-light-v4 g-py-30">
+	<div class="container">
+		<ul class="d-flex justify-content-between u-list-inline">
+			<li class="list-inline-item g-mr-15">
+				<a class="u-link-v5 g-color-text g-pr-10" href="#">ACCUEIL</a>
+				<i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
+			</li>
+			<li class="list-inline-item g-color-primary">
+				<span>VOS PROFESSIONELS</span>
+			</li>
+			<li class="list-inline-item ml-auto">
+				<!--<a class="u-link-v5 g-brd-around g-brd-gray-light-v4 g-brd-primary--hover g-color-text g-color-primary--hover g-font-weight-500 rounded g-px-30 g-py-10" href="page-hire-us-1.html">Hire Us</a>-->
+			</li>
+		</ul>
+	</div>
+</section>
+
+
+
+
+<!-- Analytics & Comments -->
+<div class="container g-pt-50 g-pb-50">
+	<div class="g-mb-40">
+		<h2 class="mb-0">Nos points de livraison autour de vous</h2>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12">
+			<iframe src="/map-points/<?php echo $random; ?>" height="500" width="100%" title="Iframe Example"></iframe>
+		</div>
+	</div>
+
+	<br />
+	<br />
+	<br />
+
+	<!-- Video - Heading -->
+	<!-- <div class="row align-items-center g-mb-40--lg">
+		<div class="col-sm-6 g-mb-30 g-mb-0--lg">
+			<h3 class="mb-0">NOS PROFESSIONELS TRAVAILLENT POUR VOUS</h3>
+		</div>
+
+		<div class="col-sm-6">
+			<div class="text-right">
+				<a class="u-link-v7 g-color-main g-color-primary--hover g-font-size-13 g-text-underline--none--hover" href="#">
+					VIDEO DE LIVRAISONS
+					<span class="u-link-v7-arrow g-font-size-18">&rightarrow;</span>
+				</a>
+			</div>
+		</div>
+	</div> -->
+	<!-- End Video - Heading -->
+
+	<!-- Video Section -->
+	<!-- <div class="row"> -->
+		<!-- Video Article -->
+		<!-- <div class="col-md-8 g-mb-30">
+			<div class="h-100 g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-black-opacity-0_4--after g-pos-rel g-py-150 g-mb-30 g-mb-0--md" data-bg-img-src="assets/img-temp/900x600/img2.jpg">
+				<article class="text-center g-absolute-centered--y g-z-index-1 g-px-50">
+					<a class="js-fancybox d-inline-block g-text-underline--none--hover mb-3" href="javascript:;" data-src="//www.youtube.com/embed/BNpiwOkKIJ8?autoplay=1" data-speed="350" data-caption="Video Popup">
+						<span class="u-icon-v3 u-icon-size--xl u-icon-scale-1_2--hover g-bg-primary g-color-white rounded-circle g-cursor-pointer">
+							<i class="g-font-size-17 g-pos-rel g-left-2 fa fa-play"></i>
+						</span>
+					</a>
+					<h4 class="g-color-white">Trouvez tous les magasins qui vous entourent.</h4>
+				</article>
+			</div>
+		</div> -->
+		<!-- End Video Article -->
+
+		<!-- <div class="col-md-4 g-mb-30"> -->
+			<!-- Video Article -->
+			<!-- <div class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-black-opacity-0_4--after g-pos-rel g-py-50 g-mb-30" data-bg-img-src="assets/img-temp/300x300/img2.jpg">
+				<article class="text-center g-pos-rel g-z-index-1 g-px-20">
+					<a class="js-fancybox d-inline-block g-text-underline--none--hover mb-3" href="javascript:;" data-src="//www.youtube.com/embed/BNpiwOkKIJ8?autoplay=1" data-speed="350" data-caption="Video Popup">
+						<span class="u-icon-v3 u-icon-size--md u-icon-scale-1_2--hover g-bg-primary g-color-white rounded-circle g-cursor-pointer">
+							<i class="g-font-size-13 g-pos-rel g-left-2 fa fa-play"></i>
+						</span>
+					</a>
+					<h4 class="h5 g-color-white">Trouvez ici les boutiques populaires</h4>
+				</article>
+			</div> -->
+			<!-- End Video Article -->
+
+			<!-- Video Article -->
+			<!-- <div class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-black-opacity-0_4--after g-pos-rel g-py-50 g-mb-30 g-mb-0--md" data-bg-img-src="assets/img-temp/300x300/img3.jpg">
+				<article class="text-center g-pos-rel g-z-index-1 g-px-20">
+					<a class="js-fancybox d-inline-block g-text-underline--none--hover mb-3" href="javascript:;" data-src="//www.youtube.com/embed/BNpiwOkKIJ8?autoplay=1" data-speed="350" data-caption="Video Popup">
+						<span class="u-icon-v3 u-icon-size--md u-icon-scale-1_2--hover g-bg-primary g-color-white rounded-circle g-cursor-pointer">
+							<i class="g-font-size-13 g-pos-rel g-left-2 fa fa-play"></i>
+						</span>
+					</a>
+					<h4 class="h5 g-color-white">Office Goals: un aperçu de Unify Marketing</h4>
+				</article>
+			</div> -->
+			<!-- End Video Article -->
+		<!-- </div> -->
+	<!-- </div> -->
+	<!-- End Video Section -->
+
+</div>
+<!-- End Analytics & Comments -->
+
+<br />
+<br />
+<br />
+
+
+
+
+<!-- Fichiers Javascript -->
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" crossorigin=""></script>
+
+
+
+<!--/wrapper-->
+<?php include _VIEW_PATH . $lib->lang . "/common_footer.phtml"; ?>
+<?php include _VIEW_PATH . "/common_include_files.phtml"; ?>

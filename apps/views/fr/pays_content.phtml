@@ -1,0 +1,47 @@
+<main>
+            <h2 class="main-title">Pays</h2>
+            <div class="track">
+                <span <?php if($page_requested =="configurations"){ ?> class="actives" <?php } ?>><?php echo $page_requested;?></span><span>/</span><span><?php echo $url_array[2];?></span>
+            </div>
+            <div class="main-btn">
+                <button id="myBtn" onclick="document.location='<?php $lib->customerSite ?>/configurations/pays/ajouter'"><i class="fas fa-plus" style="margin-right:15px ;"></i>Ajouter un nouveau pays</button>
+            </div>
+            
+            <section class="recent">
+                <div class="activity">
+                    <div style="padding-top: 5px;" class="activity-card">
+                        <h3>Liste des pays</h3>
+                        <div class="table-responsive">
+                            <div class="research">
+                                <div>
+                                    <div id="form-research"><input id="filter" type="text" placeholder="Rechercher..."></div>
+                                    <i class="fas fa-search"></i>
+                                </div>
+                            </div>
+                            <table id="table" class="table table-striped" style="margin-top: 30px;" border="0">
+                                <thead>
+                                    <tr>
+                                        <th>Pays</th>
+                                        <th>Code</th>
+                                        <th >Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <?php if(isset($data['pays'])): ?>
+                                        <?php foreach($data['pays'] as $pays): ?>
+                                        <tr>
+                                             <td><?=$pays['description'] ?></td>
+                                             <td><?=$pays['country_short_name'] ?></td>                                    
+                                             <td style="display:flex">
+                                                  <span onclick="document.location='<?php $lib->customerSite ?>/configurations/pays/modifier/<?=$pays['country_id'] ?>'" class="btn-action white pg-5 primary">Modifier</span>
+                                             </td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </tbody>
+                            </table>
+                        </div>   
+                    </div>
+                </div>
+            </section>
+        </main>

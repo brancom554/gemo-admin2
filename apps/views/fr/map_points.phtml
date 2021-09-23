@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>OpenStreetMap</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" crossorigin="" />
+    <!-- CSS -->
+    <style>
+        body {
+            margin: 0
+        }
+
+        #maCarte {
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="maCarte"></div>
+    <?php
+    $magasins = $sqlData->getMagasins()['data'];
+
+    ?>
+
+    <!-- Fichiers Javascript -->
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" crossorigin=""></script>
+
+    <script>
+        const latitude = 48.031478;
+        const longitude = 11.168850;
+        var redIcon = new L.Icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+        const getIP = async () => {
+            await fetch('http://ip-api.com/json/')
+                .then(res => res.json())
+                .then(res => {
+                    LMap.setView([res.lat, res.lon], 5);
+                    L.marker([res.lat, res.lon], {
+                            icon: redIcon
+                        }).addTo(map)
+                        .bindPopup('Ma position')
+                        .openPopup();
+
+                    // longitude.inner = res.lat;
+                    // latitude.valueOf = res.lon;
+                })
+        }
+
+        // On initialise la carte
+        var LMap = L.map('maCarte');
+        var map = LMap.setView([latitude, longitude], 5);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        getIP();
+
+        // // On charge les "tuiles"
+        // L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+        //     // Il est toujours bien de laisser le lien vers la source des données
+        //     attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
+        //     minZoom: 1,
+        //     maxZoom: 20
+        // }).addTo(carte);
+
+        var occaz = new L.Icon({
+            iconUrl: '/filesLib/images/logo.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+        <?php foreach ($magasins as $key => $magasin) :
+        ?>
+            <?php if (!empty($magasin->GpsLon) && !empty($magasin->GpsLat)) {
+            ?>
+                L.marker([<?php echo $magasin->GpsLat; ?>, <?php echo $magasin->GpsLon; ?>],{ icon: occaz } ).addTo(map)
+                    .bindPopup('<table><tr><td rowspan="3"><img style="width: 50px;height:50px;" src="/filesLib/images/logo.png" alt="Occaz et neuf"></td><td><?php echo $magasin->nom_magasin . "</td></tr><tr><td>" . $magasin->telephone1; ?></td></tr><tr><td><a target="_blank" href="<?php echo $iniObj->siteUrl . "magasin_" . $magasin->magasin_url ?>"><?= $magasin->nom_magasin ?></a></td></tr></table>')
+                    .openPopup();
+            <?php } ?>
+        <?php endforeach; ?>
+    </script>
+
+
+
+</body>
+
+</html>
