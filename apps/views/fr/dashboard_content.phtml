@@ -1,5 +1,6 @@
 
-   <?php if($_SESSION['access'] == '1'):?>
+   <?php if($_SESSION['access'] === '1'):?>
+      
 
    <div class="main-content side-content pt-0">
       <div class="container-fluid">
@@ -8,6 +9,8 @@
             <div class="page-header">
 
              <?php include _VIEW_PATH."common_top_for_dashboard_content.phtml"; ?>
+
+             <?php var_dump($_SESSION); ?>
 
             </div>
             <!-- End Page Header --> <!--Row--> 
