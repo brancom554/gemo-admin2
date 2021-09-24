@@ -22,7 +22,7 @@ if ($url_array[2] == "barChart") {
     INNER JOIN operation_types USING (operation_type_id) 
     INNER JOIN category_ussd USING (operation_type_id)
     INNER JOIN categories USING (category_id) 
-    WHERE operations.company_token="TTEST"
+    WHERE operations.company_token="'.$_SESSION['companie_token'].'"
     AND categories.type_category_libelle = "SERVICES TELEPHONIQUES"
     GROUP BY month(operation_date) ORDER BY month(operation_date) ASC';
 
@@ -30,7 +30,7 @@ if ($url_array[2] == "barChart") {
     INNER JOIN operation_types USING (operation_type_id) 
     INNER JOIN category_ussd USING (operation_type_id)
     INNER JOIN categories USING (category_id) 
-    WHERE operations.company_token="TTEST"
+    WHERE operations.company_token="'.$_SESSION['companie_token'].'"
     AND categories.type_category_libelle = "SERVICES FINANCIERS"
     GROUP BY month(operation_date) ORDER BY month(operation_date) ASC';
 
@@ -128,15 +128,10 @@ $sql7 = 'SELECT DISTINCT licences.licence_key, licences.is_active, licence_types
         INNER JOIN licence_types USING (licence_type_id) 
         WHERE licences.created_for_company_id='.$_SESSION['company'];
 
-$sql8 = 'SELECT DISTINCT SUM(balance_after_operate) FROM operations 
-        INNER JOIN operation_types USING (operation_type_id) 
-        INNER JOIN category_ussd USING (operation_type_id)
-        INNER JOIN categories USING (category_id) 
-        WHERE operations.company_token="'.$_SESSION['companie_token'].'" 
-        AND operations.network_operator_name="MOOV"
-        AND categories.type_category_libelle="SERVICES FINANCIERS"
-        AND category_ussd.network_operator_name="MOOV"
-        AND category_ussd.company_token="'.$_SESSION['companie_token'].'"';
+$sql8 = 'SELECT active_date_from, licence_type_name FROM users u
+        INNER JOIN licences lic ON u.company_id=lic.created_for_company_id
+        INNER JOIN licence_types USING (licence_type_id)
+        WHERE u.company_id="'.$_SESSION['company'].'"  AND is_manager=1 AND licence_types.licence_type_name="BUSINESS" LIMIT 3;';
 
 $total = 0;
 $offres = array();
@@ -146,6 +141,7 @@ try {
     $data['licence_total'] = $db->DisplaysDataDb($sql2);
     $data['licence_active'] = $db->DisplaysDataDb($sql3);
     $data['licence_dashboard'] = $db->DisplayDataDb($sql7);
+    $data['licence_activation'] = $db->DisplayDataDb($sql8);
 
     $first_box = $db->DisplaysDataDb($sql4);
     $second_box = $db->DisplaysDataDb($sql5);

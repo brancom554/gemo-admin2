@@ -119,7 +119,7 @@
                      <div class="col-sm-12 col-lg-12 col-xl-12">
                         <div class="card custom-card overflow-hidden">
                            <div class="card-header border-bottom-0">
-                              <div> <label class="main-content-label mb-2">TRANSACTIONS</label> <span class="d-block tx-12 mb-0 text-muted">The Project Budget is a tool used by project managers to estimate the total cost of a project</span> </div>
+                              <div> <label class="main-content-label mb-2">TRANSACTIONS</label> <span class="d-block tx-12 mb-0 text-muted">Cumul des montants de chaques services par mois</span> </div>
                            </div>
                            <div class="card-body pl-0">
                               <div class="">
@@ -144,8 +144,8 @@
                         <!-- <div class="card custom-card overflow-hidden">
                            <div class="card-header  border-bottom-0 pb-0">
                               <div>
-                                 <div class="d-md-flex">
-                                    <label class="main-content-label my-auto pt-2">OPERATIONS</label> 
+                                 <div class="d-md-flex">l
+                                    <label cass="main-content-label my-auto pt-2">OPERATIONS</label> 
                                     <div class="ml-auto mt-3 d-flex">
                                        <div class="mr-3 d-flex text-muted tx-13"><span class="legend bg-primary rounded-circle"></span>Service téléphonique</div>
                                        <div class="d-flex text-muted tx-13"><span class="legend bg-blue rounded-circle"></span>Service financiers
@@ -397,9 +397,13 @@
                      <div class="card-body">
                         <div class="row row-sm">
                            <div class="col-6">
-                              <div class="card-item-title"> <label class="main-content-label tx-13 font-weight-bold mb-2">services</label> <span class="d-block tx-12 mb-0 text-muted">the project is going to launch</span> </div>
-                              <p class="mb-0 tx-24 mt-2"><b class="text-primary">30 jous</b></p>
-                              <a href="#" class="text-muted">Lundi 12 Mars 2021 </a> 
+                              <div class="card-item-title"> <label class="main-content-label tx-13 font-weight-bold mb-2">LICENCES</label> <span class="d-block tx-12 mb-0 text-muted">Quelques licences premium</span> </div>
+                              <?php if(isset($data['licence_activation'])): ?>
+                                    <?php foreach($data['licence_activation'] as $licence): ?>
+                                       <p class="mb-0 tx-24 mt-2"><b class="text-primary"><?=$licence['licence_type_name'] ?></b></p>
+                                       <a href="#" class="text-muted"><?=$licence['active_date_from'] ?></a>
+                                    <?php endforeach; ?>
+                              <?php endif; ?>
                            </div>
                            <div class="col-6"> <img src="<?php $lib->customerSite ?>/UIResources/dashboard/image_flanc_droit_dashboard.png" alt="image" class="best-emp"> </div>
                         </div>
@@ -414,8 +418,8 @@
 								<div class="card custom-card">
 									<div class="card-body">
 										<div>
-											<h6 class="main-content-label mb-1">Donut Chart2</h6>
-											<p class="text-muted  card-sub-title">Below is the basic donut chart example.</p>
+											<h6 class="main-content-label mb-1">OPERATIONS</h6>
+											<p class="text-muted  card-sub-title">Proportions de chaque services</p>
 										</div>
 										<div class="morris-wrapper-demo" id="morrisDonut2"></div>
 									</div>
