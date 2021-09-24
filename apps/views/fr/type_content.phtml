@@ -1,49 +1,69 @@
-<main>
-            <h2 class="main-title">Offres</h2>
-            <div class="track">
-                <span <?php if($page_requested =="configurations"){ ?> class="actives" <?php } ?>><?php echo $page_requested;?></span><span>/</span><span><?php echo $url_array[2];?></span>
-            </div>
-            <div class="main-btn">
-                <button id="myBtn" onclick="document.location='<?php $lib->customerSite ?>/configurations/types_licences/addType'"><i class="fas fa-plus" style="margin-right:15px ;"></i>Ajouter une nouvelle offre</button>
-            </div>
-            
-            <section class="recent">
-                <div class="activity">
-                    <div style="padding-top: 5px;" class="activity-card">
-                        <h3>Liste des offres</h3>
-                        <div class="table-responsive">
-                            <div class="research">
-                                <div>
-                                    <div id="form-research"><input id="filter" type="text" placeholder="Rechercher..."></div>
-                                    <i class="fas fa-search"></i>
-                                </div>
-                            </div>
-                            <table id="table" class="table table-striped" style="margin-top: 30px;" border="0">
-                                <thead>
-                                    <tr>
-                                        <th>Types</th>
-                                        <th>Equipements autorisés</th>
-                                        <th>Transactions autorisés/jour</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <?php if(isset($data['licence_types'])): ?>
-                                        <?php foreach($data['licence_types'] as $type): ?>
-                                        <tr>
-                                             <td><?=$type['licence_type_name'] ?></td>
-                                             <td><?=$type['licence_nb_equipment'] ?></td>
-                                             <td><?=$type['licence_nb_transactions_day'] ?></td>                                    
-                                             <td style="display:flex">
-                                                  <span onclick="document.location='<?php $lib->customerSite ?>/configurations/types_licences/modifier/<?=$type['licence_type_id'] ?>'" class="btn-action white pg-5 primary">Modifier</span>
-                                             </td>
-                                        </tr>
-                                        <?php endforeach; ?>
-                                    <?php endif; ?>
-                                </tbody>
-                            </table>
-                        </div>   
-                    </div>
-                </div>
-            </section>
-        </main>
+
+			<!-- Main Content-->
+			<div class="main-content side-content pt-0">
+
+				<div class="container-fluid">
+					<div class="inner-body">
+
+						<!-- Page Header -->
+						<div class="page-header">
+							<div>
+								<h2 class="main-content-title tx-24 mg-b-5">Offres</h2>
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="#"><?php echo $page_requested;?></a></li>
+									
+								</ol>
+                                <div class="d-flex">
+								<div class="justify-content-center">
+									
+									<button type="button" onclick="document.location='<?php $lib->customerSite ?>/configurations/types_licences/addType'" class="btn btn-info my-2 btn-lg">
+                                    Ajouter une nouvelle offre
+									</button>
+								</div>
+							</div>
+							</div>
+						</div>
+						<!-- End Page Header -->
+
+						
+                        
+
+						<!-- Row -->
+						<div class="row row-sm">
+							<div class="col-lg-12">
+								<div class="card custom-card">
+									<div class="card-body">
+										<div>
+											<h6 class="main-content-label mb-1">Liste des offres</h6>
+										</div>
+										<div class="table-responsive">
+											<table class="table" id="example2">
+												<thead>
+                                                    <tr>
+                                                        <th>Types</th>
+                                                        <th>Equipements autorisés</th>
+                                                        <th>Transactions autorisés/jour</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+												</thead>
+												<tbody>
+                                                    <?php if(isset($data['licence_types'])): ?>
+                                                        <?php foreach($data['licence_types'] as $type): ?>
+                                                        <tr>
+                                                            <td><?=$type['licence_type_name'] ?></td>
+                                                            <td><?=$type['licence_nb_equipment'] ?></td>
+                                                            <td><?=$type['licence_nb_transactions_day'] ?></td>                                    
+                                                            <td style="display:flex">
+                                                                <span onclick="document.location='<?php $lib->customerSite ?>/configurations/types_licences/modifier/<?=$type['licence_type_id'] ?>'" class="btn-action white pg-5 primary">Modifier</span>
+                                                            </td>
+                                                        </tr>
+                                                        <?php endforeach; ?>
+                                                    <?php endif; ?>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- End Row -->

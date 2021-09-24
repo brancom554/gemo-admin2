@@ -1,5 +1,8 @@
 <?php
 switch ($page_requested) {
+	case "offres":
+		include "typeController.php";
+		break;
 	case "licences":
 		include "licenceController.php";
 		break;
@@ -61,9 +64,7 @@ switch ($page_requested) {
 			case "ussd":
 				include "ussdController.php";
 				break;
-			case "types_licences":
-				include "typeController.php";
-				break;	
+				
 			case "service":
 				include "serviceController.php";
 				break;	

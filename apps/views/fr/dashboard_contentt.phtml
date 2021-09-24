@@ -1,0 +1,254 @@
+<main>
+            <h2 class="main-title">Tableau de bord</h2>
+            
+            <?php if($_SESSION['access'] == '1'):?>
+                <div class="main-cards">
+                <div class="d-flex align-items-center padding-1 card-single justify-content-between">
+                    <div class="d-flex flex-column">
+                        <span class="solde"> <?=$first_box[0] ? $first_box[0] : 0?> FCFA</span>
+                        <span>Crédit téléphonique</span>
+                    </div>
+                    <div>
+                        <img class="img-gsm" src="<?php $lib->customerSite ?>/UIResources/images/mtn.jpg" alt="" srcset="">
+                    </div>
+                </div>
+                <div class="d-flex align-items-center padding-1 card-single justify-content-between">
+                    <div class="d-flex flex-column">
+                        <span class="solde"><?=$second_box[0] ? $second_box[0] : 0?> FCFA</span>
+                        <span>Crédit Mobile money</span>
+                    </div>
+                    <div>
+                        <img class="img-gsm" src="<?php $lib->customerSite ?>/UIResources/images/momo.png" alt="Logo momo MTN" srcset="">
+                    </div>
+                </div>
+                <div class="d-flex align-items-center padding-1 card-single justify-content-between">
+                    <div class="d-flex flex-column">
+                        <span class="solde"><?= $third_box[0] ? $third_box[0] : 0?> FCFA</span>
+                        <span>Crédit téléphonique</span>
+                    </div>
+                    <div>
+                        <img class="img-gsm" src="<?php $lib->customerSite ?>/UIResources/images/moov.png" alt="" srcset="">
+                    </div>
+                </div>
+                <div class="d-flex align-items-center padding-1 card-single justify-content-between">
+                    <div class="d-flex flex-column">
+                        <span class="solde"><?=$fourth_box[0] ? $fourth_box[0] :0?> FCFA</span>
+                        <span>Crédit Moov money</span>
+                    </div>
+                    <div>
+                        <img class="img-gsm" src="<?php $lib->customerSite ?>/UIResources/images/mymomo.png" alt="" srcset="">
+                    </div>
+                </div>
+            </div>
+            <section class="recent">
+                <div class="activity-grid">
+                    <div class="activity-card">
+                        <div class="card-single-header padding-10">
+                            <span>Transactions</span>
+                        </div>
+                        <div class="chart-container padding-1">
+                            <canvas id="barChart" width="300" height="200"></canvas>
+                        </div>
+                        
+                        <!--<div id="chartContainer2" style="height: 370px; max-width: 920px; margin: 0px auto;"></div> -->
+                    </div>
+                    <div class="card-single response-card">
+                    <div class="card-single-header" style="align-items: center;">
+                        <span>Les dernières transactions</span>
+                        <a href="<?php $lib->customerSite ?>/operation/historique" class="btn btn-orange">Plus</a>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-striped" style="margin-bottom:0">
+                            <thead class="">
+                                <tr>
+                                    <th scope="col" class="primary">Opérations</th>
+                                    
+                                    <th scope="col" class="primary">Montants</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php if(!empty($data['operations'])): ?>
+                                    <?php foreach($data['operations'] as $operation): ?>
+                                        <tr>
+                                            <td scope="row"><?=$operation['libelle'] ?></td>
+                                            <td><?=$operation['operation_date'] ?></td>
+                                            <td><?=$operation['descriptions'] ?></td>
+                                            <td>MTN</td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                    <tr>
+                                        <td colspan="4">
+                                            Pas de données
+                                        </td>
+                                    </tr>
+                                <?php endif; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                </div>
+                <div class="activity-card carmember"> 
+                    <div class="card-single-header padding-10">
+                        <span>Opérations</span>
+                    </div>
+                    <div class="chart-container2 padding-1">
+                        <canvas id="camenbertChart"></canvas>
+                    </div>
+                            <!--<div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>-->
+                </div>
+            </section>
+            
+            <?php else :?>
+                <?php if($_SESSION['access'] == '2'):?>
+                    <div class="main-cards">
+                <div class="d-flex align-items-center padding-1 card-single justify-content-between">
+                    <div class="d-flex flex-column">
+                        <span class="solde"><?=$total?></span>
+                        <span>Nombre de licences</span>
+                    </div>
+                    
+                </div>
+                <div class="d-flex align-items-center padding-1 card-single justify-content-between">
+                    <div class="d-flex flex-column">
+                        <span class="solde"><?=$total_active?></span>
+                        <span>Nombre de site déployés</span>
+                    </div>
+                    
+                </div>
+                <div class="d-flex align-items-center padding-1 card-single justify-content-between">
+                    <div class="d-flex flex-column">
+                        <span class="solde"><?=$total_active?></span>
+                        <span>Nombre d'équipement actifs</span>
+                    </div>
+                    
+                </div>
+                <div class="d-flex align-items-center padding-1 card-single justify-content-between">
+                    <div class="d-flex flex-column">
+                        <span class="solde">50</span>
+                        <span>Nombre de plaintes</span>
+                    </div>
+                    
+                </div>
+            </div>
+            <section class="recent">
+                <div class="activity-grid">
+                    <div class="activity-card">
+                        <div class="card-single-header padding-10">
+                            <span>Transactions</span>
+                        </div>
+                        <div class="chart-container padding-1">
+                            <canvas id="myChart" width="300" height="200"></canvas>
+                        </div>                        
+                        <!--<div id="chartContainer2" style="height: 370px; max-width: 920px; margin: 0px auto;"></div> -->
+                    </div>
+                    <div class="activity-card "> 
+                        <div class="card-single-header padding-10">
+                            <span>Marchands</span>
+                        </div>
+                        <div class="chart-container2 padding-1">
+                            <canvas id="myChart2"></canvas>
+                        </div>
+                                <!--<div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>-->
+                    </div>
+                    <!--<div class="card-single">
+                        <div class="card-single-header" style="align-items: center;">
+                            <span>Les dernières transactions</span>
+                            <a href="<?php $lib->customerSite ?>/operation/historique" class="btn btn-orange">Plus</a>
+                        </div>
+                        <div class="card-body table-responsive">
+                            <table class="table table-striped" style="margin-bottom:0">
+                                <thead class="">
+                                    <tr>
+                                        <th scope="col" class="primary">Opérations</th>
+                                        
+                                        <th scope="col" class="primary">Montants</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>DEPOT</td>
+                                        <td>30000 FCFA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>FORFAIT INTERNET</td>
+                                        <td>30000 FCFA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>RETRAIT</td>
+                                        <td>30000 FCFA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>DEPOT</td>
+                                        <td>30000 FCFA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>FORFAIT INTERNET</td>
+                                        <td>30000 FCFA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>RETRAIT</td>
+                                        <td>30000 FCFA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>DEPOT</td>
+                                        <td>30000 FCFA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>FORFAIT INTERNET</td>
+                                        <td>30000 FCFA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>RETRAIT</td>
+                                        <td>30000 FCFA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>RETRAIT</td>
+                                        <td>30000 FCFA</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>-->
+                </div>
+                <!--<div class="activity-card carmember"> 
+                    <div class="card-single-header padding-10">
+                        <span>Nouveaux Marchands</span>
+                    </div>
+                    <div class="chart-container2 padding-1">
+                        <canvas id="myChart3"></canvas>
+                    </div>-->
+                            <!--<div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>-->
+                <!--</div>-->
+            </section>
+            <?php endif;?>
+        <?php endif;?>
+        <?php if($_SESSION['access'] == '2'):?>
+            <!-- Page Header -->
+						<div class="page-header">
+							<div>
+								<h2 class="main-content-title tx-24 mg-b-5">Welcome To Dashboard</h2>
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="#">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Project Dashboard</li>
+								</ol>
+							</div>
+							<div class="d-flex">
+								<div class="justify-content-center">
+									<button type="button" class="btn btn-white btn-icon-text my-2 mr-2">
+									  <i class="fe fe-download mr-2"></i> Import
+									</button>
+									<button type="button" class="btn btn-white btn-icon-text my-2 mr-2">
+									  <i class="fe fe-filter mr-2"></i> Filter
+									</button>
+									<button type="button" class="btn btn-primary my-2 btn-icon-text">
+									  <i class="fe fe-download-cloud mr-2"></i> Download Report
+									</button>
+								</div>
+							</div>
+						</div>
+						<!-- End Page Header -->
+        <?php endif;?>
+        </main>

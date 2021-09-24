@@ -19,7 +19,7 @@ if (isset($_POST['soumettre'])) {
         $phone_number = filter_input(INPUT_POST,'phone_number',FILTER_SANITIZE_STRING);
 
         $sql = 'UPDATE users SET firstname=:firstname, lastname=:lastname, phone_number=:phone_number WHERE user_id=:id';
-        // $data = array("firstname" => $_SESSION['user_id'], "lastname" => password_hash($password2, PASSWORD_DEFAULT), "phone_number" => $formatt);
+        $data = array("firstname" => $_SESSION['user_id'], "lastname" => password_hash($password2, PASSWORD_DEFAULT), "phone_number" => $formatt);
         $db = new Database();
         $data=[
             'id' => $url_array[4],
