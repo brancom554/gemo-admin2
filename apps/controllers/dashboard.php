@@ -126,15 +126,9 @@ $sql6 = 'SELECT DISTINCT SUM(balance_after_operate) FROM operations
         AND category_ussd.network_operator_name="MOOV"
         AND category_ussd.company_token="'.$_SESSION['companie_token'].'"';
 
-// $sql6 = 'SELECT DISTINCT SUM(balance_after_operate) FROM operations 
-//         INNER JOIN operation_types USING (operation_type_id) 
-//         INNER JOIN category_ussd USING (operation_type_id)
-//         INNER JOIN categories USING (category_id) 
-//         WHERE operations.company_token="'.$_SESSION['companie_token'].'" 
-//         AND operations.network_operator_name="MOOV"
-//         AND categories.type_category_libelle="SERVICES TELEPHONIQUES"
-//         AND category_ussd.network_operator_name="MOOV"
-//         AND category_ussd.company_token="'.$_SESSION['companie_token'].'"';
+$sql7 = 'SELECT DISTINCT licences.licence_key, licences.is_active, licence_types.licence_type_name FROM licences 
+        INNER JOIN licence_types USING (licence_type_id) 
+        WHERE licences.created_for_company_id='.$_SESSION['company'];
 
 // $sql7 = 'SELECT DISTINCT SUM(balance_after_operate) FROM operations 
 //         INNER JOIN operation_types USING (operation_type_id) 
@@ -153,6 +147,8 @@ try {
     $data['operations'] = $db->DisplayDataDb($sql);
     $data['licence_total'] = $db->DisplaysDataDb($sql2);
     $data['licence_active'] = $db->DisplaysDataDb($sql3);
+    $data['licence_dashboard'] = $db->DisplayDataDb($sql7);
+
     $first_box = $db->DisplaysDataDb($sql4);
     $second_box = $db->DisplaysDataDb($sql5);
     $third_box = $db->DisplaysDataDb($sql6);

@@ -4,9 +4,15 @@
 <div class="container-fluid">
     <div class="inner-body">
 
-        <?php if(!empty($_SESSION['notification'])):?>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <?=$_SESSION['notification']?>
+        <?php if(!empty($data['operations'])):?>
+
+                <div class="alert alert-success" role="alert">
+                    <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>Renvoyée avec succes!</strong>
+                </div
+
         <?php endif; ?>
 
             <!-- Page Header -->
@@ -18,6 +24,8 @@
             <!-- End Page Header -->
 
             <div class="card-filter">
+
+
         <form class="row g-3" action="" method="post">
             <div class="col-md-4">
                 <?php if($_SESSION['access'] == '1'):?>
@@ -80,8 +88,9 @@
                                             <th>Descriptions</th>
                                             <th>Dates</th>
                                             <th>Gsm</th>
-                                            
-                                            
+                                            <th>Numéros</th>
+                                            <th>Agents</th>
+                                            <!-- <th>Statut de la transaction</th> -->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -92,6 +101,9 @@
                                                 <td><?=$opération['operation_date'] ?></td>                                             
                                                 <td><?=$opération['description'] ?></td>
                                                 <td><?=$opération['network_operator_name'] ?></td>
+                                                <td><?=$opération['phone_number'] ?></td>                                             
+                                                <td><?=$opération['firstname'] .' '.$opération['lastname'] ?></td>
+                                                <!-- <td></td> -->
                                             </tr>
                                             <?php endforeach; ?>
                                         <?php endif; ?>
