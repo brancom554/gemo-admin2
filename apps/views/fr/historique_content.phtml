@@ -90,7 +90,7 @@
                                             <th>Gsm</th>
                                             <th>Numéros</th>
                                             <th>Agents</th>
-                                            <!-- <th>Statut de la transaction</th> -->
+                                            <th>Statut de l'opération</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -103,7 +103,7 @@
                                                 <td><?=$opération['network_operator_name'] ?></td>
                                                 <td><?=$opération['phone_number'] ?></td>                                             
                                                 <td><?=$opération['firstname'] .' '.$opération['lastname'] ?></td>
-                                                <!-- <td></td> -->
+                                                <td><?=$opération['statut_operation'] ?></td>
                                             </tr>
                                             <?php endforeach; ?>
                                         <?php endif; ?>

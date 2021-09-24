@@ -12,7 +12,7 @@
   var c4 = $('.forth.circle');
 
   c4.circleProgress({
-    startAngle: -Math.PI / 2 * 3,
+    startAngle: -Math.PI / 5 * 3,
     value: 0.5,
     lineCap: 'round',
 	emptyFill: '#FE7701',

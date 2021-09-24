@@ -6,9 +6,7 @@
         type: "POST",
         url: "/dashboard/barChart",
         success:function(datas) { 
-            // console.log(datas)
             const v = JSON.parse(datas)
-            // console.log(v)
 
 	var ctx = document.getElementById("chartLine").getContext('2d');
 	var myChart = new Chart(ctx, {
@@ -16,7 +14,7 @@
 		data: {
 			labels: v.moisTelephoniques,
 			datasets: [{
-				label: 'SERVICES TELEPHONIQUES ET FINANCIERS',
+				label: 'SERVICES TELEPHONIQUES',
 				data: v.totalTelephoniques,
 				borderWidth: 3,
 				backgroundColor: 'transparent',
@@ -25,19 +23,19 @@
 				pointRadius: 0,
 				type: 'line',
 			},
-			// {
+			{
 				
-			// 	label: 'SERVICES FINANCIERS',
-			// 	data: [200, 530, 110, 110, 480, 520, 780,435,475,738, 454, 454, 230,],
-			// 	borderWidth: 3,
-			// 	backgroundColor: 'transparent',
-			// 	borderColor: '#FE7701',
-			// 	pointBackgroundColor: '#ffffff',
-			// 	pointRadius: 0,
-			// 	type: 'line',
-			// 	borderDash: [7,3],
+				label: 'SERVICES FINANCIERS',
+				data: v.totalFinanciers,
+				borderWidth: 3,
+				backgroundColor: 'transparent',
+				borderColor: '#FE7701',
+				pointBackgroundColor: '#ffffff',
+				pointRadius: 0,
+				type: 'line',
+				borderDash: [7,3],
 
-			// }
+			}
 		]
 		},
 		options: {
@@ -76,9 +74,9 @@
 						zeroLineColor: 'rgba(119, 119, 142, 0.2)',
 					},
 					ticks: {
-					  min: 0,
-					  max: 1050,
-					  stepSize: 150
+					//   min: 0,
+					//   max: 111050,
+					//   stepSize: 150
                 },
 					scaleLabel: {
 						display: true,
@@ -319,6 +317,7 @@ var myChart = new Chart(ctx, {
 			maintainAspectRatio: false,
 			legend: { position: 'bottom',display: false, },
 		}
+		
 });
 
 

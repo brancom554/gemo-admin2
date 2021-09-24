@@ -316,6 +316,7 @@ $(function() {
 		labelColor: '#77778e',
 		resize: true
 	});
+	
 	new Morris.Donut({
 		element: 'morrisDonut2',
 		data: [{
