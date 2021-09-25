@@ -1,51 +1,54 @@
+<!-- Main Content-->
+<div class="main-content side-content pt-0">
 
-			<!-- Main Content-->
-			<div class="main-content side-content pt-0">
+    <div class="container-fluid">
+        <div class="inner-body">
 
-				<div class="container-fluid">
-					<div class="inner-body">
+            <?php if(!empty($_SESSION['notification'])):?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <?=$_SESSION['notification']?>
+            <?php endif; ?>
 
-						<!-- Page Header -->
-						<div class="page-header">
-							<div>
-								<h2 class="main-content-title tx-24 mg-b-5">Licences</h2>
-								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="#">Licences</a></li>
-									
-								</ol>
-                                <div class="d-flex">
-								<div class="justify-content-center">
-									
-									<button type="button" class="btn btn-info my-2 btn-lg">
-                                    Ajouter une nouvelle licence
-									</button>
-								</div>
-							</div>
-							</div>
+                <!-- Page Header -->
+                <div class="page-header">
+
+					<div>
+						<h2 class="main-content-title tx-24 mg-b-5">Licences</h2>
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="#"><?= $url_array[1] ?></a></li>
+							<li class="breadcrumb-item active" aria-current="page"><?= $url_array[2] ?></li>
+						</ol>
+					</div>
+							
+					<div class="d-flex">
+						<div class="justify-content-center">
+							<button onclick="document.location='<?php $lib->customerSite ?>/licences/addLicence'" type="button" class="btn btn-primary my-2 btn-icon-text">
+								<i class="fas fa-plus mr-2"></i> Ajouter un nouvelle licence
+							</button>
 						</div>
-						<!-- End Page Header -->
+					</div>
 
-						
-                        
+                </div>
+                <!-- End Page Header -->
 
-						<!-- Row -->
-						<div class="row row-sm">
-							<div class="col-lg-12">
-								<div class="card custom-card">
-									<div class="card-body">
-										<div>
-											<h6 class="main-content-label mb-1">Liste des licences</h6>
-										</div>
-										<div class="table-responsive">
-											<table class="table" id="example2">
-												<thead>
+                <!-- Row -->
+                <div class="row row-sm">
+                    <div class="col-lg-12">
+                        <div class="card custom-card">
+                            <div class="card-body">
+                                <div>
+									<h6 class="main-content-label mb-1">Liste des licences</h6>
+								</div>
+                                <div class="table-responsive">
+                                    <table id="example2" class="table table-striped table-bordered text-nowrap" >
+                                    <thead>
 													<tr>
-                                                        <th class="wd-20p">Licence key</th>
-                                                        <th class="wd-20p">Société</th>
-                                                        <th class="wd-20p">Type</th>
-                                                        <th class="wd-20p">Date d'expiration</th>
+                                                        <th class="">Licence key</th>
+                                                        <th class="">Société</th>
+                                                        <th class="">Type</th>
+                                                        <th class="">Date d'expiration</th>
                                                         <th>Statut</th>
-                                                        <th class="wd-20p">Actions</th>
+                                                        <th class="">Actions</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -78,12 +81,18 @@
                                                     <?php endforeach; ?>
                                                 <?php endif; ?>
 												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- End Row -->
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Row -->    
+        </div>
+    </div>
+</div>
+<!-- End Main Content-->
 
-						
+
+
+			

@@ -480,3 +480,272 @@
                 </div>
             </section>
         </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<main>
+        <div>
+            <span class="main-title font-1">Création de licence</span>
+            <div class="track">
+                <span <?php if($page_requested =="configurations"){ ?> class="actives" <?php } ?>><?php echo $page_requested;?></span><span>/</span><span>Licence</span><span>/</span><span>Création</span>
+            </div>
+
+            <div class="progressbar">
+                <div class="progress" id="progress"></div>
+                <div class="progressbar-step progressbar-step-active" data-title="Companie"></div>
+                <div class="progressbar-step" data-title="Addresse"></div>
+                <div class="progressbar-step" data-title="Manager"></div>
+                <div class="progressbar-step" data-title="Offres"></div>
+                <!--<div class="progressbar-step" data-title="Recapiculation"></div>-->
+            </div>
+            <div class="form">
+                <form action="" method="post">
+                    <div class="form-step form-step-active">
+                        <div class="form-content">
+                            <div class="input-form margin-bottom-20">
+                                <label for="nomCompanie">Désignation</label>
+                                <input class="form-control" type="text" required name="nomCompanie" id="nomCompanie" value="" >
+                                <?php if(isset($message)):?>
+                                    <span class="notification"><?php echo $message ?></span>
+                                <?php endif;?>
+                            </div>
+                            
+                            <div class="input-form margin-bottom-20">
+                                <label for="rccm">N° RCCM</label>
+                                <input class="form-control" type="text" required name="rccm" id="rccm" value="">
+                            </div>
+                            
+                        </div>
+                        <div class="form-content">
+                            <div class="input-form margin-bottom-20">
+                                <label for="ifu">N°IFU</label>
+                                <input class="form-control" type="text" required name="ifu" id="ifu" value="" >
+                                <?php if(isset($message)):?>
+                                    <span class="notification"><?php echo $message ?></span>
+                                <?php endif;?>
+                            </div>
+                            
+                            <div class="input-form margin-bottom-20">
+                                <label for="token">Token</label>
+                                <input class="form-control" type="text" name="token" id="token" value="">
+                            </div>
+                            
+                        </div>
+                        <div class="margin-bottom-20 d-flex flex-row-reverse margin-r">
+                            <a href="#" class="btn form-button btn-next">Suivant</a>
+                        </div>
+                    </div>
+                    <div class="form-step">
+                        <div class="form-content">
+                            <div class="input-form margin-bottom-20">
+                                <label for="addresse">Addresse</label>
+                                <input class="form-control" type="text" required name="addresse" id="addresse" value="" >
+                                <?php if(isset($message)):?>
+                                    <span class="notification"><?php echo $message ?></span>
+                                <?php endif;?>
+                            </div>
+                            
+                            <div class="input-form margin-bottom-20">
+                                <label for="postal">Code postal</label>
+                                <input class="form-control" type="text" required name="postal" id="postal" value="">
+                            </div>
+                            
+                        </div>
+                        <div class="form-content">
+                            <div class="input-form margin-bottom-20">
+                                <label for="ville">Ville</label>
+                                <input class="form-control" type="text" required name="ville" id="ville" value="" >
+                            </div>
+                            
+                            <div class="input-form margin-bottom-20">
+                                <label for="country">Pays</label>
+                                <select class="form-control margin-bottom-20" required name="country" id="country">
+                                    <option value="">Sélectionne un pays</option>
+                                    <?php if(isset($data['country'])): ?>
+                                        <?php foreach($data['country'] as $country): ?>
+                                            <option value="<?=$country['country_id'] ?>"><?=$country['description'] ?></option>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </select>
+                                <?php if(isset($messageCountry)):?>
+                                    <span class="notification"><?php echo $messageCountry ?></span>
+                                <?php endif;?>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="margin-bottom-20 d-flex flex-row justify-content-between">
+                            
+                                <a href="#" class="form-button btn-prev">Précédent</a>
+                                <a href="#" class="form-button btn-next">Suivant</a>
+                            
+                        </div>
+                    </div>
+                    <div class="form-step">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="nom" class="form-label">Nom</label>
+                                <input type="text" class="form-control" id="nom" required name="nom" placeholder="Nom">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="prenom" class="form-label">Prénoms</label>
+                                <input type="text" class="form-control" id="prenom" required name="prenom"  placeholder="Prénoms">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" required name="email" placeholder="Email">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label">Téléphone</label>
+                                <input type="text" class="form-control" id="phone" required name="phone" placeholder="Téléphone">
+                                <?php if(isset($message)):?>
+                                    <span class="notification"><?php echo $message ?></span>
+                                <?php endif;?>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="password" class="form-label">Mot de passe</label>
+                                <input type="text" class="form-control" id="password" required name="password" placeholder="Mot de passe">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="confirmer" class="form-label">Réécrire le mot de passe</label>
+                                <input type="text" class="form-control" id="confirmer" required name="confirmer" placeholder="Mot de passe">
+                                <?php if(isset($messagepassword)):?>
+                                    <span class="notification"><?php echo $messagepassword ?></span>
+                                <?php endif;?>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="expiration" class="form-label">Date d'expiration</label>
+                                <input type="date" class="form-control" required name="expiration"  id="expiration">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="uuid" class="form-label">Application uuid</label>
+                                <input type="text" class="form-control" required name="uuid"  id="uuid" placeholder="Application uuid">
+                                <?php if(isset($messageuuid)):?>
+                                    <span class="notification"><?php echo $messageuuid ?></span>
+                                <?php endif;?>
+                            </div>
+                            
+                            
+                            <div class="col-md-3">
+                                <label for="type" class="form-label">Type</label>
+                                <select id="type" class="form-select" name="type" required>
+                                    <option selected>Selectionner un type</option>
+                                    <option value="0">Simple marchand</option>
+                                    <option value="1">Manager</option>
+                                </select>
+                            </div>
+                            <!--<div class="col-12">
+                                <div class="form-check">
+                                <input class="form-check-input" type="checkbox" checked name="activer" id="gridCheck">
+                                <label class="form-check-label" for="gridCheck">
+                                    Activer
+                                </label>
+                                </div>
+                            </div>-->
+                            <div class="col-12 margin-bottom-20 d-flex flex-row justify-content-between" style="margin-top:1rem">
+                            
+                                <a href="#" class="btn form-button btn-prev">Précédent</a>
+                                <a href="#" class="btn form-button btn-next">Suivant</a>
+                            
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="form-step">
+                        <div class="form-content">
+                            <div class="input-form margin-bottom-20">
+                                <label for="licence">Licence Key</label>
+                                <input class="form-control" type="text" name="licence" id="" value="<?php echo $licenceKey ?>" disabled>
+                                <input class="form-input" type="text" hidden name="licence_key" id="licence_key" value="<?php echo $licenceKey ?>">
+                            </div>
+                           
+                        </div>
+                        <div class="form-content">
+                            <div class="input-form margin-bottom-20">
+                                <label for="licence">Expiration de la licence</label>
+                                <input class="form-control" type="date" name="licence_fin" required id="licence_fin" placeholder="Entrer la licence key">
+                            </div>
+                        </div>
+                        <!--<div class="form-check margin-bottom-20 form-content">
+                            <div>
+                                <div>
+                                    <label class="margin-right" for="actif">Actif</label>
+                                    <input type="checkbox" name="actif" id="">
+                                </div>
+                                <div>
+                                    <label class="margin-right" for="equipement">Equipement</label>
+                                    <input type="checkbox" name="equipement" id="">
+                                </div>
+                            </div>
+                            <div class="input-form" style="align-items:end">
+                                <label for="">Application</label>
+                                <input class="form-input form-control" style="width:100%" type="text" name="application_uuid" id="" placeholder="Entrer l'uuid de l'application" >
+                            </div>
+                        </div>-->
+                        <div class="form-content">                        
+                            <div class="input-form" style="margin-right:20px">
+                                <label for="societe">Services</label>
+                                <select class="form-select margin-bottom-20" name="services[]" id="select" multiple required>
+                                    <?php if(isset($data['services'])): ?>
+                                        <?php foreach($data['services'] as $service): ?>
+                                            <option value="<?=$service['service_id'] ?>"><?=$service['libelle'] ?></option>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </select>
+                            </div>
+                            <div class="input-form">
+                                <label for="societe">Type de licence</label>
+                                <select class="form-select margin-bottom-20" name="licence_type" id="societe" required>
+                                    <option value="">Sélectionne un type de licence</option>
+                                    <?php if(isset($data['type'])): ?>
+                                        <?php foreach($data['type'] as $type): ?>
+                                            <option value="<?=$type['licence_type_id'] ?>"><?=$type['licence_type_name'] ?></option>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </select>
+                            </div>
+                            <!--<div class="input-form" style="align-items:end">
+                                <label for="">Token</label>
+                                <input class="form-input" style="width:100%" type="text" name="token" id="" placeholder="Entrer le token de la compagnie" >
+                            </div>-->
+                            
+                        </div>
+                        <div class="margin-bottom-20" style="margin-top:20px">
+                            <a href="#" class="btn form-button btn-prev">Précédent</a>
+                            <button class="btn form-button" name="soumettre" type="submit">Valider</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            
+        </div>
+    </main>
+
+
+
+	<div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">Désignation</p>
+                                                            <input type="text" class="form-control" name="libelle" id="" value="<?php echo $data['services']['company_name'] ?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <p class="mg-b-10">N° RCCM</p>
+                                                            <input type="text" class="form-control" name="rccm" id="" value="<?php echo $data['services']['company_number'] ?>">
+                                                        </div>
+                                                    </div>
