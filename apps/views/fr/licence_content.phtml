@@ -1,68 +1,98 @@
-<main>
-            <h2 class="main-title">Licences</h2>
-            <div class="track padding-bottom-20">
-                <span <?php if($page_requested =="licences"){ ?> class="actives" <?php } ?>><?php echo $page_requested;?></span><span>/</span><span><?php echo $param2[0];?></span>
-            </div>
-            <div class="main-btn">
-                <a href="/licences/addLicence" id="myBtn"><i class="fas fa-plus" style="margin-right:15px ;"></i>Ajouter une nouvelle licence</a>
-            </div>
-           
-            <section class="recent">
-                <div class="activity">
-                    <div style="padding-top: 5px;" class="activity-card">
-                        <h3>Liste des licences</h3>
-                        <div class="table-responsive">
-                            <div class="research">
+<!-- Main Content-->
+<div class="main-content side-content pt-0">
+
+    <div class="container-fluid">
+        <div class="inner-body">
+
+            <?php if(!empty($_SESSION['notification'])):?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <?=$_SESSION['notification']?>
+            <?php endif; ?>
+
+                <!-- Page Header -->
+                <div class="page-header">
+
+					<div>
+						<h2 class="main-content-title tx-24 mg-b-5">Licences</h2>
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="#"><?= $url_array[1] ?></a></li>
+							<li class="breadcrumb-item active" aria-current="page"><?= $url_array[2] ?></li>
+						</ol>
+					</div>
+							
+					<div class="d-flex">
+						<div class="justify-content-center">
+							<button onclick="document.location='<?php $lib->customerSite ?>/licences/addLicence'" type="button" class="btn btn-primary my-2 btn-icon-text">
+								<i class="fas fa-plus mr-2"></i> Ajouter un nouvelle licence
+							</button>
+						</div>
+					</div>
+
+                </div>
+                <!-- End Page Header -->
+
+                <!-- Row -->
+                <div class="row row-sm">
+                    <div class="col-lg-12">
+                        <div class="card custom-card">
+                            <div class="card-body">
                                 <div>
-                                    <div id="form-research"><input id="filter" type="text" placeholder="Rechercher..."></div>
-                                    <i class="fas fa-search"></i>
+									<h6 class="main-content-label mb-1">Liste des licences</h6>
+								</div>
+                                <div class="table-responsive">
+                                    <table id="example2" class="table table-striped table-bordered text-nowrap" >
+                                    <thead>
+													<tr>
+                                                        <th class="">Licence key</th>
+                                                        <th class="">Société</th>
+                                                        <th class="">Type</th>
+                                                        <th class="">Date d'expiration</th>
+                                                        <th>Statut</th>
+                                                        <th class="">Actions</th>
+													</tr>
+												</thead>
+												<tbody>
+                                                <?php if(isset($data['licences'])): ?>
+                                                    <?php foreach($data['licences'] as $licence): ?>
+                                                    <tr>
+                                                        <td><?=$licence['licence_key'] ?></td>
+                                                        <td><?=$licence['company_name'] ?></td>
+                                                        <td><?=$licence['licence_type_name'] ?></td>
+                                                        <td><?=$licence['expiration_date'] ?></td>
+                                                        <td>
+                                                            <?php if($licence['is_active'] == 1): ?>
+                                                                <span class="badge badge-pill badge-success">Activer</span>
+                                                            <?php endif; ?>
+                                                            <?php if($licence['is_active'] == 0): ?>
+                                                                <span class="badge badge-pill badge-danger">Bloquer</span>
+                                                            <?php endif; ?>
+                                                            <!--<?php //if($licence['is_active'] == 2): ?>
+                                                                <span class="span-success danger">Revoquer</span>
+                                                            <?php //endif; ?>-->
+                                                        </td>
+                                                        
+                                                        <td>
+                                                            <!--<span onclick="document.location='<?php $lib->customerSite ?>/licences/activer/<?=$licence['licence_id'] ?>'" class="btn-action white pg-5 success cursor"> Offres</span>-->
+                                                            <button onclick="document.location='<?php $lib->customerSite ?>/licences/bloquer/<?=$licence['licence_id'] ?>'" class="btn ripple btn-danger">Bloquer</button>
+                                                            <!--<span onclick="document.location='<?php $lib->customerSite ?>/licences/modifier/<?=$licence['licence_id'] ?>'" class="btn-action white pg-5 primary cursor">Relancer</span>-->
+                                                            <button onclick="document.location='<?php $lib->customerSite ?>/licences/secondaire/<?=$licence['licence_id'] ?>'" class="btn ripple btn-info">Sous-Licences</button>
+                                                        </td>
+                                                    </tr>
+                                                    <?php endforeach; ?>
+                                                <?php endif; ?>
+												</tbody>
+                                    </table>
                                 </div>
                             </div>
-                            <table id="table" class="table table-striped" style="margin-top: 30px;" border="0">
-                                <thead>
-                                    <tr>
-                                        <th>Licence key</th>
-                                        <th>Société</th>
-                                        <th>Type</th>
-                                        <th>Date d'expiration</th>
-                                        <th>Statut</th>
-                                        <th style="text-align:center">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                   <?php if(isset($data['licences'])): ?>
-                                        <?php foreach($data['licences'] as $licence): ?>
-                                        <tr>
-                                             <td><?=$licence['licence_key'] ?></td>
-                                             <td><?=$licence['company_name'] ?></td>
-                                             <td><?=$licence['licence_type_name'] ?></td>
-                                             <td><?=$licence['expiration_date'] ?></td>
-                                             <td>
-                                                  <?php if($licence['is_active'] == 1): ?>
-                                                       <span class="span-success success">Activer</span>
-                                                  <?php endif; ?>
-                                                  <?php if($licence['is_active'] == 0): ?>
-                                                       <span class="span-success danger">Bloquer</span>
-                                                  <?php endif; ?>
-                                                  <!--<?php //if($licence['is_active'] == 2): ?>
-                                                       <span class="span-success danger">Revoquer</span>
-                                                  <?php //endif; ?>-->
-                                             </td>
-                                             
-                                             <td style="display:flex">
-                                                  <!--<span onclick="document.location='<?php $lib->customerSite ?>/licences/activer/<?=$licence['licence_id'] ?>'" class="btn-action white pg-5 success cursor"> Offres</span>-->
-                                                  <span onclick="document.location='<?php $lib->customerSite ?>/licences/bloquer/<?=$licence['licence_id'] ?>'" class="btn-action white pg-5 danger cursor">Désactiver</span>
-                                                  <!--<span onclick="document.location='<?php $lib->customerSite ?>/licences/modifier/<?=$licence['licence_id'] ?>'" class="btn-action white pg-5 primary cursor">Relancer</span>-->
-                                                  <span onclick="document.location='<?php $lib->customerSite ?>/licences/secondaire/<?=$licence['licence_id'] ?>'" class="btn-action black pg-5 warning cursor">Licences secondaires</span>
-                                             </td>
-                                        </tr>
-                                        <?php endforeach; ?>
-                                    <?php endif; ?>
-                                    
-                                </tbody>
-                            </table>
-                        </div>   
+                        </div>
                     </div>
                 </div>
-            </section>
-        </main>
+                <!-- End Row -->    
+        </div>
+    </div>
+</div>
+<!-- End Main Content-->
+
+
+
+			

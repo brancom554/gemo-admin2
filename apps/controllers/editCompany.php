@@ -9,7 +9,7 @@ if (isset($_POST['soumettre'])) {
     else {
         $sql = 'UPDATE companies SET company_number=:rccm,company_name=:nom,company_token=:token,registration_number=:ifu WHERE company_id=:id';
         $data=[
-            'id' => $url_array[4],
+            'id' => $url_array[3],
             'rccm'=> $_POST['rccm'],
             'nom' => strtoupper($_POST['libelle']) ,
             'token' => $_POST['token'],
@@ -19,7 +19,7 @@ if (isset($_POST['soumettre'])) {
         
             $query = $db->InsertDb($sql,$data);
             if ($query == true) {
-                header('Location:/super/compagnies');
+                header('Location:/marchands');
                 var_dump($query);
                 exit;
                 
@@ -32,7 +32,7 @@ if (isset($_POST['soumettre'])) {
 }
 
 $data=[
-    'id' => $url_array[4]
+    'id' => $url_array[3]
 ];
 $db = new Database();
 $q = $db->connectDb();

@@ -1,5 +1,5 @@
 <?php
-    switch ($url_array[3]) {  
+    switch ($url_array[2]) {  
         case "ajouter":
             include "addCompany.php";
             break;	

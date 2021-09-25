@@ -63,13 +63,13 @@ if (isset($_POST['soumettre'])) {
                 'date' =>$date->format('y-m-d H:i'),
                 'address'=> $address_id,
                 'company'=> $companie_id,
-                'active' => $activ,
-                'debut'=> $date->format('y-m-d'),
-                'end'=>$_POST['expiration'],
-                'manager' => $_POST['type'],
+                'active' => 1,
+                'debut'=> $date->format('y-m-d H:i'),
+                'end'=>$date->format('y-m-d H:i'),
+                'manager' => 1,
                 'password'=> $hash,
                 'hash'=> md5($_POST['password']),
-                'uuid'=>$_POST['uuid'],
+                'uuid'=>"",
                 'version'=> 1
             ];
             $manager = new User();
@@ -99,12 +99,12 @@ if (isset($_POST['soumettre'])) {
                 $secondaire = new Licence();
                 $licenceSecondaire = $secondaire->generateLicenceSecondaire($licence_id,$nb,$companie_id,$_POST['services']);
                 if ($licenceSecondaire) {
-                    header('Location:/super/licence');
-                    var_dump($licenceSecondaire);
+                    header('Location:/licences');
+                    //var_dump($licenceSecondaire);
                     exit;
                 }
             } else {
-                var_dump($address_id);
+                var_dump($manager_id);
             }
             
         } else {
