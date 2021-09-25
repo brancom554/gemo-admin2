@@ -1,29 +1,42 @@
-<main>
-            <h2 class="main-title">Licences secondaires</h2>
-            <div class="track padding-bottom-20">
-                <span <?php if($page_requested =="configurations"){ ?> class="actives" <?php } ?>><?php echo $page_requested;?></span><span>/</span><span><?php echo $param2[0];?></span><span>/</span><span><?php echo $url_array[3];?></span>
-            </div>
+<!-- Main Content-->
+<div class="main-content side-content pt-0">
 
-            <?php if($show) : ?>
-            
-            <?php else : ?>
-                <div class="main-btn">
-                    <a href="<?php echo $url_array[4];?>/addLicenceSecondaire" id="myBtn"><i class="fas fa-plus" style="margin-right:15px ;"></i>Ajouter une nouvelle licence secondaire</a>
+    <div class="container-fluid">
+        <div class="inner-body">
+
+            <?php if(!empty($_SESSION['notification'])):?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <?=$_SESSION['notification']?>
+            <?php endif; ?>
+
+                <!-- Page Header -->
+                <div class="page-header">
+
+                    <div>
+						<h2 class="main-content-title tx-24 mg-b-5">Licences Secondaires</h2>
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="#"><?= $url_array[1] ?></a></li>
+							<li class="breadcrumb-item active" aria-current="page"><?= $url_array[2] ?></li>
+						</ol>
+					</div>
+							
+					
+
                 </div>
-            <?php endif ;?>
-            <section class="recent">
-                <div class="activity">
-                    <div style="padding-top: 5px;" class="activity-card">
-                        <h3>Liste des licences secondaires</h3>
-                        <div class="table-responsive">
-                            <div class="research">
+                <!-- End Page Header -->
+
+                <!-- Row -->
+                <div class="row row-sm">
+                    <div class="col-lg-12">
+                        <div class="card custom-card">
+                            <div class="card-body">
                                 <div>
-                                    <div id="form-research"><input id="filter" type="text" placeholder="Rechercher..."></div>
-                                    <i class="fas fa-search"></i>
+                                    <h6 class="main-content-label mb-1">Liste des sous-licences</h6>
+                                    <p class="text-muted card-sub-title"></p>
                                 </div>
-                            </div>
-                            <table id="table" class="table table-striped" style="margin-top: 30px;" border="0">
-                                <thead>
+                                <div class="table-responsive">
+                                    <table id="example3" class="table table-striped table-bordered text-nowrap" >
+                                    <thead>
                                     <tr>
                                         <th>Licence key</th>
                                         <th>Date d'activation</th>
@@ -42,10 +55,10 @@
                                              <td><?=$licence['expiration_date'] ?></td>
                                              <td>
                                                   <?php if($licence['is_active'] == 1): ?>
-                                                       <span class="span-success success">Activer</span>
+                                                       <span class="badge badge-pill badge-primary-light">Activer</span>
                                                   <?php endif; ?>
                                                   <?php if($licence['is_active'] == 0): ?>
-                                                       <span class="span-success danger">Bloquer</span>
+                                                       <span class="badge badge-pill badge-warning-light">Bloquer</span>
                                                   <?php endif; ?>
                                                   <!--<?php //if($licence['is_active'] == 2): ?>
                                                        <span class="span-success danger">Revoquer</span>
@@ -53,18 +66,29 @@
                                              </td>
                                              
                                              <td style="display:flex">
+                                                    <?php if($licence['is_active'] == 1): ?>
+                                                        <span onclick="document.location='<?php $lib->customerSite ?>/licences/secondaire/bloquer/<?=$licence['licence_id'] ?>'" class="btn ripple btn-primary">Bloquer</span>
+                                                  <?php endif; ?>
+                                                  <?php if($licence['is_active'] == 0): ?>
+                                                    <span onclick="document.location='<?php $lib->customerSite ?>/licences/secondaire/modifier/<?=$licence['licence_id'] ?>'" class="btn ripple btn-info">Réactiver</span>
+                                                  <?php endif; ?>
                                                   <!--<span onclick="document.location='<?php $lib->customerSite ?>/licences/secondaire/activer/<?=$licence['licence_id'] ?>'" class="btn-action white pg-5 success cursor"> Activer</span>-->
-                                                  <span onclick="document.location='<?php $lib->customerSite ?>/licences/secondaire/bloquer/<?=$licence['licence_id'] ?>'" class="btn-action white pg-5 danger cursor">Bloquer</span>
-                                                  <span onclick="document.location='<?php $lib->customerSite ?>/licences/secondaire/modifier/<?=$licence['licence_id'] ?>'" class="btn-action white pg-5 primary cursor">Réactiver</span>
+                                                  
                                              </td>
                                         </tr>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
                                     
                                 </tbody>
-                            </table>
-                        </div>   
+                                    
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </section>
-        </main>
+                <!-- End Row -->    
+        </div>
+    </div>
+</div>
+<!-- End Main Content-->

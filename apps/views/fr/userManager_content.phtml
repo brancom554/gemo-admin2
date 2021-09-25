@@ -12,7 +12,6 @@
                 <!-- Page Header -->
                 <div class="page-header">
 
-
                     <?php include _VIEW_PATH."common_top_for_dashboard_content.phtml"; ?>
 
                 </div>
@@ -45,10 +44,10 @@
                                                         <td><?=$manager['phone_number']?></td>
                                                         <td>
                                                         <?php if($manager['is_active_flag'] == 1): ?>
-                                                            <span class="badge badge-pill badge-primary-light">Activer</span>
+                                                            <span class="badge badge-pill badge-success-light">Activer</span>
                                                         <?php endif; ?>
                                                         <?php if($manager['is_active_flag'] == 0): ?>
-                                                            <span class="badge badge-pill badge-warning-light">Bloquer</span>
+                                                            <span class="badge badge-pill badge-danger-light">Bloquer</span>
                                                         <?php endif; ?>
                                                         </td>
                                                         <td style="display:flex">

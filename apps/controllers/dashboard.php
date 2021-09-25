@@ -34,6 +34,15 @@ if ($url_array[2] == "barChart") {
     AND categories.type_category_libelle = "SERVICES FINANCIERS"
     GROUP BY month(operation_date) ORDER BY month(operation_date) ASC';
 
+//     $sql5 = 'SELECT MONTHNAME(operation_date) as mois,count(balance_after_operate) as total FROM operations
+//     INNER JOIN operation_types USING (operation_type_id) 
+//     INNER JOIN category_ussd USING (operation_type_id)
+//     INNER JOIN categories USING (category_id) 
+//     WHERE operations.company_token="'.$_SESSION['companie_token'].'"  
+//     AND categories.type_category_libelle="SERVICES TELEPHONIQUES"
+// >>>>>>> 0cb9a99580dd86bfe27fa4242d287009857d5815
+//     GROUP BY month(operation_date) ORDER BY month(operation_date) ASC';
+
     $data['telephoniques'] = $db->DisplayDataDb($sql5);
     $data['financiers'] = $db->DisplayDataDb($sqll);
 

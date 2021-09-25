@@ -1,13 +1,27 @@
-<?php include _VIEW_PATH."/common_header.phtml";?>
+<?php include _VIEW_PATH."/common_header_dashboard.phtml";?>
+
+<?php include _VIEW_PATH."common_side_bar.phtml"; ?>
 
 <?php include _VIEW_PATH."common_top_bar.phtml";?>
 
-	<main>
-        <div>
-            <span class="main-title font-1">Création de licence</span>
+
+    <!-- Main Content-->
+			<div class="main-content side-content pt-0">
+
+                <div class="container-fluid">
+                    <div class="inner-body">
+
+        <!-- Page Header -->
+                    <div class="page-header">
+
+                            <?php include _VIEW_PATH."common_top_for_dashboard_content.phtml"; ?>
+                    </div>
+
+                    <div>
+            <!-- <span class="main-title font-1">Création de licence</span>
             <div class="track">
                 <span <?php if($page_requested =="configurations"){ ?> class="actives" <?php } ?>><?php echo $page_requested;?></span><span>/</span><span>Licence</span><span>/</span><span><?php echo $url_array[3];?></span>
-            </div>
+            </div> -->
             <div class="form">
             <form class="row g-3" action="" method="post">
                 <div class="col-md-6">
@@ -19,27 +33,33 @@
                     <label for="licence_fin" class="form-label">Expiration de la licence</label>
                     <input type="date" class="form-control" id="licence_fin" name="licence_fin">
                 </div>
-                <div class="col-md-6">
+
+                <div class="col-md-6 mt-3">
                     <label for="select" class="form-label">Services</label>
-                    <select class="form-select" name="services[]" id="select" multiple>
-                        <?php if(isset($data['services'])): ?>
+                    <select id="select" name="services[]" class="form-control select2" multiple>
+                            <option selected>Séléctionner un manager</option>
+                            <?php if(isset($data['services'])): ?>
                             <?php foreach($data['services'] as $service): ?>
                                 <option value="<?=$service['service_id'] ?>"><?=$service['libelle'] ?></option>
                             <?php endforeach; ?>
                         <?php endif; ?>
                     </select>
+                   
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 mt-3">
                     <label for="uuid" class="form-label">Application uuid</label>
                     <input type="text" class="form-control" id="uuid">
                 </div>
-                <div class="col-12">
+                <div class="col-12 mt-3">
                     <button type="submit" name="soumettre" class="btn btn-primary">CREER LA LICENCE</button>
                 </div>
                 </form>
             </div>
         </div>
-    </main>
+                    </div>
+                </div>
+            </div>
+      
 
 <?php include _VIEW_PATH.$lib->lang."/common_footer.phtml";?>
-<?php include _VIEW_PATH."/common_include_files.phtml";?>
+<?php include _VIEW_PATH."/common_include_files_dashboard.phtml";?>

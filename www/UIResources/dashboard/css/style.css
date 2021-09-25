@@ -67871,7 +67871,7 @@ a.tag-addon:hover {
 }
 
 .wizard>.actions>ul>li:last-child a {
-    background-color: #f16d75;
+    background-color: #fe7701;
 }
 
 .wizard>.actions a {
@@ -67893,13 +67893,13 @@ a.tag-addon:hover {
 }
 
 .wizard>.actions .disabled a {
-    background-color: #f1388b;
+    background-color: #fe7701;
     opacity: 0.6;
 }
 
 .wizard>.actions .disabled a:hover,
 .wizard>.actions .disabled a:active {
-    background-color: #f1388b;
+    background-color: #fe7701;
     opacity: 0.8;
 }
 
