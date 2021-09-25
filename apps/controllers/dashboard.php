@@ -15,36 +15,50 @@ if ($url_array[2] == "chart") {
 
 if ($url_array[2] == "barChart") {
     $moiss = $totall = array();
+    $moisss = $totalll = array();
+
     $db = new Database();
-    $sql5 = 'SELECT MONTHNAME(operation_date) as mois,count(balance_after_operate) as total FROM operations
+    $sql5 = 'SELECT MONTHNAME(operation_date) as mois,sum(amount) as somme FROM operations
     INNER JOIN operation_types USING (operation_type_id) 
     INNER JOIN category_ussd USING (operation_type_id)
     INNER JOIN categories USING (category_id) 
-    WHERE operations.company_token="'.$_SESSION['companie_token'].'"  
-    AND categories.type_category_libelle="SERVICES TELEPHONIQUES"
+    WHERE operations.company_token="'.$_SESSION['companie_token'].'"
+    AND categories.type_category_libelle = "SERVICES TELEPHONIQUES"
     GROUP BY month(operation_date) ORDER BY month(operation_date) ASC';
 
-    // $sqll = 'SELECT MONTHNAME(operation_date) as mois,SUM(balance_after_operate) as total FROM operations
-    // INNER JOIN operation_types USING (operation_type_id) 
-    // INNER JOIN category_ussd USING (operation_type_id)
-    // INNER JOIN categories USING (category_id) 
-    // WHERE operations.company_token="'.$_SESSION['companie_token'].'"  
-    // AND categories.type_category_libelle="SERVICES FINANCIERS"
-    // GROUP BY month(operation_date) ORDER BY month(operation_date) ASC';
+    $sqll = 'SELECT MONTHNAME(operation_date) as mois,sum(amount) as somme FROM operations
+    INNER JOIN operation_types USING (operation_type_id) 
+    INNER JOIN category_ussd USING (operation_type_id)
+    INNER JOIN categories USING (category_id) 
+    WHERE operations.company_token="'.$_SESSION['companie_token'].'"
+    AND categories.type_category_libelle = "SERVICES FINANCIERS"
+    GROUP BY month(operation_date) ORDER BY month(operation_date) ASC';
 
-    $data['licence_somme'] = $db->DisplayDataDb($sql5);
-    // $data['financiers'] = $db->DisplayDataDb($sqll);
+//     $sql5 = 'SELECT MONTHNAME(operation_date) as mois,count(balance_after_operate) as total FROM operations
+//     INNER JOIN operation_types USING (operation_type_id) 
+//     INNER JOIN category_ussd USING (operation_type_id)
+//     INNER JOIN categories USING (category_id) 
+//     WHERE operations.company_token="'.$_SESSION['companie_token'].'"  
+//     AND categories.type_category_libelle="SERVICES TELEPHONIQUES"
+// >>>>>>> 0cb9a99580dd86bfe27fa4242d287009857d5815
+//     GROUP BY month(operation_date) ORDER BY month(operation_date) ASC';
 
-    foreach($data['licence_somme'] as $offre){
-        array_push($moiss,$offre['mois']);
-        array_push($totall,(int)$offre['total']); 
+    $data['telephoniques'] = $db->DisplayDataDb($sql5);
+    $data['financiers'] = $db->DisplayDataDb($sqll);
+
+    foreach($data['telephoniques'] as $telephoniques){
+        array_push($moiss,$telephoniques['mois']);
+        array_push($totall,(int)$telephoniques['somme']); 
     }
 
-    // foreach($data['financiers'] as $financiers){
-    //     array_push($moiss,$financiers['mois']);
-    //     array_push($totall,(int)$financiers['total']); 
-    // }
-    echo json_encode(['moisTelephoniques' => $moiss,'totalTelephoniques' => $totall]);
+    foreach($data['financiers'] as $financiers){
+        array_push($moiss,$financiers['mois']);
+        array_push($totalll,(int)$financiers['somme']); 
+    }
+
+    echo json_encode(['moisTelephoniques' => $moiss,'totalTelephoniques' => $totall,
+    'moisFinanciers' => $moiss,'totalFinanciers' => $totalll]);
+
     exit;
 }
 
@@ -53,21 +67,19 @@ if ($url_array[2] == "barChart") {
 if ($url_array[2] == "camembertChart") {
     
     $db = new Database();
-    $sql = 'SELECT DISTINCT COUNT(balance_after_operate) FROM operations 
-        INNER JOIN operation_types USING (operation_type_id) 
-        INNER JOIN category_ussd USING (operation_type_id)
-        INNER JOIN categories USING (category_id) 
-        WHERE operations.company_token="'.$_SESSION['companie_token'].'"
-        AND categories.type_category_libelle="SERVICES TELEPHONIQUES"
-        AND category_ussd.company_token="'.$_SESSION['companie_token'].'"';
+    $sql = 'SELECT DISTINCT SUM(amount) FROM operations 
+    INNER JOIN operation_types USING (operation_type_id) 
+    INNER JOIN category_ussd USING (operation_type_id)
+    INNER JOIN categories USING (category_id) 
+    WHERE operations.company_token="'.$_SESSION['companie_token'].'"
+    AND categories.type_category_libelle="SERVICES TELEPHONIQUES"';
 
-    $sql1 = 'SELECT DISTINCT COUNT(balance_after_operate) FROM operations 
+    $sql1 = 'SELECT DISTINCT SUM(amount) FROM operations 
         INNER JOIN operation_types USING (operation_type_id) 
         INNER JOIN category_ussd USING (operation_type_id)
         INNER JOIN categories USING (category_id) 
         WHERE operations.company_token="'.$_SESSION['companie_token'].'"
-        AND categories.type_category_libelle="SERVICES FINANCIERS"
-        AND category_ussd.company_token="'.$_SESSION['companie_token'].'"';
+        AND categories.type_category_libelle="SERVICES FINANCIERS';
 
     $data1 = $db->DisplayDataDb($sql);
     $data2 = $db->DisplayDataDb($sql1);
@@ -98,48 +110,37 @@ $sql = "SELECT ops.libelle,opt.operation_date,opt.network_operator_name FROM ope
 $sql2 = "SELECT count(licence_key) AS licence_total FROM licences";
 $sql3 = "SELECT count(licence_key) AS licence_total FROM licences WHERE is_active = 1";
 
-$sql4 = 'SELECT DISTINCT SUM(balance_after_operate) FROM operations 
+$sql4 = 'SELECT DISTINCT SUM(amount) FROM operations 
         INNER JOIN operation_types USING (operation_type_id) 
         INNER JOIN category_ussd USING (operation_type_id)
         INNER JOIN categories USING (category_id) 
         WHERE operations.company_token="'.$_SESSION['companie_token'].'" 
         AND operations.network_operator_name="MTN"
-        AND categories.type_category_libelle="SERVICES TELEPHONIQUES"
-        AND category_ussd.network_operator_name="MTN"
-        AND category_ussd.company_token="'.$_SESSION['companie_token'].'"';
+        AND categories.type_category_libelle="SERVICES TELEPHONIQUES"';
 
-$sql5 = 'SELECT DISTINCT SUM(balance_after_operate) FROM operations 
+$sql5 = 'SELECT DISTINCT SUM(amount) FROM operations 
         INNER JOIN operation_types USING (operation_type_id) 
         INNER JOIN category_ussd USING (operation_type_id)
         INNER JOIN categories USING (category_id) 
         WHERE operations.company_token="'.$_SESSION['companie_token'].'" 
         AND operations.network_operator_name="MTN"
-        AND categories.type_category_libelle="SERVICES FINANCIERS"
-        AND category_ussd.network_operator_name="MTN"
-        AND category_ussd.company_token="'.$_SESSION['companie_token'].'"';
+        AND categories.type_category_libelle="SERVICES FINANCIERS"';
 
-$sql6 = 'SELECT DISTINCT SUM(balance_after_operate) FROM operations 
+$sql6 = 'SELECT DISTINCT SUM(amount) FROM operations 
         INNER JOIN operation_types USING (operation_type_id) 
         INNER JOIN category_ussd USING (operation_type_id)
         INNER JOIN categories USING (category_id) 
         WHERE operations.company_token="'.$_SESSION['companie_token'].'" 
-        AND operations.network_operator_name="MOOV"
-        AND category_ussd.network_operator_name="MOOV"
-        AND category_ussd.company_token="'.$_SESSION['companie_token'].'"';
+        AND operations.network_operator_name="MOOV"';
 
 $sql7 = 'SELECT DISTINCT licences.licence_key, licences.is_active, licence_types.licence_type_name FROM licences 
         INNER JOIN licence_types USING (licence_type_id) 
         WHERE licences.created_for_company_id='.$_SESSION['company'];
 
-// $sql7 = 'SELECT DISTINCT SUM(balance_after_operate) FROM operations 
-//         INNER JOIN operation_types USING (operation_type_id) 
-//         INNER JOIN category_ussd USING (operation_type_id)
-//         INNER JOIN categories USING (category_id) 
-//         WHERE operations.company_token="'.$_SESSION['companie_token'].'" 
-//         AND operations.network_operator_name="MOOV"
-//         AND categories.type_category_libelle="SERVICES FINANCIERS"
-//         AND category_ussd.network_operator_name="MOOV"
-//         AND category_ussd.company_token="'.$_SESSION['companie_token'].'"';
+$sql8 = 'SELECT active_date_from, licence_type_name FROM users u
+        INNER JOIN licences lic ON u.company_id=lic.created_for_company_id
+        INNER JOIN licence_types USING (licence_type_id)
+        WHERE u.company_id="'.$_SESSION['company'].'"  AND is_manager=1 AND licence_types.licence_type_name="BUSINESS" LIMIT 3;';
 
 $total = 0;
 $offres = array();
@@ -149,6 +150,7 @@ try {
     $data['licence_total'] = $db->DisplaysDataDb($sql2);
     $data['licence_active'] = $db->DisplaysDataDb($sql3);
     $data['licence_dashboard'] = $db->DisplayDataDb($sql7);
+    $data['licence_activation'] = $db->DisplayDataDb($sql8);
 
     $first_box = $db->DisplaysDataDb($sql4);
     $second_box = $db->DisplaysDataDb($sql5);

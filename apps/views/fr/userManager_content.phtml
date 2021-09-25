@@ -23,8 +23,8 @@
                         <div class="card custom-card">
                             <div class="card-body">
                                 <div>
-                                    <h6 class="main-content-label mb-1">Vertical Scrollable Data Table</h6>
-                                    <p class="text-muted card-sub-title">Responsive is an extension for DataTables that resolves that problem by optimising the table's layout for different screen sizes through the dynamic insertion and removal of columns from the table.</p>
+                                    <h6 class="main-content-label mb-1">Utilisateurs</h6>
+                                    <!-- <p class="text-muted card-sub-title">Responsive is an extension for DataTables that resolves that problem by optimising the table's layout for different screen sizes through the dynamic insertion and removal of columns from the table.</p> -->
                                 </div>
                                 <div class="table-responsive">
                                     <table id="example3" class="table table-striped table-bordered text-nowrap" >
@@ -44,10 +44,10 @@
                                                         <td><?=$manager['phone_number']?></td>
                                                         <td>
                                                         <?php if($manager['is_active_flag'] == 1): ?>
-                                                            <span class="badge badge-pill badge-primary-light">Activer</span>
+                                                            <span class="badge badge-pill badge-success-light">Activer</span>
                                                         <?php endif; ?>
                                                         <?php if($manager['is_active_flag'] == 0): ?>
-                                                            <span class="badge badge-pill badge-warning-light">Bloquer</span>
+                                                            <span class="badge badge-pill badge-danger-light">Bloquer</span>
                                                         <?php endif; ?>
                                                         </td>
                                                         <td style="display:flex">

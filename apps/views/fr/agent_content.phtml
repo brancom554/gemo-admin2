@@ -18,8 +18,8 @@
                 <div class="card custom-card">
                     <div class="card-body">
                         <div>
-                            <h6 class="main-content-label mb-1">Vertical Scrollable Data Table</h6>
-                            <p class="text-muted card-sub-title">Responsive is an extension for DataTables that resolves that problem by optimising the table's layout for different screen sizes through the dynamic insertion and removal of columns from the table.</p>
+                            <h6 class="main-content-label mb-1">Licences</h6>
+                            <!-- <p class="text-muted card-sub-title">Responsive is an extension for DataTables that resolves that problem by optimising the table's layout for different screen sizes through the dynamic insertion and removal of columns from the table.</p> -->
                         </div>
                         <div class="table-responsive">
                             <table id="example3" class="table table-striped table-bordered text-nowrap" >
@@ -46,10 +46,10 @@
     
                                              <td>
                                                   <?php if($licence['is_active'] == 1): ?>
-                                                       <span class="badge badge-pill badge-primary-light">Activer</span>
+                                                       <span class="badge badge-pill badge-success-light">Activer</span>
                                                   <?php endif; ?>
                                                   <?php if($licence['is_active'] == 0): ?>
-                                                       <span class="badge badge-pill badge-warning-light">Bloquer</span>
+                                                       <span class="badge badge-pill badge-danger-light">Bloquer</span>
                                                   <?php endif; ?>
                                                   <!--<?php //if($licence['is_active'] == 2): ?>
                                                        <span class="span-success danger">Revoquer</span>
