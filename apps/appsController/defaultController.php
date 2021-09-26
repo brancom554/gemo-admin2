@@ -1,5 +1,16 @@
 <?php
+// die($page_requested);
 switch ($page_requested) {
+	case "mentions":
+		include "mentions.php";
+		break;
+	case "regles":
+		include "confidentialite.php";
+		break;
+	case "conditions":
+		include "conditions.php";
+		break;
+
 	case "marchands":
 		include "compagnyController.php";
 		break;
@@ -93,6 +104,8 @@ switch ($page_requested) {
 				break;	
 			}
 	break;
+
+	
 	case 'connecter':
 		include "login.php";
 		break;
