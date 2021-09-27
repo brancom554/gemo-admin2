@@ -1,5 +1,5 @@
 <?php
-    switch ($url_array[3]) {  
+    switch ($url_array[2]) {  
         case "addType":
             include "addType.php";
             break;	
