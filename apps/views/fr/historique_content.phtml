@@ -100,7 +100,7 @@
                                                 <td><?=$opération['libelle'] ?></td>                                                                       
                                                 <td><?=$opération['description'] ?></td>
 												<td><?=$opération['operation_date'] ?></td>  
-                                                <td><?=getNetworkByOperationId($opération['operation_id'])["network_operator_name"] ?></td>
+                                                <td><?=var_dump(getNetworkByOperationId($opération['operation_id']) ) ?></td>
                                                 <td><?=$opération['transaction_phone_number'] ?></td>                                             
                                                 <td><?=$opération['firstname'] .' '.$opération['lastname'] ?></td>
                                                 <td><?=$opération['statut_operation'] ?></td>
