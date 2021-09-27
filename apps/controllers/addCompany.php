@@ -19,9 +19,8 @@ if (isset($_POST['soumettre'])) {
         $db = new Database();
         
             $query = $db->InsertDb($sql,$data);
-            if ($query) {
-                
-                    header('Location:/super/compagnies');
+            if (!is_array($query)){
+                    header('Location:/marchands');
                     exit;
                 
             }else {

@@ -30,11 +30,13 @@ if (isset($_POST['soumettre'])) {
         //$conn = $db->connectDb();
         //if ($db->beginTransaction()) {
             $query = $db->InsertDb($sql,$data);
-            if ($query) {
+            if (!is_array($query)) {
                 //if ($db->commit()) {
-                    header('Location:/configurations/categries');
+                    header('Location:/configurations/categories');
                     exit;
                 //}
+            }else {
+                $notification="Opération d'enrégistrement échouée. Veuillez réessayer.";
             }
         //}
     }

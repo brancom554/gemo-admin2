@@ -18,7 +18,7 @@ if (isset($_POST['soumettre'])) {
             $query = $conn->prepare($sql);
             if ($query->execute($data)) {
                 if ($conn->commit()) {
-                    header('Location:/configurations/service');
+                    header('Location:/configurations/services');
                     exit;
                 }
             }

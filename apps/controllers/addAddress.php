@@ -27,8 +27,9 @@ if (isset($_POST['soumettre'])) {
         $db = new Database();
             $query = $db->InsertDb($sql,$data);
             if (is_array($query)) {
-                var_dump($query);
-                exit;
+                //var_dump($query);
+                //exit;
+                $notification="Opération d'enrégistrement échouée. Veuillez réessayer.";
                 
             }else {
                 header('Location:/configurations/addresses');
