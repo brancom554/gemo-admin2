@@ -59,10 +59,82 @@ if ($_SESSION['access'] == '1') {
 }
 
 function getNetworkByOperationId($id){
-	var_dump($id);
+	
+	$operateur = "";
 	$db = new Database();
     $sql = "SELECT network_operator_name FROM operations WHERE transaction_phone_number =".$id." ORDER BY operation_date DESC Limit 1 ";
-    return  $db->DisplayDataDb($sql);
+	$ind = substr("".$id,0,2);
+	switch ($ind) {
+  case 97:
+    $operateur="MTN";
+    break;
+  case 96:
+    $operateur="MTN";
+    break;
+  case 66:
+    $operateur="MTN";
+    break;
+case 67:
+    $operateur="MTN";
+    break;
+case 91:
+    $operateur="MTN";
+    break;
+case 62:
+    $operateur="MTN";
+    break;	
+ case 61:
+    $operateur="MTN";
+    break;
+  case 69:
+    $operateur="MTN";
+    break;
+ case 90:
+    $operateur="MTN";
+    break;
+case 51:
+    $operateur="MTN";
+    break;
+case 52:
+    $operateur="MTN";
+    break;	
+	
+	
+ case 95:
+    $operateur="MOOV";
+    break;
+  case 94:
+    $operateur="MOOV";
+    break;
+  case 64:
+    $operateur="MOOV";
+    break;
+  case 65:
+    $operateur="MOOV";
+    break;
+ case 63:
+    $operateur="MOOV";
+    break;
+  case :
+    $operateur="MOOV";
+    break;
+ case 99:
+    $operateur="MOOV";
+    break;
+case 60:
+    $operateur="MOOV";
+    break;	
+case 98:
+    $operateur="MOOV";
+    break;
+ case 68:
+    $operateur="MOOV";
+    break;	
+  default:
+    $operateur="N/A";
+}
+	  
+    return  $operateur;
 	
 }
 
