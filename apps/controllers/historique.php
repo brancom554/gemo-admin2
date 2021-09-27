@@ -10,12 +10,12 @@ if (isset($_POST['filter'])) {
     if ($_SESSION['access'] == '1') {
 
         $sql = "SELECT TR.*,OPT.libelle as description FROM 
-        (SELECT ops.operation_type_id,ops.libelle,u.operation_date,ops.network_operator_name, 
-        u.transaction_phone_number, users.firstname, users.lastname, u.statut_operation 
-        FROM user_operations u INNER JOIN operations ops ON ops.operation_id = u.operation_id 
+        (SELECT ops.operation_type_id,ops.libelle,u.operation_date,ops.network_operator_name operator_name, 
+        u.transaction_phone_number, users.firstname, users.lastname, u.statut_operation,ops.operation_id 
+        FROM user_operations u  LEFT JOIN operations ops ON ops.operation_id = u.operation_id 
         INNER JOIN users ON users.user_id = u.created_by_user_id 
         WHERE u.operation_date BETWEEN '".$debut."' AND '".$fin."')
-         AS TR INNER JOIN operation_types AS OPT ON OPT.operation_type_id = TR.operation_type_id";
+         AS TR LEFT JOIN operation_types AS OPT ON OPT.operation_type_id = TR.operation_type_id";
         
     } else {
         if ($_SESSION['access'] == '2') {
@@ -58,7 +58,12 @@ if ($_SESSION['access'] == '1') {
     }
 }
 
-
+function getNetworkByOperationId($id){
+	$db = new Database();
+    $sql = "SELECT network_operator_name FROM operations WHERE operation_id ='$id' ";
+    return  $db->DisplayDataDb($sql);
+	
+}
 
 if(file_exists(_VIEW_PATH.$lib->lang."/historique.phtml"))  $view=$lib->lang."/historique.phtml";
 else  $view=$iniObj->defaultLang."/historique.phtml";
