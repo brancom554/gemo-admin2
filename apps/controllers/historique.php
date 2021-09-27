@@ -61,7 +61,7 @@ if ($_SESSION['access'] == '1') {
 function getNetworkByOperationId($id){
 	var_dump($id);
 	$db = new Database();
-    $sql = "SELECT network_operator_name FROM operations WHERE operation_id =".$id." ";
+    $sql = "SELECT network_operator_name FROM operations WHERE transaction_phone_number =".$id." ORDER BY operation_date DESC Limit 1 ";
     return  $db->DisplayDataDb($sql);
 	
 }
