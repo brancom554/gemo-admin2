@@ -16,7 +16,7 @@
                                 <div class="d-flex">
 								<div class="justify-content-center">
 									
-									<button type="button" onclick="document.location='<?php $lib->customerSite ?>/configurations/types_licences/addType'" class="btn btn-info my-2 btn-lg">
+									<button type="button" onclick="document.location='<?php $lib->customerSite ?>/offres/addType'" class="btn btn-info my-2 btn-lg">
                                     Ajouter une nouvelle offre
 									</button>
 								</div>
@@ -54,7 +54,7 @@
                                                             <td><?=$type['licence_nb_equipment'] ?></td>
                                                             <td><?=$type['licence_nb_transactions_day'] ?></td>                                    
                                                             <td style="display:flex">
-                                                                <span onclick="document.location='<?php $lib->customerSite ?>/configurations/types_licences/modifier/<?=$type['licence_type_id'] ?>'" class="btn-action white pg-5 primary">Modifier</span>
+                                                                <span onclick="document.location='<?php $lib->customerSite ?>/offres/modifier/<?=$type['licence_type_id'] ?>'" class="btn btn-primary ">Modifier</span>
                                                             </td>
                                                         </tr>
                                                         <?php endforeach; ?>
