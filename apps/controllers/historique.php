@@ -59,6 +59,7 @@ if ($_SESSION['access'] == '1') {
 }
 
 function getNetworkByOperationId($id){
+	var_dump($id);
 	$db = new Database();
     $sql = "SELECT network_operator_name FROM operations WHERE operation_id =".$id." ";
     return  $db->DisplayDataDb($sql);
