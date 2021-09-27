@@ -115,9 +115,7 @@ case 52:
  case 63:
     $operateur="MOOV";
     break;
-  case :
-    $operateur="MOOV";
-    break;
+  
  case 99:
     $operateur="MOOV";
     break;
