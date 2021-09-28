@@ -72,8 +72,14 @@
                                                         </td>
                                                         
                                                         <td>
-                                                            <!--<span onclick="document.location='<?php $lib->customerSite ?>/licences/activer/<?=$licence['licence_id'] ?>'" class="btn-action white pg-5 success cursor"> Offres</span>-->
-                                                            <button onclick="document.location='<?php $lib->customerSite ?>/licences/bloquer/<?=$licence['licence_id'] ?>'" class="btn ripple btn-danger">Bloquer</button>
+                                                            <?php if($licence['is_active'] == 1): ?>
+                                                                <button onclick="document.location='<?php $lib->customerSite ?>/licences/bloquer/<?=$licence['licence_id'] ?>'" class="btn ripple btn-danger">Bloquer</button>
+                                                            <?php endif; ?>
+                                                            <?php if($licence['is_active'] == 0): ?>
+                                                                <button onclick="document.location='<?php $lib->customerSite ?>/licences/activer/<?=$licence['licence_id'] ?>'" class="btn ripple btn-success"> Activer</button>
+                                                            <?php endif; ?>
+                                                            
+                                                            
                                                             <!--<span onclick="document.location='<?php $lib->customerSite ?>/licences/modifier/<?=$licence['licence_id'] ?>'" class="btn-action white pg-5 primary cursor">Relancer</span>-->
                                                             <button onclick="document.location='<?php $lib->customerSite ?>/licences/secondaire/<?=$licence['licence_id'] ?>'" class="btn ripple btn-info">Sous-Licences</button>
                                                         </td>
