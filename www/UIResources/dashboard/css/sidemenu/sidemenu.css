@@ -17,7 +17,7 @@
   transition: margin-left 0.45s ease;
 }
 
-.side-menu .nav-link:hover {
+.side-menu .nav-link:hover, .side-menu .nav-link img:hover {
   color: #ffffff;
 }
 
@@ -59,7 +59,7 @@
   -webkit-transform-origin: center;
   transform-origin: center;
   position: absolute;
-  top: 15px;
+  top: 10px;
   right: 20px;
   font-size: 12px;
 }

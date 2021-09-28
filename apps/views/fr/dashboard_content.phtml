@@ -1,7 +1,7 @@
 
    <?php if($_SESSION['access'] == '1'):?>
 
-   <div class="main-content side-content pt-0">
+   <div style="margin-top: 10px;" class="main-content side-content pt-0">
       <div class="container-fluid">
          <div class="inner-body">
             <!-- Page Header --> 
@@ -28,8 +28,8 @@
                         <div class="card custom-card">
                            <div class="card-body">
                               <div class="card-item">
-                                 <div class="card-item-icon card-icon">
-                                    <img style="border-radius:50%" src="<?php $lib->customerSite ?>/UIResources/images/mtn.jpg" alt="">
+                                 <div style="background: #ffefb3 !important;" class="card-item-icon card-icon">
+                                    <img src="<?php $lib->customerSite ?>/UIResources/images/mtn.png" alt="">
 
                                     <!-- <svg class="text-primary" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24">
                                        <g>
@@ -62,7 +62,7 @@
                         <div class="card custom-card">
                            <div class="card-body">
                               <div class="card-item">
-                                 <div class="card-item-icon card-icon">
+                                 <div style="background: #ffefb3 !important;" class="card-item-icon card-icon">
                                     <!-- <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
                                        <path d="M0 0h24v24H0V0z" fill="none"></path>
                                        <path d="M12 4c-4.41 0-8 3.59-8 8 0 1.82.62 3.49 1.64 4.83 1.43-1.74 4.9-2.33 6.36-2.33s4.93.59 6.36 2.33C19.38 15.49 20 13.82 20 12c0-4.41-3.59-8-8-8zm0 9c-1.94 0-3.5-1.56-3.5-3.5S10.06 6 12 6s3.5 1.56 3.5 3.5S13.94 13 12 13z" opacity=".3"></path>
@@ -86,7 +86,7 @@
                         <div class="card custom-card">
                            <div class="card-body">
                               <div class="card-item">
-                                 <div class="card-item-icon card-icon">
+                                 <div style="background: #a8d5f8 !important;" class="card-item-icon card-icon">
                                     <!-- <svg class="text-primary" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
                                        <path d="M0 0h24v24H0V0z" fill="none"></path>
                                        <path d="M12 4c-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8-3.59-8-8-8zm1.23 13.33V19H10.9v-1.69c-1.5-.31-2.77-1.28-2.86-2.97h1.71c.09.92.72 1.64 2.32 1.64 1.71 0 2.1-.86 2.1-1.39 0-.73-.39-1.41-2.34-1.87-2.17-.53-3.66-1.42-3.66-3.21 0-1.51 1.22-2.48 2.72-2.81V5h2.34v1.71c1.63.39 2.44 1.63 2.49 2.97h-1.71c-.04-.97-.56-1.64-1.94-1.64-1.31 0-2.1.59-2.1 1.43 0 .73.57 1.22 2.34 1.67 1.77.46 3.66 1.22 3.66 3.42-.01 1.6-1.21 2.48-2.74 2.77z" opacity=".3"></path>
@@ -142,7 +142,7 @@
                         <div class="card custom-card mg-b-20">
                            <div class="card-body">
                               <div class="card-header border-bottom-0 pt-0 pl-0 pr-0 d-flex">
-                                 <div> <label class="main-content-label mb-2">Licences</label> 
+                                 <div> <label class="main-content-label mb-2 pt-1">Licences</label> 
                                  <span class="d-block tx-12 mb-3 text-muted">Un apercu de vos licences et leurs dates d'expirations</span> </div>
                                 
                               </div>
@@ -166,7 +166,7 @@
                                                    <span class="badge badge-pill badge-success-light">Activer</span>
                                              <?php endif; ?>
                                              <?php if($licence['is_active'] == 0): ?>
-                                                   <span class="badge badge-pill badge-danger-light">Bloquer</span>
+                                                   <span class="badge badge-pill badge-danger">Bloquer</span>
                                              <?php endif; ?>
                                           </td>
                                        </tr>
@@ -188,7 +188,8 @@
                <!-- col end --> 
                <div class="col-sm-12 col-lg-12 col-xl-4 mt-xl-4">
                   <div class="card custom-card card-dashboard-calendar pb-0">
-                     <label class="main-content-label mb-2 pt-1">Transactions récentes</label> <span class="d-block tx-12 mb-2 text-muted">liste des dernières transactions</span> 
+                     <label class="main-content-label mb-2 pt-1">Transactions récentes</label> 
+                     <span class="d-block tx-12 mb-2 text-muted">liste des dernières transactions</span> 
                      <table class="table table-hover m-b-0 transcations mt-2">
                         <tbody>
                            <!-- <tr> -->
@@ -220,7 +221,7 @@
                      <div class="card-body">
                         <div class="row row-sm">
                            <div class="col-6">
-                              <div class="card-item-title"> <label class="main-content-label tx-13 font-weight-bold mb-2">LICENCES</label> <span class="d-block tx-12 mb-0 text-muted">Quelques licences premium</span> </div>
+                              <div class="card-item-title"> <label class="main-content-label mb-2 pt-1">LICENCES</label> <span class="d-block tx-12 mb-0 text-muted">Quelques licences premium</span> </div>
                               <?php if(isset($data['licence_activation'])): ?>
                                     <?php foreach($data['licence_activation'] as $licence): ?>
                                        <p class="mb-0 tx-24 mt-2"><b class="text-success"><?=$licence['licence_type_name'] ?></b></p>
@@ -237,17 +238,18 @@
 
                   <div class="card custom-card">
                      <div class="card-body">
-                     <div class="col-lg-10 col-md-10">
+                     <div>
+									<h6 class="main-content-label mb-2 pt-1">OPERATIONS</h6>
+									<p class="text-muted  card-sub-title">Proportions de chaque services</p>
+							</div>
+						<div class="morris-wrapper-demo" id="morrisDonut2"></div>
+                     <!-- <div class="col-lg-10 col-md-10">
 								<div class="card custom-card">
 									<div class="card-body">
-										<div>
-											<h6 class="main-content-label mb-1">OPERATIONS</h6>
-											<p class="text-muted  card-sub-title">Proportions de chaque services</p>
-										</div>
-										<div class="morris-wrapper-demo" id="morrisDonut2"></div>
+										
 									</div>
 								</div>
-							</div>
+							</div> -->
                   </div>
             </div>
             <!-- Row end --> 

@@ -7,20 +7,20 @@
       <img src="<?php $lib->customerSite ?>/UIResources/logo_dash_mini.png" class="header-brand-img icon-logo theme-logo" alt="Logo GEMO"> </a> </div>
       <div class="main-sidebar-body">
          <ul class="nav">
-            <li class="nav-header"><span class="nav-label text-warning">Tableau de bord</span></li>
+            <!-- <li class="nav-header"><span class="nav-label text-warning">Tableau de bord</span></li> -->
             <li class="nav-item <?php $url_array[1] === 'dashboard'?  'active' : '' ?>"> <a class="nav-link" href="<?php $lib->customerSite ?>/dashboard"><span class="shape1"></span><span class="shape2"></span><i class="ti-home sidemenu-icon"></i><span class="sidemenu-label">Tableau de bord</span></a> </li>
 
             <?php if($_SESSION['access'] ==='1'):?>
 
             <li class="nav-item">
-               <a class="nav-link with-sub" href="#"><span class="shape1"></span><span class="shape2"></span><i class="ti-wallet sidemenu-icon"></i><span class="sidemenu-label">Opérations</span><i class="angle fe fe-chevron-right"></i></a> 
+               <a class="nav-link with-sub" href="#"><span class="shape1"></span><span class="shape2"></span><i class="ti-exchange-vertical sidemenu-icon"></i><span class="sidemenu-label">Opérations</span><i class="angle fe fe-chevron-right"></i></a> 
                <ul class="nav-sub">
                   <li class="nav-sub-item"> <a class="nav-sub-link" href="<?php $lib->customerSite ?>/operation/historique">Historiques</a> </li>
                </ul>
             </li>
 
             <li class="nav-item">
-               <a class="nav-link with-sub" href="#"><span class="shape1"></span><span class="shape2"></span><i class="ti-shopping-cart-full sidemenu-icon"></i><span class="sidemenu-label">Administration</span><i class="angle fe fe-chevron-right"></i></a> 
+               <a class="nav-link with-sub" href="#"><span class="shape1"></span><span class="shape2"></span><i class="ti-settings sidemenu-icon"></i><span class="sidemenu-label">Administration</span><i class="angle fe fe-chevron-right"></i></a> 
                <ul class="nav-sub">
                   <li class="nav-sub-item"> <a class="nav-sub-link" href="<?php $lib->customerSite ?>/administration/agent/liste">Licences</a> </li>
                   <li class="nav-sub-item"> <a class="nav-sub-link" href="<?php $lib->customerSite ?>/administration/utilisateurs/liste">Utilisateurs</a> </li>
