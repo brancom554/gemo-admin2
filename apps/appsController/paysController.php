@@ -2,10 +2,10 @@
 
     switch ($url_array[3]) {  
         case "ajouter":
-            include "addpays.php";
+            include "addPays.php";
             break;		
         case "modifier":
-            include "editpays.php";
+            include "editPays.php";
             break;
         
         default:

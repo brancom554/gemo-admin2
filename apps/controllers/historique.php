@@ -10,9 +10,9 @@ if (isset($_POST['filter'])) {
     if ($_SESSION['access'] == '1') {
 
         $sql = "SELECT TR.*,OPT.libelle as description FROM 
-        (SELECT ops.operation_type_id,ops.libelle,u.operation_date,ops.network_operator_name, 
-        u.transaction_phone_number, users.firstname, users.lastname, u.statut_operation 
-        FROM user_operations u INNER JOIN operations ops ON ops.operation_id = u.operation_id 
+        (SELECT ops.operation_type_id,ops.libelle,u.operation_date,ops.network_operator_name operator_name, 
+        u.transaction_phone_number, users.firstname, users.lastname, u.statut_operation,u.operation_id 
+        FROM user_operations u  INNER JOIN operations ops ON ops.operation_id = u.operation_id 
         INNER JOIN users ON users.user_id = u.created_by_user_id 
         WHERE u.operation_date BETWEEN '".$debut."' AND '".$fin."')
          AS TR INNER JOIN operation_types AS OPT ON OPT.operation_type_id = TR.operation_type_id";
@@ -20,11 +20,7 @@ if (isset($_POST['filter'])) {
     } else {
         if ($_SESSION['access'] == '2') {
             //$sql = "SELECT Z.operation_date,Z.libelle,Z.amount,Z.network_operator_name,U.firstname,U.lastname FROM (SELECT K.*,O.operation_type_id,O.libelle,O.amount,O.network_operator_name FROM (SELECT us.user_id,usop.operation_date,usop.operation_id FROM users us INNER JOIN user_operations usop ON usop.created_by_user_id = us.user_id WHERE usop.operation_date BETWEEN '".$debut."' AND '".$fin."') as K INNER JOIN operations O ON O.operation_id = K.operation_id ) as Z INNER JOIN users U ON U.  U WHERE U.company_id =".$_POST['manager'];
-            $sql = "SELECT Z.operation_date,Z.libelle,Z.amount,Z.network_operator_name,Z.firstname,Z.lastname FROM 
-            (SELECT K.*,O.operation_type_id,O.libelle,O.amount,O.network_operator_name FROM 
-            (SELECT us.user_id,usop.operation_date,usop.operation_id,us.firstname,us.lastname FROM users us 
-            INNER JOIN user_operations usop ON usop.created_by_user_id = us.user_id WHERE usop.operation_date 
-            BETWEEN '".$debut."' AND '".$fin."' AND us.company_id ='".$_POST['manager']."') as K INNER JOIN operations O ON O.operation_id = K.operation_id) as Z";
+            $sql = "SELECT Z.operation_date,Z.libelle,Z.amount,Z.statut_operation,Z.transaction_phone_number,Z.network_operator_name,Z.firstname,Z.lastname FROM (SELECT K.*,O.operation_type_id,O.libelle,O.amount,O.statut_operation,O.transaction_phone_number,O.network_operator_name FROM (SELECT us.user_id,usop.operation_date,usop.operation_id,us.firstname,us.lastname FROM users us INNER JOIN user_operations usop ON usop.created_by_user_id = us.user_id WHERE usop.operation_date BETWEEN '".$debut."' AND '".$fin."' AND us.company_id ='".$_POST['manager']."') as K INNER JOIN operations O ON O.operation_id = K.operation_id) as Z";
         }
     }
     
@@ -58,7 +54,83 @@ if ($_SESSION['access'] == '1') {
     }
 }
 
-
+function getNetworkByOperationId($id){
+	
+	$operateur = "";
+	$db = new Database();
+    $sql = "SELECT network_operator_name FROM operations WHERE transaction_phone_number =".$id." ORDER BY operation_date DESC Limit 1 ";
+	$ind = substr("".$id,0,2);
+	switch ($ind) {
+  case 97:
+    $operateur="MTN";
+    break;
+  case 96:
+    $operateur="MTN";
+    break;
+  case 66:
+    $operateur="MTN";
+    break;
+case 67:
+    $operateur="MTN";
+    break;
+case 91:
+    $operateur="MTN";
+    break;
+case 62:
+    $operateur="MTN";
+    break;	
+ case 61:
+    $operateur="MTN";
+    break;
+  case 69:
+    $operateur="MTN";
+    break;
+ case 90:
+    $operateur="MTN";
+    break;
+case 51:
+    $operateur="MTN";
+    break;
+case 52:
+    $operateur="MTN";
+    break;	
+	
+	
+ case 95:
+    $operateur="MOOV";
+    break;
+  case 94:
+    $operateur="MOOV";
+    break;
+  case 64:
+    $operateur="MOOV";
+    break;
+  case 65:
+    $operateur="MOOV";
+    break;
+ case 63:
+    $operateur="MOOV";
+    break;
+  
+ case 99:
+    $operateur="MOOV";
+    break;
+case 60:
+    $operateur="MOOV";
+    break;	
+case 98:
+    $operateur="MOOV";
+    break;
+ case 68:
+    $operateur="MOOV";
+    break;	
+  default:
+    $operateur="N/A";
+}
+	  
+    return  $operateur;
+	
+}
 
 if(file_exists(_VIEW_PATH.$lib->lang."/historique.phtml"))  $view=$lib->lang."/historique.phtml";
 else  $view=$iniObj->defaultLang."/historique.phtml";

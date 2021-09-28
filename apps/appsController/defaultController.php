@@ -1,6 +1,9 @@
 <?php
 // die($page_requested);
 switch ($page_requested) {
+	case "managers":
+		include "managerController.php";
+		break;
 	case "mentions":
 		include "mentions.php";
 		break;
@@ -79,7 +82,7 @@ switch ($page_requested) {
 				include "ussdController.php";
 				break;
 				
-			case "service":
+			case "services":
 				include "serviceController.php";
 				break;	
 			case "forfait":

@@ -18,12 +18,13 @@ if (isset($_POST['soumettre'])) {
         $db = new Database();
         
             $query = $db->InsertDb($sql,$data);
-            if ($query == true) {
+            if (!is_array($query)) {
                 header('Location:/configurations/pays');
                 exit;  
             }else {
-                var_dump($query);
-                exit;
+                $notification="Opération d'enrégistrement échouée. Veuillez réessayer.";
+                //var_dump($query);
+                //exit;
             }
         
     }

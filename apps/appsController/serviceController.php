@@ -1,7 +1,7 @@
 <?php
 
     switch ($url_array[3]) {  
-        case "addService":
+        case "ajouter":
             include "addService.php";
             break;		
         case "modifier":

@@ -97,11 +97,11 @@
                                     <?php if(isset($data['operations'])): ?>
                                             <?php foreach($data['operations'] as $opération): ?>
                                             <tr>
-                                                <td><?=$opération['libelle'] ?></td>
-                                                <td><?=$opération['operation_date'] ?></td>                                             
+                                                <td><?=$opération['libelle'] ?></td>                                                                       
                                                 <td><?=$opération['description'] ?></td>
-                                                <td><?=$opération['network_operator_name'] ?></td>
-                                                <td><?=$opération['phone_number'] ?></td>                                             
+												<td><?=$opération['operation_date'] ?></td>  
+                                                <td><?=getNetworkByOperationId($opération['transaction_phone_number']) ?></td>
+                                                <td><?=$opération['transaction_phone_number'] ?></td>                                             
                                                 <td><?=$opération['firstname'] .' '.$opération['lastname'] ?></td>
                                                 <td><?=$opération['statut_operation'] ?></td>
                                             </tr>
@@ -111,27 +111,29 @@
                                 </table>
                             <?php else :?>
                                     <?php if($_SESSION['access'] == '2'):?>
-                                        <table id="tables" class="table table-striped" style="margin-top: 30px;" border="0">
-                                    <thead>
-                                        <tr>
-                                            <th>N° Opération</th>
-                                            <th>Types</th>
-                                            <th>Dates</th>
-                                            <th>Montant</th>
-                                            <th>Gsm</th>
-                                            <th>Agent</th>
-                                            <th>Statut</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                                        <table  id="exportexample"  class="table table-striped table-bordered text-nowrap">
+					    <thead>
+						<tr>
+						    <th>N° Opération</th>
+						    <th>Types</th>
+						    <th>Dates</th>
+						    <th>Montant</th>
+						    <th>Gsm</th>
+						    <th>Agent</th>
+						    <th>Statut</th>
+						</tr>
+					    </thead>
+					    <tbody>
                                     <?php if(isset($data['operations'])): ?>
                                             <?php foreach($data['operations'] as $opération): ?>
                                             <tr>
+						<td><?=$opération['transaction_phone_number'] ?></td>
                                                 <td><?=$opération['libelle'] ?></td>
                                                 <td><?=$opération['operation_date'] ?></td>                                             
                                                 <td><?=$opération['amount'] ?> FCFA</td>
                                                 <td><?=$opération['network_operator_name'] ?></td>
                                                 <td><?=$opération['firstname'] ?> <?=$opération['lastname'] ?></td>
+						<td><?=$opération['statut_operation'] ?></td>
                                                 
                                             </tr>
                                             <?php endforeach; ?>

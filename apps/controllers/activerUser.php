@@ -9,15 +9,15 @@ if (isset($url_array[3])) {
     $data=[
         'is_active'=> 1,
         'id' => $url_array[3],
-        'expire' => $date_actif->add(new DateInterval('P30D'))->format('y-m-d')
+        'expire' => $date_actif->format('y-m-d H:i')
     ];
     
     try {
-            $sql = 'UPDATE users SET is_active_flag=:is_active,active_date_to=:expire WHERE user_id=:id';
+            $sql = 'UPDATE users SET is_active_flag=:is_active,creation_date=:expire WHERE user_id=:id';
             $query = $db->InsertDb($sql,$data);
             if (!is_array($query)) {
                
-                    header('Location:/managers');
+                    header('Location:/utilisateurs');
                     //var_dump($query);
                     exit;
                 

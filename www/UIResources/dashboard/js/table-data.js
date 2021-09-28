@@ -11,18 +11,34 @@ $(function() {
 	
 	
 	$('#example1').DataTable({
+      "pageLength": 6,
 		language: {
-			searchPlaceholder: 'Search...',
+			searchPlaceholder: 'Rechercher...',
 			sSearch: '',
-			lengthMenu: '_MENU_ items/page',
+			//lengthMenu: '_MENU_ items/page',
+         lengthMenu: '',
+         
+         paginate:{
+            "first":"Premier",
+            "last":"Dernier",
+            "next":"Suivant",
+            "previous":"Précédent"
+        }
 		}
 	});
 	$('#example2').DataTable({
 		responsive: true,
+      "pageLength": 6,
 		language: {
-			searchPlaceholder: 'Search...',
+			searchPlaceholder: 'Rechercher...',
 			sSearch: '',
-			lengthMenu: '_MENU_ items/page',
+			lengthMenu: '',
+         paginate:{
+            "first":"Premier",
+            "last":"Dernier",
+            "next":"Suivant",
+            "previous":"Précédent"
+        }
 		}
 	});
 	$('#example3').DataTable( {

@@ -1,45 +1,78 @@
-<?php include _VIEW_PATH."/common_header.phtml";?>
+<?php include _VIEW_PATH."/common_header_dashboard.phtml";?>
+
+
+<?php include _VIEW_PATH."common_side_bar.phtml";?>
 
 <?php include _VIEW_PATH."common_top_bar.phtml";?>
 
-	<main>
-        <div>
-            <span class="main-title font-1">Modification une catégorie</span>
-            <div class="track">
-                <span <?php if($page_requested =="configurations"){ ?> class="actives" <?php } ?>><?php echo $page_requested;?></span><span>/</span><span><?php echo $url_array[2];?></span><span>/</span><span><?php echo $url_array[3];?></span>
-            </div>
-            
-            <div class="form">
-                <form action="" method="post">
-                    <div class="form-content">
-                        <div class="input-form margin-bottom-20">
-                            <label for="licence">Libellé de la catégorie</label>
-                            <input class="form-input" type="text" name="libelle" id="" value="<?php echo $data['categorie']['libelle'] ?>" >
-                            <?php if(isset($messages)):?>
-                                <span class="notification"><?php echo $messages ?></span>
-                            <?php endif;?>
-                        </div>
-                        
-                        <div class="input-form">
-                            <label for="type">Types</label>
-                            <select class="form-select margin-bottom-20" name="type" id="type">
-                                <option value="">Sélectionne un type</option>
-                                <option value="1">SERVICES TELEPHONIQUES</option>
-                                <option value="2">SERVICES FINANCIERS</option>
-                            </select>
-                            <?php if(isset($message)):?>
-                                <span class="notification"><?php echo $message ?></span>
-                            <?php endif;?>
-                        </div>
-                        
-                    </div>
-                    <div class="margin-bottom-20">
-                        <button class="form-button" name="soumettre" type="submit">MODIFIER LE TYPE</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </main>
+<div class="main-content side-content pt-0">
+<?php if(isset($notification)):?>
+    <div class="alert alert-danger mb-0" role="alert">
+        <span class="alert-inner--icon"><i class="fe fe-slash"></i></span>
+        <span class="alert-inner--text"><?php echo $notification ?></span>
+    </div>                                           
+<?php endif;?>
 
+				<div class="container-fluid">
+					<div class="inner-body">
+
+						<!-- Page Header -->
+						<div class="page-header">
+							<div>
+								<h2 class="main-content-title tx-24 mg-b-5">Modification de la catégorie</h2>
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="#"><?php echo $page_requested;?></a></li>
+									<li class="breadcrumb-item active" aria-current="page"><?php echo $url_array[2];?></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><?php echo $url_array[3];?></li>
+								</ol>
+                                
+							</div>
+						</div>
+						<!-- End Page Header -->
+						<!-- Row -->
+					    <div class="row row-sm">
+                        <div class="col-lg-12 col-md-12">
+								<div class="card custom-card">
+									<div class="card-body">
+										<form action="" method="post">
+                                            <div class="row row-sm">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <p class="mg-b-10">Libellé de la catégorie</p>
+                                                        <input type="text" class="form-control" required name="libelle" id="" value="<?php echo $data['categorie']['libelle'] ?>">
+                                                        <?php if(isset($message)):?>
+                                                            <span class="text-danger"><?php echo $message ?></span>
+                                                        <?php endif;?>
+                                                    </div>
+                                                </div>
+                                            
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <p class="mg-b-10">Types</p>
+                                                    <select required name="type" id="type" class="form-control select2">
+                                                        <option value="">Sélectionne un type</option>
+                                                        <option value="1">SERVICES TELEPHONIQUES</option>
+                                                        <option value="2">SERVICES FINANCIERS</option>
+                                                    </select>
+                                                    <?php if(isset($message)):?>
+                                                        <span class="text-danger"><?php echo $message ?></span>
+                                                    <?php endif;?>
+                                                </div>                                                    
+                                            </div>
+                                            
+                                            
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn ripple btn-info" name="soumettre">Modifier la catégorie</button>
+                                            </div>
+                                        </form>
+									</div>
+								</div>
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
 <?php include _VIEW_PATH.$lib->lang."/common_footer.phtml";?>
-<?php include _VIEW_PATH."/common_include_files.phtml";?>
+<?php include _VIEW_PATH."/common_include_files_dashboard.phtml";?>
+
