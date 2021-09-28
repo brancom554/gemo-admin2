@@ -84,4 +84,35 @@ class User{
             var_dump($response);
         }
     }
+
+    function reinitialiser($password1,$password3,$tel) {
+        
+        $sql = "SELECT encrypted_password FROM users WHERE phone_number=".$tel;
+        
+        $db = new Database();
+
+        $response = $db->DisplaysDataDb($sql);
+
+        if(is_array($response)){
+
+            if (password_verify($password1,$response['encrypted_password'])) {
+
+                $sql1 = 'UPDATE users SET  encrypted_password=:password3 WHERE phone_number=:phone';
+                $data = array( "password3" => password_hash($password3, PASSWORD_DEFAULT), "phone" => $tel);
+                $db = new Database();
+                $response1 = $db->InsertDb($sql1,$data);
+              
+                if($response1 == true){
+                    header('Location:/connecter');
+                }else{
+                    var_dump($response1);
+                }
+
+            }
+
+        }
+
+        
+
+    }
 }

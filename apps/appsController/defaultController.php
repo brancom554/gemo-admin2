@@ -1,6 +1,9 @@
 <?php
 // die($page_requested);
 switch ($page_requested) {
+	case "reinitialiser":
+		include "reinitialisation.php";
+		break;
 	case "managers":
 		include "managerController.php";
 		break;

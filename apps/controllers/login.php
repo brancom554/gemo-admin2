@@ -2,6 +2,21 @@
 require_once(_APPS_PATH.'/classes/Database.php');
 require_once(_APPS_PATH.'/classes/User.php');
 
+if (isset($_POST['reinitialiser']) ) {
+
+    $telephone = filter_input(INPUT_POST,'phone',FILTER_SANITIZE_STRING);
+    
+    if(empty($telephone)) {
+        $error = "Veuillez renseigner le numéro de téléphone";
+
+    }else{
+        header("Location:/reinitialiser/$telephone");
+    }
+
+  
+    
+}
+
 
 if (isset($_POST['connexion']) ) {
     $token = filter_input(INPUT_POST,'token',FILTER_SANITIZE_STRING);
@@ -10,10 +25,6 @@ if (isset($_POST['connexion']) ) {
     
     if ($token != $_SESSION['token']) {
         $error = "Token expiré";
-
-        /*var_dump($token);
-        var_dump($_SESSION['token']);
-        return;*/
         
     }else {
         if (empty($_POST['phone'])) {
