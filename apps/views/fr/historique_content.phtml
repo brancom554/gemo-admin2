@@ -111,27 +111,29 @@
                                 </table>
                             <?php else :?>
                                     <?php if($_SESSION['access'] == '2'):?>
-                                        < table  id = "exportexample"  class = "table table-striped"  style = "margin-top: 30px;"  bordure = "0" k>
-                                    <thead>
-                                        <tr>
-                                            <th>N° Opération</th>
-                                            <th>Types</th>
-                                            <th>Dates</th>
-                                            <th>Montant</th>
-                                            <th>Gsm</th>
-                                            <th>Agent</th>
-                                            <th>Statut</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                                        <table  id="exportexample"  class="table table-striped table-bordered text-nowrap">
+					    <thead>
+						<tr>
+						    <th>N° Opération</th>
+						    <th>Types</th>
+						    <th>Dates</th>
+						    <th>Montant</th>
+						    <th>Gsm</th>
+						    <th>Agent</th>
+						    <th>Statut</th>
+						</tr>
+					    </thead>
+					    <tbody>
                                     <?php if(isset($data['operations'])): ?>
                                             <?php foreach($data['operations'] as $opération): ?>
                                             <tr>
+						<td><?=$opération['transaction_phone_number'] ?></td>
                                                 <td><?=$opération['libelle'] ?></td>
                                                 <td><?=$opération['operation_date'] ?></td>                                             
                                                 <td><?=$opération['amount'] ?> FCFA</td>
                                                 <td><?=$opération['network_operator_name'] ?></td>
                                                 <td><?=$opération['firstname'] ?> <?=$opération['lastname'] ?></td>
+						<td><?=$opération['statut_operation'] ?></td>
                                                 
                                             </tr>
                                             <?php endforeach; ?>
