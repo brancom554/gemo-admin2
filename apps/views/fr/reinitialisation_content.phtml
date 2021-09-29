@@ -17,7 +17,7 @@
         <input type="hidden" name="token" value="<?=$_SESSION['token'];?>">
         <div class="login-input">
           <!--<span>Mot de passe</span>-->
-          <input type="password" name="password1" placeholder="Entrer l'ancien mot de passe">
+          <input type="text" name="code" placeholder="Entrer votre code de réinitialisation">
           <?php if(isset($message1)):?>
             <span class="notification"><?php echo $message1 ?></span>
           <?php endif;?>

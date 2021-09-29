@@ -1,16 +1,33 @@
 <?php
 require_once(_APPS_PATH.'/classes/Database.php');
 require_once(_APPS_PATH.'/classes/User.php');
+require_once(_APPS_PATH.'/classes/Sms.php');
+
 
 if (isset($_POST['reinitialiser']) ) {
 
     $telephone = filter_input(INPUT_POST,'phone',FILTER_SANITIZE_STRING);
     
     if(empty($telephone)) {
+
         $error = "Veuillez renseigner le numéro de téléphone";
 
     }else{
-        header("Location:/reinitialiser/$telephone");
+
+    $sms = new Sms();
+    $res = $sms->EnvoisSMS($telephone,'GEMO','Votre code de réinitialisation');
+
+    $res = json_decode($res, true);
+
+    if($res['success'] === true) {
+
+        $storeCode = new Sms();
+        $error = $storeCode->codeReinitialisation($res['textId'],$telephone);
+
+    }else{
+        var_dump($res, $error);
+    }
+
     }
 
   

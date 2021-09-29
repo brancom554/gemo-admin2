@@ -85,20 +85,18 @@ class User{
         }
     }
 
-    function reinitialiser($password1,$password3,$tel) {
-        
-        $sql = "SELECT encrypted_password FROM users WHERE phone_number=".$tel;
-        
-        $db = new Database();
+    function reinitialiserPassword($password3,$tel) {
 
-        $response = $db->DisplaysDataDb($sql);
+                $sql = "SELECT user_id FROM users WHERE phone_number=".$tel;
+                
+                $db = new Database();
 
-        if(is_array($response)){
+                $response = $db->DisplaysDataDb($sql);
 
-            if (password_verify($password1,$response['encrypted_password'])) {
-
-                $sql1 = 'UPDATE users SET  encrypted_password=:password3 WHERE phone_number=:phone';
-                $data = array( "password3" => password_hash($password3, PASSWORD_DEFAULT), "phone" => $tel);
+                $sql1 = 'UPDATE users,validate_password SET validate_password.is_used=1, encrypted_password=:password3
+                WHERE users.user_id='.$response["user_id"];
+                
+                $data = array( "password3" => password_hash($password3, PASSWORD_DEFAULT));
                 $db = new Database();
                 $response1 = $db->InsertDb($sql1,$data);
               
@@ -110,9 +108,4 @@ class User{
 
             }
 
-        }
-
-        
-
-    }
 }
