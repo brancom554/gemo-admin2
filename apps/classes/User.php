@@ -85,16 +85,18 @@ class User{
         }
     }
 
-    function reinitialiserPassword($password3,$tel) {
+    function reinitialiserPassword($code,$password3,$tel) {
 
-                $sql = "SELECT user_id FROM users WHERE phone_number=".$tel;
-                
+                $sql = "SELECT user_id FROM users WHERE phone_number=".$tel;   
+
+                // $resquest = 'DELETE FROM validate_password WHERE user_id = "'.$response["user_id"].'" 
+                // AND EXISTS(SELECT user_id FROM users WHERE user_id = "'.$response["user_id"].'" LIMIT 1)';
+
                 $db = new Database();
-
                 $response = $db->DisplaysDataDb($sql);
 
                 $sql1 = 'UPDATE users,validate_password SET validate_password.is_used=1, encrypted_password=:password3
-                WHERE users.user_id='.$response["user_id"];
+                WHERE validate_password.verify_code="'.$code.'" AND users.user_id='.$response["user_id"];
                 
                 $data = array( "password3" => password_hash($password3, PASSWORD_DEFAULT));
                 $db = new Database();

@@ -49,7 +49,7 @@ class Sms
 
     function checkCodeReinitialisation($code, $tel) {
 
-        $request = 'SELECT distinct verify_code FROM validate_password INNER JOIN users USING(user_id) WHERE validate_password.is_used=0 AND users.phone_number='.$tel;
+        $request = 'SELECT distinct verify_code FROM validate_password INNER JOIN users USING(user_id) WHERE validate_password.is_used=0 AND validate_password.verify_code="'.$code.'" AND users.phone_number='.$tel;
         $db = new Database();
         $response = $db->DisplaysDataDb($request);
 

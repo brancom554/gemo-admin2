@@ -30,7 +30,7 @@ if (isset($_POST['reinitialiser']) ) {
                 if($error == true) {
 
                     $user = new User();
-                    $error = $user->reinitialiserPassword($password3,$url_array[2]);
+                    $error = $user->reinitialiserPassword($code,$password3,$url_array[2]);
 
                 }
         }else{
