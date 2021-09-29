@@ -29,7 +29,8 @@ if (isset($_POST['reinitialiser']) ) {
 
 
     }else{
-        var_dump($res, $error);
+        $error = "Le code n'a pas été retourner";
+        // var_dump($res, $error);
     }
 
     }
