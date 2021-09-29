@@ -28,7 +28,7 @@
 										</div>
 										<div class="row row-sm">
                                         <div class="form-group col-lg">
-											<select name="agent" class="form-control select2">
+                                            <select name="agent" class="form-control select2">
                                                 <option selected>Selectionner un Agent</option>
                                                 <?php if(isset($response)): ?>
                                                     <?php foreach($response as $agent): ?>
@@ -38,7 +38,7 @@
 											</select>
 										</div>
 											<div class="col-lg mg-t-10 mg-lg-t-0">
-												<input class="form-control" disabled placeholder="Input box (disabled)" value="<?=$response1['licence_key'] ?>" name="licence" type="text">
+												<input class="form-control" disabled placeholder="" value="<?=$response1['licence_key'] ?>" name="licence" type="text">
 											</div>
                                             <div class="col-12 mt-2">
                                                 <button type="submit" class="btn btn-primary" name="soumettre">Attribuer</button>

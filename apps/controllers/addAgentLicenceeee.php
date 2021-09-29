@@ -5,7 +5,7 @@ require_once(_APPS_PATH.'/classes/Licence_attribution.php');
 if (isset($_POST['soumettre']) ) {
 
         $agent = filter_input(INPUT_POST,'agent',FILTER_VALIDATE_INT);
-        $licence = filter_input(INPUT_POST,'licence',FILTER_VALIDATE_INT);
+        $licence = filter_input(INPUT_POST,'licence',FILTER_SANITIZE_STRING);
        
             if (empty($_POST['agent'])) {
                 $message1 = "Veuillez remplir le champs";
@@ -24,7 +24,7 @@ if (isset($_POST['soumettre']) ) {
                 
 }
 
-$sql = 'SELECT user_id,firstname,lastname FROM users WHERE is_manager = 0 AND licence_id = 0 AND company_id='.$_SESSION['company'];
+$sql = 'SELECT user_id,firstname,lastname FROM users WHERE is_manager = 0 AND company_id='.$_SESSION['company'];
 $sql1 = 'SELECT licence_key,licence_id FROM licences WHERE is_active=1 AND created_for_company_id ='.$_SESSION['company'];
         $db = new Database();
         $response = $db->DisplayDataDb($sql);

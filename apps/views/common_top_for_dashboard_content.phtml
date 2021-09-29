@@ -22,6 +22,9 @@
 					 <li class="breadcrumb-item active" aria-current="page"><?= $url_array[2] ?></li>
 				 </ol>
 			 </div>
+			  
+			 <?php if ($_SESSION['access'] == '2'):?>
+
 			 <?php if($show):?>
 			 <div class="d-flex">
 				 <div class="justify-content-center">
@@ -32,6 +35,9 @@
 			 </div>
 			 <?php else: ?>
 			 <?php endif;?>
+			 <?php endif;?>
+
+			 
 
 
 <?php elseif($url_array[1] === 'administration' && $url_array[2] === 'agent' && $url_array[3] === 'attributionLicence'): ?>

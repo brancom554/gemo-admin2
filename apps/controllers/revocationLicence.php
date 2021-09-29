@@ -2,13 +2,13 @@
 require_once(_APPS_PATH.'/classes/Database.php');
 
 if (isset($_POST['soumettre']) ) {
-$sql = 'UPDATE users SET licence_id= 0 WHERE licence_id=:id';
+$sql = 'UPDATE users SET users.licence_id=:val WHERE users.licence_id=:id';
 $data=[
         'id' => $url_array[4],
+        'val' => 0,
     ];
     $db = new Database();
     $query = $db->InsertDb($sql,$data);
-     var_dump($query);
     if ($query == true) {
         $_SESSION['notification'] = "Révoqué avec succès.";
         header('Location:/administration/agent');

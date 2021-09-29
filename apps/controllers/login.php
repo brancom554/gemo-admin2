@@ -14,21 +14,23 @@ if (isset($_POST['reinitialiser']) ) {
 
     }else{
 
-    // $sms = new Sms();
-    // $res = $sms->EnvoisSMS($telephone,'GEMO','Votre code de réinitialisation');
+    $sms = new Sms();
+    $res = $sms->EnvoisSMS($telephone,'GEMO','Votre code de réinitialisation');
 
-    // $res = json_decode($res, true);
+    $res = json_decode($res, true);
 
-    // if($res['success'] === true) {
+    // var_dump($res);
+
+    if($res['success'] === true) {
 
         $storeCode = new Sms();
-        // $error = $storeCode->codeReinitialisation($res['textId'],$telephone);
-        $error = $storeCode->codeReinitialisation('cedric',$telephone);
+        $error = $storeCode->codeReinitialisation($res['textId'],$telephone);
+        // $error = $storeCode->codeReinitialisation('cedric',$telephone);
 
 
-    // }else{
-    //     var_dump($res, $error);
-    // }
+    }else{
+        var_dump($res, $error);
+    }
 
     }
 

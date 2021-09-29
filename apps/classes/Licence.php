@@ -45,6 +45,7 @@ class Licence
     }
 
     function licenceAttribution($agent, $licence){
+        // var_dump($agent, $licence);
         $sql = 'UPDATE users SET licence_id=0 WHERE licence_id=:licence';
 
         $data = array("licence" => $licence);

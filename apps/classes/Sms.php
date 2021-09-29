@@ -6,7 +6,7 @@ class Sms
     {
         $ch = curl_init('https://textbelt.com/text');
         $data =array(
-            'phone' => $phone.'',
+            'phone' => '+229'.$phone.'',
             'senderId' => $sender.'',
             'message' => $message.'',
             'key' => 'e16f0f94c6cd23c7cbbf898674f230759b6e5d7bDaXXxLRAPmyoOTs2WyYvpHir7'
