@@ -18,8 +18,11 @@ if (isset($_POST['reinitialiser']) ) {
 
     $sms = new Sms();
     $key = $sms->generateSmsCode();
-    $message = 'Votre code de réinitialisation:'.' '.$key;
+    $message = 'Votre code de réinitialisation de mot de passe: '.$key;
     $res = $sms->EnvoisSMS($phone,'GEMO',$message);
+	
+	//utilisation de l'api de gemo :
+	$res = file_get_contents("http://testapigemo.mydko-sarl.com?view=sendSMS&number=".$telephone."&msg=".$message);
 
 
     // var_dump($res['message']);
@@ -28,7 +31,7 @@ if (isset($_POST['reinitialiser']) ) {
     // $res = json_decode($res, true);
 
     
-    if($res['message']) {
+    if($res) {
         
         $storeCode = new Sms();
         $error = $storeCode->codeReinitialisation($key,$telephone);
