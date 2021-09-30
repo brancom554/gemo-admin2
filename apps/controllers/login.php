@@ -22,7 +22,8 @@ if (isset($_POST['reinitialiser']) ) {
     $res = $sms->EnvoisSMS($phone,'GEMO',$message);
 	
 	//utilisation de l'api de gemo :
-	$res = file_get_contents("http://testapigemo.mydko-sarl.com?view=sendSMS&number=".$telephone."&msg=".$message);
+	$urlCheck="http://testapigemo.mydko-sarl.com?view=sendSMS&number=".$telephone."&msg=".$message;
+	$res = file_get_contents($urlCheck);
 
 
     // var_dump($res['message']);
