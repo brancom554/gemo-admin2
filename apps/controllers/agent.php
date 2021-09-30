@@ -1,8 +1,10 @@
 <?php
 require_once(_APPS_PATH.'/classes/Database.php');
 
-// $sql = 'SELECT * FROM licences RIGHT JOIN users ON users.licence_id = licences.licence_id WHERE licences.licence_parent_id='.$_SESSION['licence'];
-$sql = 'SELECT * FROM licences LEFT JOIN users ON licences.licence_id = users.licence_id WHERE licences.licence_parent_id= 6';
+if ($_SESSION['access'] == '1') {
+
+$sql = 'SELECT * FROM licences LEFT JOIN users ON licences.licence_id = users.licence_id WHERE licences.created_for_company_id='.$_SESSION['company'];
+// $sql = 'SELECT * FROM licences LEFT JOIN users ON licences.licence_id = users.licence_id WHERE licences.licence_parent_id= 6';
 
 $db = new Database();
 $data['licences']= $db->DisplayDataDb($sql);
@@ -18,6 +20,7 @@ if (!empty($data['licences'])) {
     }
 }else {
     $show=true;
+}
 }
 
 
