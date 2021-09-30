@@ -25,7 +25,7 @@ if ($url_array[2] == "barChart") {
     INNER JOIN operation_types USING (operation_type_id) 
     INNER JOIN category_ussd USING (operation_type_id)
     INNER JOIN categories USING (category_id) 
-    WHERE operations.company_token="DKO"
+    WHERE operations.company_token="'.$_SESSION['companie_token'].'"
     GROUP BY MONTHNAME(operation_date), categories.type_category_libelle  ORDER BY month(operation_date) ASC';
 
     $data['data'] = $db->DisplayDataDb($sql5);
