@@ -604,10 +604,9 @@ CREATE TABLE `user_operations` (
 -- Table structure for table `users`
 --
 
+
 DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(100) DEFAULT NULL,
   `lastname` varchar(100) DEFAULT NULL,
@@ -629,24 +628,25 @@ CREATE TABLE `users` (
   `licence_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   KEY `fk_users_addresses1_idx` (`address_id`),
-  KEY `fk_users_companies1_idx` (`company_id`),
-  KEY `licence_id` (`licence_id`),
-  CONSTRAINT `fk_users_addresses1` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`address_id`),
-  CONSTRAINT `fk_users_companies1` FOREIGN KEY (`company_id`) REFERENCES `companies` (`company_id`),
- 
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  KEY `fk_users_companies1_idx` (`company_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `users`
+-- Contraintes pour les tables déchargées
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'AROUNA','Hafiz','test@test.com','66152976','$2y$10$OIEiX7O6f5Sie5i.zDclnexoqJI.W89xPxxOEovStEpcE/U0Wbdpa','0cbc6611f5540bd0809a388dc95a615b','2021-08-16 21:21:00',NULL,1,2,1,'2021-08-16','2021-08-27',0,'TEST08072021','041750ce-e473-462c-af82-99567dc25b4b','1',NULL),(2,'BAKARI','Mariama So Arouna','','0666265571','$2y$10$/nssyIy7Z7OqAdNFj06K8urvevEk6gB3n0CxgX.kDOsqs..y/1XJi','0cbc6611f5540bd0809a388dc95a615b','2021-08-17 18:46:00',NULL,1,2,1,'2021-08-17','2021-08-20',2,'DKO',NULL,'1',NULL),(7,'DIAZ GARRIGOS','Carlos','brancom554@gmail.com','94570130','$2y$10$/sxchINV6nk.oaY4x6ZpguuHDFoces5/VmSImVGDOggbro7P2Yaim','882baf28143fb700b388a87ef561a6e5','2021-09-22 23:22:00','2021-09-22 23:12:00',3,3,1,'2021-09-22','2021-10-20',1,NULL,'carlosdiaz','1',NULL),(8,'GOLDMAN','Sharon','incnova3@gmail.com','96209396','$2y$10$V126r4PLHvMMfUkN6Gk0oegJrjSUQ450lzvOKmG7GfClc0tI5vJ9C','1632400367','2021-09-22 23:29:00',NULL,2,3,1,'2021-09-22','2021-10-28',0,NULL,'sharon','1',NULL),(9,'GOLDMAN','Sharon',NULL,'+33752939626','$2y$10$UzgXaYxXcqq.BrnsiQPKJuRkABpYWlP0T/mEZCOwe2S7TFtmPnbxC','882baf28143fb700b388a87ef561a6e5','2021-09-28 10:14:00',NULL,4,4,0,'2021-09-28','2021-09-28',1,NULL,'','1',NULL),(10,'LIBERO','Omnis ',NULL,'+1 (465) 321-4788','$2y$10$aMzfhbs0n/a0iuoBPOkBA.zelun/4cGWA88xFj9fhxm1iaq/RZsfK','25d55ad283aa400af464c76d713c07ad','2021-09-29 13:42:00',NULL,3,3,1,NULL,NULL,0,NULL,'1254fx','1',NULL);
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `email`, `phone_number`, `encrypted_password`, `hash`, `creation_date`, `last_update_date`, `address_id`, `company_id`, `is_active_flag`, `active_date_from`, `active_date_to`, `is_manager`, `company_token`, `application_uuid`, `data_version`, `licence_id`) VALUES
+(1, 'AROUNA', 'Hafiz', 'test@test.com', '66152976', '$2y$10$OIEiX7O6f5Sie5i.zDclnexoqJI.W89xPxxOEovStEpcE/U0Wbdpa', '0cbc6611f5540bd0809a388dc95a615b', '2021-08-16 21:21:00', NULL, 1, 2, 1, '2021-08-16', '2021-08-27', 0, 'TEST08072021', '041750ce-e473-462c-af82-99567dc25b4b', '1', NULL),
+(2, 'BAKARI', 'Mariama So Arouna', '', '0666265571', '$2y$10$/nssyIy7Z7OqAdNFj06K8urvevEk6gB3n0CxgX.kDOsqs..y/1XJi', '0cbc6611f5540bd0809a388dc95a615b', '2021-08-17 18:46:00', NULL, 1, 2, 1, '2021-08-17', '2021-08-20', 2, 'DKO', NULL, '1', NULL),
+(3, 'DIAZ GARRIGOS', 'Carlos', 'brancom554@gmail.com', '94570130', '$2y$10$/sxchINV6nk.oaY4x6ZpguuHDFoces5/VmSImVGDOggbro7P2Yaim', '882baf28143fb700b388a87ef561a6e5', '2021-09-22 23:22:00', '2021-09-22 23:12:00', 3, 3, 1, '2021-09-22', '2021-10-20', 1, NULL, 'carlosdiaz', '1', NULL),
+(8, 'GOLDMAN', 'Sharon', 'incnova3@gmail.com', '96209396', '$2y$10$V126r4PLHvMMfUkN6Gk0oegJrjSUQ450lzvOKmG7GfClc0tI5vJ9C', '1632400367', '2021-09-22 23:29:00', NULL, 2, 3, 1, '2021-09-22', '2021-10-28', 0, NULL, 'sharon', '1', NULL);
 
+--
+-- Contraintes pour la table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `fk_users_addresses1` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`address_id`),
+  ADD CONSTRAINT `fk_users_companies1` FOREIGN KEY (`company_id`) REFERENCES `companies` (`company_id`);
 --
 -- Table structure for table `validate_password`
 --
