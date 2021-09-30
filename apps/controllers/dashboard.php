@@ -15,7 +15,8 @@ if ($url_array[2] == "chart") {
 
 if ($url_array[2] == "barChart") {
 
-    $mois = array();
+    $mois1 = array();
+    $mois2 = array();
     $total1 = array();
     $total2 = array();
 
@@ -32,16 +33,18 @@ if ($url_array[2] == "barChart") {
 
     foreach($data['data'] as $lineData){
 
-        array_push($mois,$lineData['mois']);
-
         if($lineData['type_category_libelle'] === "SERVICES TELEPHONIQUES") {
             array_push($total1,(int)$lineData['somme']); 
+            array_push($mois1,$lineData['mois']);
         }
 
         if($lineData['type_category_libelle'] === "SERVICES FINANCIERS") {
             array_push($total2,(int)$lineData['somme']); 
+            array_push($mois2,$lineData['mois']);
         }
     }
+
+    $mois = array_merge($mois1, $mois2);
 
     echo json_encode(['mois' => $mois,'totalTelephoniques' => $total1, 'totalFinanciers' => $total2]);
 
