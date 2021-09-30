@@ -13,7 +13,12 @@ class User{
                     $_SESSION['access'] = $data['user']['is_manager'];
                     $_SESSION['company'] = $data['user']['company_id'];
                     $_SESSION['address'] = $data['user']['address_id'];
-                    $_SESSION['companie_token'] = $data['user']['company_token'];
+
+                    $sql = "SELECT company_name FROM companies INNER JOIN users USING (company_id)  WHERE users.company_id=".$_SESSION['company'];
+                    $db = new Database();
+                    $companyToken = $db->DisplaysDataDb($sql);
+                    
+                    $_SESSION['companie_token'] = $companyToken['company_name'];
                     $_SESSION['user_id'] = $data['user']['user_id'];
                     if ($_SESSION['access'] == '1') {
                         //$sql = "SELECT licence_id,licence_nb_equipement FROM users,licences,licence_types WHERE users.company_id = licences.created_for_company_id AND licences.licence_type_id = licence_types.licence_type_id AND phone_number= $telephone";

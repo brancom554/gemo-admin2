@@ -91,7 +91,6 @@ if ($url_array[2] == "line") {
     exit;
 }
 
-
 /*$sql = 'SELECT optypes.libelle,userop.operation_date,op.libelle as descriptions FROM user_operations userop INNER JOIN operations op ON op.operation.id = userop.operation_id
 INNER JOIN operation_type optypes ON optypes.operation_type = op.operation_type_id INNER JOIN users u ON u.user_id = userop.created_by_user_id
 INNER JOIN licences lic ON lic.application_uuid = userop.application_uuid WHERE lic.licence_parent_id ='.$_SESSION['licence'].' LIMIT 3';*/
@@ -144,7 +143,7 @@ try {
     $first_box = $db->DisplaysDataDb($sql4);
     $second_box = $db->DisplaysDataDb($sql5);
     $third_box = $db->DisplaysDataDb($sql6);
-    // $fourth_box = $db->DisplaysDataDb($sql7);
+    
     $total = (int) $data['licence_total']['licence_total'];
     $total_active = (int) $data['licence_active']['licence_total'];
 } catch (\Throwable $th) {
