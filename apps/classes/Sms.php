@@ -6,7 +6,7 @@ class Sms
     {
         $ch = curl_init('https://textbelt.com/text');
         $data =array(
-            'phone' => '+229'.$phone.'',
+            'phone' => $phone.'',
             'senderId' => $sender.'',
             'message' => $message.'',
             'key' => 'e16f0f94c6cd23c7cbbf898674f230759b6e5d7bDaXXxLRAPmyoOTs2WyYvpHir7'
@@ -16,16 +16,19 @@ class Sms
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
         $response = curl_exec($ch);
         curl_close($ch);
+        $response['message'] = $message;
         return $response;
     }
 
-    function codeReinitialisation($code,$tel) {
+    function codeReinitialisation(string $code, $tel) 
+    {
         
-        $sql = "SELECT user_id FROM users WHERE phone_number=".$tel;
-        
+        $sql2 = 'SELECT user_id FROM users WHERE users.phone_number='.$tel;
         $db = new Database();
+        $response = $db->DisplaysDataDb($sql2);
 
-        $response = $db->DisplaysDataDb($sql);
+        // var_dump($response);
+        // die();
 
         if(is_array($response)){
             $dt = new Datetime();
@@ -47,7 +50,8 @@ class Sms
 
     }
 
-    function checkCodeReinitialisation($code, $tel) {
+    function checkCodeReinitialisation($code, $tel) 
+    {
 
         $request = 'SELECT distinct verify_code FROM validate_password INNER JOIN users USING(user_id) WHERE validate_password.is_used=0 AND validate_password.verify_code="'.$code.'" AND users.phone_number='.$tel;
         $db = new Database();
@@ -61,5 +65,11 @@ class Sms
 
             return false;
         }
+    }
+
+    function generateSmsCode()
+    {
+        $key = substr(bin2hex(random_bytes(5)), 0, 6);
+        return $key;
     }
 }
