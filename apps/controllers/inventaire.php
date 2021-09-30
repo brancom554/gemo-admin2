@@ -5,7 +5,7 @@ require_once(_APPS_PATH.'/classes/Database.php');
 
  if ($_SESSION['access'] == '1') {
 
-$sql = 'SELECT * FROM inventories WHERE company_token = "'.$_SESSION['companie_token'].'"';
+        $sql = 'SELECT * FROM inventories WHERE company_token = "'.$_SESSION['companie_token'].'"';
         $db = new Database();
         $response = $db->DisplayDataDb($sql);
 

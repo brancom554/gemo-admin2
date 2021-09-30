@@ -7,12 +7,12 @@
         url: "/dashboard/barChart",
         success:function(datas) { 
             const v = JSON.parse(datas)
-
+			console.log('v',v);
 	var ctx = document.getElementById("chartLine").getContext('2d');
 	var myChart = new Chart(ctx, {
 
 		data: {
-			labels: v.moisTelephoniques,
+			labels: v.mois,
 			datasets: [{
 				label: 'SERVICES TELEPHONIQUES',
 				data: v.totalTelephoniques,

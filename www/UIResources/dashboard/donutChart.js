@@ -1,12 +1,13 @@
 $(function() {
 	'use strict';
+	
 
     $.ajax({
         type: "POST",
         url: "/dashboard/camembertChart",
         success:function(datas) { 
             const v = JSON.parse(datas)
-            console.log(v)
+            console.log('r',v)
 	
 	new Morris.Donut({
 		element: 'morrisDonut2',

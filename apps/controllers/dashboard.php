@@ -14,50 +14,36 @@ if ($url_array[2] == "chart") {
 }
 
 if ($url_array[2] == "barChart") {
-    $moiss = $totall = array();
-    $moisss = $totalll = array();
+
+    $mois = array();
+    $total1 = array();
+    $total2 = array();
 
     $db = new Database();
-    $sql5 = 'SELECT MONTHNAME(operation_date) as mois,sum(amount) as somme FROM operations
+    $sql5 = 'SELECT MONTHNAME(operation_date) as mois,sum(amount) as somme,categories.type_category_libelle FROM operations
     INNER JOIN operation_types USING (operation_type_id) 
     INNER JOIN category_ussd USING (operation_type_id)
     INNER JOIN categories USING (category_id) 
-    WHERE operations.company_token="'.$_SESSION['companie_token'].'"
-    AND categories.type_category_libelle = "SERVICES TELEPHONIQUES"
-    GROUP BY month(operation_date) ORDER BY month(operation_date) ASC';
+    WHERE operations.company_token="DKO"
+    GROUP BY MONTHNAME(operation_date), categories.type_category_libelle  ORDER BY month(operation_date) ASC';
 
-    $sqll = 'SELECT MONTHNAME(operation_date) as mois,sum(amount) as somme FROM operations
-    INNER JOIN operation_types USING (operation_type_id) 
-    INNER JOIN category_ussd USING (operation_type_id)
-    INNER JOIN categories USING (category_id) 
-    WHERE operations.company_token="'.$_SESSION['companie_token'].'"
-    AND categories.type_category_libelle = "SERVICES FINANCIERS"
-    GROUP BY month(operation_date) ORDER BY month(operation_date) ASC';
+    $data['data'] = $db->DisplayDataDb($sql5);
 
-//     $sql5 = 'SELECT MONTHNAME(operation_date) as mois,count(balance_after_operate) as total FROM operations
-//     INNER JOIN operation_types USING (operation_type_id) 
-//     INNER JOIN category_ussd USING (operation_type_id)
-//     INNER JOIN categories USING (category_id) 
-//     WHERE operations.company_token="'.$_SESSION['companie_token'].'"  
-//     AND categories.type_category_libelle="SERVICES TELEPHONIQUES"
-// >>>>>>> 0cb9a99580dd86bfe27fa4242d287009857d5815
-//     GROUP BY month(operation_date) ORDER BY month(operation_date) ASC';
 
-    $data['telephoniques'] = $db->DisplayDataDb($sql5);
-    $data['financiers'] = $db->DisplayDataDb($sqll);
+    foreach($data['data'] as $lineData){
 
-    foreach($data['telephoniques'] as $telephoniques){
-        array_push($moiss,$telephoniques['mois']);
-        array_push($totall,(int)$telephoniques['somme']); 
+        array_push($mois,$lineData['mois']);
+
+        if($lineData['type_category_libelle'] === "SERVICES TELEPHONIQUES") {
+            array_push($total1,(int)$lineData['somme']); 
+        }
+
+        if($lineData['type_category_libelle'] === "SERVICES FINANCIERS") {
+            array_push($total2,(int)$lineData['somme']); 
+        }
     }
 
-    foreach($data['financiers'] as $financiers){
-        array_push($moiss,$financiers['mois']);
-        array_push($totalll,(int)$financiers['somme']); 
-    }
-
-    echo json_encode(['moisTelephoniques' => $moiss,'totalTelephoniques' => $totall,
-    'moisFinanciers' => $moiss,'totalFinanciers' => $totalll]);
+    echo json_encode(['mois' => $mois,'totalTelephoniques' => $total1, 'totalFinanciers' => $total2]);
 
     exit;
 }
@@ -67,14 +53,14 @@ if ($url_array[2] == "barChart") {
 if ($url_array[2] == "camembertChart") {
     
     $db = new Database();
-    $sql = 'SELECT DISTINCT SUM(amount) FROM operations 
+    $sql = 'SELECT DISTINCT count(amount) FROM operations 
     INNER JOIN operation_types USING (operation_type_id) 
     INNER JOIN category_ussd USING (operation_type_id)
     INNER JOIN categories USING (category_id) 
     WHERE operations.company_token="'.$_SESSION['companie_token'].'"
     AND categories.type_category_libelle="SERVICES TELEPHONIQUES"';
 
-    $sql1 = 'SELECT DISTINCT SUM(amount) FROM operations 
+    $sql1 = 'SELECT DISTINCT count(amount) FROM operations 
         INNER JOIN operation_types USING (operation_type_id) 
         INNER JOIN category_ussd USING (operation_type_id)
         INNER JOIN categories USING (category_id) 
