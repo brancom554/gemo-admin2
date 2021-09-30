@@ -21,10 +21,25 @@ if (isset($_POST['reinitialiser']) ) {
     $message = 'Votre code de réinitialisation de mot de passe: '.$key;
     $res = $sms->EnvoisSMS($phone,'GEMO',$message);
 	
-	//utilisation de l'api de gemo :
-	$urlCheck="http://testapigemo.mydko-sarl.com?view=sendSMS&number=".$telephone."&msg=".$message;
-	$res = file_get_contents($urlCheck);
 
+	$number = "+229".$telephone;
+$sender = "GEMO";
+
+	//new sms sender
+	$ch = curl_init('https://textbelt.com/text');
+$data = array(
+  'phone' => $number.'',
+  'senderId' => $sender.'',
+  'message' => $message.'',
+  'key' => 'e16f0f94c6cd23c7cbbf898674f230759b6e5d7bDaXXxLRAPmyoOTs2WyYvpHir7',
+);
+
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$res = curl_exec($ch);
+curl_close($ch);
 
     // var_dump($res['message']);
     // die();
