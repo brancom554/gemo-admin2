@@ -51,7 +51,10 @@ class Sms
                 }
 
         }else{
-            var_dump($response);
+			//on retourne à la page de lgoin
+			header("Location:/connecter/");
+			
+           // var_dump($response);
         }
 
     }
