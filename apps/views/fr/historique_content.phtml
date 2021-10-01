@@ -4,17 +4,6 @@
 <div class="container-fluid">
     <div class="inner-body">
 
-        <?php if(!empty($data['operations'])):?>
-
-                <div class="alert alert-success" role="alert">
-                    <button aria-label="Close" class="close" data-dismiss="alert" type="button">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <strong>Renvoyée avec succes!</strong>
-                </div
-
-        <?php endif; ?>
-
             <!-- Page Header -->
             <div class="page-header">
 
@@ -22,6 +11,17 @@
 
             </div>
             <!-- End Page Header -->
+
+            <?php if(!empty($data['operations'])):?>
+
+            <div class="alert alert-success" role="alert">
+                <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>Renvoyée avec succes!</strong>
+            </div
+
+            <?php endif; ?>
 
             <div class="card-filter">
 
