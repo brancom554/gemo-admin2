@@ -14,42 +14,54 @@ if (isset($_POST['reinitialiser']) ) {
 
     }else{
 
-    $phone = '+229'.$telephone;
+            //vérifie l'existence du numéro dans notre systeme ::debut
+            $sms = new Sms();
+            $check = $sms->checkPhoneNumberExistance($telephone);
 
-    $sms = new Sms();
-    $key = $sms->generateSmsCode();
-    $message = 'Votre code de réinitialisation de mot de passe: '.$key;
-    $res = $sms->EnvoisSMS($phone,'GEMO',$message);
-	
+            if($check == 'false'){
+                $error = "Votre numéro n'existe pas dans notre systeme";
+            }
+            // fin
 
-	$number = "+229".$telephone;
-    $sender = "GEMO";
+             if($check == 'true'){ // si le numéro existe il poursuit avec l'exécution du script d'envoi de sms
 
-	//new sms sender
-	$ch = curl_init('https://textbelt.com/text');
-    $data = array(
-    'phone' => $number.'',
-    'senderId' => $sender.'',
-    'message' => $message.'',
-    'key' => 'e16f0f94c6cd23c7cbbf898674f230759b6e5d7bDaXXxLRAPmyoOTs2WyYvpHir7',
-    );
+                // $phone = '+229'.$telephone;
 
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                $sms = new Sms();
+                $key = $sms->generateSmsCode();
+                $message = 'Votre code de réinitialisation de mot de passe: '.$key;
+                // $res = $sms->EnvoisSMS($phone,'GEMO',$message);
+                
 
-    $res = curl_exec($ch);
-    curl_close($ch);
+                $number = "+229".$telephone;
+                $sender = "GEMO";
 
-    
-    if($res) {
-        
-        $storeCode = new Sms();
-        $error = $storeCode->codeReinitialisation($key,$telephone);
+                //new sms sender
+                $ch = curl_init('https://textbelt.com/text');
+                $data = array(
+                'phone' => $number.'',
+                'senderId' => $sender.'',
+                'message' => $message.'',
+                'key' => 'e16f0f94c6cd23c7cbbf898674f230759b6e5d7bDaXXxLRAPmyoOTs2WyYvpHir7',
+                );
 
-    }else{
-        $error = "Le code n'a pas été retourner";
-    }
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+                $res = curl_exec($ch);
+                curl_close($ch);
+
+                
+                if($res) {
+                    
+                    $storeCode = new Sms();
+                    $error = $storeCode->codeReinitialisation($key,$telephone);
+
+                }else{
+                    $error = "Le code n'a pas été retourner";
+                }
+            }
 
     }
 

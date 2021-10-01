@@ -20,15 +20,21 @@ class Sms
         return $response;
     }
 
+    function checkPhoneNumberExistance(string $tel) {
+
+        $sql = 'SELECT count(user_id) as total FROM users WHERE users.phone_number='.$tel;
+        $db = new Database();
+        $response = $db->DisplaysDataDb($sql);
+
+        return $response['total'] == 0 ? 'false' : 'true' ;
+    }
+
     function codeReinitialisation(string $code, $tel) 
     {
         
         $sql2 = 'SELECT user_id FROM users WHERE users.phone_number='.$tel;
         $db = new Database();
         $response = $db->DisplaysDataDb($sql2);
-
-        // var_dump($response);
-        // die();
 
         if(is_array($response)){
             $dt = new Datetime();
