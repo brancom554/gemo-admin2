@@ -12,7 +12,7 @@ if (isset($_POST['filter'])) {
         $sql = "SELECT TR.*,OPT.libelle as description FROM 
         (SELECT ops.operation_type_id,ops.libelle,u.operation_date,ops.network_operator_name operator_name, 
         u.transaction_phone_number, users.firstname, users.lastname, u.statut_operation,u.operation_id 
-        FROM user_operations u  INNER JOIN operations ops ON ops.operation_id = u.operation_id 
+        FROM user_operations u  INNER JOIN operations ops ON ops.operation_id_source = u.operation_id 
         INNER JOIN users ON users.user_id = u.created_by_user_id 
         WHERE u.operation_date BETWEEN '".$debut."' AND '".$fin."')
          AS TR INNER JOIN operation_types AS OPT ON OPT.operation_type_id = TR.operation_type_id";
@@ -20,7 +20,7 @@ if (isset($_POST['filter'])) {
     } else {
         if ($_SESSION['access'] == '2') {
             //$sql = "SELECT Z.operation_date,Z.libelle,Z.amount,Z.network_operator_name,U.firstname,U.lastname FROM (SELECT K.*,O.operation_type_id,O.libelle,O.amount,O.network_operator_name FROM (SELECT us.user_id,usop.operation_date,usop.operation_id FROM users us INNER JOIN user_operations usop ON usop.created_by_user_id = us.user_id WHERE usop.operation_date BETWEEN '".$debut."' AND '".$fin."') as K INNER JOIN operations O ON O.operation_id = K.operation_id ) as Z INNER JOIN users U ON U.  U WHERE U.company_id =".$_POST['manager'];
-            $sql = "SELECT Z.operation_date,Z.libelle,Z.amount,Z.statut_operation,Z.transaction_phone_number,Z.network_operator_name,Z.firstname,Z.lastname FROM (SELECT K.*,O.operation_type_id,O.libelle,O.amount,O.statut_operation,O.transaction_phone_number,O.network_operator_name FROM (SELECT us.user_id,usop.operation_date,usop.operation_id,us.firstname,us.lastname FROM users us INNER JOIN user_operations usop ON usop.created_by_user_id = us.user_id WHERE usop.operation_date BETWEEN '".$debut."' AND '".$fin."' AND us.company_id ='".$_POST['manager']."') as K INNER JOIN operations O ON O.operation_id = K.operation_id) as Z";
+            $sql = "SELECT Z.operation_date,Z.libelle,Z.amount,Z.statut_operation,Z.transaction_phone_number,Z.network_operator_name,Z.firstname,Z.lastname FROM (SELECT K.*,O.operation_type_id,O.libelle,O.amount,O.statut_operation,O.transaction_phone_number,O.network_operator_name FROM (SELECT us.user_id,usop.operation_date,usop.operation_id,usop.operation_id_source,us.firstname,us.lastname FROM users us INNER JOIN user_operations usop ON usop.created_by_user_id = us.user_id WHERE usop.operation_date BETWEEN '".$debut."' AND '".$fin."' AND us.company_id ='".$_POST['manager']."') as K INNER JOIN operations O ON O.operation_id_source = K.operation_id_source) as Z";
         }
     }
     
