@@ -14,10 +14,10 @@ class User{
                     $_SESSION['company'] = $data['user']['company_id'];
                     $_SESSION['address'] = $data['user']['address_id'];
 
-                    $sql = "SELECT company_token FROM companies INNER JOIN users USING (company_id)  WHERE users.company_id=".$_SESSION['company'];
+                    $sql = "SELECT comp.company_token FROM companies comp INNER JOIN users users ON  comp.company_id=users.company_id  WHERE comp.company_id=".$_SESSION['company'];
                     $db = new Database();
                     $companyToken = $db->DisplaysDataDb($sql);
-                    
+                    var_dump($companyToken);die;
                     $_SESSION['companie_token'] = $companyToken['company_token'];
                     $_SESSION['user_id'] = $data['user']['user_id'];
                     if ($_SESSION['access'] == '1') {
