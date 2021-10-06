@@ -14,7 +14,7 @@ class User{
                     $_SESSION['company'] = $data['user']['company_id'];
                     $_SESSION['address'] = $data['user']['address_id'];
 
-                    $sql = "SELECT company_token FROM companies INNER JOIN users USING (company_id)  WHERE users.company_id=".$_SESSION['company'];
+                    $sql = "SELECT company_token FROM companies company_id=".$_SESSION['company'];
                     $db = new Database();
                     $companyToken = $db->DisplaysDataDb($sql);
                     var_dump($companyToken);die;
