@@ -15,7 +15,7 @@ class User{
                     $_SESSION['address'] = $data['user']['address_id'];
 
                     $comp_id = $_SESSION['company'];
-                    $sql = "SELECT company_token FROM companies company_id='$comp_id' ";
+                    $sql = "SELECT company_token FROM companies company_id='".$comp_id."' ";
                     $db = new Database();
                     $companyToken = $db->DisplaysDataDb($sql);
                     var_dump($companyToken);die;
