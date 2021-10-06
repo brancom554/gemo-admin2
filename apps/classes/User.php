@@ -18,7 +18,7 @@ class User{
                     $sql = "SELECT company_token FROM companies company_id='".$comp_id."' ";
                     $db = new Database();
                     $companyToken = $db->DisplaysDataDb($sql);
-                    var_dump($companyToken);die;
+                    var_dump($companyToken);
                     $_SESSION['companie_token'] = $companyToken['company_token'];
                     $_SESSION['user_id'] = $data['user']['user_id'];
                     if ($_SESSION['access'] == '1') {
