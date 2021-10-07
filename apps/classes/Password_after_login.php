@@ -1,6 +1,6 @@
 <?php
 require_once(_APPS_PATH.'/classes/Database.php');
-//require_once(_APPS_PATH.'/classes/Password_after_login.php');
+
 
 
 class Password_after_login{
