@@ -10,6 +10,7 @@ require_once(_APPS_PATH.'/classes/Database.php');
         $response = $db->DisplayDataDb($sql);
 
  }
+ 
 
 
 if(file_exists(_VIEW_PATH.$lib->lang."/inventaire.phtml"))  $view=$lib->lang."/inventaire.phtml";
