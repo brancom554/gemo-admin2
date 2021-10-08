@@ -21,7 +21,8 @@ if (isset($_POST['filter'])) {
         WHERE u.created_by_user_id='".$userSelected."' AND u.operation_date BETWEEN '".$debut."' AND '".$fin."')
          AS TR INNER JOIN operation_types AS OPT ON OPT.operation_type_id = TR.operation_type_id";
 		 
-		 }else{
+		 }
+		 if( (empty($debut)) || ( empty($fin) ) ) {
 			 
 			 $sql = "SELECT TR.*,OPT.libelle as description FROM 
         (SELECT ops.operation_type_id,ops.libelle,u.operation_date,ops.network_operator_name operator_name, 
