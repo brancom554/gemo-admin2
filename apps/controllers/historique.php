@@ -6,16 +6,31 @@ if (isset($_POST['filter'])) {
     $debut = $dateDebut->format('Y-m-d');
     $dateFin = new DateTime($_POST['fin']);
     $fin = $dateFin->format('Y-m-d');
+	
 
     if ($_SESSION['access'] == '1') {
-
+		$userSelected = $_POST['marchand'] ;
+          $sql ="";    
+         // tester si l'utilisateur a choisi une plage de dates 
+		 if((!empty($debut) ) && (!empty($fin))  ){
         $sql = "SELECT TR.*,OPT.libelle as description FROM 
         (SELECT ops.operation_type_id,ops.libelle,u.operation_date,ops.network_operator_name operator_name, 
         u.transaction_phone_number, users.firstname, users.lastname, u.statut_operation,u.operation_id 
         FROM user_operations u  INNER JOIN operations ops ON ops.operation_id_source = u.operation_id 
         INNER JOIN users ON users.user_id = u.created_by_user_id 
-        WHERE u.operation_date BETWEEN '".$debut."' AND '".$fin."')
+        WHERE u.created_by_user_id='".$userSelected."' AND u.operation_date BETWEEN '".$debut."' AND '".$fin."')
          AS TR INNER JOIN operation_types AS OPT ON OPT.operation_type_id = TR.operation_type_id";
+		 
+		 }else{
+			 
+			 $sql = "SELECT TR.*,OPT.libelle as description FROM 
+        (SELECT ops.operation_type_id,ops.libelle,u.operation_date,ops.network_operator_name operator_name, 
+        u.transaction_phone_number, users.firstname, users.lastname, u.statut_operation,u.operation_id 
+        FROM user_operations u  INNER JOIN operations ops ON ops.operation_id_source = u.operation_id 
+        INNER JOIN users ON users.user_id = u.created_by_user_id 
+        WHERE u.created_by_user_id='".$userSelected."' )
+         AS TR INNER JOIN operation_types AS OPT ON OPT.operation_type_id = TR.operation_type_id";
+		 }
         
     } else {
         if ($_SESSION['access'] == '2') {
@@ -44,7 +59,7 @@ if (isset($_POST['filter'])) {
 
 if ($_SESSION['access'] == '1') {
     $db = new Database();
-    $sql = 'SELECT firstname,lastname,application_uuid FROM users WHERE company_id ='.$_SESSION['company'].' AND is_manager=0';
+    $sql = 'SELECT firstname,lastname,application_uuid,user_id FROM users WHERE company_id ='.$_SESSION['company'].' AND is_manager=0';
     $data['marchand'] = $db->DisplayDataDb($sql);
 } else {
     if ($_SESSION['access'] == '2') {
