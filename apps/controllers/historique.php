@@ -22,7 +22,7 @@ if (isset($_POST['filter'])) {
          AS TR INNER JOIN operation_types AS OPT ON OPT.operation_type_id = TR.operation_type_id";
 		 
 		 }
-		 if( (empty($_POST['debut'])) || ( empty($_POST['fin']) ) {
+		 if( (empty($_POST['debut'])) || ( empty($_POST['fin']) ) ) {
 			 
 			 $sql = "SELECT TR.*,OPT.libelle as description FROM 
         (SELECT ops.operation_type_id,ops.libelle,u.operation_date,ops.network_operator_name operator_name, 
