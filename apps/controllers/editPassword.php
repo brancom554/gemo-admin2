@@ -13,7 +13,7 @@ if (isset($_POST['update'])) {
         }
         $sql = 'UPDATE users SET encrypted_password=:password WHERE user_id=:id';
         $data=[
-            'id' => $url_array[4],
+            'id' => $url_array[3],
             'password'=> $password
         ];
         $db = new Database();
