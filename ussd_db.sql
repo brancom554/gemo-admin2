@@ -82,7 +82,7 @@ INSERT INTO `categories` VALUES
 (9,'PASS BONUS APPEL','2021-08-26 10:19:32',1,'SERVICES TELEPHONIQUES',3),
 (10,'PASS BONUS INTERNET','2021-08-26 10:19:32',1,'SERVICES TELEPHONIQUES',3),
 (11,'GOPACK','2021-08-26 10:19:32',1,'SERVICES TELEPHONIQUES',3);
-;
+
 
 
 --
@@ -366,18 +366,16 @@ CREATE TABLE `operation_types` (
 -- Dumping data for table `operation_types`
 --
 
-INSERT INTO `operation_types` VALUES 
-(1,'DEPOT','2021-07-08 12:29:42','DEPOT','2'),
+INSERT INTO `operation_types` VALUES  (1,'DEPOT','2021-07-08 12:29:42','DEPOT','2'),
 (2,'RETRAIT','2021-07-08 12:29:42','RETRAIT','2'),
 (3,'FORFAIT MAXI APPEL','2021-07-08 14:42:04','forfait maxi appel','2'),
 (4,'FORFAIT MAXI INTERNET','2021-07-08 14:42:04','forfait maxi internet','2'),
 (5,'PASS BONUS APPEL','2021-07-16 10:50:38','pass bonus appel','2'),
 (6,'PASS BONUS INTERNET','2021-07-16 10:55:12','pass bonus internet','2'),
 (7,'FORFAIT INTERNET','2021-08-02 14:24:11','forfait internet','2'),
-(8,'CREDIT','2021-08-02 14:57:06','Vente de crédits','2')
+(8,'CREDIT','2021-08-02 14:57:06','Vente de crédits','2'),
 (9,'GOPACK','2021-08-02 14:57:06','Forfait go pack','2');
-/*!40000 ALTER TABLE `operation_types` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
 -- Table structure for table `operations`
@@ -467,8 +465,8 @@ INSERT INTO `services` VALUES (1,'FORFAIT INTERNET','Test desciption'),
 (7,'CREDIT',''),
 (8,'DEPOT',''),
 (9,'RETRAIT',''),
-(10,'GOPACK','')
-;
+(10,'GOPACK','') ;
+
 /*!40000 ALTER TABLE `services` ENABLE KEYS */;
 
 
@@ -618,7 +616,6 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` VALUES (1,'BAKARI','Mariama So Arouna','','0666265571','$2y$10$/nssyIy7Z7OqAdNFj06K8urvevEk6gB3n0CxgX.kDOsqs..y/1XJi','0cbc6611f5540bd0809a388dc95a615b','2021-08-17 18:46:00',NULL,1,2,1,'2021-08-17','2021-08-20',2,'DKO',NULL,'1',NULL);
-;
 
 --
 -- Table structure for table `validate_password`
