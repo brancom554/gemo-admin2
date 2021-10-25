@@ -1,6 +1,7 @@
 <?php
 // die($page_requested);
 
+/*
 if (empty($_SESSION['username'])) {
 	switch ($page_requested) {
 		default:
@@ -8,6 +9,8 @@ if (empty($_SESSION['username'])) {
 		break;
 	}
 } else {
+	*/
+	
 	switch ($page_requested) {
 		case "reinitialiser":
 			include "reinitialisation.php";
@@ -213,4 +216,4 @@ if (empty($_SESSION['username'])) {
 		// $view = $viewPath . "/" . $lib->lang . "/" . "home_page_content.phtml";
 		break;
 	}
-}
+
