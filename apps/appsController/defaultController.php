@@ -4,7 +4,7 @@
 if (empty($_SESSION['username'])) {
 	switch ($page_requested) {
 		default:
-		include "login.php";
+		include "homeController.php";
 		break;
 	}
 } else {
