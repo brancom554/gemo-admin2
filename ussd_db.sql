@@ -611,7 +611,7 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` VALUES (1,'BAKARI','Mariama So Arouna','','0666265571','$2y$10$/nssyIy7Z7OqAdNFj06K8urvevEk6gB3n0CxgX.kDOsqs..y/1XJi','0cbc6611f5540bd0809a388dc95a615b','2021-08-17 18:46:00',NULL,1,1,1,'2021-08-17','2021-08-20',2,'DKO',NULL,'1',NULL);
+INSERT INTO `users` VALUES (1,'SUPER ADMIN','GEMO','','61292948','$2y$10$/nssyIy7Z7OqAdNFj06K8urvevEk6gB3n0CxgX.kDOsqs..y/1XJi','0cbc6611f5540bd0809a388dc95a615b','2021-08-17 18:46:00',NULL,1,1,1,'2021-08-17','2021-08-20',2,'DKO',NULL,'1',NULL);
 
 --
 -- Table structure for table `validate_password`
