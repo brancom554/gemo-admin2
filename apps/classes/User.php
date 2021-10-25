@@ -3,7 +3,7 @@ require_once(_APPS_PATH.'/classes/Database.php');
 
 class User{
     function seConnecter(string $telephone, $passwords){    
-        $sql = "SELECT user_id,last_update_date,firstname,lastname,encrypted_password,is_manager,address_id,company_id,company_token FROM users WHERE phone_number= '$telephone'";
+        $sql = "SELECT user_id,last_update_date,firstname,lastname,encrypted_password,is_manager,address_id,company_id,company_token FROM users WHERE phone_number= '$telephone' ";
         $db = new Database();
         try {
             $data['user'] = $db->DisplaysDataDb($sql);

@@ -360,11 +360,7 @@ CREATE TABLE `operation_types` (
   `data_version` varchar(105) DEFAULT NULL,
   PRIMARY KEY (`operation_type_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `operation_types`
---
 
 INSERT INTO `operation_types` VALUES  (1,'DEPOT','2021-07-08 12:29:42','DEPOT','2'),
 (2,'RETRAIT','2021-07-08 12:29:42','RETRAIT','2'),
@@ -615,15 +611,13 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` VALUES (1,'BAKARI','Mariama So Arouna','','0666265571','$2y$10$/nssyIy7Z7OqAdNFj06K8urvevEk6gB3n0CxgX.kDOsqs..y/1XJi','0cbc6611f5540bd0809a388dc95a615b','2021-08-17 18:46:00',NULL,1,2,1,'2021-08-17','2021-08-20',2,'DKO',NULL,'1',NULL);
+INSERT INTO `users` VALUES (1,'BAKARI','Mariama So Arouna','','0666265571','$2y$10$/nssyIy7Z7OqAdNFj06K8urvevEk6gB3n0CxgX.kDOsqs..y/1XJi','0cbc6611f5540bd0809a388dc95a615b','2021-08-17 18:46:00',NULL,1,1,1,'2021-08-17','2021-08-20',2,'DKO',NULL,'1',NULL);
 
 --
 -- Table structure for table `validate_password`
 --
 
-DROP TABLE IF EXISTS `validate_password`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `validate_password` (
   `validate_id` int(11) NOT NULL AUTO_INCREMENT,
   `verify_code` varchar(45) DEFAULT NULL,
